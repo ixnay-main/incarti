@@ -1,0 +1,13 @@
+{
+  "name": "iris-messenger",
+  "version": "1.0.0",
+  "author": "Martti Malmi <sirius@iki.fi>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "http-server": "^0.12.1"
+  },
+  "scripts": {
+    "start": "echo 'Iris: http://localhost:8080'; npx http-server src --silent"
+  }
+}
