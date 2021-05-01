@@ -69,7 +69,6 @@ p {
   max-width: 460px;
   margin: 0 auto;
   transition: color 300ms linear;
-  text-align: center;
   color: var(--color-dark);
   font-weight: 400;
   line-height: 1.5;
@@ -167,4 +166,34 @@ a:hover, a:visited:hover {
 }
 .button.-dark:focus {
   outline-offset: -4px;
+}
+
+.container2{
+  display: block;
+
+}
+
+
+@media screen and (max-width: 820px) {
+  .container2{
+    display: none;
+  }
+}
+
+.svg-icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: var(--color-ocean);
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
 }

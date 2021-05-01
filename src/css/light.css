@@ -1,9 +1,8 @@
 /* light.css: 👉 dark-on-light */
 :root {
-    --body-bg: #fff;
+    --body-bg: whitesmoke;
     --text-color: #262626;
     --text-time: rgba(0, 0, 0, 0.45);
-    --main-color: #fafafa;
     --gallery-background: rgba(255, 255, 255, 0.90);
     --header-color: #fff;
     --chat-active: #ececec;
@@ -25,11 +24,9 @@
     --button-color: #fff;
     --button-border: 0;
     --button-border-size: 0;
-    --button-hover-bg: #19add9;
     --menu-bg: #fff;
     --sidebar-bg: #fff;
     --sidebar-border-right: 1px solid #dfdfdf;
-    --zebra-stripe-bg: rgba(255,255,255,0.5);
     --emoji-picker-bg: #FFFFFF;
     --emoji-picker-color: #777;
     --emoji-picker-border-color: #CCCCCC;

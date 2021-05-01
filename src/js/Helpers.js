@@ -1933,16 +1933,17 @@ export default {
   },
 
   getBase64(file) {
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    return new Promise((resolve, reject) => {
-      reader.onload = function () {
-        resolve(reader.result);
+
+    
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function(evt) {
+        console.log(evt.target.result);
       };
-      reader.onerror = function (error) {
-        reject('Error: ' + error);
-      };
-    });
+      reader.readAsText(file);
+    
+
+    
   },
 
   hideAndRemove(el) {
