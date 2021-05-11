@@ -1,13 +1,10 @@
-# Iris
-Iris is like the social networking apps we're used to, but better.
-* No phone number or signup required. Just type in your name or alias and go!
-* Secure: It's open source. Users can validate that big brother doesn't read your private messages.
-* Available: It works offline-first and is not dependent on any single centrally managed server. Users can even connect directly to each other.
+# INCARTI
 
-![Screenshot](src/img/screenshot.png)
+Manufacture for Autonomy
+
 
 ## Use
-Browser application: [iris.to](https://iris.to)
+Browser application: 
 * No installation required
 * Progressive web app
   * Use offline
@@ -28,11 +25,16 @@ yarn
 yarn start
 ```
 
+or
+
+```
+npx serve
+```
+
 No build tools! It just serves the `src` directory at http://localhost:8080
 
 Eslint: `yarn eslint src/js/*.js --fix;yarn eslint src/js/components/*.js --fix`
-
-The application was originally built in plain jQuery without a framework. While we now use [preact](https://preactjs.com/), there's still some jquery logic that should be ported.
+Built with[preact](https://preactjs.com/)
 
 ## Privacy
 Private messages are end-to-end encrypted, but message timestamps and the number of chats aren't. In a decentralized network this information is potentially available to anyone.
@@ -46,10 +48,10 @@ Profile names, photos and online status are currently public. That can be change
 The application is an unaudited proof-of-concept implementation, so don't use it for security critical purposes.
 
 ## Contact
-Join our [Discord](https://discord.gg/4Dgf54k) or send me a message on [Iris](https://iris.to/?chatWith=hyECQHwSo7fgr2MVfPyakvayPeixxsaAWVtZ-vbaiSc.TXIp8MnCtrnW6n2MrYquWPcc-DTmZzMBmc2yaGv9gIU&s=HlzYzNrhUsrn2PLi4yuRt6DiFUNM3hOmN8nFpgw6T-g&k=zvDfsInsMOI1).
+Join our [Discord](https://discord.gg/4Dgf54k).
 
 ---
 
-<a href="https://opencollective.com/iris-social/donate" target="_blank"><img src="https://opencollective.com/iris-social/donate/button@2x.png?color=blue" width=200 /></a>
+<a href="https://opencollective.com/iris-social/donate" target="_blank">Donante to the Original IRIS project which laid this groundwork for this app</a>
 
-<p><sub>BTC donations: 3GopC1ijpZktaGLXHb7atugPj9zPGyQeST</sub></p>
+<p>Donante to the Original IRIS project which laid this groundwork for this app - BTC donations: 3GopC1ijpZktaGLXHb7atugPj9zPGyQeST</p>
