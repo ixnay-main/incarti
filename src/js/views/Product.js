@@ -3,8 +3,7 @@ import State from '../State.js';
 import Session from '../Session.js';
 import { route } from '../lib/preact-router.es.js';
 import StoreView from './Store.js';
-import { createElement } from '../lib/preact.js';
-
+import Helpers from '../Helpers.js';
 
 
 class Product extends StoreView {
@@ -13,14 +12,26 @@ class Product extends StoreView {
     this.eventListeners = [];
     this.followedUsers = new Set();
     this.followers = new Set();
+
+    this.state = {items:{}};
+    this.items = {};
+
   }
 
   addToCart() {
     const count = (this.cart[this.props.product] || 0) + 1;
     State.local.get('cart').get(this.props.store).get(this.props.product).put(count);
-    /// this will act as a copy item button
-    State.public.user().get('store').get('products').get(this.newProductId || this.newProductName).put(product);
+    }
 
+    cloneItemClicked() {
+    const product = {
+      name: this.newProductName,
+      description: this.newProductDescription,
+      price: this.newProductPrice
+    };
+    console.log(this.props.product)
+    State.public.user().get('store').get('products').put(product);
+    route('/store/' + this.props.store);
   }
 
   donwloadThis(){
@@ -41,6 +52,23 @@ class Product extends StoreView {
         var container = $('linkContainer');
         var anchor = ('<a download href="' + loc + '" >File</a>');
         $("#container").append(anchor)
+          var stl_viewer=new StlViewer
+          (
+          document.getElementById("stl_cont2"),
+          {
+      
+              auto_rotate:true,
+         
+
+              
+          models:
+          [
+          {filename: loc , rotationx:-1.570796, color: ""}
+          ]
+          }
+          )
+
+
 
 
       };   reader.onerror = function (error) {
@@ -55,52 +83,80 @@ class Product extends StoreView {
 
   newProduct() {
     console.log('new');
+
     return html`
-    
-    <div style="display: flex" style="    justify-content: center !important;width: 100%;min-height: 100vh;font-family: var(--font-face);font-size: 16px;align-items: center;">
-      
-          <div class="button-container">
+    <div class="main-view" id="profile" style="">
+    <div id="container">   
+      <div id="stl_cont2" style="width:auto; height:40vh ;margin:0 auto; overflow: hidden; position: fixed !important; top: 2em; z-index: 9; margin: auto"></div>
+    </div>
+    <div class="content" style="background-color: whitesmoke; z-index: 1001;     position: sticky; margin-top: 20em; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; border-radius: 10px; height: fit-content; ">
+        <div class="productInfo">
+          <a href="/store/${Session.getPubKey()}"><iris-text path="profile/name" user=${Session.getPubKey()} /></a>
+          <p contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
+        </div>
+        <br/><br/>
+        <div style="display: flex">
+          <div class="productInfo">
+            <p >Price</p>
+            <p contenteditable type="number" placeholder="Price" onInput=${e => this.newProductPrice = parseInt(e.target.innerText)}/>
+          </div>
+
+          <div class="productInfo" style="margin-left: 8em">
+            <p >Location</p>
+            <p contenteditable placeholder="Item Location" onInput=${e => this.newProductLocation = e.target.innerText} />
+          </div>
+          <div class="productInfo" style="margin-left: 8em">
+            <p>Subcomponentry</p>
+            <p contenteditable placeholder="subs Name" onInput=${e => this.newProductSubName = e.target.innerText} />
+          </div>
+          <div class="productInfo" style="margin-left: 8em">
+            <p>ID</p>
+            <p class="addPadding" contenteditable placeholder="Item ID" onInput=${e => this.newProductId = e.target.innerText} />
+          </div>
+          <div class="productInfo" style="margin-left: 8em">
+            <button style="background: var(--color-dark) !important; color: white; padding: 0.0em;" onClick=${e => this.donwloadThis(e)}>Upload
+            </button>
+            <label for="file">Choose File</label>
+            <input id="file" type="file" style="display: none;"/>
+          </div>
+        </div>
+        <br/><br/>
+        <div style="display: flex">
           
-            <center><h2>Add a blueprint to your Catalog.</h2></center><br/>
-            <a href="/store/${Session.getPubKey()}" style="display: none"><iris-text path="profile/name" user=${Session.getPubKey()} /></a>
-            <div class="button -regular center">
-              <p class="addPadding" contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
+          <div style="display: flex">
+            <div class="productInfo" >
+              <p >Quantity Desired</p>
+              <p contenteditable placeholder="Desired Qunaity" onInput=${e => this.newProductDesQuantity = e.target.innerText} />
+            </div>
+            <div class="productInfo" style="margin-left: 8em">
+              <button onClick=${e => this.addItemClicked(e)}>Add item</button>
             </div>
           </div>
-          <div class="button-container">
-            <div class="button -regular center">
-              <p class="addPadding"  contenteditable placeholder="Description" onInput=${e => this.newProductDescription = e.target.innerText}/><p style="color: var(--color-ocean); padding: 0em 1em">|</p>
-              <p class="addPadding" contenteditable type="number" placeholder="Price" onInput=${e => this.newProductPrice = parseInt(e.target.innerText)}/>
-            </div>
-
-            <div class="button -regular center">
-              <p class="addPadding" contenteditable placeholder="Item ID" onInput=${e => this.newProductId = e.target.innerText} /><p style="color: var(--color-ocean); padding: 0em 1em">|</p>
-              <p class="addPadding" contenteditable placeholder="Item Location" onInput=${e => this.newProductLocation = e.target.innerText} />
-            </div>
-
-
-            <div class="button -regular center">
-              <p class="addPadding"  contenteditable placeholder="Subcomponentry" onInput=${e => this.newProductSub = e.target.innerText}/>
-            </div>
-
-            <div class="button -regular center">
-              <input id="file" type="file" onInput=${() => console.log("beans")}/>
-              
-            </div>
-
-            <div class="button -regular center">
-              <button style="background: var(--color-dark) !important; color: white; padding: 0.0em;" id="container" onClick=${e => this.donwloadThis(e)}>download</button>
-            </div>
-
-            <div class="button -dark center">
-              <button style="background: var(--color-dark) !important; color: white; padding: 0.0em;" onClick=${e => this.addItemClicked(e)}>Add Blueprint
-              </button>
-            </div>
-            
-          </div>
-       
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </div>
       </div>
+    </div>
     `;
+  }
+
+  
+
+  createMarginalCost(){
+    var previousPrice = 90
+    var previousQuantity = 48
+
+    var thisQuantity = document.getElementById("quantity").innerText
+    var thisPrice = document.getElementById("price").innerText
+
+    console.log(thisQuantity)
+    console.log(thisPrice)
+
+    var marginalCost = ( thisPrice - previousPrice )   / ( thisQuantity - previousQuantity) 
+
+    console.log( marginalCost )
+
+    $('marginalCostBox').html(marginalCost) 
+    document.getElementById("marginalCostBox").innerHTML = marginalCost
   }
 
   onClickDelete() {
@@ -110,65 +166,122 @@ class Product extends StoreView {
     }
   }
 
+
+
+
+  cloneItemClicked() {
+
+    console.log(this.props.product)
+
+    const clonedproduct = {
+      name: this.props.product + 1,
+      description: this.newProductDescription,
+      price: this.newProductPrice
+    };
+    console.log(clonedproduct);
+    State.public.user().get('store').get('products').get( clonedproduct.name ).put(clonedproduct);
+    route(`/store/${Session.getPubKey()}`)
+  }
+
   showProduct() {
+    const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
+
+    setTimeout(function(){
+
+      var stl_viewer=new StlViewer
+      (
+      document.getElementById("stl_cont2"),
+      {
+          auto_rotate:true, 
+      models:
+      [
+      {filename: document.getElementById("modelDataRaw").textContent,opacity: 0.8}
+      ]
+      }
+      )
+      console.log(document.getElementById("modelDataRaw").textContent)
+
+    } , 1000)
+
+    var parentStore = html`<i class="fas fa-chevron-left"></i>`
     const i = this.state.product;
     if (!i) return html``;
     return html`
-
-
-      
-      
-        
+    <div class="main-view" id="profile" style="">
+      <div id="stl_cont2" style="width:auto; height:20em ;margin:0 auto; overflow: hidden; position: fixed !important; top: 3em; z-index: 9"></div>
+      <div class="content" style="background-color: whitesmoke; z-index: 1001;     position: sticky; margin-top: 20em; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; border-radius: 10px; height: fit-content; ">
+        <div class="productInfo">
+          <a href="/store/${this.props.store}"><iris-text editable="false" user=${this.props.store}/>${ parentStore }</a>
+        </div>
         ${this.state.product ? html`
+            <div class="productInfo">
+              <iris-text tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/>
+            </div>
 
+            <div style="display: flex">
+              <div class="productInfo">
+                <p >Price</p>
+                <iris-text class="makeBlack" id="price" style="color: black !important; text-decoration: none" placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
+              </div>
+              <div class="productInfo" style="margin-left: 8em">
+              <p onClick=${e => this.createMarginalCost(e)}>find marginal cost</p>
+              <p id="marginalCostBox"></p>
 
-        
+              </div>
+              <div class="productInfo" style="margin-left: 8em">
+                <p >Location</p>
+                  <iris-text user=${this.props.store} path="store/products/${this.props.product}/location"/><br/>
+              </div>
+              <div class="productInfo" style="margin-left: 8em">
+              <p >Subcomponentry</p>
+                <iris-text user=${this.props.store} path="store/products/${this.props.product}/subName"/><br/>
+            </div>
+            </div>
+            <br/><hr/><br/>
+            <div style="display: flex">
+              <div class="productInfo" >
+                <p >Quantity Desired</p>
+                <iris-text user=${this.props.store} id="quantity" path="store/products/${this.props.product}/desQuantity"/><br/>
+              </div>
+              <div class="productInfo" style="width: fit-content; float: right; display: flex;  padding: 0em; border-radius: 5px">
+                ${this.isMyProfile ? html`
+                <i class="fas fa-trash-alt" style="font-size: 2em; margin-left: 8em" onClick=${e => this.onClickDelete(e)}></i> 
+                ` : ''}
 
-      <div style="display: flex" style="    justify-content: center !important;width: 100%;min-height: 100vh;background: whitesmoke;font-family: var(--font-face);font-size: 16px;align-items: center;">
+                <i class="fas fa-clone" style="font-size: 2em; margin-left: 2em" onClick=${e => this.cloneItemClicked(e)}></i>
+ 
+                <i class="fas fa-link" id="linkBtn" style="font-size: 2em; margin-left: 2em" onClick=${() => { 
+                  var inputc = document.body.appendChild(document.createElement("input"));
+                  inputc.value = window.location.href;
+                  inputc.focus();
+                  inputc.select();
+                  document.execCommand('copy');
+                  inputc.parentNode.removeChild(inputc);
+                  document.getElementById("likeBtn").style.color = "green";
 
-        <div style="display: flex">
-          <h2>Maintained by our Lord and Saviour</h2>
-          <h2 style="padding-left: 1em; padding-right: 0.3em">🎉 </h2><h2><a href="/store/${this.props.store}"><iris-text editable="false" path="profile/name" user=${this.props.store}/></a></h2><h2 style="padding-left: 0.3em;"> 🎉</h2>
-        </div>
-        <br/><br/>
+                  } }></i>
+   
+              </div>
+            </div><br/><hr/><br/>
+            <div style="display: flex" style="padding-bottom: 5em">
+              <div class="productInfo"  >
+              <p>Sub Componentry</p>
+              <iris-text  user=${this.props.store} path="store/products/${this.props.product}/subComp"/><br/>
 
-        <div class="button-container">
-          <div class="button -regular center">
-            <iris-text class="addPadding" placeholder="Name" tag="p" user=${this.props.store} path="store/products/${this.props.product}/name"/>
-          </div>
-        </div>
-        <div class="button-container">
-          <div class="button -regular center">
-            <iris-text class="addPadding" placeholder="Description" tag="p" user=${this.props.store} path="store/products/${this.props.product}/description"/>
-          </div>
-          <div class="button -regular center">
-            <iris-text class="addPadding" placeholder="Price"  tag="p" user=${this.props.store} path="store/products/${this.props.product}/price"/><p style="color: var(--color-ocean); padding: 0em 1em">|</p>
-            <iris-text class="addPadding" placeholder="Location" tag="p" user=${this.props.store} path="store/products/${this.props.product}/location"/>
-          </div>
-          <div class="button -regular center">
-            <iris-text class=""  tag="p" placeholder="Subcomponentry" user=${this.props.store} path="store/products/${this.props.product}/sub"/>
-          </div>
-          <div class="button -regular center">
-            <iris-text class=""  tag="p" placeholder="Model" user=${this.props.store} path="store/products/${this.props.product}/model"/>
-          </div>
-        </div>
-        ${this.isMyProfile ? html` 
-        <div class="button-container">
-          <div class="button -dark center">
-            <p><button style="background: var(--color-dark) !important; color: white; padding: 0.4em;" onClick=${e => this.onClickDelete(e)}>Delete item</button></p>
-          </div>
-        </div>
-        ` : ''}    
-      </div>
+              </div>
+            </div>
 
-          
-        
+            <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
+            
+            <iris-text user=${this.props.store} editable="false" href="store/products/${this.props.product}/model" onClick=${() => {console.log("gimmme files")}}/>
         ` : ''}
-      `;
+      </div>
+    </div>`;
   }
 
   render() {
     return (this.props.store && this.props.product ? this.showProduct() : this.newProduct());
+    
   }
 
   componentWillUnmount() {
@@ -181,16 +294,33 @@ class Product extends StoreView {
     }
   }
 
+  addSubClicked() {
+
+
+    const sub = {
+
+      subName: this.newProductSubName,
+      subAddy: this.newProductSubAddy,
+    };
+    console.log(sub.subName);
+    State.public.user().get('store').get('products').get(this.newProductId || this.newProductName).get(this.newProductSubName).put(sub);
+  }
+
+
   addItemClicked() {
+    var getModel = document.getElementById("uploadBtn").outerHTML
+    var modelRaw = document.getElementById("uploadBtn").href
+
     const product = {
       name: this.newProductName,
       description: this.newProductDescription,
       price: this.newProductPrice,
       location: this.newProductLocation,
-      sub: this.newProductSub,
-      model: this.newProductModel
+      desQuantity: this.newProductDesQuantity,
+      subComp: this.newProductSubComp,
 
-
+      model: getModel,
+      modelRaw: modelRaw
     };
     console.log(product);
     State.public.user().get('store').get('products').get(this.newProductId || this.newProductName).put(product);
@@ -198,7 +328,8 @@ class Product extends StoreView {
   }
 
   componentDidMount() {
-    StoreView.prototype.componentDidMount.call(this);
+
+
     const pub = this.props.store;
     this.eventListeners.forEach(e => e.off());
     this.setState({followedUserCount: 0, followerCount: 0, name: '', photo: '', about: ''});
@@ -206,6 +337,8 @@ class Product extends StoreView {
     if (this.props.product && pub) {
       State.public.user(pub).get('store').get('products').get(this.props.product).on(product => this.setState({product}));
     }
+
+    
   }
 }
 

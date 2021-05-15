@@ -62,7 +62,7 @@ class ProfilePhotoPicker extends Component {
   render() {
     const currentPhotoEl = this.state.preview ?  '' : html`<${SafeImg} class="picker profile-photo" src=${this.props.currentPhoto} onClick=${() => this.clickProfilePhotoInput()}/>`;
     const previewPhotoEl = this.state.preview ? html`<img id="profile-photo-preview" src=${this.state.preview}/>` : '';
-    const addProfilePhotoBtn = (this.props.currentPhoto || this.state.preview) ? '' : html`<div class="picker profile-photo"><${Identicon} str=${this.props.placeholder} width=100 onClick=${() => this.clickProfilePhotoInput()}/></div>`;
+    const addProfilePhotoBtn = (this.props.currentPhoto || this.state.preview) ? '' : html`<div class="picker profile-photo"><${Identicon} str=${this.props.placeholder} width=250 onClick=${() => this.clickProfilePhotoInput()}/></div>`;
     return html`
       ${currentPhotoEl}
       ${addProfilePhotoBtn}

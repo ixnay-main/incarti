@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>IXNAY</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./js/stl_viewer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/joydb/joy.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="play.css">
+  <script src="bar.js"></script>
+
+
+
+</head>
+<body style="background-color:whitesmoke;">
+
+
+
+ 
+    <div class="" style="transform: rotate(0deg); z-index: 7; height: 40em;">
+        <div id="stl_cont1" style=" height: 40em; "></div> 
+        <script>
+
+            var stl_viewer=new StlViewer
+            (
+            document.getElementById("stl_cont1"),
+            {
+            
+
+            
+            auto_rotate:false,
+            mouse_zoom: true,
+        
+            models:
+            [
+        
+            {filename:"extruder-motor-plate.stl", color:"#ffffff", scale: 30,opacity: 1, rotationy:3.1415926536 ,  rotationx: -0.2415926536 ,rotationz: 0.5415926536 ,  display: "wireframe" },
+
+            ]
+            }
+            );
+        </script>
+    </div>
+
+</div>
+<!-- partial -->
+  <script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollTrigger.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

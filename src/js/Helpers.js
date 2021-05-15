@@ -1916,6 +1916,18 @@ export default {
     return text;
   },
 
+  formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return '0 Bytes';
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  },
+
   download(filename, data, type, charset, href) {
     var hiddenElement;
     if (charset === null) {
@@ -1933,17 +1945,16 @@ export default {
   },
 
   getBase64(file) {
-
-    
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function(evt) {
-        console.log(evt.target.result);
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    return new Promise((resolve, reject) => {
+      reader.onload = function () {
+        resolve(reader.result);
       };
-      reader.readAsText(file);
-    
-
-    
+      reader.onerror = function (error) {
+        reject('Error: ' + error);
+      };
+    });
   },
 
   hideAndRemove(el) {

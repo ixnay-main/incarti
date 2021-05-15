@@ -158,6 +158,9 @@ function login(k) {
   }
   State.electron && State.electron.get('settings').on(electron => {
     settings.electron = electron;
+    if (electron.publicIp) {
+      Object.values(channels).forEach(shareMyPeerUrl);
+    }
   });
   State.local.get('settings').on(local => {
     settings.local = local;
@@ -227,6 +230,13 @@ function init(options = {}) {
 
 function getFollows() {
   return follows;
+}
+
+const myPeerUrl = ip => `http://${ip}:8767/gun`;
+
+function shareMyPeerUrl(channel) {
+  console.log('sharing my peer url', myPeerUrl(settings.electron.publicIp), channel.getId());
+  channel.put && channel.put('my_peer', myPeerUrl(settings.electron.publicIp));
 }
 
 function newChannel(pub, chatLink) {
@@ -303,7 +313,6 @@ function addChannel(chat) {
       if (typeof participants === 'object') {
         var keys = Object.keys(participants);
         keys.forEach((k, i) => {
-          const p = chat.participantProfiles[k];
           var hue = 360 / Math.max(keys.length, 2) * i; // TODO use css filter brightness
           chat.participantProfiles[k] = {permissions: participants[k], color: `hsl(${hue}, 98%, ${isDarkMode ? 80 : 33}%)`};
           State.public.user(k).get('profile').get('name').on(name => {
@@ -331,11 +340,21 @@ function addChannel(chat) {
     });
     const arr = Object.values(Notifications.webPushSubscriptions);
     setTimeout(() => chat.put('webPushSubscriptions', arr), 5000);
+    if (settings.electron && settings.electron.publicIp) {
+      shareMyPeerUrl(chat);
+    }
   }
   chat.onTheir('call', call => {
     State.local.get('call').put({pub, call});
   });
   State.local.get('channels').get(pub).put({enabled:true});
+  if (chat.onTheir) {
+    console.log('Listen to private peer url from', pub);
+    chat.onTheir('my_peer', (url, k, from) => {
+      console.log('Got private peer url', url, 'from', from);
+      PeerManager.addPeer({url, from})
+    });
+  }
 }
 
 function processMessage(chatId, msg, info) {

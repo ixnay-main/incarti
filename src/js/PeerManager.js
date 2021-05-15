@@ -1,8 +1,6 @@
 import State from './State.js';
-import { route } from './lib/preact-router.es.js';
 import Helpers from './Helpers.js';
 import Session from './Session.js';
-import {translate as t} from './Translation.js';
 
 var MAX_PEER_LIST_SIZE = 10;
 const ELECTRON_GUN_URL = 'http://localhost:8767/gun';
@@ -11,13 +9,20 @@ const DEFAULT_PEERS = {
   'https://iris.cx/gun': {},
   'https://gun-us.herokuapp.com/gun': {}
 };
-var peers = getSavedPeers();
+var knownPeers = getSavedPeers();
 
 async function addPeer(peer) {
   if (!Helpers.isUrl(peer.url)) {
     throw new Error('Invalid url', peer.url);
   }
-  peers[peer.url] = peers[peer.url] || _.omit(peer, 'url');
+  if (peer.from) {
+    Object.keys(knownPeers).forEach(k => {
+      if (knownPeers[k].from === peer.from) { // remove previous peer url from the same user
+        delete knownPeers[k];
+      }
+    });
+  }
+  knownPeers[peer.url] = knownPeers[peer.url] || _.omit(peer, 'url');
   if (peer.visibility === 'public') {
     // rolling some crypto operations to obfuscate actual url in case we want to remove it
     var secret = await Gun.SEA.secret(Session.getKey().epub, Session.getKey());
@@ -26,14 +31,14 @@ async function addPeer(peer) {
     State.public.user().get('peers').get(encryptedUrlHash).put({url: peer.url, lastSeen: new Date().toISOString()});
   }
   if (peer.enabled !== false) {
-    connectPeer(peer.url);
+    connectPeer(peer.url); // this calls savePeers()
   } else {
     savePeers();
   }
 }
 
 function removePeer(url) {
-  delete peers[url];
+  delete knownPeers[url];
   savePeers();
 }
 
@@ -42,8 +47,8 @@ function disconnectPeer(peerFromGun) {
   peerFromGun.url = '';
 }
 
-function getPeers() {
-  return peers;
+function getKnownPeers() {
+  return knownPeers;
 }
 
 function getSavedPeers() {
@@ -62,16 +67,16 @@ function getSavedPeers() {
 
 function resetPeers() {
   localStorage.setItem('gunPeers', undefined);
-  peers = getSavedPeers();
+  knownPeers = getSavedPeers();
 }
 
 function savePeers() {
-  localStorage.setItem('gunPeers', JSON.stringify(peers));
+  localStorage.setItem('gunPeers', JSON.stringify(knownPeers));
 }
 
 function connectPeer(url) {
-  if (peers[url]) {
-    peers[url].enabled = true;
+  if (knownPeers[url]) {
+    knownPeers[url].enabled = true;
     State.public.opt({peers: [url]});
     savePeers();
   } else {
@@ -80,7 +85,7 @@ function connectPeer(url) {
 }
 
 function disablePeer(url, peerFromGun) {
-  peers[url].enabled = false;
+  knownPeers[url].enabled = false;
   if (peerFromGun) {
     disconnectPeer(peerFromGun);
   }
@@ -88,11 +93,11 @@ function disablePeer(url, peerFromGun) {
 }
 
 function getRandomPeers() {
-  const connectToLocalElectron = iris.util.isElectron && peers[ELECTRON_GUN_URL] && peers[ELECTRON_GUN_URL].enabled !== false;
+  const connectToLocalElectron = iris.util.isElectron && knownPeers[ELECTRON_GUN_URL] && knownPeers[ELECTRON_GUN_URL].enabled !== false;
   const sampleSize = connectToLocalElectron ? Math.max(maxConnectedPeers - 1, 1) : maxConnectedPeers;
   const sample = _.sample(
     Object.keys(
-      _.pick(peers, (p, url) => { return p.enabled && !(iris.util.isElectron && url === ELECTRON_GUN_URL); })
+      _.pick(knownPeers, (p, url) => { return p.enabled && !(iris.util.isElectron && url === ELECTRON_GUN_URL); })
     ), sampleSize
   );
   if (connectToLocalElectron) {
@@ -106,17 +111,17 @@ var askForPeers = _.once(pub => {
   _.defer(() => {
     State.public.user(pub).get('peers').once().map().on(peer => {
       if (peer && peer.url) {
-        var peerCountBySource = _.countBy(peers, p => p.from);
+        var peerCountBySource = _.countBy(knownPeers, p => p.from);
         var peerSourceCount = Object.keys(peerCountBySource).length;
         if (!peerCountBySource[pub]) {
           peerSourceCount += 1;
         }
         var maxPeersFromSource = MAX_PEER_LIST_SIZE / peerSourceCount;
         addPeer({url: peer.url, connect: true, from: pub});
-        while (Object.keys(peers).length > MAX_PEER_LIST_SIZE) {
+        while (Object.keys(knownPeers).length > MAX_PEER_LIST_SIZE) {
           _.each(Object.keys(peerCountBySource), source => {
             if (peerCountBySource[source] > maxPeersFromSource) {
-              delete peers[_.sample(Object.keys(peers))];
+              delete knownPeers[_.sample(Object.keys(knownPeers))];
               peerCountBySource[source] -= 1;
             }
           });
@@ -129,12 +134,15 @@ var askForPeers = _.once(pub => {
 function checkGunPeerCount() {
   var peersFromGun = State.public.back('opt.peers');
   var connectedPeers = _.filter(Object.values(peersFromGun), (peer) => {
-    return peer && peer.wire && peer.wire.hied === 'hi';
+    if (peer && peer.wire && peer.wire.constructor.name !== 'WebSocket') {
+      console.log('WebRTC peer', peer);
+    }
+    return peer && peer.wire && peer.wire.hied === 'hi' && peer.wire.constructor.name === 'WebSocket';
   });
   if (connectedPeers.length < maxConnectedPeers) {
-    var unconnectedPeers = _.filter(Object.keys(peers), url => {
+    var unconnectedPeers = _.filter(Object.keys(knownPeers), url => {
       var addedToGun = _.pluck(Object.values(peersFromGun), 'url').indexOf(url) > -1;
-      var enabled = peers[url].enabled;
+      var enabled = knownPeers[url].enabled;
       return enabled && !addedToGun;
     });
     if (unconnectedPeers.length) {
@@ -155,9 +163,9 @@ function init() {
 
 export default {
   init,
-  peers,
+  knownPeers,
   getRandomPeers,
-  getPeers,
+  getKnownPeers,
   addPeer,
   connectPeer,
   removePeer,

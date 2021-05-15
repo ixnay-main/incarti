@@ -107,7 +107,7 @@ class SearchBox extends Component {
       <div class="search-box">
         <form onSubmit=${e => this.onSubmit(e)}>
           <label>
-            <input type="text" placeholder=${t('search')} onInput=${() => this.onInput()}/>
+            <input type="text" placeholder=${t('')} onInput=${() => this.onInput()}/>
           </label>
         </form>
         <div class="search-box-results" style="left: ${this.offsetLeft || ''}">
@@ -139,8 +139,6 @@ class SearchBox extends Component {
           ${this.state.query && !this.hasFollows ? html`
             <a class="follow-someone">Follow someone to see more search results!</a>
             <a href="/profile/${suggestedFollow}" class="suggested">
-              <${Identicon} str=${suggestedFollow} width=40/>
-              <i>Suggested</i>
             </a>
           ` : ''}
         </div>

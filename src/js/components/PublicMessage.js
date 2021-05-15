@@ -1,12 +1,12 @@
 import { html } from '../Helpers.js';
 import Helpers from '../Helpers.js';
-import PublicMessages from '../PublicMessages.js';
 import Identicon from './Identicon.js';
-import MessageForm from './MessageForm.js';
+import PublicMessageForm from './PublicMessageForm.js';
 import State from '../State.js';
 import { route } from '../lib/preact-router.es.js';
 import Message from './Message.js';
 import Session from '../Session.js';
+import Torrent from './Torrent.js';
 
 const autolinker = new Autolinker({ stripPrefix: false, stripTrailingSlash: false});
 
@@ -28,8 +28,36 @@ class PublicMessage extends Message {
     this.state = { sortedReplies: [] };
   }
 
+  fetchByHash() {
+    const hash = this.props.hash;
+    if (typeof hash !== 'string') throw new Error('hash must be a string, got ' + typeof hash + ' ' +  JSON.stringify(hash));
+    return new Promise(resolve => {
+      State.local.get('msgsByHash').get(hash).once(msg => {
+        if (typeof msg === 'string') {
+          try {
+            resolve(JSON.parse(msg));
+          } catch (e) {
+            console.error('message parsing failed', msg, e);
+          }
+        }
+      });
+      State.public.get('#').get(hash).on(async (serialized, a, b, event) => {
+        if (typeof serialized !== 'string') {
+          console.error('message parsing failed', hash, serialized);
+          return;
+        }
+        event.off();
+        const msg = await iris.SignedMessage.fromString(serialized);
+        if (msg) {
+          resolve(msg);
+          State.local.get('msgsByHash').get(hash).put(JSON.stringify(msg));
+        }
+      });
+    });
+  }
+
   componentDidMount() {
-    PublicMessages.getMessageByHash(this.props.hash).then(r => {
+    this.fetchByHash().then(r => {
       const msg = r.signedData;
       msg.info = {from: r.signerKeyHash};
       this.setState({msg});
@@ -50,16 +78,18 @@ class PublicMessage extends Message {
           this.setState(s);
         });
         State.public.user(key).get('replies').get(this.props.hash).map().on((hash,time,b,e) => {
-          if (!hash || this.replies[hash]) return;
-          this.replies[hash] = {hash, time};
+          const k = key + time;
+          if (hash && this.replies[k]) return;
+          if (hash) {
+            this.replies[k] = {hash, time};
+          } else {
+            delete this.replies[k];
+          }
           this.eventListeners[key+'replies'] = e;
           const sortedReplies = Object.values(this.replies).sort((a,b) => a.time > b.time ? 1 : -1);
-          this.setState({replies: Object.keys(this.replies).length, sortedReplies });
+          this.setState({replyCount: Object.keys(this.replies).length, sortedReplies });
         });
       });
-      if (msg.torrentId && Session.settings.local.enableWebtorrent) {
-        this.downloadWebtorrent(msg.torrentId);
-      }
     });
   }
 
@@ -83,37 +113,6 @@ class PublicMessage extends Message {
         }
       });
       this.linksDone = true;
-    }
-  }
-
-  getWebtorrentElementId() {
-    return 'w' + this.props.hash.replace(/[\+\=\/]/g, '').slice(0,12);
-  }
-
-  downloadWebtorrent(torrentId) {
-    console.log('trying to open webtorrent', torrentId);
-    const onTorrent = (torrent) => {
-      const onTorrentReady = () => {
-        // Torrents can contain many files. Let's use the .mp4 file
-        var file = torrent.files.find(function (file) {
-          return file.name.endsWith('.mp4')
-        })
-        // Stream the file in the browser
-        setTimeout(() => {
-          const id = '#' + this.getWebtorrentElementId();
-          const autoplay = Session.settings.autoplayWebtorrent;
-          file.appendTo(id, {autoplay, muted: !autoplay});
-          $(id + ' video').attr('loop', true);
-        }, 0);
-      }
-      torrent.ready ? onTorrentReady() : torrent.on('ready', onTorrentReady);
-    }
-    const client = Helpers.getWebTorrentClient();
-    const existing = client.get(torrentId);
-    if (existing) {
-      onTorrent(existing);
-    } else {
-      client.add(torrentId, onTorrent);
     }
   }
 
@@ -142,10 +141,11 @@ class PublicMessage extends Message {
 
   onDelete(e) {
     e.preventDefault();
-    const msg = this.state.msg;
-    console.log(msg);
-    State.public.user().get('msgs').get(msg.time).put(null);
-    msg.replyingTo && State.public.user().get('replies').get(msg.replyingTo).get(msg.time).put(null);
+    if (confirm('Delete message?')) {
+      const msg = this.state.msg;
+      State.public.user().get('msgs').get(msg.time).put(null);
+      msg.replyingTo && State.public.user().get('replies').get(msg.replyingTo).get(msg.time).put(null);
+    }
   }
 
   render() {
@@ -178,7 +178,9 @@ class PublicMessage extends Message {
               </div>
             `: ''}
           </div>
-          <div id=${this.getWebtorrentElementId()}/>
+          ${this.state.msg.torrentId ? html`
+              <${Torrent} torrentId=${this.state.msg.torrentId}/>
+          `:''}
           ${this.state.msg.attachments && this.state.msg.attachments.map(a =>
             html`<div class="img-container"><img src=${a.data} onclick=${e => { this.openAttachmentsGallery(e); }}/></div>` // TODO: escape a.data
           )}
@@ -191,7 +193,7 @@ class PublicMessage extends Message {
               ${replyIcon}
             </a>
             <span class="count" onClick=${() => this.toggleReplies()}>
-              ${this.state.replies || ''}
+              ${this.state.replyCount || ''}
             </span>
             <a class="msg-btn like-btn ${this.state.liked ? 'liked' : ''}" onClick=${e => this.likeBtnClicked(e)}>
               ${this.state.liked ? heartFull : heartEmpty}
@@ -214,7 +216,7 @@ class PublicMessage extends Message {
             html`<${PublicMessage} hash=${r.hash} asReply=${true} showName=${true} showReplies=${true} />`
           ) : ''}
           ${this.state.showReplyForm ? html`
-            <${MessageForm} activeChat="public" replyingTo=${this.props.hash} />
+            <${PublicMessageForm} replyingTo=${this.props.hash} />
           ` : ''}
         </div>
       </div>
