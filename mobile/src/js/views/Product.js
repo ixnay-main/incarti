@@ -20,6 +20,7 @@ class Product extends StoreView {
   }
 
   newProduct() {
+
     console.log('new');
     return html`
       <div>
@@ -42,6 +43,7 @@ class Product extends StoreView {
           <p>
             <input placeholder="Item ID" onInput=${e => this.newProductId = e.target.value} />
           </p>
+
         </div>
         <button style="    width: 90%; margin-left: 2em; margin-right: 2em; }" onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></button>
       </div>
@@ -49,6 +51,7 @@ class Product extends StoreView {
   }
 
   onClickDelete() {
+    
     if (confirm('Delete product? This cannot be undone.')) {
       State.public.user().get('store').get('products').get(this.props.product).put(null);
       route('/store/' + this.props.store);
@@ -56,6 +59,16 @@ class Product extends StoreView {
   }
 
   showProduct() {
+    var qr;
+    (function() {
+            qr = new QRious({
+            element: document.getElementById('qr-code'),
+            size: 180,
+            foreground: 'black',
+
+            value: window.location.href 
+        });
+    })();
     const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
     const i = this.state.product;
     if (!i) return html``;
@@ -77,6 +90,8 @@ class Product extends StoreView {
           <p class="price">
             <iris-text placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
           </p>
+          <canvas id="qr-code" style="align-content: center  ;"></canvas>
+
           <button class="add" onClick=${() => this.addToCart()}>
             Add to cart
             ${this.cart[this.props.product] ? ` (${this.cart[this.props.product]})` : ''}
