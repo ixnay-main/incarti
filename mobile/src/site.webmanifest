@@ -1,14 +1,14 @@
 {
-    "name": "Iris",
-    "short_name": "Iris",
+    "name": "IXNAY",
+    "short_name": "IXNAY",
     "icons": [
         {
-            "src": "img/android-chrome-192x192.png",
+            "src": "",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "img/android-chrome-512x512.png",
+            "src": "",
             "sizes": "512x512",
             "type": "image/png"
         }

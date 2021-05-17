@@ -83,14 +83,14 @@ class Store extends View {
         </div>
         <div class="store-items" style="margin-top: -1em;">
           ${this.isMyProfile ? html`
-            <div class="store-item" style="width: 100%; background-color: black; padding: 5px" onClick=${() => route(`/product/new`)}>
+            <div class="store-item" style="width: 100%; background-color: black; padding: 5px; margin-bottom: 2em" onClick=${() => route(`/product/new`)}>
               <a href="/product/new" class="name" style="width: fit-content; margin: auto; color: white"><i class="fas fa-plus"></i></a>
             </div>
           ` : ''}
           ${Object.keys(this.state.items).map(k => {
             const i = this.state.items[k];
             return html`
-              <div class="store-item" style="width: 100%; margin-top: 3em" onClick=${() => route(`/product/${k}/${this.props.store}`)}>
+              <div class="store-item" style="width: 100%; margin-top: em" onClick=${() => route(`/product/${k}/${this.props.store}`)}>
                 <a href="/product/${k}/${this.props.store}" class="name">${i.name}</a>
                 <p class="description" style="display: none">${i.description}</p>
                 <p class="price" style="display: none">${i.price}</p>
