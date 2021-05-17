@@ -138,7 +138,7 @@ class Product extends StoreView {
     })();
     const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
     const i = this.state.product;
-    if (!i) return html``;
+    
     return html`
     <div>
       <a href="/" onClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo" style="color: black; font-size: 1.5em">
