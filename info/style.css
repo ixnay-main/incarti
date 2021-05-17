@@ -25,6 +25,26 @@
   src: url(arial-black.ttf) ;
 }
 
+.line h4{
+  margin: 0em;
+}
+
+.line h3{
+  margin: 0em;
+}
+
+.riseUp{
+  transition: margin-top 1s;
+  margin-top: -2em;
+  overflow: hidden;
+}
+
+.riseUp:hover{
+  margin-top: -10em !important;
+}
+
+
+
 ::selection {
   background: #000000;
   color: white;
@@ -33,6 +53,8 @@
 body {
   overflow: scroll;
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  /* height: 100%;
+  overflow: hidden; */
 }
 
 h1 { font-size: 5rem }
@@ -42,6 +64,43 @@ img {
   width: 100%;
   height: auto;
   background: #f0f0f0;
+}
+
+.showme {
+  display: none;
+}
+
+.showhim:hover .showme {
+  display: block;
+}
+
+.showme{
+  margin-top: -3em;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 5px;
+  position: absolute;
+  width: 10em;
+  background-color: white;
+  border-radius: 5px;
+  font-family:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+}
+
+.showme h4{
+  margin: 3px;
+
+
+}
+
+.showme h4 {
+  margin: 3px;
+  font-size: 20px;
+}
+
+
+.showme h5 {
+  margin: 3px;
+  font-size: 22px;
 }
 
 

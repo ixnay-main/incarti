@@ -53,7 +53,6 @@ class Product extends StoreView {
 
 
 
-
       };   reader.onerror = function (error) {
      console.log('Error: ', error);
    };
@@ -118,6 +117,11 @@ class Product extends StoreView {
       )
       console.log(document.getElementById("modelDataRaw").textContent)
 
+      var loc = document.getElementById("modelDataRaw").textContent
+      var anchor = ('      <a download id="uploadBtn" href="' + loc + '" ><i class="fas fa-save" style="font-size: 2em"></i></a>');
+      $("#container-one").html(anchor)
+
+
     } , 1000)
 
     const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
@@ -156,9 +160,12 @@ class Product extends StoreView {
           <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
         ` : ''}
       </div>
-      ${this.isMyProfile ? html`
-      <button style="  position: fixed; bottom: 50px; z-index: 15;  width: 90%; margin-left: 2em; margin-right: 2em; }" onClick=${e => this.onClickDelete(e)}><i class="fas fa-dumpster-fire"></i></button>
-      ` : ''}
+      <div id="container" style="position: fixed; bottom: 50px; z-index: 15;  width: 90%; margin-left: 2em; margin-right: 2em; display: flex; padding-left: 2em; background-color: white">
+        <div id="container-one"></div>
+        ${this.isMyProfile ? html`
+          <i  onClick=${e => this.onClickDelete(e)} style="font-size: 2em; margin-left: 2em" class="fas fa-dumpster-fire"></i>
+        ` : ''}
+      </div>
     </div>`;
   }
 

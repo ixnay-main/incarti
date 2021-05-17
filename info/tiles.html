@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/joydb/joy.min.js"></script>
+    <script src="./js/stl_viewer.min.js"></script>
+
     <link rel="stylesheet" href="skele.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
 
 </head>
 <style>
@@ -18,6 +22,7 @@
 
 </style>
 <body>
+
     <div class="" style="display: flex; position: fixed; height: 3em; background-color: rgb(255, 255, 255);  margin: 0em; opacity: 0.98; width: 100%; z-index: 1004;    top: 0em; padding-top: 0.4em;
     padding-bottom: 0.7em;">
       <div style="justify-content: center; margin: auto; width: fit-content;">
@@ -31,44 +36,61 @@
       </div>
     </div>
 
-    <div class="container" style="margin-top: 3em; padding-bottom: 0em; margin-bottom: 0em;">
-        <div class="columns twelve">
+
+    <div class="container" style="margin-top: 3em; padding-bottom: 0em; margin-bottom: 0em; ">
+        <div class="columns seven">
             <div class="">
                 <h1 style="color: black;">Manufacture for Autonomy.</h1>
                 <h2 style="color: rgb(185, 184, 184); width: 60%;">A catalog of Blueprints and Vendors, so you can provide for <span style="font-weight: 800;">you</span> </h2>
             </div>
-        </div>
-    </div>
+            <div class="">
+                <i class="fas fa-sign-out-alt showhim" style="font-size: 3em;"><div class="showme">
+                    <h4>Quick Exits</h4>
+                    <h5>Drop your Catalog and hop back in with a single click</h5>
+                </div></i>
 
-    <div class="container" style="margin-top: em; padding-top: 0em;">
-        <div class="columns twelve">
-            <div class="" style="display: flex; margin: auto;">
-                <div class="container">
-                    <div class="columns four" style="margin: block;">
-                        <i class="fas fa-running" style="font-size: 9em; margin-right: 10%; border-bottom: 5px solid black;"></i><br>
-                        <h2>Throwaway</h2>
-                        <h2 style="color: grey;">Make new keys at any point and clone your old catalog. </h2>
 
-                    </div>
-                    <div class="columns four" style="margin: block; ">
-                        <i class="fas fa-users" style="font-size: 9em;  border-bottom: 5px solid black; "></i>
-                        <br>
-                        <h2>Here to Stay</h2>
-                        <h2 style="color: grey;">The network is shared across peers. Its not going anywhere.</h2>
-
-                    </div>
-                    <div class="columns four" style="margin: block; ">
-                        <i class="fas fa-eye-slash" style="font-size: 9em;  border-bottom: 5px solid black; "></i>
-                        <br>
-                        <h2>Masterless</h2>
-                        <h2 style="color: grey;">A network with no censor, leaving you to be louder.</h2>
-    
-                    </div>
-                </div>
-                
             </div>
         </div>
+        <div class="columns five">
+            <div class="">
+                <div id="stl_cont2" style="    width: 30em;
+                height: 40em;"></div>
+                <script>
+                    var stl_viewer=new StlViewer
+                  (
+                  document.getElementById("stl_cont2"),
+                  {
+                      auto_rotate:true, 
+                    
+                  models:
+                  [
+                  {filename:"extruder-body.stl" ,opacity: 0.8, y: -2, display: "wireframe"}
+                  ]
+                  }
+                  )
+                </script>
+            </div>
+            <!-- <div class="content riseUp" style="position:sticky;  z-index: 13; width: 20em; border-radius: 5px 5px 0px 0px; padding: 1em;  background-color: white; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  margin-top: -9em ;">
+                <h2 style="margin: 0em;">EL VISORS</h2>
+                <div class="" style="display: block;">
+                    <div class="" style="display: flex;">
+                        <div class="line" style="display: block; width: 45%; color: grey;">
+                            <h3>Location</h3>
+                            <h4>London SE9</h4>
+                        </div>
+                        <div class="line" style="display: block;  width: 45%; color: grey;">
+                            <h3>Avg. Lead</h3>
+                            <h4>5 days</h4>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
     </div>
+
+
+
 
 
     
