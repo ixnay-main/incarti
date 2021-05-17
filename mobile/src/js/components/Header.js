@@ -113,10 +113,10 @@ class Header extends Component {
         ‹
       </div>
       ` : ''}
-      <div class="header-content" style="text-align: center">
+      <div class="header-content">
         ${iris.util.isElectron || (activeRoute && activeRoute.indexOf('/chat/') === 0) ? '' : html`
-          <a href="/" onClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo" style="color: black; font-size: 1.5em">
-          <h1 style="font-family: arialBlack; color: #e20c0c;">IXNAY</h1>
+          <a href="/" onClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo">
+            <h1 style="font-family: arialBlack; color: black">IXNAY</h1>
           </a>
         `}
         <div class="text" style=${this.chatId ? 'cursor:pointer' : ''} onClick=${() => this.onTitleClicked()}>
@@ -128,6 +128,7 @@ class Header extends Component {
           ${isTyping ? html`<small class="typing-indicator">${t('typing')}</small>` : ''}
           ${this.state.about ? html`<small class="participants">${this.state.about}</small>` : ''}
           ${this.chatId ? html`<small class="last-seen">${onlineStatus || ''}</small>` : ''}
+          ${searchBox}
         </div>
 
         ${chat && this.chatId !== key && !chat.uuid ? html`
