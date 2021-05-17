@@ -156,7 +156,9 @@ class Product extends StoreView {
           <p class="price">
             <iris-text placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
           </p>
-          <canvas id="qr-code" style="align-content: center  ;"></canvas>
+          <div style="    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;padding: 0.5em;border-radius: 5px; width: fit-content; margin: auto;">
+            <canvas id="qr-code" style="align-content: center  ;"></canvas>
+          </div>
           <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
         ` : ''}
       </div>
