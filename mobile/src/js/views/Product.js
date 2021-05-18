@@ -122,7 +122,7 @@ class Product extends StoreView {
       $("#container-one").html(anchor)
 
 
-    } , 2000)
+    } , 4000)
 
     const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
     const i = this.state.product;
