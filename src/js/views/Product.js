@@ -48,7 +48,7 @@ class Product extends StoreView {
               
           models:
           [
-          {filename: loc , rotationx:-1.570796, color: ""}
+          {filename: loc , rotationx:-1.570796, color: "#fff"}
           ]
           }
           )
