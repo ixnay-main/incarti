@@ -101,7 +101,8 @@ class Product extends StoreView {
   }
 
   showProduct() {
-    setTimeout(function(){
+    
+    var checkExist = setTimeout(function(){
 
       var stl_viewer=new StlViewer
       (
@@ -118,11 +119,13 @@ class Product extends StoreView {
       console.log(document.getElementById("modelDataRaw").textContent)
 
       var loc = document.getElementById("modelDataRaw").textContent
-      var anchor = ('      <a download id="uploadBtn" href="' + loc + '" ><i class="fas fa-save" style="font-size: 1.5em"></i></a>');
+      var anchor = ('<a download id="uploadBtn" href="' + loc + '" ><i class="fas fa-save" style="font-size: 1.5em"></i></a>');
       $("#container-one").html(anchor)
+      clearInterval(checkExist);
 
-
-    } , 4000)
+    }      
+    
+    , 300)
 
     const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
     const i = this.state.product;
@@ -138,6 +141,7 @@ class Product extends StoreView {
     })();
     if (!i) return html``;
     return html`
+    
       <a href="/" onClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo" style="color: black; font-size: 1.5em">
         <h1  style="font-family: arialBlack; color: #e20c0c; margin: 0em; margin-left: 15px; margin-top: 3px">IXNAY</h1>
 
@@ -145,7 +149,7 @@ class Product extends StoreView {
     <div class="main-view" id="profile" style=" height: 30em; width: 100%; padding: 1em">
     <div id="stl_cont2" style="width:auto; height:60vh ;     margin-top: -10vh !important; margin:0 auto; overflow: hidden; position: fixed !important; top: 3em; z-index: 9"></div>
 
-    <div class="content" style="position:sticky;  z-index: 13; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: white; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  margin-top: 38em ;">
+    <div class="content" style="position:sticky;  z-index: 13; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: white; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  margin-top: 40em ;">
         <div style="display: flex">
           <a href="/store/${this.props.store}"><i class="fas fa-chevron-left"></i> Store</a>
           <div id="container" style=" display: flex; margin-left: 2em; background-color: white">
@@ -154,7 +158,7 @@ class Product extends StoreView {
               <i  onClick=${e => this.onClickDelete(e)} style="font-size: 1.5em; margin-left: 2em" class="fas fa-dumpster-fire"></i>
             ` : ''}
           </div>
-        </div>
+        </div> <hr/>
 
         ${this.state.product ? html`
           <iris-text tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/>
@@ -167,7 +171,7 @@ class Product extends StoreView {
           <div style="    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;padding: 0.5em;border-radius: 5px; width: fit-content; margin: auto;">
             <canvas id="qr-code" style="align-content: center  ;"></canvas>
           </div>
-          <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
+          <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/>
         ` : ''}
       </div>
 
