@@ -106,7 +106,7 @@ class Product extends StoreView {
     
     var checkExist = setTimeout(function(){
 
-      var stl_viewer=new StlViewer
+      var stl_viewer = new StlViewer
       (
       document.getElementById("stl_cont2"),
       {
@@ -127,7 +127,7 @@ class Product extends StoreView {
 
     }      
     
-    , 300)
+    , 500)
 
     const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
     const i = this.state.product;
