@@ -275,6 +275,7 @@ a.logo img:last-child {
   .nav .search-box-results {
     left: calc(50% - 43px);
   }
+
 }
 
 @media (min-width: 1268px) {

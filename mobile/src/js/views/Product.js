@@ -4,6 +4,8 @@ import Session from '../Session.js';
 import { route } from '../lib/preact-router.es.js';
 import StoreView from './Store.js';
 
+
+
 class Product extends StoreView {
   constructor() {
     super();
@@ -119,7 +121,7 @@ class Product extends StoreView {
       console.log(document.getElementById("modelDataRaw").textContent)
 
       var loc = document.getElementById("modelDataRaw").textContent
-      var anchor = ('<a download id="uploadBtn" href="' + loc + '" ><i class="fas fa-save" style="font-size: 1.5em"></i></a>');
+      var anchor = ('<a download id="uploadBtn" href="' + loc + '" ><i class="fas fa-save" style="font-size: 1.5em;  color: #fff; margin-left: 3em"></i></a>');
       $("#container-one").html(anchor)
       clearInterval(checkExist);
 
@@ -134,34 +136,37 @@ class Product extends StoreView {
             qr = new QRious({
             element: document.getElementById('qr-code'),
             size: 180,
-            foreground: 'black',
+            foreground: 'white',
+            background: '#4e4e4c42',
 
             value: window.location.href 
         });
     })();
+    var logo = html`<img src="Logo.png"  style="margin: 0em; margin-left: 15px; margin-top: 3px"/>
+    `
     if (!i) return html``;
     return html`
+    <a href="/" nClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo">
+      <img class="hidden-xs" src="../../mobile/src/img/Logo.png" />
+      <img src="../../mobile/src/img/Logo.png" />
+    </a>
     
-      <a href="/" onClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo" style="color: black; font-size: 1.5em">
-        <h1  style="font-family: arialBlack; color: #e20c0c; margin: 0em; margin-left: 15px; margin-top: 3px">IXNAY</h1>
-
-      </a>
     <div class="main-view" id="profile" style=" height: 30em; width: 100%; padding: 1em">
-    <div id="stl_cont2" style="width:auto; height:60vh ;     margin-top: -10vh !important; margin:0 auto; overflow: hidden; position: fixed !important; top: 3em; z-index: 9"></div>
+    <div id="stl_cont2" style="width:auto; height:60vh ;     margin-top: 10vh !important; margin:0 auto; overflow: hidden; position: fixed !important; top: 3em; z-index: 9"></div>
 
-    <div class="content" style="position:sticky;  z-index: 13; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: white; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  margin-top: 40em ;">
+    <div class="content" style="position:sticky;  z-index: 13; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: #4e4e4c42; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  margin-top: 40em ;">
         <div style="display: flex">
           <a href="/store/${this.props.store}"><i class="fas fa-chevron-left"></i> Store</a>
-          <div id="container" style=" display: flex; margin-left: 2em; background-color: white">
+          <div id="container" style=" display: flex; margin-left: 2em;">
             <div id="container-one"></div>
             ${this.isMyProfile ? html`
-              <i  onClick=${e => this.onClickDelete(e)} style="font-size: 1.5em; margin-left: 2em" class="fas fa-dumpster-fire"></i>
+              <i  onClick=${e => this.onClickDelete(e)} style="font-size: 1.5em; margin-left: 1em; color: #fff" class="fas fa-dumpster-fire"></i>
             ` : ''}
           </div>
-        </div> <hr/>
+        </div> 
 
         ${this.state.product ? html`
-          <iris-text tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/>
+          <iris-text tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/><hr/>
           <p class="description">
             <iris-text user=${this.props.store} path="store/products/${this.props.product}/description"/>
           </p>

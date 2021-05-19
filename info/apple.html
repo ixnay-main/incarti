@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./skele.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./js/stl_viewer.min.js"></script>
+    <link rel="stylesheet" href="./apple.css">
+</head>
+<body>
+    <div class="container">
+        <div class="columns four"><h1 style="font-family: arialBlack; color: white;">IXNAY</h1></div>
+        <div class="columns seven">
+            <div class="" style="display: flex;">
+                <div class="tiles" style="width: 40%; margin-right: 2%;">.</div>
+                <div class="tiles" style="width: 58%;">.</div>
+
+            </div>
+            <div class="" style="display: flex;">
+                <div class="tiles" style="width: 30%; margin-right: 2%;">.</div>
+                <div class="tiles" style="width: 68%;">
+                    <div id="stl_cont21" style=" height: 13em; "></div> 
+                    <script>
+            
+                      var stl_viewer=new StlViewer
+                      (
+                      document.getElementById("stl_cont21"),
+                      {
+                      
+            
+                      
+                      auto_rotate:true,
+                      mouse_zoom: true,
+                  
+                      models:
+                      [
+                  
+                      {filename:"extruder-motor-plate.stl", color:"#ffffff", scale: 30,opacity: 1, rotationy:3.1415926536 ,  rotationx: -0.2415926536 ,rotationz: 0.5415926536 ,  display: "wireframe" },
+            
+                      ]
+                      }
+                      );
+                    </script>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
