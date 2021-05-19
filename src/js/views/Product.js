@@ -48,7 +48,7 @@ class Product extends StoreView {
               
           models:
           [
-          {filename: loc , rotationx:-1.570796, color: "#fff"}
+          {filename: loc , rotationx:-1.570796, color: "#FFFFFF"}
           ]
           }
           )
@@ -114,7 +114,7 @@ class Product extends StoreView {
         
       models:
       [
-      {filename: document.getElementById("modelDataRaw").textContent,opacity: 0.8, y: 30, color: "#fff"}
+      {filename: document.getElementById("modelDataRaw").textContent,opacity: 0.8, y: 30, color: "#FFFFFF"}
       ]
       }
       )

@@ -1,11 +1,11 @@
 /* light.css: 👉 dark-on-light */
 :root {
-    --body-bg: #b5b5b5;
+    --body-bg: rgb(0, 0, 0);
     --text-color: #ffffff;
     --text-time: rgba(255, 255, 255);
-    --main-color: #b5b5b5;
+    --main-color: #000000;
     --gallery-background: rgba(255, 255, 255, 0.90);
-    --header-color: #b5b5b5;
+    --header-color: rgb(0, 0, 0);
     --chat-active: #ececec;
     --chat-hover: #f3f3f3;
     --msg-border: 1px solid #dfdfdf;
