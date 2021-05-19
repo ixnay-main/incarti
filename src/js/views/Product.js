@@ -148,7 +148,7 @@ class Product extends StoreView {
     return html`
     <a href="/" nClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo">
       <img class="hidden-xs" src="../../mobile/src/img/Logo.png" />
-      <img src="../../mobile/src/img/Logo.png" />
+      <img src="../../src/img/Logo.png" />
     </a>
     
     <div class="main-view" id="profile" style=" height: 30em; width: 100%; padding: 1em">
