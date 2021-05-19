@@ -114,7 +114,7 @@ class Product extends StoreView {
         
       models:
       [
-      {filename: document.getElementById("modelDataRaw").textContent,opacity: 0.8, y: 30}
+      {filename: document.getElementById("modelDataRaw").textContent,opacity: 0.8, y: 30, color: "#fff"}
       ]
       }
       )
