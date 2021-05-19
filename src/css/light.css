@@ -1,11 +1,11 @@
 /* light.css: 👉 dark-on-light */
 :root {
-    --body-bg: whitesmoke;
-    --text-color: #262626;
-    --text-time: rgba(0, 0, 0, 0.45);
-    --main-color: whitesmoke;
+    --body-bg: rgb(0, 0, 0);
+    --text-color: #ffffff;
+    --text-time: rgba(255, 255, 255);
+    --main-color: #000000;
     --gallery-background: rgba(255, 255, 255, 0.90);
-    --header-color: whitesmoke;
+    --header-color: rgb(0, 0, 0);
     --chat-active: #ececec;
     --chat-hover: #f3f3f3;
     --msg-border: 1px solid #dfdfdf;
@@ -21,20 +21,21 @@
     --input-placeholder: #a9a9a9;
     --small-text-color: #262626;
     --msg-form-button-color: #999;
-    --button-bg: #999999;
+    --button-bg: #000000;
     --button-color: #fff;
     --button-border: 0;
     --button-border-size: 0;
-    --menu-bg: whitesmoke;
-    --sidebar-bg: whitesmoke;
-    --zebra-stripe-bg:;
+    --button-hover-bg: #464646;
+    --menu-bg: #fff;
+    --sidebar-bg: #fff;
+    --sidebar-border-right: 1px solid #dfdfdf;
+    --zebra-stripe-bg: rgba(255,255,255,0.5);
     --emoji-picker-bg: #FFFFFF;
-    --emoji-picker-color: #777;
+    --emoji-picker-color: rgb(0, 0, 0);
     --emoji-picker-border-color: #CCCCCC;
-    --link-color: #00a0d1;
+    --link-color: #575757;
     --day-separator-bg: rgba(227, 249, 255, 0.91);
     --day-separator-color: rgba(74, 74, 74, 0.88);
     --non-string-value-color: blue;
-    --nav-border-bottom: ;
     --positive-color: #80bf5e;
 }

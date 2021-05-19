@@ -116,7 +116,7 @@ class Header extends Component {
       <div class="header-content">
         ${iris.util.isElectron || (activeRoute && activeRoute.indexOf('/chat/') === 0) ? '' : html`
           <a href="/" onClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo">
-            <h1 style="font-family: arialBlack; color: black">INCARTI</h1>
+            <h1 style="font-family: arialBlack; color: black">IXNAY</h1>
           </a>
         `}
         <div class="text" style=${this.chatId ? 'cursor:pointer' : ''} onClick=${() => this.onTitleClicked()}>
@@ -146,7 +146,9 @@ class Header extends Component {
             ${Icons.group}
           </a>
         ` : ''}
-
+        <a href="/profile/${key}" onClick=${() => State.local.get('scrollUp').put(true)} class="hidden-xs ${activeRoute && activeRoute === '/profile/' + key ? 'active' : ''} my-profile">
+          <${Identicon} str=${key} width=34 />
+        </a>
       </div>
     </header>`;
   }

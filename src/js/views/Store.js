@@ -20,7 +20,6 @@ class Store extends View {
     this.state = {items:{}};
     this.items = {};
     this.id = 'profile';
-    
   }
 
   addToCart(k, e) {
@@ -56,89 +55,50 @@ class Store extends View {
       }
     }
     return html`
-     
+      <div class="content">
         <div class="profile-top">
           <div class="profile-header">
-            <div class="profile-photo-container">
-              ${profilePhoto}
-            </div>
-            <div class="profile-header-stuff" style="jus">
-              <div class="button-container" style="margin: auto;">
-                <div class="button -dark center" style="padding: 0.1em;">
-                  <h3 style="margin: 0.5em; height: 1.5em " class="addPadding"><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></h3>
+            <div class="profile-header-stuff">
+              <h3 class="profile-name"><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></h3>
+              <div class="profile-actions">
+                <div class="follow-count">
+                  <a href="/follows/${this.props.store}">
+                    <span>${this.state.followedUserCount}</span> ${t('following')}
+                  </a>
+                  <a href="/followers/${this.props.store}">
+                    <span>${this.state.followerCount}</span> ${t('followers')}
+                  </a>
                 </div>
-              </div> 
-              <div style="margin-left: 1em"> 
-                <div style="min-height: 3em" class="profile-about hidden-xs">
-                  <p style="min-height: 3em"  class="profile-about-content">
-                    <iris-text style="min-height: 3em"  path="store/about" placeholder="Store description" attr="about" user=${this.props.store}/>
-                  </p>
-                </div>
-                <div class="profile-actions">
-                  <div class="follow-count">
-                    <a href="/follows/${this.props.store}">
-                      <span>${this.state.followedUserCount}</span> ${t('following')}
-                    </a>
-                    <a href="/followers/${this.props.store}">
-                      <span>${this.state.followerCount}</span> ${t('followers')}
-                    </a>
-                    ${this.isMyProfile ? '' : html`<${FollowButton} id=${this.props.id}/>`}
-
-                  </div>
-                  ${this.followedUsers.has(Session.getPubKey()) ? html`
-                    <p><small>${t('follows_you')}</small></p>
-                  `: ''}
-                  ${followable ? html`<${FollowButton} id=${this.props.store}/>` : ''}
-                  
-                  <div style="margin: auto; width: fit-content">
-                    <button style="background-color: transparent !important; padding-left: 0em; margin-left: 0em; width: fit-content !important" onClick=${() => route('/chat/' + this.props.store)}>${t('send_message')}</button>
- 
-                    ${uuid ? '' : html`
-                    <${CopyButton} text=${t('copy_link')} title=${this.state.name} copyStr=${'https://iris.to/' + window.location.hash}/>
-                  `}
-                  </div>
-                </div>
+                ${this.followedUsers.has(Session.getPubKey()) ? html`
+                  <p><small>${t('follows_you')}</small></p>
+                `: ''}
+                ${followable ? html`<${FollowButton} id=${this.props.store}/>` : ''}
+                <button onClick=${() => route('/chat/' + this.props.store)}>${t('send_message')}</button>
+                ${uuid ? '' : html`
+                  <${CopyButton} text=${t('copy_link')} title=${this.state.name} copyStr=${'https://iris.to/' + window.location.hash}/>
+                `}
               </div>
             </div>
           </div>
-          <div class="profile-about visible-xs-flex">
-            <p  class="profile-about-content" placeholder=${this.isMyProfile ? t('about') : ''} contenteditable=${this.isMyProfile} onInput=${e => this.onAboutInput(e)}>${this.state.about}</p>
-          </div>
         </div>
-
-
-        ${cartTotalItems ? html`
-          <p>
-            <button onClick=${() => route('/checkout/' + this.props.store)}>Shopping cart (${cartTotalItems})</button>
-          </p>
-        ` : ''}
-        <div class="store-items">
+        <div class="store-items" style="margin-top: -1em;">
           ${this.isMyProfile ? html`
-            <div class="store-item" onClick=${() => route(`/product/new`)}>
-              <a href="/product/new" class="name">Add item</a>
+            <div class="store-item" style="width: 100%; background-color: black; padding: 5px; margin-bottom: 2em" onClick=${() => route(`/product/new`)}>
+              <a href="/product/new" class="name" style="width: fit-content; margin: auto; color: white"><i class="fas fa-plus"></i></a>
             </div>
           ` : ''}
           ${Object.keys(this.state.items).map(k => {
             const i = this.state.items[k];
             return html`
-            <div class="button-container">
-              <div class="button -regular center">
-                <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)}>
-                  <${SafeImg} src=${i.photo}/>
-                  <a href="/product/${k}/${this.props.store}" class="">${i.name}</a>
-                  <p style="display: none" class="description">${i.description}</p>
-                  <p style="display: none" class="price">${i.price}</p>
-                  <button style="display: none" class="add" onClick=${e => this.addToCart(k, e)}>
-                    Add to cart
-                    ${this.cart[k] ? ` (${this.cart[k]})` : ''}
-                  </button>
-                </div>
+              <div class="store-item" style="width: 100%; margin-top: em" onClick=${() => route(`/product/${k}/${this.props.store}`)}>
+                <a href="/product/${k}/${this.props.store}" class="name">${i.name}</a>
+                <p class="description" style="display: none">${i.description}</p>
+                <p class="price" style="display: none">${i.price}</p>
               </div>
-            </div>
             `
           })}
         </div>
-      
+      </div>
     `;
   }
 

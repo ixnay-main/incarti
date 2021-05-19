@@ -52,11 +52,11 @@ PeerManager.init();
 Helpers.checkColorScheme();
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: t('home'), icon: Icons.home},
-    {url: '/store', text: t('store'), icon: Icons.chat},
-  {url: '/product/new', text: t('new products'), icon: Icons.user},
+  {url: '/', text: t('home'), icon: Icons.store},
   {url: '/chat', text: t('messages'), icon: Icons.chat},
   {url: '/contacts', text: t('contacts'), icon: Icons.user},
+  {url: '/store', text: t('store'), icon: Icons.chat},
+  {url: '/product/new', text: t('products'), icon: Icons.user},
   {url: '/settings', text: t('settings'), icon: Icons.settings},
   {url: '/explorer', text: t('explorer'), icon: Icons.folder},
   {url: '/about', text: t('about')},
@@ -77,41 +77,35 @@ class Menu extends Component {
   render() {
     const pub = Session.getPubKey();
     return html`
-    <div class="application-list" style="    display: -webkit-inline-box; overflow-y: hidden;">
-          
-          
-
-            
-    <div class="visible-xs-block">
-      
-        <${Link} onClick=${() => State.local.get('toggleMenu').put(false)} activeClassName="active" href="/profile/${pub}">
-          <span class="icon"><${Identicon} str=${pub} width=40/></span>
-          <span class="text" style="font-size: 1.2em;border:0;margin-left: 7px;"><iris-text user="${pub}" path="profile/name" editable="false"/></span>
-        <//>
-      
-      <br/><br/>
-    </div>
-    
-  ${APPLICATIONS.map(a => {
-    if (a.url) {
-      return html`
-
-      <div class="nav-item">
-        <div class="left-border-nav">
-          <${a.native ? 'a' : Link} onClick=${() => State.local.get('toggleMenu').put(false)} activeClassName="active" href=${a.url}>
-            <span class="icon">
-              ${a.text === t('messages') && this.state.unseenTotal ? html`<span class="unseen unseen-total">${this.state.unseenTotal}</span>`: ''}
-            </span>
-            <span class="text">${a.text}</span>
+      <div class="application-list">
+        ${iris.util.isElectron ? html`<div class="electron-padding"/>` : html`
+          <a href="/" onClick=${() => this.menuLinkClicked()} class="hidden-xs" tabindex="0" class="logo">
+            <img class="hidden-xs" src="img/icon128.png" width=40 height=40/>
+            <img src="img/iris_logotype.png" height=23 width=41 />
+          </a>
+        `}
+        <div class="visible-xs-block">
+          <${Link} onClick=${() => this.menuLinkClicked()} activeClassName="active" href="/profile/${pub}">
+            <span class="icon"><${Identicon} str=${pub} width=40/></span>
+            <span class="text" style="font-size: 1.2em;border:0;margin-left: 7px;"><iris-text user="${pub}" path="profile/name" editable="false"/></span>
+          <//>
+          <br/><br/>
         </div>
+        ${APPLICATIONS.map(a => {
+          if (a.url) {
+            return html`
+              <${a.native ? 'a' : Link} onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
+                <span class="icon">
+                  ${a.text === t('messages') && this.state.unseenTotal ? html`<span class="unseen unseen-total">${this.state.unseenTotal}</span>`: ''}
+                  ${a.icon || Icons.circle}
+                </span>
+                <span class="text">${a.text}</span>
+              <//>`;
+          } else {
+            return html`<br/><br/>`;
+          }
+        })}
       </div>
-      <//>`;
-    } else {
-      return html`<br/><br/>`;
-    }
-  })}
-  
-</div>
     `;
   }
 }
@@ -156,6 +150,7 @@ class Main extends Component {
       content = this.state.loggedIn ? html`
         ${isDesktopNonMac ? html`
           <div class="windows-titlebar">
+               <img src="img/iris_logotype.png" height=16 width=28 />
                <div class="title-bar-btns">
                     <button class="min-btn" onClick=${() => this.electronCmd('minimize')}>-</button>
                     <button class="max-btn" onClick=${() => this.electronCmd('maximize')}>+</button>
@@ -168,7 +163,7 @@ class Main extends Component {
           <div class="overlay" onClick=${e => this.onClickOverlay(e)}></div>
           <div class="view-area">
             <${Router} history=${createHashHistory()} onChange=${e => this.handleRoute(e)}>
-              <${Feed} path="/"/>
+              <${Store} path="/"/>
               <${Feed} path="/feed"/>
               <${Login} path="/login"/>
               <${Chat} path="/chat/:id?"/>
