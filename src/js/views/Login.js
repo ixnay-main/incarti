@@ -36,10 +36,13 @@ function showSwitchAccount(e) {
 function onLoginFormSubmit(e) {
   e.preventDefault();
   var name = $('#login-form-name').val() || Helpers.generateName();
+  var subscription = "base sub"
   $('#login').hide();
   Gun.SEA.pair().then(k => {
     Session.login(k);
     State.public.user().get('profile').get('name').put(name);
+    State.public.user().get('profile').get('subscription').put(subscription);
+
     Session.createChatLink();
     State.local.get('noFollows').put(true);
     State.local.get('noFollowers').put(true);

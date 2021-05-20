@@ -111,14 +111,13 @@ class Product extends StoreView {
       document.getElementById("stl_cont2"),
       {
           auto_rotate:true, 
-        
-      models:
+          models:
       [
       {filename: document.getElementById("modelDataRaw").textContent,opacity: 0.8, y: 30, color: "#FFFFFF"}
       ]
       }
       )
-      console.log(document.getElementById("modelDataRaw").textContent)
+      console.log("run")
 
       var loc = document.getElementById("modelDataRaw").textContent
       var anchor = ('<a download id="uploadBtn" href="' + loc + '" ><i class="fas fa-save" style="font-size: 1.5em;  color: #fff; margin-left: 3em"></i></a>');
@@ -127,7 +126,7 @@ class Product extends StoreView {
 
     }      
     
-    , 500)
+    , 100)
 
     const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
     const i = this.state.product;
@@ -154,7 +153,7 @@ class Product extends StoreView {
     <div class="main-view" id="profile" style=" height: 30em; width: 100%; padding: 1em">
     <div id="stl_cont2" style="width:auto; height:60vh ;     margin-top: 10vh !important; margin:0 auto; overflow: hidden; position: fixed !important; top: 3em; z-index: 9"></div>
 
-    <div class="content" style="position:sticky;  z-index: 13; border-right: 10px red solid; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: #4e4e4c42; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  margin-top: 38em ;">
+    <div class="content" style="position:sticky;  z-index: 13; border-right: 10px red solid; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: #4e4e4c42; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  margin-top: 36em ;">
         <div style="display: flex">
           <a href="/store/${this.props.store}"><i class="fas fa-chevron-left"></i> Store</a>
           <div id="container" style=" display: flex; margin-left: 2em;">
@@ -167,12 +166,17 @@ class Product extends StoreView {
 
         ${this.state.product ? html`
           <iris-text tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/><hr/>
-          <p class="description">
-            <iris-text user=${this.props.store} path="store/products/${this.props.product}/description"/>
-          </p>
-          <p class="price">
-            <iris-text placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
-          </p>
+          <div style="display: flex; margin-bottom: 4em">
+            <div style="display: block" style="width: 45%">
+              <p style="font-weight: 700">Description</p>
+              <iris-text user=${this.props.store} placeholder="Description" path="store/products/${this.props.product}/description"/>
+            </div>
+
+            <div style="display: block" style="width: 45%">
+              <p style="font-weight: 700">Price</p>
+              <iris-text placeholder="Price" user=${this.props.store} placeholder="Price" path="store/products/${this.props.product}/price"/>
+            </div>
+          </div>
           <div style="    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;padding: 0.5em;border-radius: 5px; width: fit-content; margin: auto;">
             <canvas id="qr-code" style="align-content: center  ;"></canvas>
           </div>

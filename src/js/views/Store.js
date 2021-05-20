@@ -17,6 +17,7 @@ class Store extends View {
     this.followedUsers = new Set();
     this.followers = new Set();
     this.cart = {};
+    this.subscriptionValue = {};
     this.state = {items:{}};
     this.items = {};
     this.id = 'profile';
@@ -39,7 +40,6 @@ class Store extends View {
     if (this.shouldRedirect()) {
       return '';
     }
-    const cartTotalItems = Object.keys(this.cart).filter(k => !!this.cart[k] && !!this.items[k]).reduce((sum, k) => sum + this.cart[k], 0);
     this.isMyProfile = Session.getPubKey() === this.props.store;
     const chat = Session.channels[this.props.store];
     const uuid = chat && chat.uuid;
@@ -54,12 +54,20 @@ class Store extends View {
         profilePhoto = html`<${Identicon} str=${this.props.store} width=250/>`
       }
     }
+    var subscriptionValue = html`<iris-text path="profile/subscription"  user=${this.props.store}/>`
+
+    var selector = document.getElementById("#subscriptionValue")
+
     return html`
       <div class="content">
         <div class="profile-top">
           <div class="profile-header">
             <div class="profile-header-stuff">
               <h3 class="profile-name"><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></h3>
+              <h3 class="profile-name" id="subscriptionValue">${subscriptionValue}</h3>
+              <h3 id="rawSubscriptionValue"></h3>
+
+
               <div class="profile-actions">
                 <div class="follow-count">
                   <a href="/follows/${this.props.store}">
@@ -122,6 +130,9 @@ class Store extends View {
   }
 
   componentDidMount() {
+    var SubscriptionState = document.getElementById("SubscriptionValue").innerHTML
+    $("rawSubscriptionValue").html(SubscriptionState)
+
     if (this.shouldRedirect()) {
       return;
     }
@@ -131,11 +142,15 @@ class Store extends View {
     this.isMyProfile = Session.getPubKey() === pub;
     this.cart = {};
 
+
     State.local.get('cart').get(this.props.store).map().on((v, k) => {
       this.cart[k] = v;
       this.setState({cart: this.cart})
       this.updateTotalPrice();
     });
+
+
+
 
     if (pub) {
       State.public.user(pub).get('store').get('products').map().on((p, id) => {
