@@ -32,7 +32,7 @@ body {
   opacity: 0;
   font-size: 15px;
   color: var(--text-color);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family:"Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0;
   margin: 0;
   height:100%;
@@ -675,8 +675,6 @@ header.footer .header-content {
   /* box-shadow: 2px 5px 10px var(--color-smoke); */
   border-radius: 5px;
 
- 
-
   padding: 0.5em;
 
   margin-right: em;
@@ -786,7 +784,7 @@ h2 {
     margin-top: 1.1em;
 
     display: block;
-    font-size: 1.5em;
+    font-size: 1em;
     margin-block-start: 0em;
     margin-block-end: 0em;
     margin-inline-start: 0px;
@@ -799,6 +797,25 @@ h2 {
     
 }
 
+
+
+
+.riseUpHere{
+  top: 0px;
+  transition: top 2s;
+  transition-timing-function: ease-in-out ;
+
+}
+
+.riseUpHere:hover{
+  position: relative;
+ 
+  top: -60px   !important;
+}
+
+.shot{
+  border-radius: 5px !important;
+}
 
 .map-container {
   height: 400px;

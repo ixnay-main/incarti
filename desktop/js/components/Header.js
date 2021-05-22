@@ -128,7 +128,6 @@ class Header extends Component {
           ${isTyping ? html`<small class="typing-indicator">${t('typing')}</small>` : ''}
           ${this.state.about ? html`<small class="participants">${this.state.about}</small>` : ''}
           ${this.chatId ? html`<small class="last-seen">${onlineStatus || ''}</small>` : ''}
-          ${searchBox}
         </div>
 
         ${chat && this.chatId !== key && !chat.uuid ? html`

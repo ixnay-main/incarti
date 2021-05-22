@@ -75,6 +75,7 @@ class Menu extends Component {
 
   render() {
     const pub = Session.getPubKey();
+
     return html`
     <div class="application-list" style="    display: -webkit-inline-box; overflow-y: hidden;">
           
@@ -101,7 +102,7 @@ class Menu extends Component {
             <span class="icon">
               ${a.text === t('messages') && this.state.unseenTotal ? html`<span class="unseen unseen-total">${this.state.unseenTotal}</span>`: ''}
             </span>
-            <span class="text">${a.text}</span>
+            <span class="text"><h4>${a.text}</h4></span>
         </div>
       </div>
       <//>`;

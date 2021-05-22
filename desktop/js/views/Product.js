@@ -325,6 +325,9 @@ class Product extends StoreView {
     console.log(product);
     State.public.user().get('store').get('products').get(this.newProductId || this.newProductName).put(product);
     route(`/store/${Session.getPubKey()}`)
+    Gun.get('blueprints').get('products').get(this.newProductId).put(product);
+
+
   }
 
   componentDidMount() {

@@ -130,8 +130,6 @@ class Store extends View {
   }
 
   componentDidMount() {
-    var SubscriptionState = document.getElementById("SubscriptionValue").innerHTML
-    $("rawSubscriptionValue").html(SubscriptionState)
 
     if (this.shouldRedirect()) {
       return;
