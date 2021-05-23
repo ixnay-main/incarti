@@ -150,10 +150,10 @@ class Product extends StoreView {
       <img src="../../src/img/Logo.png" />
     </a>
     
-    <div class="main-view" id="profile" style="     height: 40em; width: 100%; padding: 1em">
+    <div class="main-view" id="profile" style="height: 45vh !important; width: 100%; padding: 1em">
     <div id="stl_cont2" style="width:auto; height:60vh ;     margin-top: 10vh !important; margin:0 auto; overflow: hidden; position: fixed !important; top: 3em; z-index: 9"></div>
 
-    <div class="content" style="position:sticky;  z-index: 13; border-right: 10px red solid; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: #4e4e4c42; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  margin-top: 36em ;">
+    <div class="content" style="position:sticky;  z-index: 13; border-right: 10px red solid; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: #4e4e4c42; box-shadow: rgb(79 79 84) 0px 7px 29px 0px;  margin-top: 36em ;">
         <div style="display: flex">
           <a href="/store/${this.props.store}"><i class="fas fa-chevron-left"></i> Store</a>
           <div id="container" style=" display: flex; margin-left: 2em;">

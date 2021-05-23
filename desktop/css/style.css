@@ -797,14 +797,33 @@ h2 {
     
 }
 
+.boxIt{
+  top: 0px;
+  transition: top 2s;
+  transition-timing-function: ease-in-out ;
+  margin:auto;
+   box-shadow: rgb(17 17 18) 0px 7px 29px 0px ; 
+      padding: 0.3em;
+        border-radius: 7px; 
+        width: 20vw; 
+        background-color: black;   
+          height: 40em;
+           width: 20em;
+}
+
 
 
 
 .riseUpHere{
   top: 0px;
   transition: top 2s;
-  transition-timing-function: ease-in-out ;
 
+}
+
+@media screen and (max-width: 420px) {
+    .riseUpHere{
+      margin: 0em
+    }
 }
 
 .riseUpHere:hover{

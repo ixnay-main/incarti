@@ -173,8 +173,10 @@ class Product extends StoreView {
 
     console.log(this.props.product)
 
+    var randNum = Math.floor(Math.random() * 9999) + 1;
+
     const clonedproduct = {
-      name: this.props.product + 1,
+      name: this.props.product + '.' + randNum,
       description: this.newProductDescription,
       price: this.newProductPrice
     };
@@ -207,11 +209,16 @@ class Product extends StoreView {
     const i = this.state.product;
     if (!i) return html``;
     return html`
-    <div class="main-view" id="profile" style="">
+    <style>
+    .view-area{
+      height: 70%
+    }
+    </style>
+    <div class="main-view" id="profile">
       <div id="stl_cont2" style="width:auto; height:20em ;margin:0 auto; overflow: hidden; position: fixed !important; top: 3em; z-index: 9"></div>
       <div class="content" style="background-color: whitesmoke; z-index: 1001;     position: sticky; margin-top: 20em; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; border-radius: 10px; height: fit-content; ">
         <div class="productInfo">
-          <a href="/store/${this.props.store}"><iris-text editable="false" user=${this.props.store}/>${ parentStore }</a>
+          <a href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }</a>
         </div>
         ${this.state.product ? html`
             <div class="productInfo">
