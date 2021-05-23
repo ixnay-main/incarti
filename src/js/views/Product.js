@@ -128,19 +128,28 @@ class Product extends StoreView {
     
     , 100)
 
-    const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
-    const i = this.state.product;
-    var qr;
-    (function() {
-            qr = new QRious({
-            element: document.getElementById('qr-code'),
-            size: 180,
-            foreground: 'white',
-            background: '#4e4e4c42',
+    var checkExist2 = setTimeout(function(){
+      const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
+      const i = this.state.product;
+      var qr;
+      (function() {
+              qr = new QRious({
+              element: document.getElementById('qr-code'),
+              size: 180,
+              foreground: 'white',
+              background: '#4e4e4c42',
+  
+              value: window.location.href 
+          });
+      })();
+      clearInterval(checkExist2);
 
-            value: window.location.href 
-        });
-    })();
+    }      
+    
+    , 300)
+
+
+
     var logo = html`<img src="Logo.png"  style="margin: 0em; margin-left: 15px; margin-top: 3px"/>
     `
     if (!i) return html``;
