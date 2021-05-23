@@ -128,28 +128,20 @@ class Product extends StoreView {
     
     , 100)
 
-    var checkExist2 = setTimeout(function(){
-      const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
-      const i = this.state.product;
-      var qr;
-      (function() {
-              qr = new QRious({
-              element: document.getElementById('qr-code'),
-              size: 180,
-              foreground: 'white',
-              background: '#4e4e4c42',
-  
-              value: window.location.href 
-          });
-      })();
-      clearInterval(checkExist2);
 
-    }      
-    
-    , 300)
+    const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
+    const i = this.state.product;
+    var qr;
+    (function() {
+            qr = new QRious({
+            element: document.getElementById('qr-code'),
+            size: 180,
+            foreground: 'white',
+            background: '#4e4e4c42',
 
-
-
+            value: window.location.href 
+        });
+    })();
     var logo = html`<img src="Logo.png"  style="margin: 0em; margin-left: 15px; margin-top: 3px"/>
     `
     if (!i) return html``;
@@ -174,7 +166,7 @@ class Product extends StoreView {
         </div> 
 
         ${this.state.product ? html`
-          <iris-text tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/><hr/>
+          <iris-text tag="h3" contenteditable="true" user=${this.props.store} path="store/products/${this.props.product}/name"/><hr/>
           <div style="display: flex; margin-bottom: 4em">
             <div style="display: block" style="width: 45%">
               <p style="font-weight: 700">Description</p>
