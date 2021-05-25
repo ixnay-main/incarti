@@ -21,17 +21,6 @@ class Product extends StoreView {
   addToCart() {
     const count = (this.cart[this.props.product] || 0) + 1;
     State.local.get('cart').get(this.props.store).get(this.props.product).put(count);
-    }
-
-    cloneItemClicked() {
-    const product = {
-      name: this.newProductName,
-      description: this.newProductDescription,
-      price: this.newProductPrice
-    };
-    console.log(this.props.product)
-    State.public.user().get('store').get('products').put(product);
-    route('/store/' + this.props.store);
   }
 
   donwloadThis(){
@@ -173,15 +162,20 @@ class Product extends StoreView {
 
     console.log(this.props.product)
 
-    var randNum = Math.floor(Math.random() * 9999) + 1;
 
-    const clonedproduct = {
+    var randNum = Math.floor(Math.random() * 9999) + 1;
+    var getModel = document.getElementById("modelDataRaw").textContent
+
+
+    const product = {
       name: this.props.product + '.' + randNum,
       description: this.newProductDescription,
-      price: this.newProductPrice
+      price: this.newProductPrice,
+      modelRaw: getModel,
+
     };
-    console.log(clonedproduct);
-    State.public.user().get('store').get('products').get( clonedproduct.name ).put(clonedproduct);
+    console.log(product);
+    State.public.user().get('store').get('products').get(product.name).put(product);
     route(`/store/${Session.getPubKey()}`)
   }
 

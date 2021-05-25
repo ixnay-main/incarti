@@ -95,6 +95,27 @@ class Product extends StoreView {
     `;
   }
 
+  cloneItemClicked() {
+
+    console.log(this.props.product)
+
+
+    var randNum = Math.floor(Math.random() * 9999) + 1;
+    var getModel = document.getElementById("modelDataRaw").textContent
+
+
+    const product = {
+      name: this.props.product + '.' + randNum,
+      description: this.newProductDescription,
+      price: this.newProductPrice,
+      modelRaw: getModel,
+
+    };
+    console.log(product);
+    State.public.user().get('store').get('products').get(product.name).put(product);
+    route(`/store/${Session.getPubKey()}`)
+  }
+
   onClickDelete() {
     if (confirm('Delete product? This cannot be undone.')) {
       State.public.user().get('store').get('products').get(this.props.product).put(null);
@@ -163,6 +184,8 @@ class Product extends StoreView {
             ${this.isMyProfile ? html`
               <i  onClick=${e => this.onClickDelete(e)} style="font-size: 1.5em; margin-left: 1em; color: #fff" class="fas fa-dumpster-fire"></i>
             ` : ''}
+            <i class="fas fa-clone" style="font-size: 2em; margin-left: 2em" onClick=${e => this.cloneItemClicked(e)}></i>
+
           </div>
         </div> 
 
