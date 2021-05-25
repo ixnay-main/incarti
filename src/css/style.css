@@ -336,7 +336,7 @@ a.logo img:last-child {
   display: flex;
   flex-direction: column;
   flex: 1 0 10em;
-  background: var(--sidebar-bg);
+  background: #000;
   border-right: var(--sidebar-border-right);
 }
 
@@ -678,13 +678,17 @@ header.footer .header-content {
   z-index: 2;
   width: 220px;
   transition: all 0.25s ease;
-  background: var(--menu-bg);
+  background: ;
   border-right: var(--sidebar-border-right);
   color: var(--sidebar-color);
 }
 
 .application-list .electron-padding {
   height: 40px;
+}
+
+.application-list a.logo{
+  display: none;
 }
 
 .overlay {
@@ -1038,6 +1042,8 @@ a.msg {
 .msg.our .msg-content {
   background-color: var(--our-msg);
   border: 0;
+  background-color: #ffffff;
+  color: black;
 }
 
 .msg .below-text {
@@ -1418,7 +1424,10 @@ small, .text-muted {
 
 #not-seen-by-them {
   padding: 10px 15px;
-  background-color: var(--notify);
+  background-color: #ffffff;
+  margin: 1em !important;
+  color: black;
+  border-radius: 5px;
 }
 
 #not-seen-by-them button {

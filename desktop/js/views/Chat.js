@@ -253,8 +253,7 @@ class Chat extends View {
     }
     ${this.props.id && this.props.id.length > 20 ? html`
       <div id="scroll-down-btn" style="display:none;" onClick=${() => this.scrollDown()}>${caretDownSvg}</div>
-      <div id="not-seen-by-them" style="display: none">
-      <p dangerouslySetInnerHTML=${{ __html: t('if_other_person_doesnt_see_message') }}></p>
+      <div id="" style="display: none">
       <p><button onClick=${e => copyMyChatLinkClicked(e)}>${t('copy_your_invite_link')}</button></p>
       </div>
       <div class="chat-message-form">

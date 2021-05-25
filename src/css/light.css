@@ -2,7 +2,7 @@
 :root {
     --body-bg: rgb(0, 0, 0);
     --text-color: #ffffff;
-    --text-time: rgba(255, 255, 255);
+    --text-time: rgb(0, 0, 0);
     --main-color: #000000;
     --gallery-background: rgba(255, 255, 255, 0.90);
     --header-color: rgb(0, 0, 0);
@@ -19,7 +19,7 @@
     --input-bg: #f3f3f3;
     --input-text: #262626;
     --input-placeholder: #a9a9a9;
-    --small-text-color: #262626;
+    --small-text-color: #ffffff;
     --msg-form-button-color: #999;
     --button-bg: #000000;
     --button-color: #fff;
@@ -34,8 +34,8 @@
     --emoji-picker-color: rgb(0, 0, 0);
     --emoji-picker-border-color: #CCCCCC;
     --link-color: #575757;
-    --day-separator-bg: rgba(227, 249, 255, 0.91);
-    --day-separator-color: rgba(74, 74, 74, 0.88);
+    --day-separator-bg: white;
+    --day-separator-color: black;
     --non-string-value-color: blue;
     --positive-color: #80bf5e;
 }

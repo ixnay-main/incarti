@@ -58,7 +58,6 @@ class Identicon extends Component {
     return html`
     <div onClick=${this.props.onClick} style="${this.props.onClick ? 'cursor: pointer;' : ''} position: relative;" class="identicon-container ${this.props.showTooltip ? 'tooltip' : ''} ${activity}">
       ${this.props.showTooltip && this.state.name ? html`<span class="tooltiptext">${this.state.name}</span>` : ''}
-      ${this.props.activity ? html`<div class="online-indicator"/>` : ''}
     </div>
     `;
   }

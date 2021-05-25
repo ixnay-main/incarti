@@ -127,14 +127,6 @@ class Profile extends View {
             <p class="profile-about-content" placeholder=${this.isMyProfile ? t('about') : ''} contenteditable=${this.isMyProfile} onInput=${e => this.onAboutInput(e)}>${this.state.about}</p>
           </div>
           <div class="profile-actions">
-            <div class="follow-count">
-              <a href="/follows/${this.props.id}">
-                <span>${this.state.followedUserCount}</span> ${t('following')}
-              </a>
-              <a href="/followers/${this.props.id}">
-                <span>${this.state.followerCount}</span> ${t('followers')}
-              </a>
-            </div>
             ${this.followedUsers.has(Session.getPubKey()) ? html`
               <p><small>${t('follows_you')}</small></p>
             `: this.props.id === SMS_VERIFIER_PUB ? html`
@@ -164,9 +156,7 @@ class Profile extends View {
   renderTabs() {
     return html`
     <div class="tabs">
-      <${Link} activeClassName="active" href="/profile/${this.props.id}">Posts<//>
-      <${Link} activeClassName="active" href="/replies/${this.props.id}">Replies<//>
-      <${Link} activeClassName="active" href="/likes/${this.props.id}">Likes<//>
+      <button onClick=${() => route('/chat/')}>Messages</button>
     </div>
     `;
   }

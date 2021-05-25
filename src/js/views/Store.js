@@ -54,32 +54,30 @@ class Store extends View {
         profilePhoto = html`<${Identicon} str=${this.props.store} width=250/>`
       }
     }
-    var subscriptionValue = html`<iris-text path="profile/subscription"  user=${this.props.store}/>`
 
     var selector = document.getElementById("#subscriptionValue")
 
     return html`
+      <style>
+        .nav{
+          display: none
+        }
+      </style>
       <div class="content">
+        <a href="/" nClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo">
+          <img class="hidden-xs" src="../../src/js/views/Logo.png" />
+          <img src="../../src/js/views/Logo.png" />
+        </a>
         <div class="profile-top">
           <div class="profile-header">
             <div class="profile-header-stuff">
-              <h3 class="profile-name"><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></h3>
-              <h3 class="profile-name" id="subscriptionValue">${subscriptionValue}</h3>
+              <div style="background-color: grey; padding: 3px 15px; border-radius: 5px; text-align: center; margin: auto; width: fit-content; color: black; background-color: #f3f3f3; margin-top:1em">
+              <h3 style="margin: 0em" class="profile-name"><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></h3>
+              </div>
               <h3 id="rawSubscriptionValue"></h3>
 
 
               <div class="profile-actions">
-                <div class="follow-count">
-                  <a href="/follows/${this.props.store}">
-                    <span>${this.state.followedUserCount}</span> ${t('following')}
-                  </a>
-                  <a href="/followers/${this.props.store}">
-                    <span>${this.state.followerCount}</span> ${t('followers')}
-                  </a>
-                </div>
-                ${this.followedUsers.has(Session.getPubKey()) ? html`
-                  <p><small>${t('follows_you')}</small></p>
-                `: ''}
                 ${followable ? html`<${FollowButton} id=${this.props.store}/>` : ''}
                 <button onClick=${() => route('/chat/' + this.props.store)}>${t('send_message')}</button>
                 ${uuid ? '' : html`

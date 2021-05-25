@@ -129,32 +129,33 @@ class Product extends StoreView {
     , 100)
 
 
-    const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
-    const i = this.state.product;
     var qr;
     (function() {
             qr = new QRious({
             element: document.getElementById('qr-code'),
             size: 180,
-            foreground: 'white',
-            background: '#4e4e4c42',
+            foreground: '#141414',
+            background: '#fff',
 
             value: window.location.href 
         });
+        console.log("qr up")
+
     })();
-    var logo = html`<img src="Logo.png"  style="margin: 0em; margin-left: 15px; margin-top: 3px"/>
-    `
+    var logo = html`<img src="Logo.png"  style="margin: 0em; margin-left: 15px; margin-top: 3px"/>`
+    const i = this.state.product;
+
     if (!i) return html``;
     return html`
     <a href="/" nClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo">
-      <img class="hidden-xs" src="../../mobile/src/img/Logo.png" />
-      <img src="../../src/img/Logo.png" />
+      <img class="hidden-xs" src="../../src/js/views/Logo.png" />
+      <img src="../../src/js/views/Logo.png" />
     </a>
     
     <div class="main-view" id="profile" style="height: 45vh !important; width: 100%; padding: 1em">
-    <div id="stl_cont2" style="width:auto; height:60vh ;     margin-top: 10vh !important; margin:0 auto; overflow: hidden; position: fixed !important; top: 3em; z-index: 9"></div>
+    <div id="stl_cont2" style="width:auto; height:70vh ; margin:0 auto; overflow: hidden; position: fixed !important; top: 0; z-index: 9"></div>
 
-    <div class="content" style="position:sticky;  z-index: 13; border-right: 10px red solid; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: #4e4e4c42; box-shadow: rgb(79 79 84) 0px 7px 29px 0px;  margin-top: 36em ;">
+    <div class="content" style="position:sticky;  z-index: 13; border-right: 10px red solid; width: 100%; border-radius: 5px 5px 0px 0px; padding: 1em; margin: 1em; background-color: #4e4e4c42; margin-top: 36em ;">
         <div style="display: flex">
           <a href="/store/${this.props.store}"><i class="fas fa-chevron-left"></i> Store</a>
           <div id="container" style=" display: flex; margin-left: 2em;">
@@ -178,8 +179,8 @@ class Product extends StoreView {
               <iris-text placeholder="Price" user=${this.props.store} placeholder="Price" path="store/products/${this.props.product}/price"/>
             </div>
           </div>
-          <div style="    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;padding: 0.5em;border-radius: 5px; width: fit-content; margin: auto;">
-            <canvas id="qr-code" style="align-content: center  ;"></canvas>
+          <div style=" padding: 0.5em;border-radius: 5px; width: fit-content; margin: auto;">
+            <canvas id="qr-code" style="align-content: center; border-radius: 10px"></canvas>
           </div>
           <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/>
         ` : ''}

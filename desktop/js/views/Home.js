@@ -44,11 +44,11 @@ class Home extends View{
           });
       })();
 
-      var rndInt = Math.floor(Math.random() * 2) + 1
+      var rndInt = Math.floor(Math.random() * 1) + 1
 
       console.log(rndInt)
       if(rndInt == 1){
-        var randFile = "DtM-v3.stl"
+        var randFile = "frys.stl"
       } else if(rndInt == 2){
         var randFile = "two.stl"
       }
@@ -60,7 +60,7 @@ class Home extends View{
           mouse_zoom: false,
           models:
       [
-      {filename: randFile ,opacity: 0.8, y: 30, color: "#FFFFFF",rotationx: 4.712}
+      {filename: randFile ,opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
       ]
       }
       )
@@ -144,6 +144,10 @@ class Home extends View{
 
 }
 
+.mouseOn:hover{
+  cursor: pointer;
+}
+
 .show {display:block;}
 
       </style>
@@ -160,7 +164,7 @@ class Home extends View{
                 <a href="/store/${Session.getPubKey()}" style="color: white"><i  class="fas fa-chevron-left" style="color: white"></i> Store</a>
                 <div id="container" style=" display: flex; margin-left: 2em;">
 
-                <div class="dropdown " style="margin-left: 9vw">
+                <div class="dropdown " style="margin-left: 9vw; display: none">
                   <i class="fas fa-ellipsis-v" style="color: white; padding: 0em 1em" onClick=${() => {{
                   /* When the user clicks on the button,
                   toggle between hiding and showing the dropdown content */
@@ -198,15 +202,20 @@ class Home extends View{
                 </div>
                 </div>
               </div> 
+              <br/>
+              <div  style=" border: 2px solid white !important; margin: 0em; padding: 0em; border-radius: 5px; height: 2.8em" >
+              <h2 contenteditable placeholder=" Gimme a name" style="color: red; margin: 5px" onInput=${e => this.newProductName = e.target.innerText} />
+              </div><br/>
 
-              <h2 contenteditable placeholder="Give us a Name" style="color: red" onInput=${e => this.newProductName = e.target.innerText} />
+              <div style=";padding: 0.5em;border-radius: 5px; height: auto; width: 100% ; margin: auto; background-color: white; margin-bottom: 10em">
+                <i onClick=${e => this.addItemClicked(e)} class="fas fa-plus mouseOn" style="padding: ; color: black; font-size: 1.5em"></i>
+              </div><br/>
 
-              <div style=";padding: 0.5em;border-radius: 5px; height: auto; width: fit-content; margin: auto; padding-bottom: 10em">
-              <button onClick=${e => this.addItemClicked(e)}>Add item</button>
+              <div style=";padding: 0.5em;border-radius: 5px; height: auto; width: fit-content; margin: auto; padding-bottom: 10em; display: none">
 
-              <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px">
-              <canvas id="qr-code" style="align-content: center  ; border-radius: 12px"></canvas>
-              </div>
+                <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px">
+                  <canvas id="qr-code" style="align-content: center  ; border-radius: 12px"></canvas>
+                </div>
               </div>
               <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/>
             </div>

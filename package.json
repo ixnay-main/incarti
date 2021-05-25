@@ -1,7 +1,7 @@
 {
-  "name": "iris-messenger",
+  "name": "IXNAY",
   "version": "1.0.0",
-  "author": "Martti Malmi <sirius@iki.fi>",
+  "author": "Martti Malmi, Antony Perillo <allinto@icloud.com>",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^7.4.0",

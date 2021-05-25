@@ -67,12 +67,11 @@ class ChatListItem extends Component {
 
     const typingIndicator = chat.isTyping ? html`<small class="typing-indicator">${t('typing')}</small>` : '';
 
-    const onlineIndicator = chat.id.length > 36 ? html`<div class="online-indicator"></div>` : '';
 
     return html`
     <div class="chat-item ${activity} ${hasUnseen} ${active} ${seen} ${delivered}" onClick=${() => route('/chat/' + this.props.chat.id)}>
       ${iconEl}
-      ${onlineIndicator}
+
       <div class="text">
         <div>
           <span class="name">${name}</span>

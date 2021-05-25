@@ -210,9 +210,7 @@ class Product extends StoreView {
     if (!i) return html``;
     return html`
     <style>
-    .view-area{
-      height: 70%
-    }
+
     </style>
     <div class="main-view" id="profile">
       <div id="stl_cont2" style="width:auto; height:20em ;margin:0 auto; overflow: hidden; position: fixed !important; top: 3em; z-index: 9"></div>

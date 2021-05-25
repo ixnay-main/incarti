@@ -74,25 +74,8 @@ class Store extends View {
                     <iris-text style="min-height: 3em"  path="store/about" placeholder="Store description" attr="about" user=${this.props.store}/>
                   </p>
                 </div>
-                <div class="profile-actions">
-                  <div class="follow-count">
-                    <a href="/follows/${this.props.store}">
-                      <span>${this.state.followedUserCount}</span> ${t('following')}
-                    </a>
-                    <a href="/followers/${this.props.store}">
-                      <span>${this.state.followerCount}</span> ${t('followers')}
-                    </a>
-                    ${this.isMyProfile ? '' : html`<${FollowButton} id=${this.props.id}/>`}
-
-                  </div>
-                  ${this.followedUsers.has(Session.getPubKey()) ? html`
-                    <p><small>${t('follows_you')}</small></p>
-                  `: ''}
-                  ${followable ? html`<${FollowButton} id=${this.props.store}/>` : ''}
-                  
-                  <div style="margin: auto; width: fit-content">
-                    <button style="background-color: transparent !important; padding-left: 0em; margin-left: 0em; width: fit-content !important" onClick=${() => route('/chat/' + this.props.store)}>${t('send_message')}</button>
- 
+                <div class="profile-actions">                  
+                  <div style="margin: auto; width: fit-content"> 
                     ${uuid ? '' : html`
                     <${CopyButton} text=${t('copy_link')} title=${this.state.name} copyStr=${'https://iris.to/' + window.location.hash}/>
                   `}

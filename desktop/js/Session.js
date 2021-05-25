@@ -65,37 +65,7 @@ function getFollowsFn(callback, k, maxDepth = 3, currentDepth = 1) {
 }
 
 function setOurOnlineStatus() {
-  const activeRoute = window.location.hash;
-  iris.Channel.setActivity(State.public, ourActivity = 'active');
-  const setActive = _.debounce(() => {
-    const chat = activeRoute && channels[activeRoute.replace('#/profile/','').replace('#/chat/','')];
-    if (chat && !ourActivity) {
-      chat.setMyMsgsLastSeenTime();
-    }
-    iris.Channel.setActivity(State.public, ourActivity = 'active'); // TODO: also on keypress
-    clearTimeout(onlineTimeout);
-    onlineTimeout = setTimeout(() => iris.Channel.setActivity(State.public, ourActivity = 'online'), 30000);
-  }, 1000);
-  document.addEventListener("touchmove", setActive);
-  document.addEventListener("mousemove", setActive);
-  document.addEventListener("keypress", setActive);
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === 'visible') {
-      iris.Channel.setActivity(State.public, ourActivity = 'active');
-      const chatId = activeRoute.replace('#/profile/','').replace('#/chat/','');
-      const chat = activeRoute && channels[chatId];
-      if (chat) {
-        chat.setMyMsgsLastSeenTime();
-        Notifications.changeChatUnseenCount(chatId, 0);
-      }
-    } else {
-      iris.Channel.setActivity(State.public, ourActivity = 'online');
-    }
-  });
-  setActive();
-  window.addEventListener("beforeunload", () => {
-    iris.Channel.setActivity(State.public, ourActivity = null);
-  });
+//vaguely unetheical - taken out
 }
 
 function login(k) {
