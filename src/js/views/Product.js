@@ -184,7 +184,7 @@ class Product extends StoreView {
             ${this.isMyProfile ? html`
               <i  onClick=${e => this.onClickDelete(e)} style="font-size: 1.5em; margin-left: 1em; color: #fff" class="fas fa-dumpster-fire"></i>
             ` : ''}
-            <i class="fas fa-clone" style="font-size: 2em; margin-left: 2em" onClick=${e => this.cloneItemClicked(e)}></i>
+            <i class="fas fa-clone" style="font-size: 1.5em; margin-left: 1em" onClick=${e => this.cloneItemClicked(e)}></i>
 
           </div>
         </div> 
