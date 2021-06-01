@@ -116,7 +116,7 @@ class Header extends Component {
       <div class="header-content">
         ${iris.util.isElectron || (activeRoute && activeRoute.indexOf('/chat/') === 0) ? '' : html`
           <a href="/" onClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo">
-            <h1 style="font-family: arialBlack; color: black">IXNAY</h1>
+
           </a>
         `}
         <div class="text" style=${this.chatId ? 'cursor:pointer' : ''} onClick=${() => this.onTitleClicked()}>
@@ -128,27 +128,17 @@ class Header extends Component {
           ${isTyping ? html`<small class="typing-indicator">${t('typing')}</small>` : ''}
           ${this.state.about ? html`<small class="participants">${this.state.about}</small>` : ''}
           ${this.chatId ? html`<small class="last-seen">${onlineStatus || ''}</small>` : ''}
-          ${searchBox}
+    
         </div>
 
-        ${chat && this.chatId !== key && !chat.uuid ? html`
-          <a class="tooltip" style="width:24px; height:24px; color: var(--msg-form-button-color)" id="start-video-call" onClick=${() => State.local.get('outgoingCall').put(this.chatId)}>
-            <span class="tooltiptext">${t('video_call')}</span>
-            ${Icons.videoCall}
-          </a>
-          <!-- <a id="start-voice-call" style="width:20px; height:20px; margin-right: 20px">
-            Icons.voiceCall
-            </a> -->
-        `: ''}
+
         ${this.chatId && this.chatId.length > 10 && this.chatId.length < 40 ? html`
           <a class="tooltip hidden-xs" onClick=${() => State.local.get('showParticipants').put(!this.state.showParticipants)}>
             <span class="tooltiptext">${t('participant_list')}</span>
             ${Icons.group}
           </a>
         ` : ''}
-        <a href="/profile/${key}" onClick=${() => State.local.get('scrollUp').put(true)} class="hidden-xs ${activeRoute && activeRoute === '/profile/' + key ? 'active' : ''} my-profile">
-          <${Identicon} str=${key} width=34 />
-        </a>
+
       </div>
     </header>`;
   }

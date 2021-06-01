@@ -24,7 +24,7 @@ class Feed extends View {
 
   getMessagesByUser(pub, cb) {
     const seen = new Set();
-    State.public.user(pub).get('msgs').map().on(async (hash, time) => {
+    State.public.user(pub).get(this.props.index || 'msgs').map().on(async (hash, time) => {
       if (typeof hash === 'string' && !seen.has(hash)) {
         seen.add(hash);
         cb(hash, time);
@@ -50,9 +50,9 @@ class Feed extends View {
           }
           const id = time + pub.slice(0,20);
           if (hash) {
-            State.local.get('feed').get(id).put(hash);
+            State.local.get(this.props.index || 'feed').get(id).put(hash);
           } else {
-            State.local.get('feed').get(id).put(null);
+            State.local.get(this.props.index || 'feed').get(id).put(null);
           }
         });
       } else {
@@ -62,7 +62,19 @@ class Feed extends View {
     });
   }
 
+  search() {
+    const searchTerm = this.props.term && this.props.term.toLowerCase();
+    this.setState({searchTerm});
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.term !== this.props.term) {
+      this.search();
+    }
+  }
+
   componentDidMount() {
+    this.search();
     /*
     State.local.get('show2ndDegreeFollows').on(show => {
       if (show === this.state.show2ndDegreeFollows) return;
@@ -112,10 +124,19 @@ class Feed extends View {
     return '';
   }
 
+  filter(msg) {
+    if (this.state.searchTerm) {
+      return msg.text && (msg.text.toLowerCase().indexOf(this.state.searchTerm) > -1);
+    }
+    return true;
+  }
+
   renderView() {
     return html`
       <div class="centered-container">
-        <${PublicMessageForm} class="hidden-xs" autofocus=${false}/>
+        ${this.state.searchTerm ? '' : html`
+          <${PublicMessageForm} index=${this.props.index} class="hidden-xs" autofocus=${false}/>
+        `}
         <!--<div class="feed-settings">
           <button onClick="${() => {
               State.local.get('show2ndDegreeFollows').put(!this.state.show2ndDegreeFollows);
@@ -123,8 +144,10 @@ class Feed extends View {
             ${this.state.show2ndDegreeFollows ? 'Hide' : 'Show'} messages from 2nd degree follows
           </button>
         </div>-->
-        ${this.getNotification()}
-        <${MessageFeed} node=${State.local.get('feed')} />
+        ${this.state.searchTerm ? html`<h2>Search results for "${this.state.searchTerm}"</h2>` : html`
+          ${this.getNotification()}
+        `}
+        <${MessageFeed} filter=${this.state.searchTerm && (m => this.filter(m))} key=${this.props.index || 'feed'} node=${State.local.get(this.props.index || 'feed')} />
       </div>
     `;
   }

@@ -12,6 +12,7 @@ import Session from './Session.js';
 import { translate as t } from './Translation.js';
 
 import Settings from './views/Settings.js';
+import Home from './views/Home.js';
 import LogoutConfirmation from './views/LogoutConfirmation.js';
 import Chat from './views/Chat.js';
 import Store from './views/Store.js';
@@ -26,9 +27,11 @@ import Feed from './views/Feed.js';
 import About from './views/About.js';
 import Explorer from './views/Explorer.js';
 import Contacts from './views/Contacts.js';
+import Torrent from './views/Torrent.js';
 
 import VideoCall from './components/VideoCall.js';
 import Identicon from './components/Identicon.js';
+import MediaPlayer from './components/MediaPlayer.js';
 import Footer from './components/Footer.js';
 import State from './State.js';
 import Icons from './Icons.js';
@@ -52,14 +55,10 @@ PeerManager.init();
 Helpers.checkColorScheme();
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: t('home'), icon: Icons.store},
-  {url: '/chat', text: t('messages'), icon: Icons.chat},
-  {url: '/contacts', text: t('contacts'), icon: Icons.user},
-  {url: '/store', text: t('store'), icon: Icons.chat},
-  {url: '/product/new', text: t('products'), icon: Icons.user},
-  {url: '/settings', text: t('settings'), icon: Icons.settings},
-  {url: '/explorer', text: t('explorer'), icon: Icons.folder},
-  {url: '/about', text: t('about')},
+  {url: '/', text: t(''), icon: Icons.home},
+  {url: '/store', text: t(''), icon: Icons.play},
+  {url: '/product/new', text: t(''), icon: Icons.add},
+  {url: '/profile', text: t(''), icon: Icons.user},
 ];
 
 class Menu extends Component {
@@ -79,9 +78,7 @@ class Menu extends Component {
     return html`
       <div class="application-list">
         ${iris.util.isElectron ? html`<div class="electron-padding"/>` : html`
-          <a href="/" onClick=${() => this.menuLinkClicked()} class="hidden-xs" tabindex="0" class="logo">
-            <img class="hidden-xs" src="img/icon128.png" width=40 height=40/>
-          </a>
+            <br/><br/>
         `}
         <div class="visible-xs-block">
           <${Link} onClick=${() => this.menuLinkClicked()} activeClassName="active" href="/profile/${pub}">
@@ -149,6 +146,7 @@ class Main extends Component {
       content = this.state.loggedIn ? html`
         ${isDesktopNonMac ? html`
           <div class="windows-titlebar">
+               <img src="img/iris_logotype.png" height=16 width=28 />
                <div class="title-bar-btns">
                     <button class="min-btn" onClick=${() => this.electronCmd('minimize')}>-</button>
                     <button class="max-btn" onClick=${() => this.electronCmd('maximize')}>+</button>
@@ -161,20 +159,25 @@ class Main extends Component {
           <div class="overlay" onClick=${e => this.onClickOverlay(e)}></div>
           <div class="view-area">
             <${Router} history=${createHashHistory()} onChange=${e => this.handleRoute(e)}>
-              <${Store} path="/"/>
+              <${Home} path="/"/>
+
               <${Feed} path="/feed"/>
+              <${Feed} path="/search/:term?/:type?"/>
+              <${Feed} path="/media" index="media"/>
               <${Login} path="/login"/>
               <${Chat} path="/chat/:id?"/>
               <${Message} path="/post/:hash"/>
+              <${Torrent} path="/torrent/:id"/>
               <${About} path="/about"/>
-              <${Settings} path="/settings" showSwitchAccount=${true}/>
+              <${Settings} path="/settings"/>
               <${LogoutConfirmation} path="/logout"/>
               <${Profile} path="/profile/:id?" tab="profile"/>
               <${Profile} path="/replies/:id?" tab="replies"/>
               <${Profile} path="/likes/:id?" tab="likes"/>
+              <${Profile} path="/media/:id" tab="media"/>
               <${Group} path="/group/:id?"/>
               <${Store} path="/store/:store?"/>
-              <${Checkout} path="/checkout/:store"/>
+              <${Checkout} path="/checkout/:store?"/>
               <${Product} path="/product/:product/:store"/>
               <${Product} path="/product/new" store=Session.getPubKey()/>
               <${Explorer} path="/explorer/:node"/>
@@ -185,15 +188,7 @@ class Main extends Component {
             </${Router}>
           </div>
         </section>
-        <div id="media-player-container" style="display:none">
-            <div id="media-player"></div>
-            <div id="media-cover"></div>
-            <div id="media-info"></div>
-            <div id="close-media" onClick=${() => {
-              document.getElementById('media-player').innerHTML = '';
-              document.getElementById('media-player-container').style = 'display: none';
-            }}>${Icons.close}</div>
-        </div>
+        <${MediaPlayer}/>
         <${Footer}/>
         <${VideoCall}/>
       ` : html`<${Login}/>`;
@@ -208,12 +203,6 @@ class Main extends Component {
 
 render(html`<${Main}/>`, document.body);
 
-$('body').css('opacity', 1); // use opacity because setting focus on display: none elements fails
+document.body.style = 'opacity:1';
 
 Helpers.showConsoleWarning();
-
-$(window).resize(() => { // if resizing up from mobile size menu view
-  if ($(window).width() > 565 && $('.main-view:visible').length === 0) {
-    route('/');
-  }
-});

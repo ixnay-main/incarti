@@ -143,13 +143,15 @@ class PublicMessage extends Message {
     e.preventDefault();
     if (confirm('Delete message?')) {
       const msg = this.state.msg;
-      State.public.user().get('msgs').get(msg.time).put(null);
+      msg.torrentId && State.public.user().get('media').get(msg.time).put(null);
+      State.public.user().get(this.props.index || 'msgs').get(msg.time).put(null);
       msg.replyingTo && State.public.user().get('replies').get(msg.replyingTo).get(msg.time).put(null);
     }
   }
 
   render() {
-    if (!this.state.msg) { return html``; }
+    if (!this.state.msg) { return ''; }
+    if (this.props.filter && !this.props.filter(this.state.msg)) { return ''; }
     //if (++this.i > 1) console.log(this.i);
     let name = this.props.name || this.state.name;
     const emojiOnly = this.state.msg.text && this.state.msg.text.length === 2 && Helpers.isEmoji(this.state.msg.text);
@@ -158,6 +160,8 @@ class PublicMessage extends Message {
     const h = emojiOnly ? p.innerHTML : Helpers.highlightEmoji(p.innerHTML);
     const innerHTML = autolinker.link(h);
     const time = typeof this.state.msg.time === 'object' ? this.state.msg.time : new Date(this.state.msg.time);
+    const dateStr = time.toLocaleString(window.navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const timeStr = time.toLocaleTimeString(window.navigator.language, {timeStyle: 'short'});
 
     return html`
       <div class="msg ${this.props.asReply ? 'reply' : ''}">
@@ -202,7 +206,12 @@ class PublicMessage extends Message {
               ${this.state.likes || ''}
             </span>
             <div class="time">
-              <a href="/post/${encodeURIComponent(this.props.hash)}">${Helpers.getRelativeTimeText(time)}</a>
+              <a href="/post/${encodeURIComponent(this.props.hash)}" class="tooltip">
+                  ${Helpers.getRelativeTimeText(time)}
+                  <span class="tooltiptext">
+                    ${dateStr} ${timeStr}
+                  </span>
+              </a>
             </div>
           </div>
           ${this.state.showLikes ? html`

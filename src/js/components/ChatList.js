@@ -3,7 +3,6 @@ import { translate as t } from '../Translation.js';
 import State from '../State.js';
 import ChatListItem from './ChatListItem.js';
 import Helpers from '../Helpers.js';
-import Session from '../Session.js';
 import { route } from '../lib/preact-router.es.js';
 import Notifications from '../Notifications.js';
 import ScrollViewport from '../lib/preact-scroll-viewport.js';
@@ -32,9 +31,6 @@ class ChatList extends Component {
       limitedUpdate();
     });
     State.local.get('scrollUp').on(() => Helpers.animateScrollTop('.chat-list'));
-    if (Session.getKey()) {
-      $("#my-identicon").append(Helpers.getIdenticon(Session.getKey().pub, 40));
-    }
 
     if (window.Notification && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
       setTimeout(() => {

@@ -1,8 +1,10 @@
-import { Component } from '../lib/preact.js';import { html } from '../Helpers.js';
-import Helpers from '../Helpers.js';
+import { Component } from '../lib/preact.js';
+import { html } from '../Helpers.js';
 import State from '../State.js';
+import SafeImg from './SafeImg.js';
 
 class Identicon extends Component {
+
   constructor() {
     super();
     this.eventListeners = {};
@@ -10,6 +12,7 @@ class Identicon extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.str !== this.props.str) return true;
+    if (nextState.photo !== this.state.photo) return true;
     if (nextState.name !== this.state.name) return true;
     if (nextState.activity !== this.state.activity) return true;
     return false;
@@ -23,15 +26,21 @@ class Identicon extends Component {
   }
 
   componentDidMount() {
+    const pub = this.props.str;
+    this.identicon = new iris.Attribute({type: 'keyID', value: pub}).identicon({width: this.props.width, showType: false});
+    this.base.appendChild(this.identicon);
+    State.public.user(pub).get('profile').get('photo').on(photo => { // TODO: limit size
+      $(this.base).find('.iris-identicon').toggle(!photo);
+      this.setState({photo});
+    });
+
     this.setState({activity: null});
-    const i = Helpers.getIdenticon(this.props.str, this.props.width)[0];
     if (this.props.showTooltip) {
       State.public.user(this.props.str).get('profile').get('name').on((name,a,b,e) => {
         this.eventListeners['name'] = e;
         this.setState({name})
       });
     }
-    this.base.appendChild(i);
     if (this.props.activity) {
       State.public.user(this.props.str).get('activity').on((activity, a, b, e) => {
         this.eventListeners['activity'] = e;
@@ -54,12 +63,16 @@ class Identicon extends Component {
   }
 
   render() {
+    const width = this.props.width;
     const activity = ['online', 'active'].indexOf(this.state.activity) > -1 ? this.state.activity : '';
     return html`
-    <div onClick=${this.props.onClick} style="${this.props.onClick ? 'cursor: pointer;' : ''} position: relative;" class="identicon-container ${this.props.showTooltip ? 'tooltip' : ''} ${activity}">
-      ${this.props.showTooltip && this.state.name ? html`<span class="tooltiptext">${this.state.name}</span>` : ''}
-      ${this.props.activity ? html`<div class="online-indicator"/>` : ''}
-    </div>
+      <div onClick=${this.props.onClick} style="${this.props.onClick ? 'cursor: pointer;' : ''} position: relative;" class="identicon-container ${this.props.showTooltip ? 'tooltip' : ''} ${activity}">
+        <div style="width: ${width}; height: ${width}" class="identicon">
+          ${this.state.photo ? html`<${SafeImg} src=${this.state.photo} class="identicon-image" width=${width}/>` : ''}
+        </div>
+        ${this.props.showTooltip && this.state.name ? html`<span class="tooltiptext">${this.state.name}</span>` : ''}
+        ${this.props.activity ? html`<div class="online-indicator"/>` : ''}
+      </div>
     `;
   }
 }

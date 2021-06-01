@@ -18,8 +18,9 @@ class About extends View {
           <li><b>Secure</b>: It's open source. Users can validate that big brother doesn't read your private messages.</li>
           <li><b>Available</b>: It works offline-first and is not dependent on any single centrally managed server. Users can even connect directly to each other.</li>
         </ul>
+        <p>In other words, <b>you can't be deplatformed from Iris</b>.</p>
         <p>Released under MIT license. Code: <a href="https://github.com/irislib/iris-messenger">Github</a>.</p>
-        <p><small>Version 1.7.0</small></p>
+        <p><small>Version 1.7.1</small></p>
 
         ${iris.util.isElectron ? '' : html`
           <div id="desktop-application-about">
@@ -33,6 +34,7 @@ class About extends View {
               </li>
               <li>Opens to background on login: stay online and get message notifications</li>
               <li>More secure and available: no need to open the browser application from a server</li>
+              <li>Direct-connect to the people you have an open chat with (if port 8767 open or upnp enabled in router)</li>
             </ul>
             <p><a href="https://github.com/irislib/iris-electron/releases">Download</a></p>
           </div>
