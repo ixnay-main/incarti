@@ -55,6 +55,21 @@ class Store extends View {
         profilePhoto = html`<${Identicon} str=${this.props.store} width=250/>`
       }
     }
+
+    var qr;
+    (function() {
+            qr = new QRious({
+            element: document.getElementById('qr-code'),
+            size: 220,
+            foreground: 'black',
+            background: 'whitesmoke',
+            
+
+            value: window.location.href 
+        });
+      })();
+    
+
     return html`
 
     <style>
@@ -103,8 +118,8 @@ p.profile-about-content{
       </div>
      
       <div class="container">
-        <div class="columns six" style="border-radius: 10px; background-color :rgb(255, 255, 255); height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; height: fit-content">
-          <div class="" style="padding: 1em;">
+        <div class="columns six" style="border-radius: 10px;  height:fit-content; height: fit-content">
+          <div class="" style="padding: 1em; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color :rgb(255, 255, 255);">
             <div class="" style="padding: 0.1em;">
               <p style=" height: 2em; font-size: 2em; margin: 0em;  color: black !important;" class=""><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></p>
             </div>
@@ -123,6 +138,16 @@ p.profile-about-content{
           </div>     
           <div class="profile-about visible-xs-flex">
             <p  class="profile-about-content" placeholder=${this.isMyProfile ? t('about') : ''} contenteditable=${this.isMyProfile} onInput=${e => this.onAboutInput(e)}>${this.state.about}</p>
+          </div>
+
+          <br/>
+
+          <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;     width: fit-content;margin: auto;border-radius: 10px;padding: 0.2em;">
+            <canvas id="qr-code" style="align-content: center  ;"></canvas>
+          </div>
+
+          <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;margin: auto;border-radius: 10px;padding: 0.2em;">
+          
           </div>
         </div>
         <div class="columns six" style=" border-radius: 10px; background-color :rgb(255, 255, 255); height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; height: fit-content ">

@@ -24,7 +24,6 @@ import Group from './views/Group.js';
 import Message from './views/Message.js';
 import Follows from './views/Follows.js';
 import Feed from './views/Feed.js';
-import About from './views/About.js';
 import Explorer from './views/Explorer.js';
 import Contacts from './views/Contacts.js';
 import Torrent from './views/Torrent.js';
@@ -119,7 +118,7 @@ class Main extends Component {
     if (!activeRoute && window.location.hash) {
       return route(window.location.hash.replace('#', '')); // bubblegum fix back navigation
     }
-    document.title = 'Iris';
+    document.title = 'IXNAY';
     if (activeRoute && activeRoute.length > 1) { document.title += ' - ' + Helpers.capitalize(activeRoute.replace('/', '')); }
     State.local.get('activeRoute').put(activeRoute);
     QRScanner.cleanupScanner();
@@ -168,7 +167,6 @@ class Main extends Component {
               <${Chat} path="/chat/:id?"/>
               <${Message} path="/post/:hash"/>
               <${Torrent} path="/torrent/:id"/>
-              <${About} path="/about"/>
               <${Settings} path="/settings"/>
               <${LogoutConfirmation} path="/logout"/>
               <${Profile} path="/profile/:id?" tab="profile"/>

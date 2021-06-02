@@ -1931,3 +1931,12 @@ form.public {
     display: none !important;
   }
 }
+
+
+.turn{
+  transition: transform  2s;
+}
+
+.turn:hover{
+  transform: rotate(270deg);
+}

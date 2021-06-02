@@ -33,27 +33,77 @@ class Home extends View{
 
     var checkExist = setTimeout(function(){
 
-      var rndInt = Math.floor(Math.random() * 1) + 1
+      var rndInt = Math.floor(Math.random() * 8) + 1;  
+      var rndInt2 = Math.floor(Math.random() * 8) + 1;  
+
 
       console.log(rndInt)
       if(rndInt == 1){
-        var randFile = "frys.stl"
+        var randFile = "Heatbed-cable-clip.stl"
       } else if(rndInt == 2){
-        var randFile = "two.stl"
+        var randFile = "Einsy-base.stl"
+      } else if(rndInt == 3){
+        var randFile = "Einsy-hinges.stl"
+      } else if(rndInt == 4){
+        var randFile = "extruder-body.stl"
+      } else if(rndInt == 5){
+        var randFile = "Einsy-doors.stl"
+      } else if(rndInt == 6){
+        var randFile = "extruder-motor-plate.stl"
+      } else if(rndInt == 7){
+        var randFile = "fs-cover.stl"
+      } else if(rndInt == 8){
+        var randFile = "fs-lever.stl"
+      }
+
+      if(rndInt2 == 1){
+        var randFile2 = "Heatbed-cable-clip.stl"
+      } else if(rndInt2 == 2){
+        var randFile2 = "Einsy-base.stl"
+      } else if(rndInt2 == 3){
+        var randFile2 = "Einsy-hinges.stl"
+      } else if(rndInt2 == 4){
+        var randFile2 = "extruder-body.stl"
+      } else if(rndInt2 == 5){
+        var randFile2 = "Einsy-doors.stl"
+      } else if(rndInt2 == 6){
+        var randFile2 = "extruder-motor-plate.stl"
+      } else if(rndInt2 == 7){
+        var randFile2 = "fs-cover.stl"
+      } else if(rndInt2 == 8){
+        var randFile2 = "fs-lever.stl"
       }
       var stl_viewer = new StlViewer
       (
+
       document.getElementById("stl_cont2"),
       {
           auto_rotate:true, 
-          mouse_zoom: true,
+          mouse_zoom: false,
           models:
       [
-      {filename: randFile ,opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
+      {filename: randFile, opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
       ]
       }
+      
       )
-      console.log("run")
+
+      var stl_viewer1 = new StlViewer
+      (
+
+      document.getElementById("stl_cont3"),
+      {
+          auto_rotate:true, 
+          mouse_zoom: false,
+          models:
+      [
+      {filename: randFile2, opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
+      ]
+      }
+      
+      )
+
+
 
 
 
@@ -82,6 +132,13 @@ class Home extends View{
       margin-bottom: 0rem;
       font-weight: 300;
     }
+
+    canvas{
+     
+
+    margin-top: 2em;
+
+    }
     </style>
 
     <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 105; background-color: #ffffff00">
@@ -99,12 +156,48 @@ class Home extends View{
           <div class="expand" >
             <a  onClick=${() => route(`/store/${Session.getPubKey()}`)}  target="blank" style="color: rgb(121, 121, 121) !important"> <h2 class="para" style=" font-weight: 800  ">Enter <i  class="fas fa-chevron-right" style="black;     font-size: 0.8em; margin-left: 0.2em;"></i></h2></a>
           </div>
+
+          <br/><br/><br/><br/><br/>
+          <p style="    font-size: 1.2em; color: rgb(121, 121, 121)">Scroll to see more <i class="fas fa-chevron-down"></i> </p> 
+
       </div>
     </div>
 
           <div class="container" style="padding: 1em; background-color: #f5f5f5e8; margin-top: 3em; margin-bottom: 3em; position: sticky !important; margin-top: 20em" >
           
             <div class="columns six">
+
+              <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
+                <div class="expand" style="padding: 1em; height: 32em;  font: inherit; background-color: rgb(236, 236, 236); border-radius: 10px 10px 0px 0px;">
+                  <div  style="height: 30em;" id="stl_cont3"></div>
+                </div>
+
+                <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
+                  <a style="margin: 3px;" target="blank" href="https://incarti.vercel.app/src/#/">Incarti.vercel.app</a>
+                  <p class="para">IXNAY delivers the network over multiple urls. Click on any of the links above, all data syncs.</p><br/>
+                </div>
+              </div><br/>
+
+              <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
+                <div class="" style=" border-radius: 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
+                  <p class="para" style="    font-weight: 600;  margin-bottom: 2px">Trouble Shooting</p><br/>
+                  <p style="margin-bottom: 0em" class="para">Mobile</p>
+                    <ul>                    
+                    <li>Ixnay can have trouble bringing in data and models amongst other features which are javascript heavy, try turning off safe browsing or use a different browser.</li>
+                    </ul>
+                  <p style="margin-bottom: 0em" class="para">Desktop</p>
+                    <ul>                    
+                    <li>Brave is unlikely to load Ixnay on desktop at this point in time. </li>
+                    </ul>
+                  <p style="margin-bottom: 0em" class="para">RAM gobbling</p>
+                    <ul>                    
+                    <li> First try quitting your browser, if the issue persists, try to add another peer in <a  href="//incarti.vercel.app/src/#/settings" target="blank" style="color: white; text-decoration:underline">Settings</a>. </li>
+                    </ul>
+                  <br/>
+                </div>
+              </div><br/>
+
+
               <div class="" style="border-radius: 10px; background-color :rgb(255, 255, 255); height:fit-content;">
                 <div class="expand" style="padding: 1em; height: 15">
                     <div class="disappear" style="width: fit-content; margin: auto;">
@@ -133,7 +226,20 @@ class Home extends View{
                   <p class="para" style="font-weight: 600;  margin-bottom: 2px">Digital rules for Physical goods</p>
                   <p class="para">Throwaway your catalog then start fresh  with cloned blueprints. </p>
                 </div>
+              </div><br/>
+
+            
+              <div class="" style=" box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
+              <div class="expand" id="parent" style="padding: 1em; height: 15em;">
+                <div class="" style="width: fit-content; margin: auto;">
+                  <i style="font-size: 8em;color: #f6cbb0 !important;" class="fas fa-key turn"></i>
+                </div>
               </div>
+              <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
+                <p class="para" style="font-weight: 600;  margin-bottom: 2px">Using Keys</p>
+                <p class="para">Throwaway your catalog then start fresh  with cloned blueprints. </p>
+              </div>
+            </div><br/>
             </div>
 
             <div class="columns six">
@@ -150,14 +256,25 @@ class Home extends View{
 
               <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
                 <div class="expand" style="padding: 1em;  font: inherit; background-color: rgb(236, 236, 236); border-radius: 10px 10px 0px 0px;">
-                  <a style="width: 100%; margin: 3px;" target="blank" href="//google.com">Hello</a><hr/>
-                  <a style="margin: 3px;" target="blank" href="//google.com">Hello</a>
+                  <a style="margin: 3px;" target="blank" href="https://incarti.vercel.app/src/#/">Incarti.vercel.app</a>
                 </div>
                 <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
                   <p class="para" style="    font-weight: 600;  margin-bottom: 2px"> How to access the network</p>
                   <p class="para">IXNAY delivers the network over multiple urls. Click on any of the links above, all data syncs.</p><br/>
                 </div>
               </div><br/>
+
+              <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
+                <div class="expand" style="padding: 1em; height: 32em;  font: inherit; background-color: rgb(236, 236, 236); border-radius: 10px 10px 0px 0px;">
+                  <div  style="height: 30em;" id="stl_cont2"></div>
+                </div>
+
+                <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
+                  <a style="margin: 3px;" target="blank" href="https://incarti.vercel.app/src/#/">Incarti.vercel.app</a>
+                  <p class="para">IXNAY delivers the network over multiple urls. Click on any of the links above, all data syncs.</p><br/>
+                </div>
+              </div><br/>
+
               
             </div>
           </div>
