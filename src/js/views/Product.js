@@ -255,7 +255,7 @@ class Product extends StoreView {
   
 <div class="container" style="padding: 1em; margin-top: 5em">
   <div class="columns six" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
-    <div id="stl_cont2" style="width:auto; min-height: 30em ; max-height: 50em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
+    <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
   </div>
   <div class="columns six" style="">
     <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
@@ -274,7 +274,7 @@ class Product extends StoreView {
               <iris-text  style="font-size: 1.8em; font-weight: 400" tag="p" user=${this.props.store} path="store/products/${this.props.product}/discription"/>
             </div>
               ${this.isMyProfile ? html`
-              <i class="fas fa-trash-alt" style="font-size: 2em; margin-left: 8em" onClick=${e => this.onClickDelete(e)}></i> 
+              <i class="fas fa-trash-alt" style="font-size: 2em; margin-left: 0em" onClick=${e => this.onClickDelete(e)}></i> 
               ` : ''}
 
               <i class="fas fa-clone" style="font-size: 2em; margin-left: 2em" onClick=${e => this.cloneItemClicked(e)}></i>
