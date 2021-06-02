@@ -755,6 +755,10 @@ header.footer .header-content {
     bottom: 0;
   }
 
+  .logoHere{
+    margin-left: 0em !important
+  }
+
   .participant-list, .participant-list.open {
     width: 250px;
     margin-right: -250px;

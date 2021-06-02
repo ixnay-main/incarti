@@ -86,7 +86,7 @@ class Home extends View{
 
     <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 105; background-color: #ffffff00">
         <div class="" style="width: 100%; margin: auto; background-color: #ffffff00">
-            <div class="" style="margin: auto; width: fit-content; background-color: #ffffff00">
+            <div class="logoHere" style="margin: auto; width: fit-content; background-color: #ffffff00">
               <img style="height: 3em;  margin-left: 6em !important" src="../../src/js/views/transixnay.png" alt=""/>
             </div>
         </div>
@@ -102,12 +102,13 @@ class Home extends View{
       </div>
     </div>
 
-          <div class="container" style="margin-top: 3em; margin-bottom: 3em; position: sticky !important; margin-top: 20em" >
+          <div class="container" style="padding: 1em; background-color: #f5f5f5e8; margin-top: 3em; margin-bottom: 3em; position: sticky !important; margin-top: 20em" >
+          
             <div class="columns six">
               <div class="" style="border-radius: 10px; background-color :rgb(255, 255, 255); height:fit-content;">
                 <div class="expand" style="padding: 1em; height: 15">
                     <div class="disappear" style="width: fit-content; margin: auto;">
-                      <i style="font-size: 8em; color: #c3c3c3;" class="fas fa-eye-slash"></i>                    
+                      <i style="font-size: 8em; color: #f6cbb0 !important" class="fas fa-eye-slash"></i>                    
                     </div>
                 </div>
                 <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
@@ -119,12 +120,12 @@ class Home extends View{
               <div class="" style=" box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
                 <div class="expand" id="parent" style="padding: 1em; height: 15em;">
                   <div class="" style="width: fit-content; margin: auto;">
-                    <i style="font-size: 8em; color: #c3c3c3;" class="fas fa-clone"></i>
+                    <i style="font-size: 8em;color: #f6cbb0 !important;" class="fas fa-clone"></i>
                   </div>
                   <div class="" id="hover-content">
-                      <div class="disappear" style="position: relative; top: -5em; left: -2em; width: fit-content; margin: auto;"><i style="font-size: 8em; color: rgb(121, 121, 121);" class="fas fa-clone"></i>
+                      <div class="disappear" style="position: relative; top: -5em; left: -2em; width: fit-content; margin: auto;"><i style="font-size: 8em; color: #f6cbb0 !important;" class="fas fa-clone"></i>
                       </div>
-                      <div class="disappear" style="position: relative; top: -13em; left: 5em; width: fit-content; margin: auto;"><i style="font-size: 8em; color: rgb(121, 121, 121);" class="fas fa-clone"></i>
+                      <div class="disappear" style="position: relative; top: -13em; left: 5em; width: fit-content; margin: auto;"><i style="font-size: 8em; color: #f6cbb0 !important;" class="fas fa-clone"></i>
                       </div>
                   </div>
                 </div>

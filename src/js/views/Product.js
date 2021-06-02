@@ -41,8 +41,8 @@ class Product extends StoreView {
         var loc = reader.result;
         console.log(loc)
         var container = $('linkContainer');
-        var anchor = ('<a id="uploadBtn" style="color: white; font-size: 2em" download href="' + loc + '" ><i class="far fa-save style="color: white; font-size: 2em"></i></a>');
-        $("#container").append(anchor)
+        var anchor = ('<a id="uploadBtn" style="color: #ffffff; font-size: 1.5em !important; margin-top: -0em" download href="' + loc + '" ><i class="far fa-save" style="margin-top: 0.6em;" ></i></a>');
+        $("#containerIcon").append(anchor)
           var stl_viewer=new StlViewer
           (
           document.getElementById("stl_cont2"),
@@ -54,7 +54,7 @@ class Product extends StoreView {
               
           models:
           [
-          {filename: loc , rotationx:-1.570796, color: "#ffffff"}
+          {filename: loc , color: "#ffffff"}
           ]
           }
           )
@@ -79,7 +79,7 @@ class Product extends StoreView {
 
     <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 999;">
     <div class="" style="width: 100%; margin: auto; background-color: whitesmoke; ">
-      <div class="" style="margin: auto; width: fit-content;">
+      <div class="logoHere" style="margin: auto; width: fit-content;">
         <img style="height: 3em; margin-left: 6em !important" src="../../src/js/views/transixnay.png" alt=""/>
       </div>
     </div>
@@ -99,19 +99,19 @@ class Product extends StoreView {
             </div>
             <div class="">
       
-              <p class="" contenteditable placeholder="ID" onInput=${e => this.newProductId = e.target.innerText} />
+              <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="ID" onInput=${e => this.newProductId = e.target.innerText} />
             </div>
 
             <div class="">
       
-            <p class="" contenteditable placeholder="Discription" onInput=${e => this.newProductDescription = e.target.innerText} />
-          </div>
+            <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="Discription" onInput=${e => this.newProductDescription = e.target.innerText} />
+          </div><br/><hr/>
           <div class="" style="display: flex">
-            <label for="file">Choose File</label>
-            <input id="file" type="file" style="display: none;"/>
-            <p style="width: 10em; border-radius: 3px; padding: 5px "  onClick=${e => this.donwloadThis(e)}><i style="color: white; font-size: 2em" class="fas fa-upload"></i>
+            <input id="file" type="file" style="background-color: transparent; padding-left: 0em"/>
+            <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.donwloadThis(e)}><i style="color: #ffffff; font-size: 1.5em !important;
+            margin-top: -0.6em;" class="fas fa-upload"></i>
             </p>
-            <div id="container">  </div> 
+            <div id="containerIcon">  </div> 
 
           </div>
         </div><br/>
@@ -139,21 +139,28 @@ class Product extends StoreView {
       </div>
     </div>
     <div class="columns six" style="">
-      <div id="stl_cont2" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; "></div>
-      <div style="">
-        <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;margin-top: 1em; border-radius: 10px; padding: 1em">
-          <p style="font-weight: 600; font-size: 1.3em; margin: 0em">Parent Componentry</p>
-          <div id="listParent"></div>
-        </div>
-        <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;margin-top: 1em; border-radius: 10px; padding: 1em">
-          <p style="font-weight: 600; font-size: 1.3em; margin: 0em">Brother Componentry</p>
-          <div id="listBrother"></div>
+      <div id="stl_cont2" class="hideThis" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; "></div>
+      <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+        <div style="margin-top: 1em; border-radius: 10px; ">
+          <p style="font-weight: 600; font-size: 1.3em; padding: 1em; margin: 0em">Parent Componentry</p>
+          <div  style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listParent">
+            <a style="display: none">holder</a>
           </div>
-        <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;margin-top: 1em; border-radius: 10px; padding: 1em">
-          <p style="font-weight: 600; font-size: 1.3em; margin: 0em">Child Componentry</p>
-          <div id="listChild"></div>
+        </div>
+        <div style="margin-top: 1em; border-radius: 10px; ">
+          <p style="font-weight: 600; padding: 1em; font-size: 1.3em; margin: 0em">Brother Componentry</p>
+          <div style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listBrother">
+            <a style="display: none">holder</a>
+          </div>
+          </div>
+        <div style="margin-top: 1em; border-radius: 10px; ">
+          <p style="font-weight: 600; font-size: 1.3em; padding: 1em ;margin: 0em">Child Componentry</p>
+          <div style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listChild">
+            <a style="display: none">holder</a>
+          </div>
         </div>
       </div>
+
       
     </div>
   </div>
@@ -214,7 +221,21 @@ class Product extends StoreView {
       )
       console.log(document.getElementById("modelDataRaw").textContent)
 
+      var qr;
+      (function() {
+              qr = new QRious({
+              element: document.getElementById('qr-code'),
+              size: 220,
+              foreground: 'black',
+              background: 'whitesmoke',
+              
+  
+              value: window.location.href 
+          });
+      })();
     } , 1000)
+
+
 
     var parentStore = html`<i class="fas fa-chevron-left"></i>`
     const i = this.state.product;
@@ -226,7 +247,7 @@ class Product extends StoreView {
 
     <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 999;">
       <div class="" style="width: 100%; margin: auto; background-color: whitesmoke; ">
-        <div class="" style="margin: auto; width: fit-content;">
+        <div class="logoHere" style="margin: auto; width: fit-content;">
           <img style="height: 3em; margin-left: 6em !important" src="../../src/js/views/transixnay.png" alt=""/>
         </div>
       </div>
@@ -234,7 +255,7 @@ class Product extends StoreView {
   
 <div class="container" style="padding: 1em; margin-top: 5em">
   <div class="columns six" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
-    <div id="stl_cont2" style="width:auto; height:20em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
+    <div id="stl_cont2" style="width:auto; min-height: 30em ; max-height: 50em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
   </div>
   <div class="columns six" style="">
     <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
@@ -299,6 +320,12 @@ class Product extends StoreView {
         <iris-text  style="font-size: 1.8em; font-weight: 400" tag="ul" user=${this.props.store} path="store/products/${this.props.product}/prodSubChild"/>
       </div>
     </div><br/>
+    <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;     width: fit-content;
+    margin: auto;
+    border-radius: 10px;
+    padding: 0.2em;">
+      <canvas id="qr-code" style="align-content: center  ;"></canvas>
+    </div>
 
   </div>
 </div>
@@ -382,19 +409,42 @@ class Product extends StoreView {
 
   addItemClicked() {
 
-
     var getModel = document.getElementById("uploadBtn").outerHTML 
     var modelRaw = document.getElementById("uploadBtn").href 
 
+    //my genius is unmeasureable, someone pls clean before i have to look at this again eeeek
+    var subParentData = " "
+    try {   
+      subParentData =  ((document.getElements("ul#listParent a").innerHTML))
+    }catch(err) {
+      subParentData = ' '
+    }
+
+    var subBrotherData = " "
+    try {   
+      subBrotherData =  ((document.getElements("ul#listBrother a").innerHTML))
+    }catch(err) {
+      subBrotherData = ' '
+    }
+
+    var subChildData = " "
+    try {   
+      subChildData =  ((document.getElements("ul#listChild a").innerHTML))
+    }catch(err) {
+      subChildData = ' '
+    }
+
     //
     const subParent = {
-      subListParent: ((document.getElements("ul#listParent a").innerHTML))
+      subListParent: subParentData
     };
+
     const subBrother = {
-      subListBrother: ((document.getElementById("listBrother").innerText) ),
+      subListBrother: subBrotherData    
     };
+
     const subChild = {
-      subListChild: ((document.getElementById("listBrother").innerText) ),
+      subListChild: subChildData 
     };
 
 
