@@ -73,23 +73,9 @@ class Home extends View{
       } else if(rndInt2 == 8){
         var randFile2 = "fs-lever.stl"
       };
-      setTimeout(function(){
-        var stl_viewer = new StlViewer;
-        (
 
-        document.getElementById("stl_cont2"),
-        {
-            auto_rotate:true, 
-            mouse_zoom: false,
-            models:
-        [
-        {filename: randFile, opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
-        ]
-        }
-        
-        )
 
-        var stl_viewer1 = new StlViewer
+        var stl_viewer3 = new StlViewer
         (
 
         document.getElementById("stl_cont3"),
@@ -100,17 +86,26 @@ class Home extends View{
         [
         {filename: randFile2, opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
         ]
-        }
+        },
         
+
         )
 
-      } , 1000)
+        var stl_viewer2 = new StlViewer
+        (
 
+        document.getElementById("stl_cont2"),
+        {
+            auto_rotate:true, 
+            mouse_zoom: false,
+            models:
+        [
+        {filename: randFile, opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
+        ]
+        },
+        
 
-
-      var loc = document.getElementById("modelDataRaw").textContent
-      var anchor = ('<a download id="uploadBtn" href="' + loc + '" ><i class="fas fa-save" style="font-size: 1.2em;  color: black;"></i></a>');
-      $("#container-one").html(anchor)
+        )
 
     }      
     
@@ -168,14 +163,10 @@ class Home extends View{
           
             <div class="columns six">
 
-              <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
+              <div  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
                 <div class="expand" style="padding: 1em; height: 32em;  font: inherit; background-color: rgb(236, 236, 236); border-radius: 10px 10px 0px 0px;">
-                  <div  style="height: 30em;" id="stl_cont3"></div>
-                </div>
-
-                <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
-                  <a style="margin: 3px;" target="blank" href="https://incarti.vercel.app/src/#/">Incarti.vercel.app</a>
-                  <p class="para">IXNAY delivers the network over multiple urls. Click on any of the links above, all data syncs.</p><br/>
+                  <div id="stl_cont3"  style="height: 30em;">
+                  </div>
                 </div>
               </div><br/>
 
@@ -259,14 +250,10 @@ class Home extends View{
                 </div>
               </div><br/>
 
-              <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
+              <div  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
                 <div class="expand" style="padding: 1em; height: 32em;  font: inherit; background-color: rgb(236, 236, 236); border-radius: 10px 10px 0px 0px;">
-                  <div  style="height: 30em;" id="stl_cont2"></div>
-                </div>
-
-                <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
-                  <a style="margin: 3px;" target="blank" href="https://incarti.vercel.app/src/#/">Incarti.vercel.app</a>
-                  <p class="para">IXNAY delivers the network over multiple urls. Click on any of the links above, all data syncs.</p><br/>
+                  <div id="stl_cont2"  style="height: 30em;">
+                  </div>
                 </div>
               </div><br/>
 
