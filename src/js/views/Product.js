@@ -73,6 +73,16 @@ class Product extends StoreView {
 
 
   newProduct() {
+    Model.JSmol.hq = true
+		MolView.touch = false
+		MolView.mobile = false
+		MolView.layout = "layout-vsplit"
+		Request.CIR.available = true;
+		if(!Detector.canvas) {
+			alert("MolView uses HTML Canvas for rendering, but it is not supported by your browser.")
+		}
+
+
     console.log('new');
     $(".hideThis").hide()
     return html`
@@ -164,7 +174,6 @@ class Product extends StoreView {
       
     </div>
   </div>
-</div>
   `;
 }
 
@@ -234,6 +243,7 @@ class Product extends StoreView {
           });
       })();
     } , 1000)
+
 
 
 

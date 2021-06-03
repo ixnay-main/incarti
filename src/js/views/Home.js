@@ -72,38 +72,39 @@ class Home extends View{
         var randFile2 = "fs-cover.stl"
       } else if(rndInt2 == 8){
         var randFile2 = "fs-lever.stl"
-      }
-      var stl_viewer = new StlViewer
-      (
+      };
+      setTimeout(function(){
+        var stl_viewer = new StlViewer;
+        (
 
-      document.getElementById("stl_cont2"),
-      {
-          auto_rotate:true, 
-          mouse_zoom: false,
-          models:
-      [
-      {filename: randFile, opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
-      ]
-      }
-      
-      )
+        document.getElementById("stl_cont2"),
+        {
+            auto_rotate:true, 
+            mouse_zoom: false,
+            models:
+        [
+        {filename: randFile, opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
+        ]
+        }
+        
+        )
 
-      var stl_viewer1 = new StlViewer
-      (
+        var stl_viewer1 = new StlViewer
+        (
 
-      document.getElementById("stl_cont3"),
-      {
-          auto_rotate:true, 
-          mouse_zoom: false,
-          models:
-      [
-      {filename: randFile2, opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
-      ]
-      }
-      
-      )
+        document.getElementById("stl_cont3"),
+        {
+            auto_rotate:true, 
+            mouse_zoom: false,
+            models:
+        [
+        {filename: randFile2, opacity: 0.8, y: 0, rotationy: 1.5707963268,rotationx: -1.2707963268, color: "#FFFFFF",rotationx: 4.712}
+        ]
+        }
+        
+        )
 
-
+      } , 1000)
 
 
 
@@ -198,48 +199,42 @@ class Home extends View{
               </div><br/>
 
 
-              <div class="" style="border-radius: 10px; background-color :rgb(255, 255, 255); height:fit-content;">
-                <div class="expand" style="padding: 1em; height: 15">
-                    <div class="disappear" style="width: fit-content; margin: auto;">
-                      <i style="font-size: 8em; color: #f6cbb0 !important" class="fas fa-eye-slash"></i>                    
+              <div class="" style="border-radius: 10px; height:fit-content;">
+                <div class="" style=" border-radius: 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
+                    <div class="disappear" style="width: fit-content;">
+                      <i style="font-size: 3em; color: #white !important" class="fas fa-eye-slash"></i>                    
                     </div>
-                </div>
-                <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
                     <p class="para" style="    font-weight: 600;  margin-bottom: 2px">Set up to be lost</p>
                     <p class="para">Throwaway your catalog then start fresh  with cloned blueprints. </p>
                 </div>
               </div><br/>
 
-              <div class="" style=" box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
-                <div class="expand" id="parent" style="padding: 1em; height: 15em;">
-                  <div class="" style="width: fit-content; margin: auto;">
-                    <i style="font-size: 8em;color: #f6cbb0 !important;" class="fas fa-clone"></i>
-                  </div>
-                  <div class="" id="hover-content">
-                      <div class="disappear" style="position: relative; top: -5em; left: -2em; width: fit-content; margin: auto;"><i style="font-size: 8em; color: #f6cbb0 !important;" class="fas fa-clone"></i>
-                      </div>
-                      <div class="disappear" style="position: relative; top: -13em; left: 5em; width: fit-content; margin: auto;"><i style="font-size: 8em; color: #f6cbb0 !important;" class="fas fa-clone"></i>
-                      </div>
-                  </div>
-                </div>
-                <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
-                  <p class="para" style="font-weight: 600;  margin-bottom: 2px">Digital rules for Physical goods</p>
-                  <p class="para">Throwaway your catalog then start fresh  with cloned blueprints. </p>
+              <div class="" style="border-radius: 10px; height:fit-content;">
+                <div class="" style=" border-radius: 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
+                    <div id="parent" style="width: fit-content; height: 4em">
+                      <i style="font-size: 3em; color: #white !important" class="fas fa-clone"></i>   
+                      <div class="" id="hover-content">
+                          <div class="" style=" width: fit-content; margin: auto; margin-bottom: 0em"><i style="font-size:3em; color: #fff !important; position: relative;     left: 2em; top: -1em !important;" class="fas fa-clone disappear"></i>
+                          </div>
+                          <div class="" style=" width: fit-content; margin: auto; margin-bottom: 0em"><i style="font-size:3em; color: #fff !important; position: relative;     left: 1em; top: -2em !important;" class="fas fa-clone disappear"></i>
+                          </div>
+                      </div>                 
+                    </div>
+                    <p class="para" style="    font-weight: 600;  margin-bottom: 2px">Set up to be lost</p>
+                    <p class="para">Throwaway your catalog then start fresh  with cloned blueprints. </p>
                 </div>
               </div><br/>
 
-            
-              <div class="" style=" box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
-              <div class="expand" id="parent" style="padding: 1em; height: 15em;">
-                <div class="" style="width: fit-content; margin: auto;">
-                  <i style="font-size: 8em;color: #f6cbb0 !important;" class="fas fa-key turn"></i>
+              <div class="" style="border-radius: 10px; height:fit-content;">
+                <div class="" style=" border-radius: 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
+                    <div style="width: fit-content; height: 4em">
+                      <i style="font-size: 3em;color: #fff !important;" class="fas fa-key turn"></i>
+                                  
+                    </div>
+                    <p class="para" style="    font-weight: 600;  margin-bottom: 2px">Set up to be lost</p>
+                    <p class="para">Throwaway your catalog then start fresh  with cloned blueprints. </p>
                 </div>
-              </div>
-              <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
-                <p class="para" style="font-weight: 600;  margin-bottom: 2px">Using Keys</p>
-                <p class="para">Throwaway your catalog then start fresh  with cloned blueprints. </p>
-              </div>
-            </div><br/>
+              </div><br/>
             </div>
 
             <div class="columns six">
