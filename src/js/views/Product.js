@@ -73,18 +73,13 @@ class Product extends StoreView {
 
 
   newProduct() {
-    Model.JSmol.hq = true
-		MolView.touch = false
-		MolView.mobile = false
-		MolView.layout = "layout-vsplit"
-		Request.CIR.available = true;
-		if(!Detector.canvas) {
-			alert("MolView uses HTML Canvas for rendering, but it is not supported by your browser.")
-		}
 
 
     console.log('new');
     $(".hideThis").hide()
+    $(".hide1").hide()
+    $(".hide2").hide()
+    $(".hide3").hide()
     return html`
 
     <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 999;">
@@ -151,21 +146,21 @@ class Product extends StoreView {
     <div class="columns six" style="">
       <div id="stl_cont2" class="hideThis" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; "></div>
       <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-        <div style="margin-top: 1em; border-radius: 10px; ">
+        <div class="hide1"  style="margin-top: 1em; border-radius: 10px; ">
           <p style="font-weight: 600; font-size: 1.3em; padding: 1em; margin: 0em">Parent Componentry</p>
           <div  style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listParent">
             <a style="display: none">holder</a>
           </div>
         </div>
-        <div style="margin-top: 1em; border-radius: 10px; ">
+        <div  class="hide2" style="margin-top: 1em; border-radius: 10px; ">
           <p style="font-weight: 600; padding: 1em; font-size: 1.3em; margin: 0em">Brother Componentry</p>
-          <div style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listBrother">
+          <div  style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listBrother">
             <a style="display: none">holder</a>
           </div>
           </div>
-        <div style="margin-top: 1em; border-radius: 10px; ">
+        <div class="hide3" style="margin-top: 1em; border-radius: 10px; ">
           <p style="font-weight: 600; font-size: 1.3em; padding: 1em ;margin: 0em">Child Componentry</p>
-          <div style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listChild">
+          <div  style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listChild">
             <a style="display: none">holder</a>
           </div>
         </div>
@@ -252,7 +247,9 @@ class Product extends StoreView {
     if (!i) return html``;
     return html`
     <style>
-
+          iris-text p {
+            margin: 0;
+        }
     </style>
 
     <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 999;">
@@ -262,47 +259,52 @@ class Product extends StoreView {
         </div>
       </div>
     </div>
+
+
   
-<div class="container" style="padding: 1em; margin-top: 5em">
-  <div class="columns six" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
-    <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
+<div class="container" style="padding: 1em; margin-top: 5em;  z-index: 5;">
+  <div class="columns six">
+    <div id="stl_cont2" style="width:auto; height: 60em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
   </div>
   <div class="columns six" style="">
     <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
       <div class="main-view" id="profile">
-        <div class="content" style="background-color: whitesmoke; z-index: 4;     position: sticky;  padding: 1em; border-radius: 10px; height: fit-content; ">
-          <div class="productInfo">
-            <a href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }</a>
-          </div><br/>
-          ${this.state.product ? html`
-            <div class="productInfo">
-              <iris-text  tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/>
-            </div><br/>
+        <div class="content" style="background-color: whitesmoke; z-index: 4;  border-radius: 10px 10px  0px 0px !important;   position: sticky;  height: auto; ">
+            ${this.state.product ? html`
 
-            <div>
-              <iris-text  style="font-size: 1.8em; font-weight: 400" tag="p" user=${this.props.store} path="store/products/${this.props.product}/id"/>
-              <iris-text  style="font-size: 1.8em; font-weight: 400" tag="p" user=${this.props.store} path="store/products/${this.props.product}/discription"/>
-            </div>
-              ${this.isMyProfile ? html`
-              <i class="fas fa-trash-alt" style="font-size: 2em; margin-left: 0em" onClick=${e => this.onClickDelete(e)}></i> 
-              ` : ''}
+              <div class="productInfo" style="padding: 1em; ">
+                <a href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }</a>
 
-              <i class="fas fa-clone" style="font-size: 2em; margin-left: 2em" onClick=${e => this.cloneItemClicked(e)}></i>
-
-              <i class="fas fa-link" id="linkBtn" style="font-size: 2em; margin-left: 2em" onClick=${() => { 
-                var inputc = document.body.appendChild(document.createElement("input"));
-                inputc.value = window.location.href;
-                inputc.focus();
-                inputc.select();
-                document.execCommand('copy');
-                inputc.parentNode.removeChild(inputc);
-                document.getElementById("likeBtn").style.color = "green";
-
-                } }></i>
-              <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
+                <iris-text style="font-size: 19px; margin: 0em; font-weight: 600"  tag="p" user=${this.props.store} path="store/products/${this.props.product}/name"/>
               
-              <iris-text user=${this.props.store} editable="false" href="store/products/${this.props.product}/model" onClick=${() => {console.log("gimmme files")}}/>
+
+                <iris-text  style="font-size: 15px; margin: 0em; font-weight: 400" tag="p" placeholder="ID" user=${this.props.store} path="store/products/${this.props.product}/id"/>
+                <iris-text  style="font-size: 15px; margin: 0em; font-weight: 400" tag="p" placeholder="Discription" user=${this.props.store} path="store/products/${this.props.product}/discription"/>
+              </div><br/>
+              <div class="" style="background-color: grey; padding: 1em; border-radius: 0px 0px 10px 10px"> 
+                ${this.isMyProfile ? html`
+                <i class="fas fa-trash-alt" style="font-size: 2em; margin-left: 0em" onClick=${e => this.onClickDelete(e)}></i> 
+                ` : ''}
+
+                <i class="fas fa-clone" style="font-size: 2em; margin-left: 2em" onClick=${e => this.cloneItemClicked(e)}></i>
+
+                <i class="fas fa-link" id="linkBtn" style="font-size: 2em; margin-left: 2em" onClick=${() => { 
+                  var inputc = document.body.appendChild(document.createElement("input"));
+                  inputc.value = window.location.href;
+                  inputc.focus();
+                  inputc.select();
+                  document.execCommand('copy');
+                  inputc.parentNode.removeChild(inputc);
+                  document.getElementById("likeBtn").style.color = "green";
+
+                  } }></i>
+                <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
+                
+                <iris-text user=${this.props.store} editable="false" href="store/products/${this.props.product}/model" onClick=${() => {console.log("gimmme files")}}/>
+              </div>
+           
           ` : ''}
+          
         </div>
       </div>
     </div><br/>
@@ -359,12 +361,21 @@ class Product extends StoreView {
   }
 
   addSubClickedParent() {
+    $(".hide1").show();
     const subParent = {
 
       subName: this.newProductSubNameParent,
       subAddy: this.newProductSubAddyParent,
 
     };
+
+    var checkParentName = subParent.subName
+    
+    if(checkParentName.length < 1){
+      checkParentName = false
+    } else {
+      checkParentName = checkParentName
+    }
 
     console.log(subParent.subName);
 
@@ -379,12 +390,23 @@ class Product extends StoreView {
   }
 
   addSubClickedBrother() {
+    $(".hide2").show();
+
     const subBrother = {
 
       subName: this.newProductSubNameBrother,
       subAddy: this.newProductSubAddyBrother,
 
     };
+
+
+    var checkBrotherName = subBrother.subName
+    
+    if(checkBrotherName.length < 1){
+      checkBrotherName = false
+    } else {
+      checkBrotherName = checkBrotherName
+    }
 
     console.log(subBrother.subName);
 
@@ -398,12 +420,22 @@ class Product extends StoreView {
   }
 
   addSubClickedChild() {
+    $(".hide3").show();
+
     const subChild = {
 
       subName: this.newProductSubNameChild,
       subAddy: this.newProductSubAddyChild,
 
     };
+
+    var checkChildName = subChild.subName
+    
+    if(checkChildName.length < 1){
+      checkChildName = false
+    } else {
+      checkChildName = checkChildName
+    }
 
     console.log(subChild.subName);
 
@@ -475,7 +507,7 @@ class Product extends StoreView {
 
     console.log(product.prodSub)
     console.log(product);
-    State.public.user().get('store').get('products').get(this.newProductId || this.newProductName).put(product);
+    State.public.user().get('store').get('products').get(this.newProductName).put(product);
     route(`/store/${Session.getPubKey()}`)
 
 

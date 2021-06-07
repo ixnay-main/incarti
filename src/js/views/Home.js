@@ -147,26 +147,26 @@ class Home extends View{
 
     <div  style="position: sticky !important; top: 20em"> 
       <div class="" style="text-align: center; margin-bottom: 10em; margin-top: 15em; color: black; font-weight: 600;">
-          <h1 style="font-size: 3em; font-weight: 800">Manufacture for Autonomy</h1>
-          <p style="    font-size: 1.2em;">Blueprints and Catalogs so you can make the world go round.</p>
-          <div class="expand" >
-            <a  onClick=${() => route(`/store/${Session.getPubKey()}`)}  target="blank" style="color: rgb(121, 121, 121) !important"> <h2 class="para" style=" font-weight: 800  ">Enter <i  class="fas fa-chevron-right" style="black;     font-size: 0.8em; margin-left: 0.2em;"></i></h2></a>
-          </div>
-
-          <br/><br/><br/><br/><br/>
-          <p style="    font-size: 1.2em; color: rgb(121, 121, 121)">Scroll to see more <i class="fas fa-chevron-down"></i> </p> 
-
+        <h1 style="font-size: 3em; font-weight: 800">Manufacture for Autonomy</h1>
+        <p style="    font-size: 1.2em;">Blueprints and Catalogs so you can build your world.</p>
+        <div class="expand" >
+          <a  onClick=${() => route(`/store/${Session.getPubKey()}`)}  target="blank" style="color: rgb(121, 121, 121) !important"> <h2 class="para" style=" font-weight: 800  ">Enter <i  class="fas fa-chevron-right" style="black;     font-size: 0.8em; margin-left: 0.2em;"></i></h2></a>
+        </div><br/><br/><br/><br/><br/>
+        <p style="    font-size: 1.2em; color: rgb(121, 121, 121)">Scroll to see more <i class="fas fa-chevron-down"></i> </p> 
       </div>
     </div>
 
           <div class="container" style="padding: 1em; background-color: #f5f5f5e8; margin-top: 3em; margin-bottom: 3em; position: sticky !important; margin-top: 20em" >
-          
             <div class="columns six">
 
               <div  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
                 <div class="expand" style="padding: 1em; height: 32em;  font: inherit; background-color: rgb(236, 236, 236); border-radius: 10px 10px 0px 0px;">
                   <div id="stl_cont3"  style="height: 30em;">
                   </div>
+                </div>
+                <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
+                    <p class="para" style="    font-weight: 600; margin-bottom: 2px"> Own the know-how </p>
+                    <p class="para"> Upload and find blueprints for anything, it can all be shared with a scan. </p>
                 </div>
               </div><br/>
 
@@ -186,17 +186,6 @@ class Home extends View{
                     <li> First try quitting your browser, if the issue persists, try to add another peer in <a  href="//incarti.vercel.app/src/#/settings" target="blank" style="color: white; text-decoration:underline">Settings</a>. </li>
                     </ul>
                   <br/>
-                </div>
-              </div><br/>
-
-
-              <div class="" style="border-radius: 10px; height:fit-content;">
-                <div class="" style=" border-radius: 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
-                    <div class="disappear" style="width: fit-content;">
-                      <i style="font-size: 3em; color: #white !important" class="fas fa-eye-slash"></i>                    
-                    </div>
-                    <p class="para" style="    font-weight: 600;  margin-bottom: 2px">Set up to be lost</p>
-                    <p class="para">Throwaway your catalog then start fresh  with cloned blueprints. </p>
                 </div>
               </div><br/>
 
@@ -250,14 +239,22 @@ class Home extends View{
                 </div>
               </div><br/>
 
+              <div class="" style="border-radius: 10px; height:fit-content;">
+                <div class="" style=" border-radius: 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
+                    <div class="disappear" style="width: fit-content;">
+                      <i style="font-size: 3em; color: #white !important" class="fas fa-eye-slash"></i>                    
+                    </div>
+                    <p class="para" style="    font-weight: 600;  margin-bottom: 2px">Set up to be lost</p>
+                    <p class="para">Throwaway your catalog then start fresh  with cloned blueprints. </p>
+                </div>
+              </div><br/>
+
               <div  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
                 <div class="expand" style="padding: 1em; height: 32em;  font: inherit; background-color: rgb(236, 236, 236); border-radius: 10px 10px 0px 0px;">
                   <div id="stl_cont2"  style="height: 30em;">
                   </div>
                 </div>
               </div><br/>
-
-              
             </div>
           </div>
     
