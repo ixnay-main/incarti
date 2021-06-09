@@ -60,7 +60,7 @@ class Store extends View {
     (function() {
             qr = new QRious({
             element: document.getElementById('qr-code'),
-            size: 220,
+          
             foreground: 'black',
             background: 'whitesmoke',
             
@@ -76,6 +76,10 @@ class Store extends View {
     .copy-button {
        min-width: 0px; 
   }
+
+  canvas#qr-code {
+    width: 100%;
+}
 
   .profile-actions button, .feed-container > p button {
     margin-right: 5px;
@@ -119,45 +123,53 @@ p.profile-about-content{
      
       <div class="container">
         <div class="columns six" style="border-radius: 10px;  height:fit-content; height: fit-content">
-          <div class="" style="padding: 1em; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color :rgb(255, 255, 255);">
+          <div class="borderThis" style="padding: 1em; ">
             <div class="" style="padding: 0.1em;">
-              <p style=" height: 2em; font-size: 2em; margin: 0em;  color: black !important;" class=""><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></p>
+              <p style=" height: 2em; font-size: 1em; margin: 0em;  color: black !important;" class=""><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></p>
             </div>
             <p style="height: 3em; margin: 0em; font-weight: 600 "  class="">
               <iris-text style="min-height: 3em; color: black !important"  path="store/about" placeholder="Store description" attr="" user=${this.props.store}/>
             </p>
           </div> 
-          <div style="border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 1em;"> 
-            <div class="profile-actions">                  
-              <div style=""> 
-                  ${uuid ? '' : html`
-                  <${CopyButton} style="padding: 0em" text=${html`<i style="font-size: 2em" class="fas fa-copy"></i>`} title=${this.state.name} copyStr=${'https://iris.to/' + window.location.hash}/>
-                `}
-              </div>
-            </div>
-          </div>     
+  
           <div class="profile-about visible-xs-flex">
             <p  class="profile-about-content" placeholder=${this.isMyProfile ? t('about') : ''} contenteditable=${this.isMyProfile} onInput=${e => this.onAboutInput(e)}>${this.state.about}</p>
           </div>
 
           <br/>
 
-          <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;     width: fit-content;margin: auto;border-radius: 10px;padding: 0.2em;">
-            <canvas id="qr-code" style="align-content: center  ;"></canvas>
+          <div style="display: flex">
+            <div style="width: 47%; 
+                margin: 0 auto;
+                margin-right: 6%;
+                border-radius: 10px;
+                padding: 0.2em;">
+                  <canvas id="qr-code" style="align-content: center  ;"></canvas>
+            </div>      
+            <div style=" width: 47%; display: block">
+              <button class="expand pay-button" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd" onClick=${() => { 
+                    var inputc = document.body.appendChild(document.createElement("input"));
+                    inputc.value = window.location.href;
+                    inputc.focus();
+                    inputc.select();
+                    document.execCommand('copy');
+                    inputc.parentNode.removeChild(inputc);
+                    document.getElementById("likeBtn").style.color = "green";
+
+                    } }>Copy Link</button>
+              
+            </div>
           </div>
 
-          <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;margin: auto;border-radius: 10px;padding: 0.2em;">
-          
-          </div>
         </div>
-        <div class="columns six" style=" border-radius: 10px; background-color :rgb(255, 255, 255); height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; height: fit-content ">
-          <div class="store-items" >
+        <div class="columns six" style=" height:fit-content; ">
+          <div class="" >
             ${this.isMyProfile ? html`
-              <div class="" style="padding: 1em" onClick=${() => route(`/product/new`)}>
+              <div class="borderThis" style="" onClick=${() => route(`/product/new`)}>
                 <a href="/product/new" class="name">Add item</a>
               </div>
             ` : ''}
-            <div style="border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 1em; color: white !important; font-weight: 600; font-size: 1.7em; margin: 0em"> 
+            <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; " class="borderThis"> 
               ${Object.keys(this.state.items).map(k => {
                 const i = this.state.items[k];
                 return html`
@@ -165,7 +177,7 @@ p.profile-about-content{
                   <div class="" style="border-bottom: 2px solid #898989;">
                     <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)}>
                       <${SafeImg} src=${i.photo}/>
-                      <a href="/product/${k}/${this.props.store}" style="color: white !important" class="">${i.name}</a>
+                      <a href="/product/${k}/${this.props.store}" style="color: #416dea !important" class="">${i.name}</a>
                       <p style="display: none" class="description">${i.description}</p>
                       <p style="display: none" class="price">${i.price}</p>
                       <button style="display: none" class="add" onClick=${e => this.addToCart(k, e)}>

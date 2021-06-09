@@ -41,7 +41,7 @@ class Product extends StoreView {
         var loc = reader.result;
         console.log(loc)
         var container = $('linkContainer');
-        var anchor = ('<a id="uploadBtn" style="color: #ffffff; font-size: 1.5em !important; margin-top: -0em" download href="' + loc + '" ><i class="far fa-save" style="margin-top: 0.6em;" ></i></a>');
+        var anchor = ('<a id="uploadBtn" style="color: #000; font-size: 1.5em !important; margin-top: -0em" download href="' + loc + '" ><i class="far fa-save" style="margin-top: 0.6em;" ></i></a>');
         $("#containerIcon").append(anchor)
           var stl_viewer=new StlViewer
           (
@@ -54,7 +54,7 @@ class Product extends StoreView {
               
           models:
           [
-          {filename: loc , color: "#ffffff"}
+          {filename: loc , opacity: 0.6}
           ]
           }
           )
@@ -77,98 +77,53 @@ class Product extends StoreView {
 
     console.log('new');
     $(".hideThis").hide()
-    $(".hide1").hide()
-    $(".hide2").hide()
-    $(".hide3").hide()
     return html`
 
-    <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 999;">
-    <div class="" style="width: 100%; margin: auto; background-color: whitesmoke; ">
-      <div class="logoHere" style="margin: auto; width: fit-content;">
-        <img style="height: 3em; margin-left: 6em !important" src="../../src/js/views/transixnay.png" alt=""/>
-      </div>
-    </div>
-  </div>
-
-<div class="main-view" id="profile" style="margin-top: 5em">
-  <div class="container">
-
-
-    <div class="columns six" >
-        <div class="content" style="background-color: whitesmoke; z-index: 1001; height: fit-content; border-radius: 10px 10px 0px 0px !important">
-
+    <style>
+    canvas#qr-code {
+      width: 100%;
+  }
+    </style>
+    
+    <div class="main-view" id="profile" style="margin-top: 5em">
+      <div class="container">
+        <div class="columns six" >
+          <div id="stl_cont2" class="" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9;  "><p style="display: none">o</p></div>        
+        </div>
+        <div class="columns six" >
+          
+          <div class="borderThis" style="height: fit-content; ">
+            <div style="  padding: 1em;">
+              <div class="" style=" z-index: 4; height: fit-content;">
+                <p contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
+              </div>
+              <div class="">
         
-          <div style="background-color: grey; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 0px 0px 10px 10px;  padding: 1em;">
-            <div class="" style="background-color: ;  z-index: 4; height: fit-content;">
-              <p contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
+                <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="ID" onInput=${e => this.newProductId = e.target.innerText} />
+              </div>
+
+              
+        
+              <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="Discription" onInput=${e => this.newProductDescription = e.target.innerText} />
+            </div><br/><hr/>
+            <div class="" style="display: flex">
+              <input id="file" type="file" style="background-color: transparent; padding-left: 0em"/>
+              <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.donwloadThis(e)}><i style="color: #000; font-size: 1.5em !important;
+              margin-top: -0.6em;" class="fas fa-upload"></i>
+              </p>
+              <div id="containerIcon">  </div> 
+
             </div>
-            <div class="">
-      
-              <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="ID" onInput=${e => this.newProductId = e.target.innerText} />
-            </div>
+          </div><br/>
+          
 
-            <div class="">
-      
-            <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="Discription" onInput=${e => this.newProductDescription = e.target.innerText} />
-          </div><br/><hr/>
-          <div class="" style="display: flex">
-            <input id="file" type="file" style="background-color: transparent; padding-left: 0em"/>
-            <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.donwloadThis(e)}><i style="color: #ffffff; font-size: 1.5em !important;
-            margin-top: -0.6em;" class="fas fa-upload"></i>
-            </p>
-            <div id="containerIcon">  </div> 
-
-          </div>
-        </div><br/>
-        <div class="content" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; background-color: whitesmoke; z-index: 1001; height: fit-content; border-radius: 10px  !important">
-          <p class="" style="    margin-bottom: 0.2em;" id="clearThis" contenteditable placeholder="Parent component name" onInput=${e => this.newProductSubNameParent = e.target.innerText} />
-          <p class="" style="    margin-bottom: 0em;" id="clearThis2" contenteditable placeholder="Parent component URL" onInput=${e => this.newProductSubAddyParent = e.target.innerText} />
-          <div style="background-color: transparent; text-align:left; padding: 0px;  " onClick=${e => this.addSubClickedParent(e)}><i class="fas fa-plus"></i></div>
-        </div><br/>
-
-        <div class="content" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; background-color: whitesmoke; z-index: 1001; height: fit-content; border-radius: 10px !important">
-          <p class="" style="    margin-bottom: 0.2em;" id="clearThis3" contenteditable placeholder="Brother component name" onInput=${e => this.newProductSubNameBrother = e.target.innerText} />
-          <p class="" style="    margin-bottom: 0em;" id="clearThis4" contenteditable placeholder="Brother component URL" onInput=${e => this.newProductSubAddyBrother = e.target.innerText} />
-          <div style="background-color: transparent; text-align:left; padding: 0px;  " onClick=${e => this.addSubClickedBrother(e)}><i class="fas fa-plus"></i></div>
-        </div><br/>
-
-        <div class="content" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color: whitesmoke; z-index: 1001; padding: 1em; height: fit-content; border-radius: 10px  !important">
-          <p class="" style="    margin-bottom: 0.2em;" id="clearThis5" contenteditable placeholder="Child component name" onInput=${e => this.newProductSubNameChild = e.target.innerText} />
-          <p class="" style="    margin-bottom: 0em;" id="clearThis6" contenteditable placeholder="Child component URL" onInput=${e => this.newProductSubAddyChild = e.target.innerText} />
-          <div style="background-color: transparent; text-align:left; padding: 0px;  " onClick=${e => this.addSubClickedChild(e)}><i class="fas fa-plus"></i></div>
-        </div><br/>
-
-        <div class="content" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color: whitesmoke; z-index: 1001; height: fit-content; border-radius: 10px 10px 0px 0px !important">
-          <div style="background-color: transparent; margin: auto; text-align:center; width: 10em; border-radius: 3px; padding: 5px;  " onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></div>
-        </div>
-      </div>
-    </div>
-    <div class="columns six" style="">
-      <div id="stl_cont2" class="hideThis" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; "></div>
-      <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-        <div class="hide1"  style="margin-top: 1em; border-radius: 10px; ">
-          <p style="font-weight: 600; font-size: 1.3em; padding: 1em; margin: 0em">Parent Componentry</p>
-          <div  style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listParent">
-            <a style="display: none">holder</a>
-          </div>
-        </div>
-        <div  class="hide2" style="margin-top: 1em; border-radius: 10px; ">
-          <p style="font-weight: 600; padding: 1em; font-size: 1.3em; margin: 0em">Brother Componentry</p>
-          <div  style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listBrother">
-            <a style="display: none">holder</a>
-          </div>
-          </div>
-        <div class="hide3" style="margin-top: 1em; border-radius: 10px; ">
-          <p style="font-weight: 600; font-size: 1.3em; padding: 1em ;margin: 0em">Child Componentry</p>
-          <div  style="background-color: grey !important; padding: 1em; border-radius: 0px 0px  3px 3px;" id="listChild">
-            <a style="display: none">holder</a>
+          <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color: whitesmoke; z-index: 1001; height: fit-content; border-radius: 10px 10px 0px 0px !important">
+            <div style="background-color: transparent; margin: auto; text-align:center; width: 10em; border-radius: 3px; padding: 5px;  " onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></div>
           </div>
         </div>
       </div>
 
-      
     </div>
-  </div>
   `;
 }
 
@@ -217,9 +172,10 @@ class Product extends StoreView {
       document.getElementById("stl_cont2"),
       {
           auto_rotate:true, 
+          
       models:
       [
-      {filename: document.getElementById("modelDataRaw").textContent,opacity: 0.8}
+      {filename: document.getElementById("modelDataRaw").textContent,opacity: 0.6, }
       ]
       }
       )
@@ -229,7 +185,6 @@ class Product extends StoreView {
       (function() {
               qr = new QRious({
               element: document.getElementById('qr-code'),
-              size: 220,
               foreground: 'black',
               background: 'whitesmoke',
               
@@ -247,9 +202,14 @@ class Product extends StoreView {
     if (!i) return html``;
     return html`
     <style>
-          iris-text p {
-            margin: 0;
-        }
+
+        canvas#qr-code {
+          width: 100%;
+      }
+
+        iris-text p {
+          margin: 0;
+      }
     </style>
 
     <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 999;">
@@ -266,80 +226,71 @@ class Product extends StoreView {
   <div class="columns six">
     <div id="stl_cont2" style="width:auto; height: 60em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
   </div>
-  <div class="columns six" style="">
-    <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
-      <div class="main-view" id="profile">
-        <div class="content" style="background-color: whitesmoke; z-index: 4;  border-radius: 10px 10px  0px 0px !important;   position: sticky;  height: auto; ">
-            ${this.state.product ? html`
 
-              <div class="productInfo" style="padding: 1em; ">
-                <a href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }</a>
+    <div class="columns six" style="padding-top: 5em" >
+      ${this.state.product ? html`
+        <div class="productInfo" style="">
+          <p  style="margin: auto; width:fit-content; " type="number" ><iris-text  style="font-size: 60px; margin: 0em; font-weight: 800;  width:fit-content;" tag="p" placeholder="Issue Price" user=${this.props.store} id="whatPrice" path="store/products/${this.props.product}/price"/></p>
 
-                <iris-text style="font-size: 19px; margin: 0em; font-weight: 600"  tag="p" user=${this.props.store} path="store/products/${this.props.product}/name"/>
-              
 
-                <iris-text  style="font-size: 15px; margin: 0em; font-weight: 400" tag="p" placeholder="ID" user=${this.props.store} path="store/products/${this.props.product}/id"/>
-                <iris-text  style="font-size: 15px; margin: 0em; font-weight: 400" tag="p" placeholder="Discription" user=${this.props.store} path="store/products/${this.props.product}/discription"/>
-              </div><br/>
-              <div class="" style="background-color: grey; padding: 1em; border-radius: 0px 0px 10px 10px"> 
-                ${this.isMyProfile ? html`
-                <i class="fas fa-trash-alt" style="font-size: 2em; margin-left: 0em" onClick=${e => this.onClickDelete(e)}></i> 
-                ` : ''}
+          <div style=" margin: auto; width: fit-content">
+            <a style="margin-right: 1.5em" href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }</a>
 
-                <i class="fas fa-clone" style="font-size: 2em; margin-left: 2em" onClick=${e => this.cloneItemClicked(e)}></i>
+            <button class="expand" style="border-radius: 10px;  border: 2px solid #e5e5e5; padding: 2px 7px">ETH Ξ</button>
+          </div>
 
-                <i class="fas fa-link" id="linkBtn" style="font-size: 2em; margin-left: 2em" onClick=${() => { 
-                  var inputc = document.body.appendChild(document.createElement("input"));
-                  inputc.value = window.location.href;
-                  inputc.focus();
-                  inputc.select();
-                  document.execCommand('copy');
-                  inputc.parentNode.removeChild(inputc);
-                  document.getElementById("likeBtn").style.color = "green";
-
-                  } }></i>
-                <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
-                
-                <iris-text user=${this.props.store} editable="false" href="store/products/${this.props.product}/model" onClick=${() => {console.log("gimmme files")}}/>
-              </div>
-           
-          ` : ''}
+          <div style="" class="borderThis">
           
-        </div>
-      </div>
-    </div><br/>
-    <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
-      <div style="background-color: grey;  border-radius: 10px 10px 0px 0px; padding: 1em; padding-bottom: 0px;  color: white; font-weight: 600; font-size: 1.8em">
-        <p style="margin: 3px">Parent components</p>
-      </div>
-      <div style=" border-radius:  0px 0px 10px 10px; padding: 1em; padding-bottom: 0px; font-weight: 400">
-        <iris-text  style="font-size: 1.8em; font-weight: 400" tag="ul" user=${this.props.store} path="store/products/${this.props.product}/prodSubParent"/>
-      </div>
-    </div><br/>
-    <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
-      <div style="background-color: grey;  border-radius: 10px 10px 0px 0px; padding: 1em; padding-bottom: 0px;  color: white; font-weight: 600; font-size: 1.8em">
-        <p style="margin: 3px">Brother components</p>
-      </div>
-      <div style=" border-radius:  0px 0px 10px 10px; padding: 1em; padding-bottom: 0px; font-weight: 400">
-        <iris-text  style="font-size: 1.8em; font-weight: 400" tag="ul" user=${this.props.store} path="store/products/${this.props.product}/prodSubBrother"/>
-      </div>
-    </div>
-    <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  border-radius: 10px">
-      <div style="background-color: grey;  border-radius: 10px 10px 0px 0px; padding: 1em; padding-bottom: 0px;  color: white; font-weight: 600; font-size: 1.8em">
-        <p style="margin: 3px">Child components</p>
-      </div>
-      <div style=" border-radius:  0px 0px 10px 10px; padding: 1em; padding-bottom: 0px; font-weight: 400">
-        <iris-text  style="font-size: 1.8em; font-weight: 400" tag="ul" user=${this.props.store} path="store/products/${this.props.product}/prodSubChild"/>
-      </div>
-    </div><br/>
-    <div style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;     width: fit-content;
-    margin: auto;
-    border-radius: 10px;
-    padding: 0.2em;">
-      <canvas id="qr-code" style="align-content: center  ;"></canvas>
-    </div>
+            <div style="display: flex">
+              <p style="margin-bottom:2px; width: 50% ">Issue Name</p>
+              <p style="margin-bottom:2px;  width: 50% ">Issue ID</p>
+            </div>
 
-  </div>
+            <div style="display: flex">
+              <p style="margin: auto; margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; width: 50% "><iris-text style="font-size: 24px; font-weight: 600; "  tag="p" user=${this.props.store} path="store/products/${this.props.product}/name"/></p>
+              <p style="margin: auto;  margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; width: 50% "><iris-text  style="font-size: 24px; font-weight: 600;" tag="p" placeholder="Issue ID" user=${this.props.store} path="store/products/${this.props.product}/id"/></p>
+            </div>
+
+
+          </div><br/>
+          <div style="display: block; border: 2px solid #e2e2e2; border-radius:5px; margin-top: 1em; padding: 10px; ">
+            <p style="margin-bottom:2px">Paying</p>
+            <a href="/store/${this.props.store}"><iris-text editable="false" path="profile/name" user=${this.props.store}/></a>
+            <div class="flowbg" style="background: rgb(213,232,68); background: linear-gradient(90deg, rgba(213,232,68,1) 0%, rgba(245,78,55,1) 51%, rgba(255,0,243,1) 100%); width: 100%; height: 5px">
+              <p style="display: none">o</p>
+            </div>
+          </div><br/>
+          <div style="display: flex">
+            <div style="width: 47%; 
+                margin: auto;
+                margin-right: 6%;
+                border-radius: 10px;
+                padding: 0.2em;">
+                  <canvas id="qr-code" style="align-content: center  ;"></canvas>
+            </div>      
+            <div style=" width: 47%; display: block">
+              <button class="expand pay-button" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd" onClick=${() => { 
+                    var inputc = document.body.appendChild(document.createElement("input"));
+                    inputc.value = window.location.href;
+                    inputc.focus();
+                    inputc.select();
+                    document.execCommand('copy');
+                    inputc.parentNode.removeChild(inputc);
+                    document.getElementById("likeBtn").style.color = "green";
+
+                    } }>Copy Link</button>
+              <button class="expand pay-button" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd">Pay</button>
+              ${this.isMyProfile ? html`
+                <button class="expand" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd" onClick=${e => this.onClickDelete(e)}>Delete</button>
+              ` : ''}
+              <button class="expand" style="border-radius: 10px; width: 100%; background-color: #bdbdfd" onClick=${e => this.cloneItemClicked(e)}>Clone</button>
+              <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
+              <iris-text user=${this.props.store} editable="false" href="store/products/${this.props.product}/model" onClick=${() => {console.log("gimmme files")}}/>
+            </div>
+          </div>    
+        </div>
+      ` : ''}
+    </div>
 </div>
 `;
   
@@ -380,8 +331,8 @@ class Product extends StoreView {
     console.log(subParent.subName);
 
 
-    document.getElementById('clearThis').value = ' '
-    document.getElementById('clearThis2').value = ' '
+    document.getElementById('clearThis').innerText = ' '
+    document.getElementById('clearThis2').innerText = ' '
 
     //parent messy
     var parentNameRaw = subParent.subName
@@ -410,8 +361,8 @@ class Product extends StoreView {
 
     console.log(subBrother.subName);
 
-    document.getElementById('clearThis3').value = ' '
-    document.getElementById('clearThis4').value = ' '
+    document.getElementById('clearThis3').innerText = ' '
+    document.getElementById('clearThis4').innerText = ' '
 
     //brother messy
     var brotherNameRaw = subBrother.subName
@@ -429,15 +380,9 @@ class Product extends StoreView {
 
     };
 
-    var checkChildName = subChild.subName
-    
-    if(checkChildName.length < 1){
-      checkChildName = false
-    } else {
-      checkChildName = checkChildName
-    }
-
     console.log(subChild.subName);
+    console.log(subChild.subAddy);
+
 
     document.getElementById('clearThis5').value = ' '
     document.getElementById('clearThis6').value = ' '
@@ -454,41 +399,6 @@ class Product extends StoreView {
     var getModel = document.getElementById("uploadBtn").outerHTML 
     var modelRaw = document.getElementById("uploadBtn").href 
 
-    //my genius is unmeasureable, someone pls clean before i have to look at this again eeeek
-    var subParentData = " "
-    try {   
-      subParentData =  ((document.getElements("ul#listParent a").innerHTML))
-    }catch(err) {
-      subParentData = ' '
-    }
-
-    var subBrotherData = " "
-    try {   
-      subBrotherData =  ((document.getElements("ul#listBrother a").innerHTML))
-    }catch(err) {
-      subBrotherData = ' '
-    }
-
-    var subChildData = " "
-    try {   
-      subChildData =  ((document.getElements("ul#listChild a").innerHTML))
-    }catch(err) {
-      subChildData = ' '
-    }
-
-    //
-    const subParent = {
-      subListParent: subParentData
-    };
-
-    const subBrother = {
-      subListBrother: subBrotherData    
-    };
-
-    const subChild = {
-      subListChild: subChildData 
-    };
-
 
 
     const product = {
@@ -499,13 +409,9 @@ class Product extends StoreView {
       model: getModel,
       modelRaw: modelRaw,
 
-      //parents etc
-      prodSubParent: subParent.subListParent,
-      prodSubBrother: subBrother.subListBrother,
-      prodSubChild: subChild.subListChild,
+  
     };
 
-    console.log(product.prodSub)
     console.log(product);
     State.public.user().get('store').get('products').get(this.newProductName).put(product);
     route(`/store/${Session.getPubKey()}`)
