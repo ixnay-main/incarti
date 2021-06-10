@@ -1,11 +1,11 @@
 /* light.css: 👉 dark-on-light */
 :root {
-    --body-bg: whitesmoke;
+    --body-bg: white;
     --text-color: #262626;
     --text-time: #000000;
-    --main-color: whitesmoke;
+    --main-color: white;
     --gallery-background: rgba(255, 255, 255, 0.90);
-    --header-color: whitesmoke;
+    --header-color: white;
     --chat-active: #ececec;
     --chat-hover: #f3f3f3;
     --msg-border: 1px solid #dfdfdf;
@@ -14,7 +14,7 @@
     --notify: #9ee8ff;
     --warning-background: #ffa09e;
     --heart-color: #ed4e49;
-    --login-background: whitesmoke;
+    --login-background: white;
     --seen-indicator: rgba(0, 0, 0, 0.45);
     --input-bg: #f3f3f3;
     --input-text: #262626;
@@ -25,8 +25,8 @@
     --button-color: ;
     --button-border: 0;
     --button-border-size: 0;
-    --menu-bg: whitesmoke;
-    --sidebar-bg: whitesmoke;
+    --menu-bg: white;
+    --sidebar-bg: white;
     --zebra-stripe-bg:;
     --emoji-picker-bg: #FFFFFF;
     --emoji-picker-color: #777;

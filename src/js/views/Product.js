@@ -115,7 +115,7 @@ class Product extends StoreView {
           </div><br/>
           
 
-          <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color: whitesmoke; z-index: 1001; height: fit-content; border-radius: 10px 10px 0px 0px !important">
+          <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color: white; z-index: 1001; height: fit-content; border-radius: 10px 10px 0px 0px !important">
             <div style="background-color: transparent; margin: auto; text-align:center; width: 10em; border-radius: 3px; padding: 5px;  " onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></div>
           </div>
         </div>
@@ -187,7 +187,7 @@ class Product extends StoreView {
               qr = new QRious({
               element: document.getElementById('qr-code'),
               foreground: 'black',
-              background: 'whitesmoke',
+              background: 'white',
               
   
               value: window.location.href 
@@ -214,7 +214,7 @@ class Product extends StoreView {
     </style>
 
     <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 999;">
-      <div class="" style="width: 100%; margin: auto; background-color: whitesmoke; ">
+      <div class="" style="width: 100%; margin: auto; background-color: white; ">
         <div class="logoHere" style="margin: auto; width: fit-content;">
           <img style="height: 3em; margin-left: 6em !important" src="../../src/js/views/transixnay.png" alt=""/>
         </div>

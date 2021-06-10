@@ -62,7 +62,7 @@ class Store extends View {
             element: document.getElementById('qr-code'),
           
             foreground: 'black',
-            background: 'whitesmoke',
+            background: 'white',
             
 
             value: window.location.href 
@@ -114,7 +114,7 @@ p.profile-about-content{
     </style>
 
       <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 105;">
-        <div class="" style="width: 100%; margin: auto; background-color: whitesmoke;">
+        <div class="" style="width: 100%; margin: auto; background-color: white;">
           <div class="" style="margin: auto; width: fit-content;">
             <img style="height: 3em ; margin-left: 6em !important" src="../../src/js/views/transixnay.png" alt=""/>
           </div>
