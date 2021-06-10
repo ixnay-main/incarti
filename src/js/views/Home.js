@@ -161,7 +161,7 @@ class Home extends View{
 
               <div  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
                 <div class="expand" style="padding: 1em; height: 32em;  font: inherit; background-color: rgb(236, 236, 236); border-radius: 10px 10px 0px 0px;">
-                  <div id="stl_cont3"  style="height: 30em;">
+                  <div id="stl_cont3"  style="height: 30em; overflow: hidden">
                   </div>
                 </div>
                 <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
@@ -220,7 +220,7 @@ class Home extends View{
             <div class="columns six">
 
               <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
-                  <div class="expand" style="padding: 1em; height: 22em">
+                  <div class="expand" style="padding: 1em; height: fit-content">
                       <img src="../../src/js/views/octobitch.gif" alt="" style="width: 95%;"/>
                   </div>
                   <div class="" style=" border-radius: 0px 0px 10px 10px; background-color :rgb(121, 121, 121); height: fit-content; text-align: left; padding: 20px;">
@@ -251,7 +251,7 @@ class Home extends View{
 
               <div  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 10px; background-color :rgb(255, 255, 255); height: fit-content;">
                 <div class="expand" style="padding: 1em; height: 32em;  font: inherit; background-color: rgb(236, 236, 236); border-radius: 10px 10px 0px 0px;">
-                  <div id="stl_cont2"  style="height: 30em;">
+                  <div id="stl_cont2"  style="height: 30em; overflow: hidden">
                   </div>
                 </div>
               </div><br/>
