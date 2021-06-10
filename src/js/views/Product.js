@@ -274,7 +274,7 @@ class Product extends StoreView {
           </div><br/>
 
           <div style="display: block; border: 2px solid #e2e2e2; border-radius:5px; margin-top: 1em; padding: 10px; ">
-            <p style="margin-bottom:2px">Paying</p>
+            <p style="margin-bottom:2px">Producer</p>
             <a href="/store/${this.props.store}"><iris-text editable="false" path="profile/name" user=${this.props.store}/></a>
             <div class="flowbg" style="background: rgb(213,232,68); background: linear-gradient(90deg, rgba(213,232,68,1) 0%, rgba(245,78,55,1) 51%, rgba(255,0,243,1) 100%); width: 100%; height: 5px">
               <p style="display: none">o</p>
@@ -289,7 +289,7 @@ class Product extends StoreView {
                   <canvas id="qr-code" style="align-content: center  ;"></canvas>
             </div>      
             <div style=" width: 47%; display: block">
-              <button class="expand pay-button" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd" onClick=${() => { 
+              <button class="expand" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd" onClick=${() => { 
                     var inputc = document.body.appendChild(document.createElement("input"));
                     inputc.value = window.location.href;
                     inputc.focus();
@@ -299,7 +299,6 @@ class Product extends StoreView {
                     document.getElementById("likeBtn").style.color = "green";
 
                     } }>Copy Link</button>
-              <button class="expand pay-button" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd">Pay</button>
               ${this.isMyProfile ? html`
                 <button class="expand" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd" onClick=${e => this.onClickDelete(e)}>Delete</button>
               ` : ''}
