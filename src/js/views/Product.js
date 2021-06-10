@@ -82,6 +82,7 @@ class Product extends StoreView {
     <style>
     canvas#qr-code {
       width: 100%;
+      max-width: 16em
   }
     </style>
     
