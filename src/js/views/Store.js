@@ -79,6 +79,7 @@ class Store extends View {
 
   canvas#qr-code {
     width: 100%;
+    max-width: 20em;
 }
 
   .profile-actions button, .feed-container > p button {
