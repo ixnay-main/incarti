@@ -87,9 +87,7 @@ class Product extends StoreView {
     
     <div class="main-view" id="profile" style="margin-top: 5em">
       <div class="container">
-        <div class="columns six" >
-          <div id="stl_cont2" class="" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9;  "><p style="display: none">o</p></div>        
-        </div>
+
         <div class="columns four" >
           
           <div class="borderThis" style="height: fit-content; ">
@@ -120,6 +118,9 @@ class Product extends StoreView {
           <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color: whitesmoke; z-index: 1001; height: fit-content; border-radius: 10px 10px 0px 0px !important">
             <div style="background-color: transparent; margin: auto; text-align:center; width: 10em; border-radius: 3px; padding: 5px;  " onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></div>
           </div>
+        </div>
+        <div class="columns six" >
+          <div id="stl_cont2" class="" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9;  "><p style="display: none">o</p></div>        
         </div>
       </div>
 
@@ -223,9 +224,7 @@ class Product extends StoreView {
 
   
 <div class="container" style="padding: 1em; margin-top: 5em;  z-index: 5;">
-  <div class="columns six">
-    <div id="stl_cont2" style="width:auto; height: 60em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
-  </div>
+
 
     <div class="columns six" style="padding-top: 5em" >
       ${this.state.product ? html`
@@ -290,6 +289,9 @@ class Product extends StoreView {
           </div>    
         </div>
       ` : ''}
+    </div>
+    <div class="columns six">
+      <div id="stl_cont2" style="width:auto; height: 60em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
     </div>
 </div>
 `;
