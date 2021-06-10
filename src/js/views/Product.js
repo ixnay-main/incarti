@@ -90,7 +90,7 @@ class Product extends StoreView {
         <div class="columns six" >
           <div id="stl_cont2" class="" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9;  "><p style="display: none">o</p></div>        
         </div>
-        <div class="columns six" >
+        <div class="columns four" >
           
           <div class="borderThis" style="height: fit-content; ">
             <div style="  padding: 1em;">
