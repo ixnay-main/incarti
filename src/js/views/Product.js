@@ -100,6 +100,10 @@ class Product extends StoreView {
         
                 <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="ID" onInput=${e => this.newProductId = e.target.innerText} />
               </div>
+              <div class="">
+        
+              <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="Weight" onInput=${e => this.newProductWeight = e.target.innerText} />
+            </div>
 
               
         
@@ -155,7 +159,9 @@ class Product extends StoreView {
     const product = {
       name: this.props.product + '.' + randNum,
       description: this.newProductDescription,
-      price: this.newProductPrice,
+      id: this.newProductId,
+
+      weight: this.newProductWeight,
       modelRaw: getModel,
 
     };
@@ -231,7 +237,7 @@ class Product extends StoreView {
     <div class="columns six" style="padding-top: 5em" >
       ${this.state.product ? html`
         <div class="productInfo" style="">
-          <p  style="margin: auto; width:fit-content; " type="number" ><iris-text  style="font-size: 60px; margin: 0em; font-weight: 800;  width:fit-content;" tag="p" placeholder="Issue Price" user=${this.props.store} id="whatPrice" path="store/products/${this.props.product}/price"/></p>
+          <p  style="margin: auto; width:fit-content; " type="number" ><iris-text  style="font-size: 60px; margin: 0em; font-weight: 800;  width:fit-content;" tag="p" placeholder="Issue Price" user=${this.props.store} id="whatPrice" path="store/products/${this.props.product}/name"/></p>
 
 
           <div style=" margin: auto; width: fit-content">
@@ -248,12 +254,25 @@ class Product extends StoreView {
             </div>
 
             <div style="display: flex">
-              <p style="margin: auto; margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; width: 50% "><iris-text style="font-size: 24px; font-weight: 600; "  tag="p" user=${this.props.store} path="store/products/${this.props.product}/name"/></p>
+              <p style="margin: auto; margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; width: 50% "><iris-text style="font-size: 24px; font-weight: 600; "  tag="p" placeholder="Weight" user=${this.props.store} path="store/products/${this.props.product}/weight"/></p>
               <p style="margin: auto;  margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; width: 50% "><iris-text  style="font-size: 24px; font-weight: 600;" tag="p" placeholder="Issue ID" user=${this.props.store} path="store/products/${this.props.product}/id"/></p>
             </div>
 
 
           </div><br/>
+          <div style="" class="borderThis">
+          
+            <div style="display: flex">
+              <p style="margin-bottom:2px;">description</p>
+            </div>
+
+            <div style="display: flex">
+              <p style="margin: auto; margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; "><iris-text style="font-size: 24px; font-weight: 600; "  tag="p" placeholder="Description" user=${this.props.store} path="store/products/${this.props.product}/description"/></p>
+            </div>
+
+
+          </div><br/>
+
           <div style="display: block; border: 2px solid #e2e2e2; border-radius:5px; margin-top: 1em; padding: 10px; ">
             <p style="margin-bottom:2px">Paying</p>
             <a href="/store/${this.props.store}"><iris-text editable="false" path="profile/name" user=${this.props.store}/></a>
@@ -327,6 +346,8 @@ class Product extends StoreView {
       name: this.newProductName,
       id: this.newProductId,
       description: this.newProductDescription,
+      weight: this.newProductWeight,
+
 
       model: getModel,
       modelRaw: modelRaw,
