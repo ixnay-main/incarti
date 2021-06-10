@@ -207,6 +207,7 @@ class Product extends StoreView {
 
         canvas#qr-code {
           width: 100%;
+          max-width: 16em
       }
 
         iris-text p {
@@ -312,88 +313,6 @@ class Product extends StoreView {
     if (prevProps.product !== this.props.product) {
       this.componentDidMount();
     }
-  }
-
-  addSubClickedParent() {
-    $(".hide1").show();
-    const subParent = {
-
-      subName: this.newProductSubNameParent,
-      subAddy: this.newProductSubAddyParent,
-
-    };
-
-    var checkParentName = subParent.subName
-    
-    if(checkParentName.length < 1){
-      checkParentName = false
-    } else {
-      checkParentName = checkParentName
-    }
-
-    console.log(subParent.subName);
-
-
-    document.getElementById('clearThis').innerText = ' '
-    document.getElementById('clearThis2').innerText = ' '
-
-    //parent messy
-    var parentNameRaw = subParent.subName
-    var anchorRaw = ('<a style="color: black; font-size: 2em" target="blank" href="' + "//" + subParent.subAddy + '" >"' + parentNameRaw + '"</a>');
-    $("#listParent").append(anchorRaw)
-  }
-
-  addSubClickedBrother() {
-    $(".hide2").show();
-
-    const subBrother = {
-
-      subName: this.newProductSubNameBrother,
-      subAddy: this.newProductSubAddyBrother,
-
-    };
-
-
-    var checkBrotherName = subBrother.subName
-    
-    if(checkBrotherName.length < 1){
-      checkBrotherName = false
-    } else {
-      checkBrotherName = checkBrotherName
-    }
-
-    console.log(subBrother.subName);
-
-    document.getElementById('clearThis3').innerText = ' '
-    document.getElementById('clearThis4').innerText = ' '
-
-    //brother messy
-    var brotherNameRaw = subBrother.subName
-    var anchorRaw = ('<a style="color: black; font-size: 2em" target="blank" href="' + "//" + subBrother.subAddy + '" >"' + brotherNameRaw + '"</a>');
-    $("#listBrother").append(anchorRaw)
-  }
-
-  addSubClickedChild() {
-    $(".hide3").show();
-
-    const subChild = {
-
-      subName: this.newProductSubNameChild,
-      subAddy: this.newProductSubAddyChild,
-
-    };
-
-    console.log(subChild.subName);
-    console.log(subChild.subAddy);
-
-
-    document.getElementById('clearThis5').value = ' '
-    document.getElementById('clearThis6').value = ' '
-
-    //child messy
-    var childNameRaw = subChild.subName
-    var anchorRaw = ('<a style="color: black; font-size: 2em" target="blank" href="' + "//" + subChild.subAddy + '" >"' + childNameRaw + '"</a>');
-    $("#listChild").append(anchorRaw)
   }
 
 
