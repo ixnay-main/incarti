@@ -56,6 +56,19 @@ class Store extends View {
       }
     }
 
+    function showHideDiv(ele) {
+      var srcElement = document.getElementById(ele);
+      if (srcElement != null) {
+        if (srcElement.style.display == "block") {
+          srcElement.style.display = 'none';
+        }
+        else {
+          srcElement.style.display = 'block';
+        }
+        return false;
+      }
+    }
+
     var qr;
     (function() {
             qr = new QRious({
@@ -113,14 +126,6 @@ p.profile-about-content{
   display:none
 }
     </style>
-
-      <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 105;">
-        <div class="" style="width: 100%; margin: auto; background-color: white;">
-          <div class="" style="margin: auto; width: fit-content;">
-            <img style="height: 3em ; margin-left: 6em !important" src="../../src/js/views/transixnay.png" alt=""/>
-          </div>
-        </div>
-      </div>
      
       <div class="container">
         <div class="columns six" style="border-radius: 10px;  height:fit-content; height: fit-content">
@@ -138,30 +143,25 @@ p.profile-about-content{
           </div>
 
           <br/>
+          <div style="display: flex" class="borderThis">
+            <button class="expand pay-button" style="" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode" style="font-size: 1.7em"></i></button>
+            <button class="expand pay-button" style="" onClick=${() => { 
+              var inputc = document.body.appendChild(document.createElement("input"));
+              inputc.value = window.location.href;
+              inputc.focus();
+              inputc.select();
+              document.execCommand('copy');
+              inputc.parentNode.removeChild(inputc);
+              document.getElementById("likeBtn").style.color = "green";
 
-          <div style="display: flex">
-            <div style="width: 47%; 
-                margin: 0 auto;
-                margin-right: 6%;
-                border-radius: 10px;
-                padding: 0.2em;">
-                  <canvas id="qr-code" style="align-content: center  ;"></canvas>
-            </div>      
-            <div style=" width: 47%; display: block">
-              <button class="expand pay-button" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd" onClick=${() => { 
-                    var inputc = document.body.appendChild(document.createElement("input"));
-                    inputc.value = window.location.href;
-                    inputc.focus();
-                    inputc.select();
-                    document.execCommand('copy');
-                    inputc.parentNode.removeChild(inputc);
-                    document.getElementById("likeBtn").style.color = "green";
-
-                    } }>Copy Link</button>
-              
-            </div>
+              } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.7em"></i>
+            </button>
           </div>
-
+          <div id="divMsg" style="display:none">
+            <div style="border-radius: 10px;padding: 0.2em;">
+              <canvas id="qr-code" style="align-content: center  ;"></canvas>
+            </div>    
+          </div>
         </div>
         <div class="columns six" style=" height:fit-content; ">
           <div class="" >

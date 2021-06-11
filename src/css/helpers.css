@@ -118,9 +118,6 @@ body.linked .button, body.linked h1 {
     outline-offset: -4px;
   }
 
-  .borderThis{
-    display: block; border: 2px solid #e2e2e2; border-radius:5px; margin-top: 1em; padding: 10px 
-  }
 
   .expand{
     transition: all 1s;

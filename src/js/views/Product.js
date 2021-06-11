@@ -73,10 +73,10 @@ class Product extends StoreView {
 
 
   newProduct() {
-
-
     console.log('new');
     $(".hideThis").hide()
+    var parentStore = html`<i class="fas fa-chevron-left"></i>`
+
     return html`
 
     <style>
@@ -88,39 +88,38 @@ class Product extends StoreView {
     
     <div class="main-view" id="profile" style="margin-top: 5em">
       <div class="container">
+        <div class="columns six" >
+          <div class="" style=" z-index: 4; height: fit-content; width: fit-content; margin: auto">
+            <p contenteditable placeholder="Item name" style="font-size: 60px; margin: 0em; font-weight: 800;" onInput=${e => this.newProductName = e.target.innerText} />
+          </div>
 
-        <div class="columns four" >
-          
-          <div class="borderThis" style="height: fit-content; ">
-            <div style="  padding: 1em;">
-              <div class="" style=" z-index: 4; height: fit-content;">
-                <p contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
-              </div>
-              <div class="">
-        
-                <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="ID" onInput=${e => this.newProductId = e.target.innerText} />
-              </div>
-              <div class="">
-        
-              <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="Weight" onInput=${e => this.newProductWeight = e.target.innerText} />
+          <div style=" margin: auto; width: fit-content">
+            <a style="margin-right: 1.5em" href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }</a>
+            <button class="expand" style="border-radius: 10px;  border: 2px solid #e5e5e5; padding: 2px 7px">ETH Ξ</button>
+          </div>
+
+          <div style="" class="borderThis">
+            <div style="display: flex">
+              <p style="margin-bottom:2px; width: 50% ">Issue Name</p>
+              <p style="margin-bottom:2px;  width: 50% ">Issue ID</p>
             </div>
 
-              
-        
-              <p class="" style="font-size: 1.2em; margin: 0em; font-weight: 500" contenteditable placeholder="Discription" onInput=${e => this.newProductDescription = e.target.innerText} />
-            </div><br/><hr/>
-            <div class="" style="display: flex">
-              <input id="file" type="file" style="background-color: transparent; padding-left: 0em"/>
-              <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.donwloadThis(e)}><i style="color: #000; font-size: 1.5em !important;
-              margin-top: -0.6em;" class="fas fa-upload"></i>
-              </p>
-              <div id="containerIcon">  </div> 
-
+            <div style="display: flex">
+              <p style="margin: auto;  margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; width: 50%; font-size: 24px; font-weight: 600; "contenteditable placeholder="Issue ID" onInput=${e => this.newProductWeight = e.target.innerText} />
+              <p style="margin: auto;  margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; width: 50%; font-size: 24px; font-weight: 600; "contenteditable placeholder="Unit Weight" onInput=${e => this.newProductId = e.target.innerText} />
             </div>
           </div><br/>
           
-
-          <div class="" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color: white; z-index: 1001; height: fit-content; border-radius: 10px 10px 0px 0px !important">
+          <div class="borderThis" style="height: fit-content; ">
+            <div class="" style="display: flex; border-radius: 0px">
+              <input id="file" type="file" style="border-radius: 0px; background-color: transparent; padding-left: 0em"/>
+              <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.donwloadThis(e)}><i style="color: #000; font-size: 1.5em !important;margin-top: -0.6em;" class="fas fa-upload"></i></p>
+              <div id="containerIcon"></div> 
+            </div>
+            <p>Items must have a file. Stl files will be rendered.<p/>
+          </div>
+          </div>
+          <div class="borderThis" style="fit-content; border-radius: 10px !important">
             <div style="background-color: transparent; margin: auto; text-align:center; width: 10em; border-radius: 3px; padding: 5px;  " onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></div>
           </div>
         </div>
@@ -128,7 +127,6 @@ class Product extends StoreView {
           <div id="stl_cont2" class="" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9;  "><p style="display: none">o</p></div>        
         </div>
       </div>
-
     </div>
   `;
 }
@@ -202,6 +200,19 @@ class Product extends StoreView {
       })();
     } , 1000)
 
+    function showHideDiv(ele) {
+      var srcElement = document.getElementById(ele);
+      if (srcElement != null) {
+        if (srcElement.style.display == "block") {
+          srcElement.style.display = 'none';
+        }
+        else {
+          srcElement.style.display = 'block';
+        }
+        return false;
+      }
+    }
+
 
 
 
@@ -221,20 +232,13 @@ class Product extends StoreView {
       }
     </style>
 
-    <div class="header" style="position: fixed; left: 0; top: -3px; padding-top: 3px; width: 100%; z-index: 999;">
-      <div class="" style="width: 100%; margin: auto; background-color: white; ">
-        <div class="logoHere" style="margin: auto; width: fit-content;">
-          <img style="height: 3em; margin-left: 6em !important" src="../../src/js/views/transixnay.png" alt=""/>
-        </div>
-      </div>
-    </div>
 
 
   
-<div class="container" style="padding: 1em; margin-top: 5em;  z-index: 5;">
+<div class="container" style="padding: 1em; margin-top: 0em;  z-index: 5;">
 
 
-    <div class="columns six" style="padding-top: 5em" >
+    <div class="columns six" style="padding-top: 2em" >
       ${this.state.product ? html`
         <div class="productInfo" style="">
           <p  style="margin: auto; width:fit-content; " type="number" ><iris-text  style="font-size: 60px; margin: 0em; font-weight: 800;  width:fit-content;" tag="p" placeholder="Issue Price" user=${this.props.store} id="whatPrice" path="store/products/${this.props.product}/name"/></p>
@@ -280,31 +284,32 @@ class Product extends StoreView {
               <p style="display: none">o</p>
             </div>
           </div><br/>
-          <div style="display: flex">
-            <div style="width: 47%; 
-                margin: auto;
-                margin-right: 6%;
-                border-radius: 10px;
-                padding: 0.2em;">
-                  <canvas id="qr-code" style="align-content: center  ;"></canvas>
-            </div>      
-            <div style=" width: 47%; display: block">
-              <button class="expand" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd" onClick=${() => { 
-                    var inputc = document.body.appendChild(document.createElement("input"));
-                    inputc.value = window.location.href;
-                    inputc.focus();
-                    inputc.select();
-                    document.execCommand('copy');
-                    inputc.parentNode.removeChild(inputc);
-                    document.getElementById("likeBtn").style.color = "green";
+          <div style="">   
+            <div style="display: flex" class="borderThis">
+              <button class="expand pay-button" style="" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode" style="font-size: 1.7em"></i></button>
+              <button class="expand pay-button" style="" onClick=${() => { 
+                var inputc = document.body.appendChild(document.createElement("input"));
+                inputc.value = window.location.href;
+                inputc.focus();
+                inputc.select();
+                document.execCommand('copy');
+                inputc.parentNode.removeChild(inputc);
+                document.getElementById("likeBtn").style.color = "green";
 
-                    } }>Copy Link</button>
+                } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.7em"></i>
+              </button>
+
+              <button class="expand" style="" onClick=${e => this.cloneItemClicked(e)}><i class="fas fa-clone" style="font-size: 1.7em"></i></button>
               ${this.isMyProfile ? html`
-                <button class="expand" style="border-radius: 10px;  width: 100%; background-color: #bdbdfd" onClick=${e => this.onClickDelete(e)}>Delete</button>
+                <button class="expand" style="" onClick=${e => this.onClickDelete(e)}><i class="fas fa-trash" style="font-size: 1.7em"></i></button>
               ` : ''}
-              <button class="expand" style="border-radius: 10px; width: 100%; background-color: #bdbdfd" onClick=${e => this.cloneItemClicked(e)}>Clone</button>
               <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
               <iris-text user=${this.props.store} editable="false" href="store/products/${this.props.product}/model" onClick=${() => {console.log("gimmme files")}}/>
+            </div>
+            <div id="divMsg" style="display:none">
+              <div style="border-radius: 10px;padding: 0.2em;">
+                <canvas id="qr-code" style="align-content: center  ;"></canvas>
+              </div>    
             </div>
           </div>    
         </div>

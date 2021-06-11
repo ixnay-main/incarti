@@ -132,7 +132,10 @@ img, video {
 }
 
 .footer {
-  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.borderThis{
+   border: 2px solid #e2e2e2; border-radius:5px; margin-top: 1em; padding: 10px 
 }
 
 .footer a {
