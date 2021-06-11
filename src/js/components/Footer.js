@@ -41,7 +41,7 @@ class Footer extends Component {
       <div class="header-content" onClick=${() => State.local.get('scrollUp').put(true)}>
         <a href="/store" class="btn ${activeRoute && activeRoute === '/store' ? 'active' : ''}"><i class="fas fa-bars"></i></a>
         <a href="/product/new" class="btn ${activeRoute && activeRoute === '/product/new' ? 'active' : ''}"><i class="fas fa-plus"></i></a>
-        <a href="/profile/${key}" class="${activeRoute && activeRoute === '/profile/' + key ? 'active' : ''} my-profile">
+        <a href="/settings/" class="${activeRoute && activeRoute === '/settings/' + key ? 'active' : ''} my-profile">
           <${Identicon} str=${key} width=34 />
         </a>
       </div>

@@ -241,13 +241,14 @@ class Product extends StoreView {
     <div class="columns six" style="padding-top: 2em" >
       ${this.state.product ? html`
         <div class="productInfo" style="">
-          <p  style="margin: auto; width:fit-content; " type="number" ><iris-text  style="font-size: 60px; margin: 0em; font-weight: 800;  width:fit-content;" tag="p" placeholder="Issue Price" user=${this.props.store} id="whatPrice" path="store/products/${this.props.product}/name"/></p>
+          <p  style="margin: auto; width:fit-content; " type="number" ><iris-text  style="font-size: 60px; margin: 0em; font-weight: 800;  width:fit-content;" tag="p" placeholder="Issue Name" user=${this.props.store} id="whatPrice" path="store/products/${this.props.product}/name"/></p>
 
 
           <div style=" margin: auto; width: fit-content">
-            <a style="margin-right: 1.5em" href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }</a>
+            <a href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }
 
-            <button class="expand" style="border-radius: 10px;  border: 2px solid #e5e5e5; padding: 2px 7px">ETH Ξ</button>
+            <button class="expand" style=" margin-left: 2em; border-radius: 10px;  border: 2px solid #e5e5e5; padding: 2px 7px"><iris-text editable="false" path="profile/name" user=${this.props.store}/></button>
+            </a>
           </div>
 
           <div style="" class="borderThis">

@@ -14,18 +14,10 @@ import { translate as t } from './Translation.js';
 import Settings from './views/Settings.js';
 import Home from './views/Home.js';
 import LogoutConfirmation from './views/LogoutConfirmation.js';
-import Chat from './views/Chat.js';
 import Store from './views/Store.js';
-import Checkout from './views/Checkout.js';
 import Product from './views/Product.js';
 import Login from './views/Login.js';
-import Profile from './views/Profile.js';
-import Group from './views/Group.js';
-import Message from './views/Message.js';
-import Follows from './views/Follows.js';
-import Feed from './views/Feed.js';
 import Explorer from './views/Explorer.js';
-import Contacts from './views/Contacts.js';
 import Torrent from './views/Torrent.js';
 
 import VideoCall from './components/VideoCall.js';
@@ -57,7 +49,7 @@ const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
   {url: '/', text: t(''), icon: Icons.home},
   {url: '/store', text: t(''), icon: Icons.play},
   {url: '/product/new', text: t(''), icon: Icons.add},
-  {url: '/profile', text: t(''), icon: Icons.user},
+  {url: '/settings', text: t(''), icon: Icons.user},
 ];
 
 class Menu extends Component {
@@ -159,30 +151,15 @@ class Main extends Component {
           <div class="view-area">
             <${Router} history=${createHashHistory()} onChange=${e => this.handleRoute(e)}>
               <${Home} path="/"/>
-
-              <${Feed} path="/feed"/>
-              <${Feed} path="/search/:term?/:type?"/>
-              <${Feed} path="/media" index="media"/>
               <${Login} path="/login"/>
-              <${Chat} path="/chat/:id?"/>
-              <${Message} path="/post/:hash"/>
               <${Torrent} path="/torrent/:id"/>
               <${Settings} path="/settings"/>
               <${LogoutConfirmation} path="/logout"/>
-              <${Profile} path="/profile/:id?" tab="profile"/>
-              <${Profile} path="/replies/:id?" tab="replies"/>
-              <${Profile} path="/likes/:id?" tab="likes"/>
-              <${Profile} path="/media/:id" tab="media"/>
-              <${Group} path="/group/:id?"/>
               <${Store} path="/store/:store?"/>
-              <${Checkout} path="/checkout/:store?"/>
               <${Product} path="/product/:product/:store"/>
               <${Product} path="/product/new" store=Session.getPubKey()/>
               <${Explorer} path="/explorer/:node"/>
               <${Explorer} path="/explorer"/>
-              <${Follows} path="/follows/:id"/>
-              <${Follows} followers=${true} path="/followers/:id"/>
-              <${Contacts} path="/contacts"/>
             </${Router}>
           </div>
         </section>
