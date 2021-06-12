@@ -64,7 +64,7 @@ class Home extends View{
         <h1 style="font-size: 3em; font-weight: 800;">Manufacture for Autonomy</h1>
         <p style="    font-size: 1.2em;">Blueprints and Catalogs so you can build your world.</p>
         <div class="expand" >
-          <a  onClick=${() => route(`/store/${Session.getPubKey()}`)}  target="blank" style="color: rgb(121, 121, 121) !important"> <h2 class="para" style=" font-weight: 800  ">Enter <i  class="fas fa-chevron-right" style="black;     font-size: 0.8em; margin-left: 0.2em;"></i></h2></a>
+          <a  onClick=${() => route(`/product/new`)}  target="blank" style="color: rgb(121, 121, 121) !important"> <h2 class="para" style=" font-weight: 800  ">Enter <i  class="fas fa-chevron-right" style="black;     font-size: 0.8em; margin-left: 0.2em;"></i></h2></a>
         </div><br/><br/>
       </div>
     </div>
