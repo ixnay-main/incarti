@@ -59,6 +59,10 @@ class Home extends View{
     }
     </style>
 
+    <div class="" style="position: fixed; height: auto; top: 0em">
+      <img src="../../src/js/views/one.png" alt="" style="width: 95%; filter: blur(5px);"/>
+    </div>
+
     <div  style="position: sticky !important; top: 26em"> 
       <div class="" style="text-align: center; margin-bottom: 10em; margin-top: 15em; padding: 1em;color: black; font-weight: 600;">
         <h1 style="font-size: 3em; font-weight: 800;">Manufacture for Autonomy</h1>

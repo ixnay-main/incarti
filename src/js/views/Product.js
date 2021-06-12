@@ -112,7 +112,7 @@ class Product extends StoreView {
           
           <div class="borderThis" style="height: fit-content; ">
             <div class="" style="display: flex; border-radius: 0px">
-              <input id="file" type="file" style="border-radius: 0px; background-color: transparent; padding-left: 0em"/>
+              <input multiple id="file" type="file" style="border-radius: 0px; background-color: transparent; padding-left: 0em"/>
               <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.donwloadThis(e)}><i style="color: #000; font-size: 1.5em !important;margin-top: -0.6em;" class="fas fa-upload"></i></p>
               <div id="containerIcon"></div> 
             </div>
