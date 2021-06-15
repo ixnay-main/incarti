@@ -6,8 +6,8 @@
     --main-color: white;
     --gallery-background: rgba(255, 255, 255, 0.90);
     --header-color: white;
-    --chat-active: #ececec;
-    --chat-hover: #f3f3f3;
+    --chat-active: ;
+    --chat-hover:  none;
     --msg-border: 1px solid #dfdfdf;
     --msg-content-background: #fff;
     --our-msg: #9ee8ff;

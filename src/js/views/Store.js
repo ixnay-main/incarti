@@ -128,14 +128,38 @@ p.profile-about-content{
     </style>
      
       <div class="container">
-        <div class="columns six" style="border-radius: 10px;  height:fit-content; height: fit-content">
-          <div class="borderThis" style="padding: 1em; ">
+        <div class="columns twelve" style="border-radius: 10px;  height:fit-content; height: fit-content">
+          <div class="borderThis" style="padding: 1em; height: 9em;">
             <div class="" style="padding: 0.1em;">
               <p style=" height: 2em; font-size: 1em; margin: 0em;  color: black !important;" class=""><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></p>
             </div>
-            <p style="height: 3em; margin: 0em; font-weight: 600 "  class="">
+            <p style="height: 2em; margin: 0em; font-weight: 600 "  class="">
               <iris-text style="min-height: 3em; color: black !important"  path="store/about" placeholder="Store description" attr="" user=${this.props.store}/>
             </p>
+            <div style="display: flex; width: 100%" class="">
+              <div style="display: flex; width: fit-content; float: left" class="">
+                ${this.isMyProfile ? html`
+                <div class="" style="" onClick=${() => route(`/product/new`)}>
+                  <a href="/product/new" class="name">Add item</a>
+                </div>
+                ` : ''}
+              </div>
+
+              <div style="display: flex; width: fit-content; float: right" class="">
+                <button class="expand pay-button" style="" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode" style="font-size: 1.7em"></i></button>
+                <button class="expand pay-button" style="" onClick=${() => { 
+                  var inputc = document.body.appendChild(document.createElement("input"));
+                  inputc.value = window.location.href;
+                  inputc.focus();
+                  inputc.select();
+                  document.execCommand('copy');
+                  inputc.parentNode.removeChild(inputc);
+                  document.getElementById("likeBtn").style.color = "green";
+
+                  } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.7em"></i>
+                </button>
+              </div>
+            </div>
           </div> 
   
           <div class="profile-about visible-xs-flex">
@@ -143,33 +167,14 @@ p.profile-about-content{
           </div>
 
           <br/>
-          <div style="display: flex" class="borderThis">
-            <button class="expand pay-button" style="" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode" style="font-size: 1.7em"></i></button>
-            <button class="expand pay-button" style="" onClick=${() => { 
-              var inputc = document.body.appendChild(document.createElement("input"));
-              inputc.value = window.location.href;
-              inputc.focus();
-              inputc.select();
-              document.execCommand('copy');
-              inputc.parentNode.removeChild(inputc);
-              document.getElementById("likeBtn").style.color = "green";
-
-              } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.7em"></i>
-            </button>
-          </div>
           <div id="divMsg" style="display:none">
             <div style="border-radius: 10px;padding: 0.2em;">
               <canvas id="qr-code" style="align-content: center  ;"></canvas>
             </div>    
           </div>
         </div>
-        <div class="columns six" style=" height:fit-content; ">
+        <div class="columns twelve" style=" height:fit-content; ">
           <div class="" >
-            ${this.isMyProfile ? html`
-              <div class="borderThis" style="" onClick=${() => route(`/product/new`)}>
-                <a href="/product/new" class="name">Add item</a>
-              </div>
-            ` : ''}
             <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; " class="borderThis"> 
               ${Object.keys(this.state.items).map(k => {
                 const i = this.state.items[k];

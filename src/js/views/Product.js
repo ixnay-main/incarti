@@ -172,6 +172,14 @@ class Product extends StoreView {
     const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
 
     setTimeout(function(){
+      var rawDataPls = document.getElementById("modelDataRaw").textContent
+      var anchor = ('<a id="uploadBtn" style="color: #000; font-size: 1.5em !important; margin-top: -0em" download href="' + rawDataPls + '" ><i class="far fa-save" style="font-size: 1.7em" ></i></a>');
+      $("#addHere").append(anchor)
+      console.log("once")
+      clearInterval();
+    }, 3000)
+
+    setTimeout(function(){
 
       var stl_viewer=new StlViewer
       (
@@ -186,6 +194,8 @@ class Product extends StoreView {
       }
       )
       console.log(document.getElementById("modelDataRaw").textContent)
+
+
 
       var qr;
       (function() {
@@ -286,7 +296,7 @@ class Product extends StoreView {
             </div>
           </div><br/>
           <div style="">   
-            <div style="display: flex" class="borderThis">
+            <div style="display: flex" class="borderThis" id="addHere">
               <button class="expand pay-button" style="" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode" style="font-size: 1.7em"></i></button>
               <button class="expand pay-button" style="" onClick=${() => { 
                 var inputc = document.body.appendChild(document.createElement("input"));
@@ -298,6 +308,8 @@ class Product extends StoreView {
                 document.getElementById("likeBtn").style.color = "green";
 
                 } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.7em"></i>
+
+
               </button>
 
               <button class="expand" style="" onClick=${e => this.cloneItemClicked(e)}><i class="fas fa-clone" style="font-size: 1.7em"></i></button>

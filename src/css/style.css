@@ -616,6 +616,10 @@ header.footer .header-content {
   border-top-left-radius: 4px;
 }
 
+span.icon{
+  color: black;
+}
+
 .participant-list {
   width: 190px;
   overflow-x: hidden;
