@@ -203,7 +203,7 @@ a.logo img:last-child {
 
 .nav .btn {
   font-size: 2em;
-  color: var(--text-color);
+  color: white;
   position: relative;
 }
 
@@ -384,7 +384,7 @@ a.logo img:last-child {
   align-items: center;
   max-width: 100%;
   border-radius: 10px;
-  background-color: #e9e9e9;
+  background-color: black;
 }
 
 .tabs {
