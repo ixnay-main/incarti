@@ -67,7 +67,7 @@ class Menu extends Component {
   render() {
     const pub = Session.getPubKey();
     return html`
-      <div class="application-list">
+      <div class="application-list" >
         ${iris.util.isElectron ? html`<div class="electron-padding"/>` : html`
             <br/><br/>
         `}
@@ -86,7 +86,6 @@ class Menu extends Component {
                   ${a.text === t('messages') && this.state.unseenTotal ? html`<span class="unseen unseen-total">${this.state.unseenTotal}</span>`: ''}
                   ${a.icon || Icons.circle}
                 </span>
-                <span class="text">${a.text}</span>
               <//>`;
           } else {
             return html`<br/><br/>`;

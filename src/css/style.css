@@ -32,7 +32,7 @@ body {
   opacity: 0;
   font-size: 15px;
   color: var(--text-color);
-  font-family: "SF Pro Text", "SF Pro Icons", system, -apple-system, system-ui, system-ui, "Helvetica Neue", Helvetica, "Lucida Grande", sans-serif;
+  font-family: "SF Pro Text", "SF Pro Icons", system, -apple-system, system-ui, system-ui, "Helvetica Neue", Helvetica, "Lucida Grande", sans-serif !important;
   padding: 0;
   margin: 0;
   height:100%;
@@ -323,6 +323,7 @@ a.logo img:last-child {
   left: 0;
   right: 0;
   bottom: 0;
+  padding: 5px;
 }
 
 .sidebar {
@@ -361,6 +362,8 @@ a.logo img:last-child {
   max-height:60px;
   border-bottom: var(--nav-border-bottom);
   box-shadow: var(--nav-shadow);
+  border-bottom: 9px solid black !important;
+  margin-left: 7px;
 }
 
 .nav .name {
@@ -380,6 +383,8 @@ a.logo img:last-child {
   flex-direction: row;
   align-items: center;
   max-width: 100%;
+  border-radius: 10px;
+  background-color: #e9e9e9;
 }
 
 .tabs {
@@ -692,6 +697,13 @@ span.icon{
   background: var(--menu-bg);
   border-right: var(--sidebar-border-right);
   color: var(--sidebar-color);
+
+  background-color: #000;
+    height: fit-content;
+  border-radius: 5px;
+  padding-bottom: 2em;
+  margin: 10px;
+  margin-top: 15em
 }
 
 .application-list .electron-padding {
@@ -711,18 +723,23 @@ span.icon{
 }
 
 .application-list a {
-  padding: 0 15px;
+  padding: 0 ;
   display: flex;
   align-items: center;
   flex-direction: row;
   color: var(--text-color);
 }
 
+.application-list a .icon{
+
+  color: white  !important;
+}
+
 
 
 @media (max-width:1268px) {
   .application-list {
-    width: 78px;
+
     margin-left: 0;
   }
 
@@ -730,7 +747,6 @@ span.icon{
 
   .application-list a {
     justify-content: center;
-    padding: 15px;
   }
 
   .application-list a.logo {

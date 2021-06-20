@@ -40,9 +40,8 @@ class Product extends StoreView {
 
         var loc = reader.result;
         console.log(loc)
-        var container = $('linkContainer');
         var anchor = ('<a id="uploadBtn" style="color: #000; font-size: 1.5em !important; margin-top: -0em" download href="' + loc + '" ><i class="far fa-save" style="margin-top: 0.6em;" ></i></a>');
-        $("#containerIcon").append(anchor)
+        document.getElementById("containerIcon").outerHTML = anchor
           var stl_viewer=new StlViewer
           (
           document.getElementById("stl_cont2"),
@@ -85,32 +84,38 @@ class Product extends StoreView {
       max-width: 16em
   }
     </style>
+
+    <div  class="" style="margin: auto; position: fixed;     top: -3px;background-color: white !Important; z-index: 1002;     width: 100%;
+    border-bottom: 8px solid black;"> 
+      <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin: 0px;">IXNAY</h1>
+    </div>
     
     <div class="main-view" id="profile" style="margin-top: 5em">
       <div class="container">
         <div class="columns six" >
-          <div class="" style=" z-index: 4; height: fit-content; width: fit-content; margin: auto">
+        <br/>
+          <div class="" style=" z-index: 4; height: fit-content; ">
             <p contenteditable placeholder="Item name" style="font-size: 60px; margin: 0em; font-weight: 800;" onInput=${e => this.newProductName = e.target.innerText} />
-          </div>
-
-          <div style=" margin: auto; width: fit-content">
-            <a style="margin-right: 1.5em" href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }</a>
+          </div><br/>
+          
+          <div style="  width: fit-content">
+            <a style="margin-right: 1.3em" href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }</a>
             <button class="expand" style="border-radius: 10px;  border: 2px solid #e5e5e5; padding: 2px 7px">ETH Ξ</button>
           </div>
-
-          <div style="" class="borderThis">
+          <br/><br/>
+          <div style="" class="">
             <div style="display: flex">
-              <p style="margin-bottom:2px; width: 50% ">Issue Name</p>
-              <p style="margin-bottom:2px;  width: 50% ">Issue ID</p>
+              <p style="margin-bottom:6px; width: 50% ">Issue Name</p>
+              <p style="margin-bottom:6px;  width: 50% ">Issue ID</p>
             </div>
 
             <div style="display: flex">
               <p style="margin: auto;  margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; width: 50%; font-size: 24px; font-weight: 600; "contenteditable placeholder="Issue ID" onInput=${e => this.newProductWeight = e.target.innerText} />
               <p style="margin: auto;  margin-left: 0em; margin-top: -10px;  margin-bottom: -10px; width: 50%; font-size: 24px; font-weight: 600; "contenteditable placeholder="Unit Weight" onInput=${e => this.newProductId = e.target.innerText} />
             </div>
-          </div><br/>
+          </div>     <br/><br/>
           
-          <div class="borderThis" style="height: fit-content; ">
+          <div class="" style="height: fit-content; ">
             <div class="" style="display: flex; border-radius: 0px">
               <input multiple id="file" type="file" style="border-radius: 0px; background-color: transparent; padding-left: 0em"/>
               <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.donwloadThis(e)}><i style="color: #000; font-size: 1.5em !important;margin-top: -0.6em;" class="fas fa-upload"></i></p>
@@ -119,7 +124,7 @@ class Product extends StoreView {
             <p>Items must have a file. Stl files will be rendered.<p/>
           </div>
           </div>
-          <div class="borderThis" style="fit-content; border-radius: 10px !important">
+          <div class="" style="fit-content; border-radius: 10px !important">
             <div style="background-color: transparent; margin: auto; text-align:center; width: 10em; border-radius: 3px; padding: 5px;  " onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></div>
           </div>
         </div>
@@ -173,8 +178,9 @@ class Product extends StoreView {
 
     setTimeout(function(){
       var rawDataPls = document.getElementById("modelDataRaw").textContent
-      var anchor = ('<a id="uploadBtn" style="color: #000; font-size: 1.5em !important; margin-top: -0em" download href="' + rawDataPls + '" ><i class="far fa-save" style="font-size: 1.7em" ></i></a>');
-      $("#addHere").append(anchor)
+      var anchor = ('<a id="uploadBtn" style="color: #000; font-size: 1.5em !important; margin-top: -0em" download href="' + rawDataPls + '" ><i class="fas fa-download" style="font-size: 1.3em; margin-top: 12px; margin-left: 5px" ></i></a>');
+      document.getElementById("containerIcon").outerHTML = anchor
+
       console.log("once")
       clearInterval();
     }, 3000)
@@ -243,7 +249,10 @@ class Product extends StoreView {
     </style>
 
 
-
+    <div  class="" style="margin: auto; position: fixed;     top: -3px;background-color: white !Important; z-index: 1002;     width: 100%;
+    border-bottom: 8px solid black;"> 
+      <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin: 0px;">IXNAY</h1>
+    </div>
   
 <div class="container" style="padding: 1em; margin-top: 0em;  z-index: 5;">
 
@@ -251,21 +260,22 @@ class Product extends StoreView {
     <div class="columns six" style="padding-top: 2em" >
       ${this.state.product ? html`
         <div class="productInfo" style="">
-          <p  style="margin: auto; width:fit-content; " type="number" ><iris-text  style="font-size: 60px; margin: 0em; font-weight: 800;  width:fit-content;" tag="p" placeholder="Issue Name" user=${this.props.store} id="whatPrice" path="store/products/${this.props.product}/name"/></p>
+        <br/><br/>
+          <p  style="width:fit-content; " type="" ><iris-text  style="font-size: 60px; margin: 0em; font-weight: 800;  width:fit-content;" tag="p" placeholder="Issue Name" user=${this.props.store} id="whatPrice" path="store/products/${this.props.product}/name"/></p>
+          <br/>
 
-
-          <div style=" margin: auto; width: fit-content">
+          <div style="width: fit-content">
             <a href="/store/${this.props.store}" id="getParentStore"><iris-text editable="false"  user=${this.props.store}/>${ parentStore }
 
-            <button class="expand" style=" margin-left: 2em; border-radius: 10px;  border: 2px solid #e5e5e5; padding: 2px 7px"><iris-text editable="false" path="profile/name" user=${this.props.store}/></button>
+            <button class="expand" style=" margin-left: 1.4em; border-radius: 10px;  border: 2px solid #e5e5e5; padding: 2px 7px"><iris-text editable="false" path="profile/name" user=${this.props.store}/></button>
             </a>
           </div>
-
-          <div style="" class="borderThis">
+          <br/><br/>
+          <div style="" class="">
           
             <div style="display: flex">
-              <p style="margin-bottom:2px; width: 50% ">Issue Name</p>
-              <p style="margin-bottom:2px;  width: 50% ">Issue ID</p>
+              <p style="margin-bottom:6px; width: 50% ">Issue Name</p>
+              <p style="margin-bottom:6px;  width: 50% ">Issue ID</p>
             </div>
 
             <div style="display: flex">
@@ -275,10 +285,10 @@ class Product extends StoreView {
 
 
           </div><br/>
-          <div style="" class="borderThis">
+          <div style="" class="">
           
             <div style="display: flex">
-              <p style="margin-bottom:2px;">description</p>
+              <p style="margin-bottom:6px;">Description</p>
             </div>
 
             <div style="display: flex">
@@ -286,17 +296,10 @@ class Product extends StoreView {
             </div>
 
 
-          </div><br/>
+          </div><br/><br/>
 
-          <div style="display: block; border: 2px solid #e2e2e2; border-radius:5px; margin-top: 1em; padding: 10px; ">
-            <p style="margin-bottom:2px">Producer</p>
-            <a href="/store/${this.props.store}"><iris-text editable="false" path="profile/name" user=${this.props.store}/></a>
-            <div class="flowbg" style="background: rgb(213,232,68); background: linear-gradient(90deg, rgba(213,232,68,1) 0%, rgba(245,78,55,1) 51%, rgba(255,0,243,1) 100%); width: 100%; height: 5px">
-              <p style="display: none">o</p>
-            </div>
-          </div><br/>
           <div style="">   
-            <div style="display: flex" class="borderThis" id="addHere">
+            <div style="display: flex" class="" id="addHere">
               <button class="expand pay-button" style="" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode" style="font-size: 1.7em"></i></button>
               <button class="expand pay-button" style="" onClick=${() => { 
                 var inputc = document.body.appendChild(document.createElement("input"));
@@ -317,7 +320,7 @@ class Product extends StoreView {
                 <button class="expand" style="" onClick=${e => this.onClickDelete(e)}><i class="fas fa-trash" style="font-size: 1.7em"></i></button>
               ` : ''}
               <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
-              <iris-text user=${this.props.store} editable="false" href="store/products/${this.props.product}/model" onClick=${() => {console.log("gimmme files")}}/>
+              <div id="containerIcon"></div>
             </div>
             <div id="divMsg" style="display:none">
               <div style="border-radius: 10px;padding: 0.2em;">

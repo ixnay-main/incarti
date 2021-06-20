@@ -60,10 +60,29 @@ class Store extends View {
       var srcElement = document.getElementById(ele);
       if (srcElement != null) {
         if (srcElement.style.display == "block") {
+          document.getElementById("rotate").style.transform = "rotate(0deg)"
           srcElement.style.display = 'none';
         }
         else {
           srcElement.style.display = 'block';
+          document.getElementById("rotate").style.transform = "rotate(90deg)"
+        }
+        return false;
+      }
+    }
+
+    function showHideDiv2(ele) {
+      var srcElement = document.getElementById(ele);
+      if (srcElement != null) {
+        if (srcElement.style.display == "block") {
+          document.getElementById("rotate2").style.transform = "rotate(0deg)"
+
+
+          srcElement.style.display = 'none';
+        }
+        else {
+          srcElement.style.display = 'block';
+          document.getElementById("rotate2").style.transform = "rotate(90deg)"
         }
         return false;
       }
@@ -75,12 +94,13 @@ class Store extends View {
             element: document.getElementById('qr-code'),
           
             foreground: 'black',
-            background: 'white',
+            background: '#f9f9f9',
             
 
             value: window.location.href 
         });
       })();
+
     
 
     return html`
@@ -126,24 +146,36 @@ p.profile-about-content{
   display:none
 }
     </style>
-     
+
+
+  <div  class="" style="margin: auto; text-align: center; position: fixed; top: 1em; "> 
+    <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">IXNAY</h1>
+  </div>
+
+
       <div class="container">
-        <div class="columns twelve" style="border-radius: 10px;  height:fit-content; height: fit-content">
-          <div class="borderThis" style="padding: 1em; height: 9em;">
-            <div class="" style="padding: 0.1em;">
-              <p style=" height: 2em; font-size: 1em; margin: 0em;  color: black !important;" class=""><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></p>
+        <div class="columns four" style="display:block; background-color: #f9f9f9; border-radius: 15px  ;  ">
+          <div class="" style="position: sticky !important; top: 2em; background-color:#f9f9f9;  z-index: 4; padding:1em; border-radius:  15px  ;">
+
+
+            <div class="" style="background-color: #rgb(243 243 243); padding: 2px; border-radius:4px;  margin-bottom: 2em;    position: sticky; top: 1em;  z-index: 4">
+              <h2 style="color: black; margin: 2px; height:1.5em"><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></h2>
             </div>
-            <p style="height: 2em; margin: 0em; font-weight: 600 "  class="">
+              <p style=" height:1.5em "><iris-text path="profile/location" placeholder="Location" user=${this.props.store}/></p>
+              <p style=" height:1.5em "><iris-text path="profile/clique" placeholder="Clique" user=${this.props.store}/></p>
+
+            <p style="height: 2em; margin: 0em; font-weight: 400 "  class="">
               <iris-text style="min-height: 3em; color: black !important"  path="store/about" placeholder="Store description" attr="" user=${this.props.store}/>
             </p>
-            <div style="display: flex; width: 100%" class="">
-              <div style="display: flex; width: fit-content; float: left" class="">
-                ${this.isMyProfile ? html`
-                <div class="" style="" onClick=${() => route(`/product/new`)}>
-                  <a href="/product/new" class="name">Add item</a>
-                </div>
-                ` : ''}
+            <div style="display: flex; width: fit-content; float: left" class="">
+              ${this.isMyProfile ? html`
+              <div class="" style="" onClick=${() => route(`/product/new`)}>
+                <a href="/product/new" class="name">Add item</a>
               </div>
+              ` : ''}
+            </div>
+            <div style="display: flex; width: 100%" class="">
+
 
               <div style="display: flex; width: fit-content; float: right" class="">
                 <button class="expand pay-button" style="" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode" style="font-size: 1.7em"></i></button>
@@ -154,7 +186,7 @@ p.profile-about-content{
                   inputc.select();
                   document.execCommand('copy');
                   inputc.parentNode.removeChild(inputc);
-                  document.getElementById("likeBtn").style.color = "green";
+                  document.getElementById("likeBtn").style.color = "#3f80e6";
 
                   } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.7em"></i>
                 </button>
@@ -173,14 +205,19 @@ p.profile-about-content{
             </div>    
           </div>
         </div>
-        <div class="columns twelve" style=" height:fit-content; ">
+        <div class="columns eight" style=" height:fit-content; ">
           <div class="" >
-            <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; " class="borderThis"> 
+            <div class="expand" onClick=${() => {
+               {showHideDiv('hideBlues')} 
+              }} style="background-color: rgb(243, 243, 243); color: black; display: flex; padding: 2px; border-radius:4px;  margin-bottom: 2em;    position: sticky;   z-index: 4">
+              <i id="rotate" class="fas fa-chevron-right" style="font-size: 1.7em; color: black; margin-left: 0.5em; margin-top: 3px; margin-right: 0.3em; transform: rotate(90deg)"></i><h2 style="color: black; margin: 2px; ">BLUEPRINTS</h2>
+            </div>
+            <div style=" height: fit-content; font-weight: 600; font-size: 1.7em;  " id="hideBlues"> 
               ${Object.keys(this.state.items).map(k => {
                 const i = this.state.items[k];
                 return html`
                 <div class="">
-                  <div class="" style="border-bottom: 2px solid #898989;">
+                  <div class="" style="border-bottom: 2px solid rgb(236 236 236);">
                     <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)}>
                       <${SafeImg} src=${i.photo}/>
                       <a href="/product/${k}/${this.props.store}" style="color: #416dea !important" class="">${i.name}</a>
@@ -193,6 +230,7 @@ p.profile-about-content{
                     </div>
                   </div>
                 </div>
+                <br/>
                 `
               })}
             </div>

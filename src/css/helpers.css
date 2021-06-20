@@ -125,8 +125,7 @@ body.linked .button, body.linked h1 {
 }
 
 .expand:hover{
-    scale: 1.02;
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .para{
@@ -163,4 +162,17 @@ body{
   .six {
     margin-top: 1em;
   }
+}
+
+.rise{
+  transition: margin-top 1s;
+}
+
+.rise:hover{
+  margin-top: 10em
+}
+
+@font-face{
+  font-family: arialBlack;
+  src: url(arial-black.ttf) ;
 }

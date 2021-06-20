@@ -113,10 +113,9 @@ class Header extends Component {
         ‹
       </div>
       ` : ''}
-      <div class="header-content">
+      <div class="">
         ${iris.util.isElectron || (activeRoute && activeRoute.indexOf('/chat/') === 0) ? '' : html`
           <a href="/" onClick=${e => this.onLogoClick(e)} tabindex="0" class="visible-xs-flex logo">
-
           </a>
         `}
         <div class="text" style=${this.chatId ? 'cursor:pointer' : ''} onClick=${() => this.onTitleClicked()}>
