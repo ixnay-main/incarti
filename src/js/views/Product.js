@@ -92,7 +92,7 @@ class Product extends StoreView {
     
     <div class="main-view" id="profile" style="margin-top: 5em">
       <div class="container">
-        <div class="columns six" >
+        <div class="columns four" >
         <br/>
           <div class="" style=" z-index: 4; height: fit-content; ">
             <p contenteditable placeholder="Item name" style="font-size: 60px; margin: 0em; font-weight: 800;" onInput=${e => this.newProductName = e.target.innerText} />
@@ -121,14 +121,14 @@ class Product extends StoreView {
               <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.donwloadThis(e)}><i style="color: #000; font-size: 1.5em !important;margin-top: -0.6em;" class="fas fa-upload"></i></p>
               <div id="containerIcon"></div> 
             </div>
-            <p>Items must have a file. Stl files will be rendered.<p/>
+            <p>Items must have a file. Upload a file, then click the upload icon. Stl files will be rendered.<p/>
           </div>
           </div>
           <div class="" style="fit-content; border-radius: 10px !important">
             <div style="background-color: transparent; margin: auto; text-align:center; width: 10em; border-radius: 3px; padding: 5px;  " onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></div>
           </div>
         </div>
-        <div class="columns six" >
+        <div class="columns eight" >
           <div id="stl_cont2" class="" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9;  "><p style="display: none">o</p></div>        
         </div>
       </div>
