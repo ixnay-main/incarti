@@ -77,8 +77,8 @@ class Login extends Component {
         ${!this.state.showSwitchAccount ? html`
           <form id="login-form" autocomplete="off" onSubmit=${e => this.onLoginFormSubmit(e)}>
             <div id="create-account">
-              <h1>IXNAY</h1>
-              <input onInput=${e => this.onNameChange(e)} autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="off" id="login-form-name" type="text" name="name" placeholder="${t('whats_your_name')}"/>
+            <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">IXNAY</h1>
+            <input onInput=${e => this.onNameChange(e)} autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="off" id="login-form-name" type="text" name="name" placeholder="${t('whats_your_name')}"/>
               <p><button id="sign-up" type="submit">${t('new_user_go')}</button></p>
               <br/>
               <p><a href="#" id="show-existing-account-login" onClick=${() => this.setState({showSwitchAccount: true})}>${t('already_have_an_account')}</a></p>
