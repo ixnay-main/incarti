@@ -147,10 +147,11 @@ p.profile-about-content{
 }
     </style>
 
-
+<a href="https://incarti.vercel.app/src/#/">
   <div  class="" style="margin: auto; text-align: center; position: fixed; top: 1em; "> 
     <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">IXNAY</h1>
   </div>
+</a>
 
 
       <div class="container">
