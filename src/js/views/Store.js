@@ -154,11 +154,11 @@ p.profile-about-content{
 
 
       <div class="container">
-        <div class="columns four" style="display:block; background-color: #f9f9f9; border-radius: 15px  ;  ">
-          <div class="" style="position: sticky !important; top: 2em; background-color:#f9f9f9;  z-index: 4; padding:1em; border-radius:  15px  ;">
+        <div class="columns four" style="display:block; background-color: ; border-radius: 15px  ;  ">
+          <div class="" style="position: sticky !important; top: 2em; background-color:;  z-index: 4; padding:1em; border-radius:  15px  ;">
 
 
-            <div class="" style="background-color: #rgb(243 243 243); padding: 2px; border-radius:4px;  margin-bottom: 2em;    position: sticky; top: 1em;  z-index: 4">
+            <div class="" style="background-color:; padding: 2px; border-radius:4px;  margin-bottom: 2em;    position: sticky; top: 1em;  z-index: 4">
               <h2 style="color: black; margin: 2px; height:1.5em"><iris-text path="profile/name" placeholder="Name" user=${this.props.store}/></h2>
             </div>
               <p style=" height:1.5em "><iris-text path="profile/location" placeholder="Location" user=${this.props.store}/></p>
@@ -209,7 +209,7 @@ p.profile-about-content{
           <div class="" >
             <div class="expand" onClick=${() => {
                {showHideDiv('hideBlues')} 
-              }} style="background-color: rgb(243, 243, 243); color: black; display: flex; padding: 2px; border-radius:4px;  margin-bottom: 2em;    position: sticky;   z-index: 4">
+              }} style=" color: black; display: flex; padding: 2px; border-radius:4px;  margin-bottom: 2em;    position: sticky;   z-index: 4">
               <i id="rotate" class="fas fa-chevron-right" style="font-size: 1.7em; color: black; margin-left: 0.5em; margin-top: 3px; margin-right: 0.3em; transform: rotate(90deg)"></i><h2 style="color: black; margin: 2px; ">BLUEPRINTS</h2>
             </div>
             <div style=" height: fit-content; font-weight: 600; font-size: 1.7em;  " id="hideBlues"> 
