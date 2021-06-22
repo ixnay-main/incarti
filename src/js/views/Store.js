@@ -147,7 +147,7 @@ p.profile-about-content{
 }
     </style>
 
-<a href="https://incarti.vercel.app/src/#/">
+<a onClick=${() => route('/home')}>
   <div  class="" style="margin: auto; text-align: center; position: fixed; top: 1em; "> 
     <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">IXNAY</h1>
   </div>
@@ -155,7 +155,7 @@ p.profile-about-content{
 
 
       <div class="container">
-        <div class="columns four" style="display:block; background-color: ; border-radius: 15px  ;  ">
+        <div class="columns four" style="display:block; background-color: ; border-radius: 15px  ; position: sticky  !important: top: 10px ">
           <div class="" style="position: sticky !important; top: 2em; background-color:;  z-index: 4; padding:1em; border-radius:  15px  ;">
 
 
