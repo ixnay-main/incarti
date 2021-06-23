@@ -85,8 +85,8 @@ class Product extends StoreView {
   }
     </style>
 
-    <a onClick=${() => route('/home')}>
-      div  class="" style="margin: auto; position: fixed;     top: -3px;background-color: white !Important; z-index: 1002;     width: 100%;
+    <a href="https://incarti.vercel.app/src/#/">
+      <div  class="" style="margin: auto; position: fixed;     top: -3px;background-color: white !Important; z-index: 1002;     width: 100%;
       border-bottom: 8px solid black;"> 
         <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin: 0px;">IXNAY</h1>
       </div>
@@ -250,7 +250,7 @@ class Product extends StoreView {
       }
     </style>
 
-  <a href="https://ixnayrepos.com">
+  <a href="https://incarti.vercel.app/src/#/">
     <div  class="" style="margin: auto; position: fixed;     top: -3px;background-color: white !Important; z-index: 1002;     width: 100%;
     border-bottom: 8px solid black;"> 
       <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin: 0px;">IXNAY</h1>
