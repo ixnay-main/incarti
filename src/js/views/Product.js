@@ -123,14 +123,14 @@ class Product extends StoreView {
               <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.donwloadThis(e)}><i style="color: #000; font-size: 1.5em !important;margin-top: -0.6em;" class="fas fa-upload"></i></p>
               <div id="containerIcon"></div> 
             </div>
-            <p>Items must have a file. Upload a file, then click the upload icon. Stl files will be rendered.<p/>
+            <p>Items must have a file. Upload a file, then click the  <i style="color: #000; font-size: 1.2em !important;margin-top: -0.6em;" class="fas fa-upload"></i> icon. Stl files will be rendered.<p/>
           </div>
           </div>
           <div class="" style="fit-content; border-radius: 10px !important">
             <div style="background-color: transparent; margin: auto; text-align:center; width: 10em; border-radius: 3px; padding: 5px;  " onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></div>
           </div>
         </div>
-        <div class="columns eight" >
+        <div class="columns eight"  style="background-color: #7dbea920; border-radius: 10px">
           <div id="stl_cont2" class="" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9;  "><p style="display: none">o</p></div>        
         </div>
       </div>
@@ -256,7 +256,7 @@ class Product extends StoreView {
       <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin: 0px;">IXNAY</h1>
     </div>
   </a>
-<div class="container" style="padding: 1em; margin-top: 0em;  z-index: 5;">
+<div class="container" style="padding: 1em; margin-top: 0em;  z-index: 5;padding-top: 1em">
 
 
     <div class="columns six" style="padding-top: 2em" >
@@ -333,7 +333,7 @@ class Product extends StoreView {
         </div>
       ` : ''}
     </div>
-    <div class="columns six">
+    <div class="columns six" style="background-color: #7dbea940; border-radius: 10px; margin-top: 5em !Important">
       <div id="stl_cont2" style="width:auto; height: 60em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
     </div>
 </div>
