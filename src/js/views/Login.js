@@ -72,14 +72,31 @@ class Login extends Component {
   }
 
   render() {
-    return html`<section id="login">
+    return html`
+
+    <style>
+      input#login-form-name {
+        box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+        background-color: #7dbea960; 
+        width: 20em;
+        border-radius: 5px;">
+      }
+
+      select.language-selector {
+    border: none;
+}
+
+
+    </style>
+    
+    <section id="login">
       <div id="login-content">
         ${!this.state.showSwitchAccount ? html`
           <form id="login-form" autocomplete="off" onSubmit=${e => this.onLoginFormSubmit(e)}>
             <div id="create-account">
             <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">IXNAY</h1>
-            <input onInput=${e => this.onNameChange(e)} autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="off" id="login-form-name" type="text" name="name" placeholder="${t('whats_your_name')}"/>
-              <p><button id="sign-up" type="submit">${t('new_user_go')}</button></p>
+            <input style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; " onInput=${e => this.onNameChange(e)} autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="off" id="login-form-name" type="text" name="name" placeholder="${t('whats_your_name')}"/>
+              <p><button id="sign-up" style="color: black" type="submit">${t('new_user_go')}</button></p>
               <br/>
               <p><a href="#" id="show-existing-account-login" onClick=${() => this.setState({showSwitchAccount: true})}>${t('already_have_an_account')}</a></p>
               <p>
