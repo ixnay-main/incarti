@@ -176,10 +176,7 @@ class Home extends View{
 
   <div  class="" style=" margin: auto; text-align: center; position: fixed; top: 1em; margin-right: 1em; display: flex"> 
     <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">IXNAY</h1>
-    <div style="float: right">
-      <a href="//ixnayrepos.com/checkout.html"> Paid
-      </a>
-    </div>
+    
   </div>
 
   <div  style=" " class="container" style=" margin-top: 0em; "> 
