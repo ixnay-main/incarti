@@ -130,7 +130,7 @@ class Product extends StoreView {
             <div style="background-color: transparent; margin: auto; text-align:center; width: 10em; border-radius: 3px; padding: 5px;  " onClick=${e => this.addItemClicked(e)}><i class="fas fa-plus"></i></div>
           </div>
         </div>
-        <div class="columns eight"  style="background-color: #7dbea920; border-radius: 10px">
+        <div class="columns eight"  style=" box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; background-color: #7dbea920; border-radius: 10px">
           <div id="stl_cont2" class="" style="width:auto; min-height: 40em ;  border-radius: 10px !important; margin:0 auto; overflow: hidden; z-index: 9;  "><p style="display: none">o</p></div>        
         </div>
       </div>
@@ -333,7 +333,7 @@ class Product extends StoreView {
         </div>
       ` : ''}
     </div>
-    <div class="columns six" style="background-color: #7dbea940; border-radius: 10px; margin-top: 5em !Important">
+    <div class="columns six" style=" box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;  background-color: #7dbea940; border-radius: 10px; margin-top: 5em !Important">
       <div id="stl_cont2" style="width:auto; height: 60em ;margin:0 auto; overflow: hidden; z-index: 9"></div>
     </div>
 </div>
