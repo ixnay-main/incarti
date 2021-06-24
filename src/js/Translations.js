@@ -1,7 +1,7 @@
 export default {
   "en": {
     language_name: "English",
-    whats_your_name: "What's your name?",
+    whats_your_name: "Pick a name",
     new_user_go: "Go",
     already_have_an_account: "Already have an account?",
     back: "Back",
