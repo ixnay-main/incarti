@@ -83,8 +83,8 @@ class Login extends Component {
       }
 
       select.language-selector {
-        border: none;
-    }
+    border: none;
+}
 
 
     </style>
@@ -96,7 +96,7 @@ class Login extends Component {
             <div id="create-account">
             <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">IXNAY</h1>
             <input style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; " onInput=${e => this.onNameChange(e)} autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="off" id="login-form-name" type="text" name="name" placeholder="${t('whats_your_name')}"/>
-              <p><button id="sign-up" type="submit">${t('new_user_go')}</button></p>
+              <p><button id="sign-up" style="color: black" type="submit">${t('new_user_go')}</button></p>
               <br/>
               <p><a href="#" id="show-existing-account-login" onClick=${() => this.setState({showSwitchAccount: true})}>${t('already_have_an_account')}</a></p>
               <p>
