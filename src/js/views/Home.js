@@ -175,14 +175,20 @@ class Home extends View{
     </style>
 
   <div  class="" style=" margin: auto; text-align: center; position: fixed; top: 1em; margin-right: 1em; display: flex"> 
+    <div style="width: fit-content; float: left">
     <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">IXNAY</h1>
-    
+    </div>
+
   </div>
 
   <div  style=" " class="container" style=" margin-top: 0em; "> 
 
     <div  style=" " class="columns twelve"> 
-      <br/>
+
+    <div style="width: fit-content; float: left">
+    <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">CATALOG</h1>
+    </div>
+      <br/><br/><br/>
       <div class="" style="text-align: center; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;  padding: 1em;color: white; font-weight: 600; margin-bottom: 2em; padding-top: 5em;
       background-color: #7dbea980;
       border-radius: 15px;">
@@ -222,9 +228,12 @@ class Home extends View{
   </div>
   <div class="container" style=" margin-top: 2em !important;      background-color: #7dbea9;
     border-radius: 15px;"> 
-    <div class="columns three expand" id="stl_cont1" style="  
-    background-color: #7dbea920;   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;     height: 40em; margin-bottom: 4em; margin-top: 3em; border-radius: 10px; margin-left: 0em;"> 
-      <div class="columns three expand" style="width: 100%; z-index: 9;background-color: #fafafa; position: relative; margin-top: 33em; height: 12em; padding: 1em; border-radius: 0px 0px 10px 10px">
+    <div class="columns one "  style=" "> 
+      <p style="color: #ffffff00">d</p>
+    </div>
+
+    <div class="columns four expand" id="stl_cont1" style="  z-index: 1003 !important; background-color: background-color: rgb(255 255 255 / 00%); position: relative;   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;     height: 40em; margin-bottom: 4em; margin-top: 3em; border-radius: 10px; margin-left: 0em; background-color: #ffffffba;"> 
+      <div class="columns four expand" style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: 12em;position: relative;   padding: 1em; border-radius: 0px 0px 10px 10px">
         <h2 style="color: black; font-size: 24px; font-weight: 600;  min-height: 2.5em;  border-bottom: 4px solid black !important;" id="prodName1">Aquaponics watering plate</h2>
         <div id="containerIcon1">
           <button class="expand" style="     padding-left: 0em;"  onClick=${e => this.cloneItemClicked1(e)}><i class="fas fa-clone" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; color: #000;  margin-left: 0em"></i>
@@ -234,19 +243,11 @@ class Home extends View{
 
       </div>
     </div>
-    <div class="columns three "  id="stl_cont2" style="box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;height: 40em;  background-color: #7dbea920; margin-bottom: 4em; margin-top: 3em; border-radius: 10px"> 
-      <div class="columns three expand" style="width: 100%; z-index: 9;background-color: #fafafa; position: relative; margin-top: 33em; height: 12em; padding: 1em; border-radius: 0px 0px 10px 10px">
-        <h2 style="color: black; font-size: 24px; font-weight: 600;  min-height: 2.5em;   border-bottom: 4px solid black !important;" id="prodName2">Corner Joint 10mm</h2>
-        <div id="containerIcon2">
-          <button class="expand" style="     padding-left: 0em;"  onClick=${e => this.cloneItemClicked2(e)}><i class="fas fa-clone" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; color: #000;  margin-left: 0em"></i>
-          </button>
-          <h2 style="display: none; width: 0em" id="prodModel2"></h2>
-        </div>
-      </div>
-    </div>
-    <div class="columns six expand" style=" height: auto;padding: 1em; border-radius: 10px;  margin-top: 2em;"> 
-      <h2 style="color: black; font-size: 24px; font-weight: 600;">A pathway to sustainable consumption</h2><br/>
-      <h2 style="color: #212121 !important; font-size: 26px; font-weight: 600;"> <br/> For communities to provide for themselves they need designs for what they need, then the ability to produce it internally and cut dependency. <br/> From homes and farms to infrastructure. Provision is the goal of IXNAY.  </h2>
+
+
+
+    <div class="twelve columns" style="position: relative; top: -40em; height: auto; margin-top: 0.2em !important;  "> 
+      <img class="" src="../src/js/views/plate.png" style="z-index: 3; height: auto;width: 100%; border-radius: 10px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"/>
     </div>
   </div>
 
