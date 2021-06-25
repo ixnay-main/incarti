@@ -95,7 +95,7 @@ class Home extends View{
  
         models:
           [
-              {filename: "Circle_Plate_1_v1.stl", y:5, color:"#ffffff", opacity: 0.6, rotationz: 1.570796}
+              {filename: "Circle_Plate_1_v1.stl", y:42, color:"#ffffff", opacity: 0.6, rotationz: 1.570796, rotationx: -0.370796}
           ]
         }
 
@@ -181,19 +181,16 @@ class Home extends View{
 
   </div>
 
-  <div  style=" " class="container" style=" margin-top: 0em; "> 
+  <div  style=" " class="container" style=" margin-top: -2em; "> 
 
     <div  style=" " class="columns twelve"> 
-
-    <div style="width: fit-content; float: left">
-    <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">CATALOG</h1>
-    </div>
-      <br/><br/><br/>
+      <br/>
       <div class="" style="text-align: center; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;  padding: 1em;color: white; font-weight: 600; margin-bottom: 2em; padding-top: 5em;
-      background-color: #7dbea980;
+      background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 100%);
+
       border-radius: 15px;">
         <h1 style="font-size: 3em; font-weight: 800;">Manufacture for Autonomy</h1>
-        <p style=" color: #363636;   font-size: 1.2em;">Blueprints and Catalogs so you can build your world.</p>
+        <p style=" color: #fff;   font-size: 1.2em;">Blueprints and Catalogs so you can build your world.</p>
         <div style="display: flex; margin: auto; width: fit-content">
           <div class="expand" >
             <a  href="https://github.com/ixnay-main/ixnay"  target="blank" style="color: white !important"><i style="    font-size: 2.2em; margin-right: 1em; margin-top: -5px" class="fab fa-github"></i></a>
@@ -206,37 +203,16 @@ class Home extends View{
     </div>
   </div>
 
-  <div class="container" style=" margin-top: 2em !important; "> 
-    <div class="twelve columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important; margin-bottom: 1em !important;   background-color: #7dbea960;  border-radius: 10px ; padding: 1em"> 
-      <h2 style="color: #fff !important; font-size: 56px; font-weight: 600;">An open product catalog for the web </h2>
-    </div>
-  </div>
-
-  <div class="container" style="   border-radius: 15px;"> 
-    <div class="columns twelve expand">
-      <div class="" style="max-width: 70%; margin-top: 2em !important;   margin-bottom: 1em !important; padding: 10px; border-radius: 10px; min-width: 300px; display: flex">
-        <div>
-          <h2 style="color: #212121 !important; font-size: 56px; font-weight: 600;">Featured Prints</h2>
-          <h2 style="color: black; font-size: 28px; font-weight: 600;  height: "> Hit <i class="fas fa-clone" style="   padding: 6px; border-radius: 50px; font-size: 24px; color: #000;  margin-left: 0em"></i> to clone to your own store </h2>        
-        </div>
-        <div>
-          <i class="fas fa-long-arrow-alt-down" style="   padding: 6px; border-radius: 50px; font-size: 90px; color: #000;  margin-left: 10px"></i>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="container" style=" margin-top: 2em !important;      background-color: #7dbea9;
+  <div class="container" style=" margin-top: -0em !important;      background-color: #7dbea9;
     border-radius: 15px;"> 
     <div class="columns one "  style=" "> 
       <p style="color: #ffffff00">d</p>
     </div>
 
-    <div class="columns four expand" id="stl_cont1" style="  z-index: 1003 !important; background-color: background-color: rgb(255 255 255 / 00%); position: relative;   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;     height: 40em; margin-bottom: 4em; margin-top: 3em; border-radius: 10px; margin-left: 0em; background-color: #ffffffba;"> 
-      <div class="columns four expand" style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: 12em;position: relative;   padding: 1em; border-radius: 0px 0px 10px 10px">
-        <h2 style="color: black; font-size: 24px; font-weight: 600;  min-height: 2.5em;  border-bottom: 4px solid black !important;" id="prodName1">Aquaponics watering plate</h2>
+    <div class="columns four expand" id="stl_cont1" style="  z-index: 1003 !important;  position: relative; top: 0em;  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    height: 40em; margin-bottom: 4em; margin-top: 0em; border-radius: 10px; margin-left: 0em; "> 
+      <div class="columns four " style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: 12em;position: relative;   padding: 1em; border-radius: 0px 0px 10px 10px">
         <div id="containerIcon1">
-          <button class="expand" style="     padding-left: 0em;"  onClick=${e => this.cloneItemClicked1(e)}><i class="fas fa-clone" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; color: #000;  margin-left: 0em"></i>
+          <button class="" style="     padding-left: 0em;"  onClick=${e => this.cloneItemClicked1(e)}><i class="fas fa-clone" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; color: #000;  margin-left: 0em"></i>
           </button>
           <h2 style="display: none; width: 0em" id="prodModel1"></h2>
         </div>
@@ -246,42 +222,81 @@ class Home extends View{
 
 
 
-    <div class="twelve columns" style="position: relative; top: -40em; height: auto; margin-top: 0.2em !important;  "> 
-      <img class="" src="../src/js/views/plate.png" style="z-index: 3; height: auto;width: 100%; border-radius: 10px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"/>
+    <div class="twelve columns" style="position: relative; top: -50em; height: auto; margin-top: 0.2em !important;  "> 
+      <h2 style="color: white; font-size: 44px; font-weight: 800;  min-height: 2.5em;  position: relative; top: 3em; padding-left: 1em;" id="prodName1">AQUAPONICS RANGE</h2>
+
+      <img class="" src="../src/js/views/plate.png" style="z-index: 3; height: auto;width: 100%; border-radius: 10px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"></img>
     </div>
   </div>
 
+  <div class="container" style="   border-radius: 15px;     position: relative;
+  top: -43em;"> 
+    <div class="columns twelve expand">
+      <div class="" style="max-width: 70%; margin-top: 2em !important;   margin-bottom: 1em !important; padding: 10px; border-radius: 10px; min-width: 300px; display: flex">
+        <div>
+          <i class="fas fa-long-arrow-alt-up" style="   padding: 6px; border-radius: 50px; font-size: 90px; color: #000;  margin-left: 10px"></i>
+        </div>
+        <div>
+          <h2 style="color: #212121 !important; font-size: 56px; font-weight: 600;">Featured Prints</h2>
+          <h2 style="color: black; font-size: 28px; font-weight: 600;  height: "> Hit <i class="fas fa-clone" style="   padding: 6px; border-radius: 50px; font-size: 24px; color: #000;  margin-left: 0em"></i> to clone to your own store </h2>        
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="container" style=" margin-top: 2em !important;    position: relative;
+  top: -43em; "> 
+    <div class="twelve columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important; margin-bottom: 1em !important; background: radial-gradient(circle, rgba(133,133,133,1) 0%, rgba(97,97,97,1) 100%);
+    border-radius: 10px ; padding: 1em"> 
+      <h2 style="color: #fff !important; font-size: 56px; font-weight: 600;">An open product catalog for the web </h2>
+    </div>
+  </div>
+
+  
+  
+
   //hotfix for cotainer bug
-  <div class="container" style=" margin-top: 0.2em !important; "> 
+  <div class="container" style=" margin-top: 0.2em !important;     position: relative;
+  top: -43em; "> 
     <div class="twelve columns" style=" margin-top: 0.2em !important; height: 2em "> 
     </div>
   </div>
 
 
-  <div class="container" style=" margin-top: 2em !important; "> 
-    <div class="four columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important;   background-color: #7dbea960;  border-radius: 10px ; padding: 1em"> 
-      <i class="fas fa-qrcode" style="   ; padding: 6px; border-radius: 50px; font-size: 5em; color: #000;  margin-left: 0em"></i>
+  <div class="container" style=" margin-top: 2em !important;    position: relative;
+  top: -43em; "> 
+    <div class="four columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important;   background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 100%);
+    border-radius: 10px ; padding: 1em"> 
+      <i class="fas fa-qrcode" style="   ; padding: 6px; border-radius: 50px; font-size: 5em; color: #fff;  margin-left: 0em"></i>
       <h2 style="color: #fff !important; font-size: 36px; font-weight: 600;">Share blueprints at a scan </h2>
     </div>
-    <div class="four columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important;   background-color: #7dbea960;  border-radius: 10px ; padding: 1em"> 
-      <i class="fas fa-sign-out-alt" style="   ; padding: 6px; border-radius: 50px; font-size: 5em; color: #000;  margin-left: 0em"></i>
+    <div class="four columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important;  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 100%);
+    border-radius: 10px ; padding: 1em"> 
+      <i class="fas fa-sign-out-alt" style="   ; padding: 6px; border-radius: 50px; font-size: 5em; color: #fff;  margin-left: 0em"></i>
 
       <h2 style="color: #fff !important; font-size: 36px; font-weight: 600;">No sign-ups, use a key to return</h2>
     </div>
-    <div class="four columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important;   background-color: #7dbea960;  border-radius: 10px ; padding: 1em"> 
-      <i class="fas fa-project-diagram" style="   ; padding: 6px; border-radius: 50px; font-size: 5em; color: #000;  margin-left: 0em"></i>
+    <div class="four columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important;  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 100%);
+    border-radius: 10px ; padding: 1em"> 
+      <i class="fas fa-project-diagram" style="   ; padding: 6px; border-radius: 50px; font-size: 5em; color: #fff;  margin-left: 0em"></i>
 
       <h2 style="color: #fff !important; font-size: 36px; font-weight: 600;">Open source, distributed and uncensored. Feel free to spin up your own node.</h2>
     </div>
   </div>
 
-  <div class="container" style=" margin-top: 2em !important; "> 
+  <div class="container" style=" margin-top: 2em !important;    position: relative;
+  top: -43em; "> 
     <div class="twelve columns" style=" margin-top: 6em !important; height: 10em "> 
       <p style="color: black">Contact Tony allinto@icloud.com for inquirys</p>
     </div>
   </div>
 
-  <div class="container" style=" margin-top: 2em !important; "> 
+  <div class="container" style=" margin-top: 2em !important;     position: relative;
+  top: -43em;"> 
     <div class="twelve columns" style=" margin-top: 2em !important; height: 10em "> 
     </div>
   </div>
