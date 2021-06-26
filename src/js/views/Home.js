@@ -223,9 +223,8 @@ class Home extends View{
 
 
     <div class="twelve columns" style="position: relative; top: -50em; height: auto; margin-top: 0.2em !important;  "> 
-      <h2 style="color: white; font-size: 44px; font-weight: 800;  min-height: 2.5em;  position: relative; top: 3em; padding-left: 1em;" id="prodName1">AQUAPONICS RANGE</h2>
-
-      <img class="" src="../src/js/views/plate.png" style="z-index: 3; height: auto;width: 100%; border-radius: 10px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"></img>
+      <h2 style="color: white; font-size: 44px; font-weight: 800;  min-height: 2.5em;  position: relative; top: 3em; padding-left: 1em;" id="prodName1">AQ.2021.06</h2>
+      <img style="z-index: 3; height: auto;width: 100%; border-radius: 10px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;" src="img/platecopy.png" />
     </div>
   </div>
 
