@@ -172,14 +172,17 @@ class Home extends View{
     margin-top: -40em;
 
     }
+
+    *{
+      filter: invert(0) !important;
+    }
     </style>
 
-  <div  class="" style=" margin: auto; text-align: center; position: fixed; top: 1em; margin-right: 1em; display: flex"> 
-    <div style="width: fit-content; float: left">
-    <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin-left:5px;    margin-top: -14px;">IXNAY</h1>
+    <div  class="" style="margin: auto; text-align: center; margin-right: 1em; position: sticky; z-index: 10;
+    top: 2em; filter: invert(1);
+    mix-blend-mode: difference;"> 
+      <h1 style="font-family: arialBlack;  font-size: 2.8em; margin-left:5px;    margin-top: -14px; ">IXNAY</h1>
     </div>
-
-  </div>
 
   <div  style=" " class="container" style=" margin-top: -2em; "> 
 
@@ -212,7 +215,7 @@ class Home extends View{
     <div class="columns four expand" id="stl_cont1" style="  z-index: 1003 !important;  position: relative; top: 0em;  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    height: 40em; margin-bottom: 4em; margin-top: 0em; border-radius: 10px; margin-left: 0em; "> 
       <div class="columns four " style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: 12em;position: relative;   padding: 1em; border-radius: 0px 0px 10px 10px">
         <div id="containerIcon1">
-          <button class="" style="     padding-left: 0em;"  onClick=${e => this.cloneItemClicked1(e)}><i class="fas fa-clone" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; color: #000;  margin-left: 0em"></i>
+          <button class="" style="     padding-left: 0em;"  onClick=${e => this.cloneItemClicked1(e)}><i class="fas fa-clone colorChange" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; margin-left: 0em"></i>
           </button>
           <h2 style="display: none; width: 0em" id="prodModel1"></h2>
         </div>

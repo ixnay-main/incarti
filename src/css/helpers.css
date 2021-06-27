@@ -176,3 +176,22 @@ body{
   font-family: arialBlack;
   src: url(arial-black.ttf) ;
 }
+
+.colorChange{
+  animation-name: changeIt;
+  animation-duration: 4s;
+}
+
+@keyframes changeIt {
+  0%   {color: rgb(51, 51, 51);}
+  25%  {color: rgb(184, 184, 184);}
+  50%  {color: rgb(88, 88, 88);}
+  750% {color: rgb(44, 44, 44);}
+  100% {color: rgb(51, 51, 51);;}
+
+}
+
+
+header.nav.header {
+  display: none;
+}
