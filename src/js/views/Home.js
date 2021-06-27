@@ -215,7 +215,7 @@ class Home extends View{
     <div class="columns four expand" id="stl_cont1" style="  z-index: 1003 !important;  position: relative; top: 0em;  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    height: 40em; margin-bottom: 4em; margin-top: 0em; border-radius: 10px; margin-left: 0em; "> 
       <div class="columns four " style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: 12em;position: relative;   padding: 1em; border-radius: 0px 0px 10px 10px">
         <div id="containerIcon1">
-          <button class="" style="     padding-left: 0em;"  onClick=${e => this.cloneItemClicked1(e)}><i class="fas fa-clone colorChange" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; margin-left: 0em"></i>
+          <button class="" style="     padding-left: 0em;"  onClick=${e => this.cloneItemClicked1(e)}><i class="fas fa-clone colorChange" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; margin-left: 0em; color: black"></i>
           </button>
           <h2 style="display: none; width: 0em" id="prodModel1"></h2>
         </div>
