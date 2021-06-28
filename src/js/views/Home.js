@@ -193,7 +193,7 @@ class Home extends View{
 
       border-radius: 15px;">
         <h1 style="font-size: 3em; font-weight: 800;">Manufacture for Autonomy</h1>
-        <p style=" color: #fff;   font-size: 1.2em;">Blueprints and Catalogs so you can build your world.</p>
+        <p style=" color: #fff;   font-size: 1.2em;">Blueprints and Catalogs to build your world.</p>
         <div style="display: flex; margin: auto; width: fit-content">
           <div class="expand" >
             <a  href="https://github.com/ixnay-main/ixnay"  target="blank" style="color: white !important"><i style="    font-size: 2.2em; margin-right: 1em; margin-top: -5px" class="fab fa-github"></i></a>
@@ -232,7 +232,7 @@ class Home extends View{
   </div>
 
   <div class="container" style="   border-radius: 15px;     position: relative;
-  top: -43em;"> 
+  top: -43em ;"> 
     <div class="columns twelve expand">
       <div class="" style="max-width: 70%; margin-top: 2em !important;   margin-bottom: 1em !important; padding: 10px; border-radius: 10px; min-width: 300px; display: flex">
         <div>
