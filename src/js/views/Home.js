@@ -240,7 +240,7 @@ class Home extends View{
         </div>
         <div>
           <h2 style="color: #212121 !important; font-size: 56px; font-weight: 600;">Featured Prints</h2>
-          <h2 style="color: black; font-size: 28px; font-weight: 600;  height: "> Hit <i class="fas fa-clone" style="   padding: 6px; border-radius: 50px; font-size: 24px; color: #000;  margin-left: 0em"></i> to clone to your own store </h2>        
+          <h2 style="color: black; font-size: 28px; font-weight: 600;  height: "> Hit <i class="fas fa-clone" style="   padding: 6px; border-radius: 50px; font-size: 24px; color: #000;  margin-left: 0em"></i> to clone to your own catalog </h2>        
         </div>
 
 
