@@ -767,6 +767,38 @@ span.icon{
   }
 }
 
+.shuffle{
+  margin-top: -43em
+}
+
+.mobileLower{
+  top: -43em 
+} 
+
+.mobileRise{
+  position: relative;
+  top: -80em !important;
+}
+
+@media (max-width:625px) {
+  .hideImg{
+    display: none
+  }
+
+  .shuffle{
+    margin-top: 0em
+  }
+
+  .mobileLower{
+    top: 0em
+  }
+
+  .mobileRise{
+    position: relative;
+    top: -50em !important;
+  }
+}
+
 @media (max-width:625px) {
   .application-list {
     width: 250px;

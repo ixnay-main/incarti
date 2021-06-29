@@ -85,14 +85,16 @@ class Product extends StoreView {
   }
     </style>
 
-    <a href="https://ixnayrepos.com">
-      <div  class="" style="margin: auto; position: fixed;     top: -3px;background-color: white !Important; z-index: 1002;     width: 100%;
-      border-bottom: 8px solid black;"> 
-        <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin: 0px;">IXNAY</h1>
-      </div>
-    </a>
+
     
-    <div class="main-view" id="profile" style="margin-top: 5em">
+    <div class="main-view" id="profile" style="margin-top: 0em">
+
+    <div  class="" style="margin: auto; text-align: center; margin-right: 1em; position: sticky; z-index: 10;
+    top: 2em; filter: invert(1);
+    mix-blend-mode: difference;"> 
+      <h1 style="font-family: arialBlack;  font-size: 2.8em; margin-left:5px;    margin-top: -14px; ">IXNAY</h1>
+    </div>
+
       <div class="container">
         <div class="columns four" >
         <br/>
@@ -250,12 +252,13 @@ class Product extends StoreView {
       }
     </style>
 
-  <a href="https://ixnayrepos.com">
-    <div  class="" style="margin: auto; position: fixed;     top: -3px;background-color: white !Important; z-index: 1002;     width: 100%;
-    border-bottom: 8px solid black;"> 
-      <h1 style="font-family: arialBlack; color: black; font-size: 2.8em; margin: 0px;">IXNAY</h1>
+
+    <div  class="" style="margin: auto; text-align: center; margin-right: 1em; position: sticky; z-index: 10;
+    top: 2em; filter: invert(1);
+    mix-blend-mode: difference;"> 
+      <h1 style="font-family: arialBlack;  font-size: 2.8em; margin-left:5px;    margin-top: -14px; ">IXNAY</h1>
     </div>
-  </a>
+    
 <div class="container" style="padding: 1em; margin-top: 0em;  z-index: 5;padding-top: 1em">
 
 

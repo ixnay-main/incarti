@@ -95,7 +95,7 @@ class Home extends View{
  
         models:
           [
-              {filename: "Circle_Plate_1_v1.stl", y:42, color:"#ffffff", opacity: 0.6, rotationz: 1.570796, rotationx: -0.370796}
+              {filename: "Circle_Plate_1_v1.stl", y:42, color:"#ffffff", opacity: 0.6, rotationz: 1.570796, rotationx: -0.370796, display: "wireframe"}
           ]
         }
 
@@ -121,7 +121,31 @@ class Home extends View{
           mouse_zoom: false,
         models:
           [
-              {filename: "corner_joint_10mm.stl", y:5, opacity: 0.6,color:"#ffffff", rotationz: 1.570796, display: ""}
+              {filename: "Module.stl", y:5, opacity: 0.6,color:"#ffffff", rotationz: 1.570796, display: "wireframe"}
+          ]
+        }
+
+      )
+
+      item3.once(j => {
+        
+        console.log(j.val)
+        var anchor3 = ('<a id="uploadBtn" style="color: #000;" download href="' + j.val + '" ><i class="fas fa-download" style="   padding: 6px; border-radius: 50px; font-size: 1.7em; color: #000;"></i></a>');
+        $("#containerIcon3").append(anchor3)
+        $("#prodModel2").html(j.val)
+      });
+
+      var stl_viewer3=new StlViewer
+      (
+
+      
+        document.getElementById("stl_cont3"),
+        {
+          auto_rotate:true,  
+          mouse_zoom: false,
+        models:
+          [
+              {filename: "download.stl", y:5, opacity: 0.6,color:"#ffffff", rotationz: 1.570796, display: "wireframe"}
           ]
         }
 
@@ -189,7 +213,7 @@ class Home extends View{
     <div  style=" " class="columns twelve"> 
       <br/>
       <div class="" style="text-align: center; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;  padding: 1em;color: white; font-weight: 600; margin-bottom: 2em; padding-top: 5em;
-      background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 100%);
+      background: black;
 
       border-radius: 15px;">
         <h1 style="font-size: 3em; font-weight: 800;">Manufacture for Autonomy</h1>
@@ -206,14 +230,14 @@ class Home extends View{
     </div>
   </div>
 
-  <div class="container" style=" margin-top: -0em !important;      background-color: #7dbea9;
+  <div class="container " style=" margin-top: -0em !important;      background-color: #7dbea9;
     border-radius: 15px;"> 
     <div class="columns one "  style=" "> 
       <p style="color: #ffffff00">d</p>
     </div>
 
     <div class="columns four expand" id="stl_cont1" style="  z-index: 1003 !important;  position: relative; top: 0em;  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    height: 40em; margin-bottom: 4em; margin-top: 0em; border-radius: 10px; margin-left: 0em; "> 
-      <div class="columns four " style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: 12em;position: relative;   padding: 1em; border-radius: 0px 0px 10px 10px">
+      <div class="columns four " style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: auto;position: relative;   padding-left: 1em; padding-right: 1em; width: auto; border-radius: 7px">
         <div id="containerIcon1">
           <button class="" style="     padding-left: 0em;"  onClick=${e => this.cloneItemClicked1(e)}><i class="fas fa-clone colorChange" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; margin-left: 0em; color: black"></i>
           </button>
@@ -226,13 +250,60 @@ class Home extends View{
 
 
     <div class="twelve columns" style="position: relative; top: -50em; height: auto; margin-top: 0.2em !important;  "> 
-      <h2 style="color: white; font-size: 44px; font-weight: 800;  min-height: 2.5em;  position: relative; top: 3em; padding-left: 1em;" id="prodName1">AQ.2021.06</h2>
-      <img style="z-index: 3; height: auto;width: 100%; border-radius: 10px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;" src="img/platecopy.png" />
+      <h2 style="color: white; z-index: 1001; font-size: 44px; font-weight: 800;  min-height: 2.5em;  position: relative; top: 3em; padding-left: 1em;" id="prodName1"></h2>
+      <img class="hideImg" style="z-index: 3; height: auto;width: 100%; border-radius: 10px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;filter: opacity(0.9) !important;" src="img/platecopy.png" />
     </div>
   </div>
 
-  <div class="container" style="   border-radius: 15px;     position: relative;
-  top: -43em ;"> 
+  <div class="container mobileLower" style="     background-color: #7dbea9;border-radius: 15px; position: relative; "> 
+
+
+    <div class="columns four expand" id="stl_cont2" style="z-index: 1001;  z-index: 1003 !important;  position: relative; top: 0em;  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    height: 40em; margin-bottom: 4em; margin-top: 0em; border-radius: 10px; margin-left: 0em; "> 
+      <div class="columns four " style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: auto;position: relative;   padding-left: 1em; padding-right: 1em; width: auto; border-radius: 7px">
+        <div id="containerIcon2" style="display: flex; padding-left: 1em; padding-top: 0.5em">
+          <h2 style="color: black; font-size: 30px; font-weight: 700">AQ.2021.06</h2>
+          <button class="" style="     padding-left: 1em;     padding-top: 0px;"  onClick=${e => this.cloneItemClicked2(e)}><i class="fas fa-clone colorChange" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; margin-left: 0em; color: black"></i>
+          </button>
+          <h2 style="display: none; width: 0em" id="prodModel2"></h2>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="columns four expand" id="stl_cont3" style="z-index: 1001;  z-index: 1003 !important;  position: relative; top: 0em;  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    height: 40em; margin-bottom: 4em; margin-top: 0em; border-radius: 10px; margin-left: 0em; "> 
+      <div class="columns four " style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: auto;position: relative;   padding-left: 1em; padding-right: 1em; width: auto; border-radius: 7px">
+        <div id="containerIcon3" style="display: flex; padding-left: 1em; padding-top: 0.5em">
+          <h2 style="color: black; font-size: 30px; font-weight: 700">AQ.2021.07</h2>
+          <button class="" style="     padding-left: 1em;     padding-top: 0px;"  onClick=${e => this.cloneItemClicked3(e)}><i class="fas fa-clone colorChange" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; margin-left: 0em; color: black"></i>
+          </button>
+          <h2 style="display: none; width: 0em" id="prodModel3"></h2>
+        </div>
+
+      </div>
+    </div>
+
+      <div class="columns four expand" id="stl_cont3" style="z-index: 1001;  z-index: 1003 !important;  position: relative; top: 0em;  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    height: 40em; margin-bottom: 4em; margin-top: 0em; border-radius: 10px; margin-left: 0em; "> 
+      <div class="columns four " style="width: 100%; z-index: 9; background-color: #fafafa; position: relative; margin-top: 33em; height: auto;position: relative;   padding-left: 1em; padding-right: 1em; width: auto; border-radius: 7px">
+        <div id="containerIcon3" style="display: flex; padding-left: 1em; padding-top: 0.5em">
+          <h2 style="color: black; font-size: 30px; font-weight: 700">AQ.2021.07</h2>
+          <button class="" style="     padding-left: 1em;     padding-top: 0px;"  onClick=${e => this.cloneItemClicked3(e)}><i class="fas fa-clone colorChange" style="   ; padding: 6px; border-radius: 50px; font-size: 1.7em; margin-left: 0em; color: black"></i>
+          </button>
+          <h2 style="display: none; width: 0em" id="prodModel3"></h2>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="twelve columns" style="position: relative; top: -50em; height: auto; margin-top: 0.2em !important;  "> 
+      <h2 style="color: white; font-size: 44px; font-weight: 800;  min-height: 2.5em;  position: relative; top: 3em; padding-left: 1em;" id="prodName1"></h2>
+      <img  class="hideImg" style="z-index: 3; height: auto;width: 100%; border-radius: 10px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;" src="img/aqua.png" />
+    </div>
+  </div>
+
+<div class="mobileRise">
+  <div class="container " style="   border-radius: 15px;     position: relative;"> 
     <div class="columns twelve expand">
       <div class="" style="max-width: 70%; margin-top: 2em !important;   margin-bottom: 1em !important; padding: 10px; border-radius: 10px; min-width: 300px; display: flex">
         <div>
@@ -250,8 +321,7 @@ class Home extends View{
 
   
 
-  <div class="container" style=" margin-top: 2em !important;    position: relative;
-  top: -43em; "> 
+  <div class="container "  style=" margin-top: 2em !important;    position: relative;"> 
     <div class="twelve columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important; margin-bottom: 1em !important; background: radial-gradient(circle, rgba(133,133,133,1) 0%, rgba(97,97,97,1) 100%);
     border-radius: 10px ; padding: 1em"> 
       <h2 style="color: #fff !important; font-size: 56px; font-weight: 600;">An open product catalog for the web </h2>
@@ -261,17 +331,15 @@ class Home extends View{
   
   
 
-  //hotfix for cotainer bug
-  <div class="container" style=" margin-top: 0.2em !important;     position: relative;
-  top: -43em; "> 
+  <div class="container " style=" margin-top: 0.2em !important;     position: relative;"> 
     <div class="twelve columns" style=" margin-top: 0.2em !important; height: 2em "> 
     </div>
   </div>
 
 
-  <div class="container" style=" margin-top: 2em !important;    position: relative;
-  top: -43em; "> 
-    <div class="four columns" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important;   background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 100%);
+  <div class="container " style=" margin-top: 2em !important;    position: relative;"> 
+
+    <div class="four columns" style="z-index: 1001;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; margin-top: 1em !important;   background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,50,50,1) 100%);
     border-radius: 10px ; padding: 1em"> 
       <i class="fas fa-qrcode" style="   ; padding: 6px; border-radius: 50px; font-size: 5em; color: #fff;  margin-left: 0em"></i>
       <h2 style="color: #fff !important; font-size: 36px; font-weight: 600;">Share blueprints at a scan </h2>
@@ -290,19 +358,17 @@ class Home extends View{
     </div>
   </div>
 
-  <div class="container" style=" margin-top: 2em !important;    position: relative;
-  top: -43em; "> 
+  <div class="container " style=" margin-top: 2em !important;    position: relative;"> 
     <div class="twelve columns" style=" margin-top: 6em !important; height: 10em "> 
       <p style="color: black">Contact Tony allinto@icloud.com for inquirys</p>
     </div>
   </div>
 
-  <div class="container" style=" margin-top: 2em !important;     position: relative;
-  top: -43em;"> 
+  <div class="container " style=" margin-top: 2em !important;     position: relative;"> 
     <div class="twelve columns" style=" margin-top: 2em !important; height: 10em "> 
     </div>
   </div>
-
+</div>
 
 
   `;
