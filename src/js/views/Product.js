@@ -89,23 +89,8 @@ class Product extends StoreView {
 <div class="main-view" id="profile" style="">
     <div class="container " style=" position: sticky !important; top: 1em;" >
         <div class="columns twelve" style="margin-top: 1em; border-bottom: 2px solid rgb(236, 236, 236); padding-bottom: 10px">
-                ${this.isMyProfile ? html`
-                <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route(`/product/new`)}>
-                <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
-                </button>
-                ` : ''}
 
-                <button class="expand" style="padding: 3px 10px; margin-left: 1em;"><i class="far fa-trash-alt"></i> Delete</button>
-
-                <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode"></i></button>
-                <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => { 
-                    var inputc = document.body.appendChild(document.createElement("input"));
-                    inputc.value = window.location.href;
-                    inputc.focus();
-                    inputc.select();
-                    document.execCommand('copy');
-                    inputc.parentNode.removeChild(inputc);
-                    document.getElementById("likeBtn").style.color = "#3f80e6";} }><i class="fas fa-link" id="likeBtn" ></i>
+                <button class="expand" style="padding: 3px 10px; margin-left: 1em;">
                 </button>
         </div>
     </div>
@@ -275,7 +260,7 @@ class Product extends StoreView {
         </style>
 
 
-      <div class="container " style=" position: sticky !important; background-color: white; z-index: 1002;" >
+      <div class="container " style=" position: sticky !important; background-color: white; z-index: 1002; margin-top: 2ems" >
         <div class="columns twelve" style="padding-bottom: 3px; margin-left: -1em;  background-color: white;">
             ${this.isMyProfile ? html`
             <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route(`/product/new`)}>

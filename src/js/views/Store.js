@@ -157,10 +157,10 @@ p.profile-about-content{
     </style>
 
 
-        <div class="container lowerThis" style=" position: sticky !important; background-color: white; z-index: 1002;" >
-          <div class="columns twelve" style="padding-bottom: 3px; margin-left: -1em;  background-color: white;">
+        <div class="container " style=" position: sticky !important; background-color: white; z-index: 1002; margin-top: 1em" >
+          <div class="columns twelve" style="padding-bottom: 3px; margin-left: 0em;  background-color: white;">
               ${this.isMyProfile ? html`
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route(`/product/new`)}>
+              <button class="expand" style="padding: 3px 10px; margin-left: 0em;" onClick=${() => route(`/product/new`)}>
                 <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
               </button>
               ` : ''}
@@ -182,7 +182,7 @@ p.profile-about-content{
                 } }><i class="fas fa-link" id="likeBtn" ></i>
               </button>
 
-              <button id='countNum'></button>
+              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" id='countNum'></button>
           </div>
         </div>
 
@@ -190,8 +190,7 @@ p.profile-about-content{
       <div class="container">
 
         <div class="columns twelve" style=" height:fit-content; ">
-          <div class=""  style="margin-top: 56px
-          ">
+          <div class=""  style="margin-top: 56px">
             <div style=" height: fit-content; font-weight: 600; font-size: 1.7em;  " id="hideBlues"> 
               ${Object.keys(this.state.items).map(k => {
                 const i = this.state.items[k];
