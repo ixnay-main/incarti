@@ -235,7 +235,7 @@ class Home extends View{
         <p style="    font-size: 1.2em;">The Blueprints to build your world.</p>
       </div>
 
-      <div style="display: flex; margin: auto; width: fit-content; color: black;">
+      <div style="display: flex; margin: auto; width: min-content; color: black;">
         <div style="display: flex; margin: auto; background-color: #ffffff40; padding: 3px;border-radius: 15px; height: fit-content; padding-left:20px; padding-top: 5px; margin-right: 1em !important ">
           <div style="display :flex; margin-right: 1.3em ">
             <div class="smolbar" style=""></div>
