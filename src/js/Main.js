@@ -26,6 +26,8 @@ import Group from './views/Group.js';
 import Message from './views/Message.js';
 import Follows from './views/Follows.js';
 import About from './views/About.js';
+import Orders from './views/Orders.js';
+
 import Explorer from './views/Explorer.js';
 import Contacts from './views/Contacts.js';
 import Torrent from './views/Torrent.js';
@@ -171,7 +173,11 @@ class Main extends Component {
               <${Profile} path="/replies/:id?" tab="replies"/>
               <${Profile} path="/likes/:id?" tab="likes"/>
               <${Group} path="/group/:id?"/>
+
               <${Store} path="/store/:store?"/>
+
+              <${Orders} path="/orders/:orders?"/>
+
               <${Checkout} path="/checkout/:store?"/>
               <${Product} path="/product/:product/:store"/>
               <${Product} path="/product/new" store=Session.getPubKey()/>

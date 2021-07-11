@@ -311,3 +311,13 @@ footer.visible-xs-flex.nav.footer {
 .lowerThis{
   margin-top: 2em;
 }
+
+select.language-selector {
+  border: none;
+  background-color: #ffffff00;
+  color: white;
+}
+
+input#login-form-name {
+  color: white;
+}

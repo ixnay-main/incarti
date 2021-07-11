@@ -27,14 +27,20 @@ class Checkout extends Store {
       const v = this.cart[k];
       v && (cart[k] = v);
     });
+    var randIntGo = (Math.floor(Math.random() * (999999 - 11111 + 1) + 11111))
+    console.log(randIntGo)
+    var getThisOrder = 'New order: ' + ', ID: ' + randIntGo + ', Cart ' +JSON.stringify(cart) + ', delivery: ' + JSON.stringify(this.state.delivery) + ', payment: ' + this.state.paymentMethod
     Session.channels[pub].send({
-      text: 'New order: ' + JSON.stringify(cart) + ', delivery: ' + JSON.stringify(this.state.delivery) + ', payment: ' + this.state.paymentMethod,
+      text: getThisOrder,
       order: true
     });
+    console.log(getThisOrder)
+    State.public.user().get('orders').get(randIntGo).put(getThisOrder)
+
     State.local.get('cart').get(pub).map().once((v, k) => {
       !!v && State.local.get('cart').get(pub).get(k).put(null);
     });
-    route('/chat/' + pub);
+    route('/orders/' + pub);
   }
 
   renderCart() {

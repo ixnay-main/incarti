@@ -236,16 +236,19 @@ class Home extends View{
       </div>
 
       <div style="display: flex; margin: auto; width: fit-content; color: black;">
-        <div style="display :flex; margin-top: -4px; margin-right: 2em ">
-          <div class="smolbar" style=""></div>
-          <div class="smolbar" style=""></div>
-          <div class="smolbar" style=""></div>
+        <div style="display: flex; margin: auto; background-color: #ffffff40; padding: 3px;border-radius: 15px; height: fit-content; padding-left:20px; padding-top: 5px; margin-right: 1em !important ">
+          <div style="display :flex; margin-right: 1.3em ">
+            <div class="smolbar" style=""></div>
+            <div class="smolbar" style=""></div>
+            <div class="smolbar" style=""></div>
+          </div>
+          <div class="expand" >
+            <a  href="https://github.com/ixnay-main/ixnay"  target="blank" style=""><i style=" color: black;   font-size: 2.2em; margin-right: 0.3em; " class="fab fa-github"></i></a>
+          </div>
         </div>
-        <div class="expand" >
-          <a  href="https://github.com/ixnay-main/ixnay"  target="blank" style=""><i style=" color: black;   font-size: 2.2em; margin-right: 1em; margin-top: -5px" class="fab fa-github"></i></a>
-        </div>
-        <div class="expand" >
-          <a  onClick=${() => route(`/store`)}  target="blank" style=" color: black "> <h2 class="para" style=" font-weight: 800 ;color: black ">Enter <i  class="fas fa-chevron-right" style=" color: black;     font-size: 0.8em; margin-left: 0.2em;"></i></h2></a>
+
+        <div class="expand" style=" height: fit-content;   padding: 5px 10px;border-radius: 15px ;margin-left: 3px; width: 5em">
+          <a  onClick=${() => route(`/store`)}  target="blank" style=" color: #ffffff20 "> <h2 class="para" style=" font-weight: 800 ;color: black "><i  class="fas fa-chevron-right" style=" color: color: #ffffff20;font-size: 1.5em; margin-left: 0.2em;"></i></h2></a>
         </div>
       </div>
     </div>

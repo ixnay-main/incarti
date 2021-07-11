@@ -260,7 +260,7 @@ class Product extends StoreView {
         </style>
 
 
-      <div class="container " style=" position: sticky !important; background-color: white; z-index: 1002; margin-top: 2ems" >
+      <div class="container " style=" position: fixed !important; background-color: white; z-index: 1002; margin-top: 2em" >
         <div class="columns twelve" style="padding-bottom: 3px; margin-left: -1em;  background-color: white;">
             ${this.isMyProfile ? html`
             <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route(`/product/new`)}>
@@ -270,8 +270,8 @@ class Product extends StoreView {
 
             <button class="expand" style="padding: 3px 10px; margin-left: 1em;"><i class="far fa-trash-alt"></i> Delete</button>
             ${cartTotalItems ? html`
-            <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route('/checkout/' + this.props.store)}> <i class="far fa-trash-alt"></i> Orders (${cartTotalItems})</button>
-            ` : ''}
+            <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route('/checkout/' + this.props.store)}>Shopping cart (${cartTotalItems})</button>
+        ` : ''}
             <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode"></i></button>
             <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => { 
               var inputc = document.body.appendChild(document.createElement("input"));
@@ -283,6 +283,11 @@ class Product extends StoreView {
               document.getElementById("likeBtn").style.color = "#3f80e6";
 
               } }><i class="fas fa-link" id="likeBtn" ></i>
+            </button>
+
+            <button class="expand" style="padding: 3px 10px; margin-left: 1em;"  class="add" onClick=${() => this.addToCart()}>
+              Add to cart
+              ${this.cart[this.props.product] ? ` (${this.cart[this.props.product]})` : ''}
             </button>
 
             <button id='countNum'></button>

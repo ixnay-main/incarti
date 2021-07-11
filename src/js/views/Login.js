@@ -61,7 +61,15 @@ class Login extends Component {
   }
 
   renderExistingAccountLogin() {
-    return html`<input id="paste-privkey" autofocus onInput=${e => this.onPastePrivKey(e)} placeholder="${t('paste_private_key')}"/>
+    return html`
+    <div style="display :flex ;transform: rotate(20deg); position: absolute; top: -3em;">
+    <div class="bar" style=""></div>
+    <div class="bar" style=""></div>
+    <div class="bar" style=""></div>
+
+  </div>
+
+    <input id="paste-privkey" autofocus onInput=${e => this.onPastePrivKey(e)} placeholder="${t('paste_private_key')}"/>
       <p>
         <button id="scan-privkey-btn" onClick=${e => this.toggleScanPrivKey(e)}>${t('scan_private_key_qr_code')}</button>
       </p>
@@ -72,14 +80,23 @@ class Login extends Component {
   }
 
   render() {
-    return html`<section id="login">
-      <div id="login-content">
+    return html`
+
+    
+    <section id="login">
+    <div style="display :flex ;transform: rotate(20deg); position: absolute; top: -3em;">
+    <div class="bar" style=""></div>
+    <div class="bar" style=""></div>
+    <div class="bar" style=""></div>
+
+  </div>
+      <div id="login-content" style="z-index: 1099">
         ${!this.state.showSwitchAccount ? html`
           <form id="login-form" autocomplete="off" onSubmit=${e => this.onLoginFormSubmit(e)}>
             <div id="create-account">
               <h1 style="font-family: arialBlack; color: black; font-size: 3em">IXNAY</h1>
               <input style="background-color: #ffffff00" onInput=${e => this.onNameChange(e)} autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="off" id="login-form-name" type="text" name="name" placeholder="${t('whats_your_name')}"/>
-              <p><button  id="sign-up" type="submit">${t('new_user_go')}</button></p>
+              <p><button  id="sign-up" type="submit" style="background-color: #ffffff00"><i class="fas fa-chevron-right"></i></button></p>
               <br/>
               <p><a href="#" id="show-existing-account-login" onClick=${() => this.setState({showSwitchAccount: true})}>${t('already_have_an_account')}</a></p>
               <p>
