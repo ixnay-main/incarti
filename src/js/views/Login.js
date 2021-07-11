@@ -6,6 +6,8 @@ import QRScanner from '../QRScanner.js';
 import Session from '../Session.js';
 import { Component } from '../lib/preact.js';
 import Helpers from '../Helpers.js';
+import { route } from '../lib/preact-router.es.js';
+
 
 class Login extends Component {
   componentDidMount() {
@@ -94,9 +96,10 @@ class Login extends Component {
         ${!this.state.showSwitchAccount ? html`
           <form id="login-form" autocomplete="off" onSubmit=${e => this.onLoginFormSubmit(e)}>
             <div id="create-account">
-              <h1 style="font-family: arialBlack; color: black; font-size: 3em">IXNAY</h1>
+              <h1 style="font-family: arialBlack; color: black; font-size: 3em" onClick=${() =>    { route('/home/' );}
+            }>IXNAY</h1>
               <input style="background-color: #ffffff00" onInput=${e => this.onNameChange(e)} autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="off" id="login-form-name" type="text" name="name" placeholder="${t('whats_your_name')}"/>
-              <p><button  id="sign-up" type="submit" style="background-color: #ffffff00"><i class="fas fa-chevron-right"></i></button></p>
+              <p><button  id="sign-up" type="submit" style="background-color: #ffffff00"><i class="fas fa-chevron-right" style="color: black"></i></button></p>
               <br/>
               <p><a href="#" id="show-existing-account-login" onClick=${() => this.setState({showSwitchAccount: true})}>${t('already_have_an_account')}</a></p>
               <p>
