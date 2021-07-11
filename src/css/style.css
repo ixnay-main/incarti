@@ -1193,7 +1193,7 @@ a.msg {
 }
 
 #login a {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 #login a:hover {

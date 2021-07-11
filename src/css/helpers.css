@@ -315,9 +315,9 @@ footer.visible-xs-flex.nav.footer {
 select.language-selector {
   border: none;
   background-color: #ffffff00;
-  color: white;
+  color: black;
 }
 
 input#login-form-name {
-  color: white;
+  color: black;
 }
