@@ -173,6 +173,11 @@ class Product extends StoreView {
 
     setTimeout(function(){
 
+
+      var subInnerHTML = document.getElementById("getSubValues").innerText
+      console.log(subInnerHTML)
+      document.getElementById("displaySubs").outerHTML = subInnerHTML
+
       var stl_viewer=new StlViewer
       (
       document.getElementById("stl_cont2"),
@@ -185,7 +190,6 @@ class Product extends StoreView {
       ]
       }
       )
-      console.log(document.getElementById("modelDataRaw").textContent)
 
       var qr;
       (function() {
@@ -212,7 +216,6 @@ class Product extends StoreView {
         return false;
       }
     }
-
 
 
 
@@ -361,6 +364,9 @@ class Product extends StoreView {
     };
     var subNameValue = sub.subName
     var subAddyValue = sub.subAddy
+    console.log(subNameValue)
+    console.log(subAddyValue)
+
 
     document.getElementById("clearThis1").value = " "
     document.getElementById("clearThis2").value = " "
@@ -387,6 +393,7 @@ class Product extends StoreView {
       description: this.newProductDescription,
       weight: this.newProductWeight,
 
+      subs: getSubs,
 
       model: getModel,
       modelRaw: modelRaw,
