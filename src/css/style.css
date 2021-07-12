@@ -202,7 +202,7 @@ a.logo img:last-child {
 
 .nav .btn {
   font-size: 2em;
-  color: white;
+  color: black;
   position: relative;
 }
 
@@ -382,7 +382,6 @@ a.logo img:last-child {
   align-items: center;
   max-width: 100%;
   border-radius: 10px;
-  background-color: black;
 }
 
 .tabs {
@@ -706,6 +705,7 @@ span.icon{
   width: fit-content;
   display: flex;
   width: 100%;
+  padding-left: 1em;
 }
 
 .application-list .electron-padding {
@@ -763,11 +763,9 @@ span.icon{
   }
 
   .application-list a.logo img:last-child {
-    display: none;
   }
 
   .application-list .text {
-    display: none;
   }
 }
 

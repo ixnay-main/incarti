@@ -13,7 +13,10 @@ import { translate as t } from './Translation.js';
 
 import Settings from './views/Settings.js';
 import LogoutConfirmation from './views/LogoutConfirmation.js';
+
 import Chat from './views/Chat.js';
+import Pricing from './views/Pricing.js';
+
 import Store from './views/Store.js';
 import Checkout from './views/Checkout.js';
 import Product from './views/Product.js';
@@ -38,6 +41,8 @@ import Footer from './components/Footer.js';
 import State from './State.js';
 import Icons from './Icons.js';
 
+var settingsIcon = html`<i class="fas fa-cog"></i>`
+
 const userAgent = navigator.userAgent.toLowerCase();
 const isElectron = (userAgent.indexOf(' electron/') > -1);
 if (!isElectron && ('serviceWorker' in navigator)) {
@@ -57,11 +62,22 @@ PeerManager.init();
 Helpers.checkColorScheme();
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: t('HOME'), icon: Icons.home},
-  {url: '/chat', text: t('ORDERS'), icon: Icons.chat},
-  {url: '/store', text: t('STORE'), icon: Icons.store},
-  {url: '/settings', text: t('SETTINGS'), icon: Icons.settings},
+  {url: '/', text: t('HOME'), icon: Icons.home , classCss: "null"},
+  {url: '/chat', text: t('ORDERS'), icon: Icons.chat , classCss: "null"},
+  {url: '/store', text: t('STORE'), icon: Icons.store , classCss: "null"},
+
 ];
+
+const APPLICATIONSSECOND = [ // TODO: move editable shortcuts to localState gun
+
+  {url: '/settings', text: settingsIcon, icon: Icons.settings , classCss: "profile"},
+  {url: '/pricing', text: t('PRICING'), icon: Icons.settings, classCss: "profile"},
+  {url: '/profile', text: t('PROFILE'), icon: Icons.settings, classCss: "profile"},
+
+
+];
+
+
 
 class Menu extends Component {
   componentDidMount() {
@@ -92,7 +108,19 @@ class Menu extends Component {
             return html`
               <${a.native ? 'a' : Link} class="flex " onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
 
-                <span class="text right">${a.text}</span>
+                <span class="text right ${a.classCss}">${a.text}</span>
+              <//>`;
+          } else {
+            return html`<br/><br/>`;
+          }
+        })}
+        <div class="flex-auto"></div>
+        ${APPLICATIONSSECOND.map(b => {
+          if (b.url) {
+            return html`
+              <${b.native ? 'a' : Link} class="flex " onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${b.url}>
+
+                <span class="text right ${b.classCss}">${b.text}</span>
               <//>`;
           } else {
             return html`<br/><br/>`;
@@ -167,6 +195,8 @@ class Main extends Component {
               <${Message} path="/post/:hash"/>
               <${Torrent} path="/torrent/:id"/>
               <${About} path="/about"/>
+              <${Pricing} path="/pricing"/>
+
               <${Settings} path="/settings"/>
               <${LogoutConfirmation} path="/logout"/>
               <${Profile} path="/profile/:id?" tab="profile"/>

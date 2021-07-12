@@ -249,7 +249,7 @@ class Chat extends View {
 
         <div class="container lowerThis" style="position: fixed; top: 12px;  ">
           <div class="columns twelve" style="margin-top: 1em; border-bottom: 2px solid rgb(236, 236, 236); padding-bottom: 10px">
-              <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #cb1313; min-width: 6em; color: white" onClick=${() => {showHideDiv('divMsg')} }><i class="far fa-user" style=" color: white"></i><iris-text style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></button></a>
+              <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white" onClick=${() => {showHideDiv('divMsg')} }><i class="far fa-user" style=" color: white"></i><iris-text style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></button></a>
 
               ${this.isMyProfile ? html`
               <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route(`/product/new`)}>

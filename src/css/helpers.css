@@ -199,15 +199,9 @@ header.nav.header {
   color: #999 !important;
 }
 
-
-.flex{
-  transition: margin-left 1s;
+.flex-auto{
+  flex: auto !important
 }
-
-.flex:hover{
-  margin-left: 0.6em;
-}
-
 
 
 .right{
@@ -320,4 +314,31 @@ select.language-selector {
 
 input#login-form-name {
   color: black;
+}
+
+.profile{
+  
+}
+
+.infoBox{
+  background-color: black ;
+border-radius: 10px;
+padding: 1em;
+
+}
+
+.blur-all {
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}
+
+.nullBlur{
+  -webkit-filter: blur(0px);
+  -moz-filter: blur(0px);
+  -o-filter: blur(0px);
+  -ms-filter: blur(0px);
+  filter: blur(0px);
 }

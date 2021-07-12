@@ -61,12 +61,12 @@ class Store extends View {
       var srcElement = document.getElementById(ele);
       if (srcElement != null) {
         if (srcElement.style.display == "block") {
-          document.getElementById("rotate").style.transform = "rotate(0deg)"
           srcElement.style.display = 'none';
+
         }
         else {
           srcElement.style.display = 'block';
-          document.getElementById("rotate").style.transform = "rotate(90deg)"
+
         }
         return false;
       }
@@ -80,22 +80,6 @@ class Store extends View {
     } , 1000)
 
 
-    function showHideDiv2(ele) {
-      var srcElement = document.getElementById(ele);
-      if (srcElement != null) {
-        if (srcElement.style.display == "block") {
-          document.getElementById("rotate2").style.transform = "rotate(0deg)"
-
-
-          srcElement.style.display = 'none';
-        }
-        else {
-          srcElement.style.display = 'block';
-          document.getElementById("rotate2").style.transform = "rotate(90deg)"
-        }
-        return false;
-      }
-    }
 
     var qr;
     (function() {
@@ -121,7 +105,7 @@ class Store extends View {
 
   canvas#qr-code {
     width: 100%;
-    max-width: 16em;
+
 }
 
   .profile-actions button, .feed-container > p button {
@@ -156,21 +140,44 @@ p.profile-about-content{
 }
     </style>
 
+        <div id="divMsg" style="display:none; position: absolute; margin-top: 10em; width: 100%; z-index: 2004;     background-color: #ffffffe0;
+        height: 100%;
+        margin-top: -2em;
+        padding-top: 10em;">
+          <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;
+          width: 20em !important;">
+            <button onClick=${() => {
+              showHideDiv('divMsg');}}>Go away</button>
+            <canvas id="qr-code" style="align-content: center  ;"></canvas>
+          </div>    
+        </div>
 
-        <div class="container " style=" position: sticky !important; background-color: white; z-index: 1002; margin-top: 1em" >
-          <div class="columns twelve" style="padding-bottom: 3px; margin-left: 0em;  background-color: white;">
+
+        <div class="container blurThis" style=" position: fixed !important; background-color: white; z-index: 1002; margin-top: 0px" >
+          <div class="columns twelve" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em">
+              <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white"><i class="far fa-user" style=" color: white"></i><iris-text style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></button></a>
+
               ${this.isMyProfile ? html`
-              <button class="expand" style="padding: 3px 10px; margin-left: 0em;" onClick=${() => route(`/product/new`)}>
-                <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
+              <button class="expand" style="padding: 3px 10px; margin-left: 0em; background-color:#fd96c5" onClick=${() => route(`/product/new`)}>
+                <a href="/product/new" class="" style="color: white;"><i class="fas fa-share" style="color: white;"></i> New Blueprint</a>
               </button>
               ` : ''}
 
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;"><i class="far fa-trash-alt"></i> Delete</button>
+              <div class="flex-auto"></div>
+
+              ${this.isMyProfile ? html`
+              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${e => this.onClickDelete(e)}><i class="far fa-trash-alt"></i> Delete</button>
+            ` : ''}
               ${cartTotalItems ? html`
               <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route('/checkout/' + this.props.store)}> <i class="far fa-trash-alt"></i> Orders (${cartTotalItems})</button>
               ` : ''}
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode"></i></button>
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => { 
+              <button class="expand" style="padding: 3px 10px; margin-left: 1em;"  onClick=${() => {
+                showHideDiv('divMsg');
+ } 
+                
+                }><i class="fas fa-qrcode" style="font-size: 1.7em"></i>
+              </button>
+              <button class="expand linkBtn" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => { 
                 var inputc = document.body.appendChild(document.createElement("input"));
                 inputc.value = window.location.href;
                 inputc.focus();
@@ -191,29 +198,41 @@ p.profile-about-content{
 
         <div class="columns twelve" style=" height:fit-content; ">
           <div class=""  style="margin-top: 56px">
-            <div style=" height: fit-content; font-weight: 600; font-size: 1.7em;  " id="hideBlues"> 
-              ${Object.keys(this.state.items).map(k => {
-                const i = this.state.items[k];
-                return html`
-                <div class="">
-                  <div class="" style="">
-                    <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)} style="display: flex; padding-top: 5px; padding-bottom: 5px">
-      
-                      <div style="display: flex">
-                        <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="description">[${i.description}].</p>
-                        <h3 style="margin: 4px; font-size: 20px; font-weight: 600"><a href="/product/${k}/${this.props.store}" style="color: #000 !important" class="">[${i.name}]</a></h3>
-                      </div>
+            <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; margin-bottom: 3em " id="hideBlues"> 
+              <div style="display: flex; width:100%; position: fixed; top: 3.1em; border-bottom: 2px solid grey; background-color: white; padding: 5px;">
+                <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Collection</p>
+                <p style="width: 40%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Name</p>
 
-                      <p style="display: none" class="price">${i.price}</p>
-                      <button style="display: none" class="add" onClick=${e => this.addToCart(k, e)}>
-                        <p style="color: white" class="price">add</p>
-                        ${this.cart[k] ? ` (${this.cart[k]})` : ''}
-                      </button>
+                <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Price</p>
+                <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Cart</p>
+              </div>
+
+              <div style="margin-top: 5em">
+                ${Object.keys(this.state.items).map(k => {
+                  const i = this.state.items[k];
+                  return html`
+                  <div class="" style="width:100%;">
+                    <div class="" style="width:100%">
+                      <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)} style="display: flex; padding-top: 5px; padding-bottom: 5px; width:100%">
+        
+                        <div style="display: flex;width:100%">
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.description}]</p>
+                          <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a href="/product/${k}/${this.props.store}" style="color: #000 !important" class="">[${i.name}]</a></h3>
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="">${i.price}</p>
+
+                          <button style="width: 20%; padding: 3px 10px; margin-left: 1em; background-color: #f5f5f5;     max-width: 7em; " class="expand" onClick=${e => this.addToCart(k, e)}>
+                            <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="price"><i class="fas fa-plus"></i>                          ${this.cart[k] ? ` (${this.cart[k]})` : ''}
+                            </p>
+                          </button>
+
+                        </div>
+
+                      </div>
                     </div>
                   </div>
-                </div>
-                `
-              })}
+                  `
+                })}
+              </div>
             </div>
           </div>
         </div>

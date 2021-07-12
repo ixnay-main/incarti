@@ -304,7 +304,7 @@ class Product extends StoreView {
                   <iris-text user=${this.props.store} path="store/products/${this.props.product}/description" placeholder="Description"/>
                 </p>
                 <p class="price">
-                  <iris-text placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
+                  <iris-text  type="number"  placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
                 </p>
                 <p class="subs">
                   <iris-text style="display: none" id="getSubValues" placeholder="subs" user=${this.props.store} path="store/products/${this.props.product}/subs"/>
