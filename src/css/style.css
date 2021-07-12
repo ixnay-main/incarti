@@ -322,7 +322,6 @@ a.logo img:last-child {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 5px;
 }
 
 .sidebar {
@@ -697,8 +696,6 @@ span.icon{
   border-right: var(--sidebar-border-right);
   color: var(--sidebar-color);
     height: fit-content;
-
-  border-radius: 10px;
   flex-direction: inherit !important;
   position: absolute;
   top: 0em;
