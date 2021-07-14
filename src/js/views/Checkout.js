@@ -29,8 +29,18 @@ class Checkout extends Store {
     });
     var randIntGo = (Math.floor(Math.random() * (9999999 - 111111 + 1) + 111111))
     console.log(randIntGo)
-    var anchorTagDynamic = html` onClick=${() => route('/chat/' + pub)}`
-    var getThisOrder = `<div class="boxedOrder">`  +  'New order: ' + ', ID: ' + randIntGo + ', Cart ' +JSON.stringify(cart) + ', delivery: ' + JSON.stringify(this.state.delivery) + ', payment: ' + this.state.paymentMethod + `<a href="${window.location.host}/chat/${pub}" target="blank">go to link</a>` + `</div>` + `<br/>`;
+    //time
+    let current = new Date();
+    let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+    let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+    let dateTime = cDate + ' ' + cTime;
+    console.log(dateTime);
+
+
+    //delete
+    var dynamicDelete = (`<a onClick=${() => { State.public.user().get('liveOrders').get(randIntGo).put(null) }}>delete This</a>`)
+    //put this order in a list of orders which are fetched on Orders.js
+    var getThisOrder = `<div class="boxedOrder">` + "Time: " + dateTime  +  'New order: ' + ', ID: ' + randIntGo + ', Cart ' +JSON.stringify(cart) + ', delivery: ' + JSON.stringify(this.state.delivery) + ', payment: ' + this.state.paymentMethod + `<a href="${window.location.host}/chat/${pub}" target="blank">go to link</a>` + dynamicDelete + `</div>`;
     Session.channels[pub].send({
       text: getThisOrder,
       order: true

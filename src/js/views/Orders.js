@@ -21,11 +21,13 @@ class Orders extends View {
     })
 
     return html`
-      <div class="">
+      <div class="container">
         
-      <br/>
-        <p><small>Version 1.7.1</small></p>
-        <div id="writeDoc"></div>
+      <br/><br/><br/>
+        <div class="columns six">
+          <div id="writeDoc"></div>
+        </div>
+
       </div>
     `;
   }

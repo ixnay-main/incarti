@@ -385,5 +385,7 @@ padding: 1em;
 }
 
 .boxedOrder{
-  background-color: green;
+  background-color: rgb(241, 241, 241);
+  padding: 1em;
+  border-radius: 7px;
 }
