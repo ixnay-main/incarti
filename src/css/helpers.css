@@ -229,27 +229,29 @@ button{
 
 @keyframes gradient {
   0% {
-    background:#50bdf3 ;
+    background:#fa3e3e ;
   }
   20% {
-    background:#356b86 ;
+    background:#f1f1f1 ;
   }
   30% {
-    background:#20cabc ;
+    background:#fa3e3e ;
   }
   45% {
-    background:#6bf350 ;
+    background:#f3f3f3 ;
   }
   60% {
-    background:#c8f350 ;
+    background:#fa3e3e ;
   }
   80% {
-    background:#50f3ca ;
+    background:#f3f3f3 ;
   }
   100% {
-    background:#50bcf3 ;
+    background:#fa3e3e ;
   }
 } 
+
+
 
 
 .bar:before, .box:after {
@@ -267,15 +269,54 @@ button{
 .bar:before {
   left: 200px;
   top: 100px;
-  box-shadow: -30px 0 40px -10px #60ec94;
   transform: skewX(40deg);
+  animation: rotateThis  infinite 30s;
+
 }
+
+@keyframes rotateThis {
+  0% {
+    transform: skewX(20deg);
+    box-shadow: -30px 0 40px -10px #eb1c1c;
+
+    }
+  20% {
+    transform: skewX(60deg);
+    box-shadow: -30px 0 40px -10px #e0e0e0;
+
+  }
+  30% {
+    transform: skewX(20deg);
+    box-shadow: -30px 0 40px -10px #c90000;
+
+  }
+  50% {
+    transform: skewX(0deg);
+    box-shadow: -30px 0 40px -10px #fcfcfc;
+
+  }
+  60% {
+    transform: skewX(-40deg);
+    box-shadow: -30px 0 40px -10px #eb1c1c;
+
+  }
+  90% {
+    transform: skewX(-10deg);
+    box-shadow: -30px 0 40px -10px #fcfcfc;
+
+  }
+  100% {
+    transform: skewX(0deg);
+    box-shadow: -30px 0 40px -10px #eb1c1c;
+
+  }
+}  */
 
 .bar:after {
   left: 200px;
   top: -300px;
   transform: skewX(40deg);
-  box-shadow: inset -40px 0 70px -30px #60ec94;
+  box-shadow: inset -40px 0 70px -30px #cc0a0a;
 }
 
 .bar{
