@@ -245,6 +245,10 @@ class Chat extends View {
       div#chat-view {
           margin-top: 5em;
       }
+
+      .chat-list {
+        margin-top: 2em;
+    }
     </style>
 
         <div class="container lowerThis" style="position: fixed; top: 12px;  ">
@@ -263,10 +267,13 @@ class Chat extends View {
 
               
           </div>
+          <div class="columns twelve">
+            <h2>hello</h2>
+          </div>
         </div>
 
 
-    <${ChatList} class=${this.props.id ? 'hidden-xs' : ''}/>
+    <${ChatList}  class=${this.props.id ? 'hidden-xs' : ''}/>
     <div id="chat-main" class="${this.props.id ? '' : 'hidden-xs'}">
     ${this.props.id && this.props.id.length > 20 ? html`
       <div class="main-view" id="message-view" onScroll=${e => this.onMessageViewScroll(e)}>

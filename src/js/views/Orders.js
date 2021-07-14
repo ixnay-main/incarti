@@ -10,12 +10,14 @@ class Orders extends View {
 
   renderView() {
 
-    var getOrders =  State.public.user().get('orders')
+    var getOrders =  State.public.user().get('liveOrders')
 
     console.log("nuuuu")
+
     getOrders.map().on((data) => {
-        console.log(data)
-        $("#writeDoc").html(data)
+        const keys = data  
+        console.log(keys)
+        $("#writeDoc").append(keys)
     })
 
     return html`
@@ -24,10 +26,6 @@ class Orders extends View {
       <br/>
         <p><small>Version 1.7.1</small></p>
         <div id="writeDoc"></div>
-
-
-
-      
       </div>
     `;
   }

@@ -27,15 +27,16 @@ class Checkout extends Store {
       const v = this.cart[k];
       v && (cart[k] = v);
     });
-    var randIntGo = (Math.floor(Math.random() * (999999 - 11111 + 1) + 11111))
+    var randIntGo = (Math.floor(Math.random() * (9999999 - 111111 + 1) + 111111))
     console.log(randIntGo)
-    var getThisOrder = 'New order: ' + ', ID: ' + randIntGo + ', Cart ' +JSON.stringify(cart) + ', delivery: ' + JSON.stringify(this.state.delivery) + ', payment: ' + this.state.paymentMethod
+    var anchorTagDynamic = html` onClick=${() => route('/chat/' + pub)}`
+    var getThisOrder = `<div class="boxedOrder">`  +  'New order: ' + ', ID: ' + randIntGo + ', Cart ' +JSON.stringify(cart) + ', delivery: ' + JSON.stringify(this.state.delivery) + ', payment: ' + this.state.paymentMethod + `<a href="${window.location.host}/chat/${pub}" target="blank">go to link</a>` + `</div>` + `<br/>`;
     Session.channels[pub].send({
       text: getThisOrder,
       order: true
     });
     console.log(getThisOrder)
-    State.public.user().get('orders').get(randIntGo).put(getThisOrder)
+    State.public.user().get('liveOrders').get(randIntGo).put(getThisOrder)
 
     State.local.get('cart').get(pub).map().once((v, k) => {
       !!v && State.local.get('cart').get(pub).get(k).put(null);
@@ -49,6 +50,7 @@ class Checkout extends Store {
       <div class="flex-table">
         ${Object.keys(this.cart).filter(k => !!this.cart[k] && !!this.state.items[k]).map(k => {
           const i = this.state.items[k];
+
           return html`
             <div class="flex-row">
               <div class="flex-cell">

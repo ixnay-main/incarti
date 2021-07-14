@@ -65,6 +65,8 @@ const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
   {url: '/', text: t('HOME'), icon: Icons.home , classCss: "null"},
   {url: '/chat', text: t('ORDERS'), icon: Icons.chat , classCss: "null"},
   {url: '/store', text: t('STORE'), icon: Icons.store , classCss: "null"},
+  {url: '/orders', text: t('LIVE ORDERS'), icon: Icons.store , classCss: "null"},
+
 
 ];
 

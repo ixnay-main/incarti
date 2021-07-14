@@ -141,13 +141,15 @@ p.profile-about-content{
     </style>
 
         <div id="divMsg" style="display:none; position: absolute; margin-top: 10em; width: 100%; z-index: 2004;     background-color: #ffffffe0;
-        height: 100%;
+        height: 100%; text-align: center;
         margin-top: -2em;
-        padding-top: 10em;">
+        padding-top: 10em; " onClick=${() => {
+          showHideDiv('divMsg');}}>
           <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;
           width: 20em !important;">
-            <button onClick=${() => {
-              showHideDiv('divMsg');}}>Go away</button>
+            <h1 style="font-family: arialBlack">IXNAY</h1>
+            <a spellcheck="false" href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></button></a>
+
             <canvas id="qr-code" style="align-content: center  ;"></canvas>
           </div>    
         </div>
@@ -166,18 +168,18 @@ p.profile-about-content{
               <div class="flex-auto"></div>
 
               ${this.isMyProfile ? html`
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${e => this.onClickDelete(e)}><i class="far fa-trash-alt"></i> Delete</button>
+              <button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #ffffff00" onClick=${e => this.onClickDelete(e)}><i class="far fa-trash-alt" style="font-size: 1.5em"></i></button>
             ` : ''}
               ${cartTotalItems ? html`
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route('/checkout/' + this.props.store)}> <i class="far fa-trash-alt"></i> Orders (${cartTotalItems})</button>
+              <button class="expand" style="padding: 3px 10px; margin-left: 1em;  background-color: #ffffff00" onClick=${() => route('/checkout/' + this.props.store)}> <i class="far fa-trash-alt"></i> Orders (${cartTotalItems})</button>
               ` : ''}
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;"  onClick=${() => {
+              <button class="expand" style="padding: 3px 10px; margin-left: 1em;  background-color: #ffffff00"  onClick=${() => {
                 showHideDiv('divMsg');
- } 
+                } 
                 
                 }><i class="fas fa-qrcode" style="font-size: 1.7em"></i>
               </button>
-              <button class="expand linkBtn" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => { 
+              <button class="expand linkBtn" style="padding: 3px 10px; margin-left: 1em;  background-color: #ffffff00; font-size: 1.5em" onClick=${() => { 
                 var inputc = document.body.appendChild(document.createElement("input"));
                 inputc.value = window.location.href;
                 inputc.focus();
@@ -189,7 +191,7 @@ p.profile-about-content{
                 } }><i class="fas fa-link" id="likeBtn" ></i>
               </button>
 
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" id='countNum'></button>
+              <button class="expand" style="padding: 3px 10px; margin-left: 1em;  background-color: #ffffff00" id='countNum'></button>
           </div>
         </div>
 
