@@ -17,8 +17,9 @@ class Store extends View {
     this.followedUsers = new Set();
     this.followers = new Set();
     this.cart = {};
-    this.state = {items:{}};
+    this.state = {items:{} , orderpiece:{}};
     this.items = {};
+    this.orderpiece = {};
     this.id = 'profile';
     
   }
@@ -138,6 +139,11 @@ pre, blockquote, dl, figure, table, p, ul, ol, form {
 p.profile-about-content{
   display:none
 }
+
+button#countNum {
+  color: white;
+  font-size: 1.5em;
+}
     </style>
 
         <div id="divMsg" style="display:none; position: absolute; margin-top: 10em; width: 100%; z-index: 2004;     background-color: #ffffffe0;
@@ -156,42 +162,46 @@ p.profile-about-content{
 
 
         <div class="container blurThis" style=" position: fixed !important; background-color: white; z-index: 1002; margin-top: 0px" >
-          <div class="columns twelve" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em">
-              <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white"><i class="far fa-user" style=" color: white"></i><iris-text style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></button></a>
+          <div class="columns twelve" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
+              <button class="" style="padding: 3px 10px; margin-left: 0em;    background-color: #2c974b; line-height: 20px;}">
+                <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: white"></i><iris-text style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></a>
+              </button>
 
               ${this.isMyProfile ? html`
-              <button class="expand" style="padding: 3px 10px; margin-left: 0em; background-color:#fd96c5" onClick=${() => route(`/product/new`)}>
+              <button class="" style="padding: 3px 10px; margin-left: 0em;    background-color: #2c974b; line-height: 20px;}" onClick=${() => route(`/product/new`)}>
                 <a href="/product/new" class="" style="color: white;"><i class="fas fa-share" style="color: white;"></i> New Blueprint</a>
               </button>
               ` : ''}
 
               <div class="flex-auto"></div>
 
-              ${this.isMyProfile ? html`
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #ffffff00" onClick=${e => this.onClickDelete(e)}><i class="far fa-trash-alt" style="font-size: 1.5em"></i></button>
-            ` : ''}
-              ${cartTotalItems ? html`
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;  background-color: #ffffff00" onClick=${() => route('/checkout/' + this.props.store)}> <i class="far fa-trash-alt"></i> Orders (${cartTotalItems})</button>
-              ` : ''}
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;  background-color: #ffffff00"  onClick=${() => {
-                showHideDiv('divMsg');
-                } 
-                
-                }><i class="fas fa-qrcode" style="font-size: 1.7em"></i>
-              </button>
-              <button class="expand linkBtn" style="padding: 3px 10px; margin-left: 1em;  background-color: #ffffff00; font-size: 1.5em" onClick=${() => { 
-                var inputc = document.body.appendChild(document.createElement("input"));
-                inputc.value = window.location.href;
-                inputc.focus();
-                inputc.select();
-                document.execCommand('copy');
-                inputc.parentNode.removeChild(inputc);
-                document.getElementById("likeBtn").style.color = "#3f80e6";
+              <div class="" style="padding: 3px 10px; margin-left: 0em;    background-color: #2c974b; line-height: 20px;border-radius: 6px">
+                ${this.isMyProfile ? html`
+                  <button class="" style="padding: 3px 10px; margin-left: 0em; background-color: #ffffff00" onClick=${e => this.onClickDelete(e)}><i class="far fa-trash-alt" style="font-size: 1.5em; color: white"></i></button>
+                ` : ''}
+                ${cartTotalItems ? html`
+                <button class="" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00" onClick=${() => route('/checkout/' + this.props.store)}> <i class="far fa-trash-alt" style="color: white"></i> Orders (${cartTotalItems})</button>
+                ` : ''}
+                <button class="" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00"  onClick=${() => {
+                  showHideDiv('divMsg');
+                  } 
+                  
+                  }><i class="fas fa-qrcode" style="font-size: 1.5em; color: white"></i>
+                </button>
+                <button class=" linkBtn" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00; font-size: 1.5em" onClick=${() => { 
+                  var inputc = document.body.appendChild(document.createElement("input"));
+                  inputc.value = window.location.href;
+                  inputc.focus();
+                  inputc.select();
+                  document.execCommand('copy');
+                  inputc.parentNode.removeChild(inputc);
+                  document.getElementById("likeBtn").style.color = "#3f80e6";
 
-                } }><i class="fas fa-link" id="likeBtn" ></i>
-              </button>
+                  } }><i class="fas fa-link" id="likeBtn" style="color: white" ></i>
+                </button>
 
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;  background-color: #ffffff00" id='countNum'></button>
+                <button class="" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00" id='countNum'></button>
+              </div>
           </div>
         </div>
 
@@ -199,14 +209,15 @@ p.profile-about-content{
       <div class="container">
 
         <div class="columns twelve" style=" height:fit-content; ">
-          <div class=""  style="margin-top: 56px">
+          <div class=""  style="margin-top: 10em">
             <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; margin-bottom: 3em " id="hideBlues"> 
-              <div style="display: flex; width:100%; position: fixed; top: 3.1em; border-bottom: 2px solid grey; background-color: white; padding: 5px;">
-                <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Collection</p>
-                <p style="width: 40%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Name</p>
+              <div style="width:100%; position: fixed; top: 3.1em; border-bottom: 2px solid grey; background-color: white; padding: 5px;">
+                <h2 class="" style="">CATALOG</h2>
+                <div style="display: flex; ">
+                  <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Collection</p>
+                  <p style="width: 40%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Name</p>
+                </div>
 
-                <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Price</p>
-                <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Cart</p>
               </div>
 
               <div style="margin-top: 5em">
@@ -222,10 +233,16 @@ p.profile-about-content{
                           <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a href="/product/${k}/${this.props.store}" style="color: #000 !important" class="">[${i.name}]</a></h3>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="">${i.price}</p>
 
-                          <button style="width: 20%; padding: 3px 10px; margin-left: 1em; background-color: #f5f5f5;     max-width: 7em; " class="expand" onClick=${e => this.addToCart(k, e)}>
-                            <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="price"><i class="fas fa-plus"></i>                          ${this.cart[k] ? ` (${this.cart[k]})` : ''}
-                            </p>
-                          </button>
+                          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">            
+                            <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${e => this.addToCart(k, e)}><i class="far fa-plus" style="font-size: 1.5em; color: #c5c5c5 !important "></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
+                          
+                            <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
+                              showHideOrder('divOrder');
+                              } 
+                              
+                              }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5"></i>
+                            </button>
+                          </div>
 
                         </div>
 
@@ -235,6 +252,7 @@ p.profile-about-content{
                   `
                 })}
               </div>
+   
             </div>
           </div>
         </div>
@@ -288,6 +306,19 @@ p.profile-about-content{
           delete this.items[id];
         }
         this.setState({items: this.items});
+      });
+    }
+    if (pub) {
+      State.public.user(pub).get('store').get('liveOrders').map().on((x, jd) => {
+        if (x) {
+          const n = {};
+          n[jd] = x;
+          Object.assign(this.orderpiece, n);
+          this.updateTotalPrice();
+        } else {
+          delete this.orderpiece[jd];
+        }
+        this.setState({orderpiece: this.orderpiece});
       });
     }
   }

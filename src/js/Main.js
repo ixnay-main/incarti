@@ -63,9 +63,8 @@ Helpers.checkColorScheme();
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
   {url: '/', text: t('HOME'), icon: Icons.home , classCss: "null"},
-  {url: '/chat', text: t('ORDERS'), icon: Icons.chat , classCss: "null"},
   {url: '/store', text: t('STORE'), icon: Icons.store , classCss: "null"},
-  {url: '/orders', text: t('LIVE ORDERS'), icon: Icons.store , classCss: "null"},
+  {url: '/orders', text: t( 'ORDERS'), icon: Icons.store , classCss: "null"},
 
 
 ];
@@ -73,7 +72,6 @@ const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
 const APPLICATIONSSECOND = [ // TODO: move editable shortcuts to localState gun
 
   {url: '/settings', text: settingsIcon, icon: Icons.settings , classCss: "profile"},
-  {url: '/pricing', text: t('PRICING'), icon: Icons.settings, classCss: "profile"},
   {url: '/profile', text: t('PROFILE'), icon: Icons.settings, classCss: "profile"},
 
 

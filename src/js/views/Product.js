@@ -78,7 +78,6 @@ class Product extends StoreView {
     var parentStore = html`<i class="fas fa-chevron-left"></i>`
 
     return html`
-
     <style>
     canvas#qr-code {
       width: 100%;
@@ -89,12 +88,10 @@ class Product extends StoreView {
 <div class="main-view" id="profile" style="">
     <div class="container " style=" position: sticky !important; top: 1em;" >
         <div class="columns twelve" style="margin-top: 1em; border-bottom: 2px solid rgb(236, 236, 236); padding-bottom: 10px">
-
                 <button class="expand" style="padding: 3px 10px; margin-left: 1em;">
                 </button>
         </div>
     </div>
-
     <div class="container" >
         <div class="columns five" style="margin-top: 1em;  padding-bottom: 10px; display: block">
             <h2 style="margin: 0em" contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
@@ -112,19 +109,16 @@ class Product extends StoreView {
                 <p>Items must have a file. Stl files will be rendered.<p/>
             </div>
             <button onClick=${e => this.addItemClicked(e)}>Add item</button>
-
             
             <input style="width: 100%; background-color: #ffffff00" id="clearThis1" placeholder="sub name" onInput=${e => this.newSubName = e.target.value} />
             <input style="width: 100%;background-color: #ffffff00" id="clearThis2" placeholder="sub addy" onInput=${e => this.newSubAddy = e.target.value}/>
             <button onClick=${e => this.addSubClicked(e)}>Add Sub</button>
-
             
             </div>
             <div class="columns seven" style="  ">
             <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 0em"></div>
             <div id="subList"></div>
             </div>
-
         </div>
     </div>
 </div>
@@ -228,17 +222,14 @@ class Product extends StoreView {
               width: 100%;
               max-width: 16em;
           }
-
           #subList{
             display: flex !important;
             overflow-x:scroll;
            
           }
-
           .subItem{
             border-bottom:   
             padding: 1em;
-
             width: 100%;
             height: 9em;
             min-width: 8em;
@@ -246,13 +237,9 @@ class Product extends StoreView {
             min-height: 3em
             font-weight: 500
           }
-
           #subList{
             display: none;
           }
-
-
-
           @media (max-width:625px) {
             .absoluteName{
               position: fixed;
@@ -261,8 +248,6 @@ class Product extends StoreView {
           }
           
         </style>
-
-
       <div class="container " style=" position: fixed !important; background-color: white; z-index: 1002; margin-top: 2em" >
         <div class="columns twelve" style="padding-bottom: 3px; margin-left: -1em;  background-color: white;">
             ${this.isMyProfile ? html`
@@ -270,7 +255,6 @@ class Product extends StoreView {
               <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
             </button>
             ` : ''}
-
             <button class="expand" style="padding: 3px 10px; margin-left: 1em;"><i class="far fa-trash-alt"></i> Delete</button>
             ${cartTotalItems ? html`
             <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route('/checkout/' + this.props.store)}>Shopping cart (${cartTotalItems})</button>
@@ -284,24 +268,19 @@ class Product extends StoreView {
               document.execCommand('copy');
               inputc.parentNode.removeChild(inputc);
               document.getElementById("likeBtn").style.color = "#3f80e6";
-
               } }><i class="fas fa-link" id="likeBtn" ></i>
             </button>
-
             <button class="expand" style="padding: 3px 10px; margin-left: 1em;"  class="add" onClick=${() => this.addToCart()}>
               Add to cart
               ${this.cart[this.props.product] ? ` (${this.cart[this.props.product]})` : ''}
             </button>
-
             <button id='countNum'></button>
         </div>
       </div>
     <div class="container">
         ${this.state.product ? html`
           <div class="columns five" style="position: sticky; top: 3em;">
-
               <div class="absoluteName"  style=" padding: 0m;  margin-top: 1em; margin-bottom: 1em">
-
                 <iris-text style="font-size: 3em" tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/>
                 <p class="description">
                   <iris-text user=${this.props.store} path="store/products/${this.props.product}/description" placeholder="Description"/>
@@ -313,10 +292,8 @@ class Product extends StoreView {
                   <iris-text style="display: none" id="getSubValues" placeholder="subs" user=${this.props.store} path="store/products/${this.props.product}/subs"/>
                 </p>  
               </div>
-
   
               <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
-
               <div id="divMsg" style="display:none">
                 <div style="border-radius: 10px;padding: 0.2em;">
                   <canvas id="qr-code" style="align-content: center  ;"></canvas>
@@ -325,7 +302,6 @@ class Product extends StoreView {
           </div>
           <div class="columns seven" style=" overflow: hidden !important; height: 100%; margin-top: 1em">
           <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 0em"></div>
-
           </div>
           <div class="columns twelve" style="  height: 100%; margin-top: 1em">
                 <hr/>
@@ -335,7 +311,6 @@ class Product extends StoreView {
             <div id="displaySubs">
             </div>
           </div>
-
         ` : ''}
       </div>
 `;

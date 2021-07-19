@@ -30,23 +30,30 @@ class Checkout extends Store {
     var randIntGo = (Math.floor(Math.random() * (9999999 - 111111 + 1) + 111111))
     console.log(randIntGo)
     //time
+    var randIntGo = (Math.floor(Math.random() * (9999999 - 111111 + 1) + 111111))
+    console.log(randIntGo)
+    //time
     let current = new Date();
     let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
     let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
     let dateTime = cDate + ' ' + cTime;
-    console.log(dateTime);
-
-
     //delete
-    var dynamicDelete = (`<a onClick=${() => { State.public.user().get('liveOrders').get(randIntGo).put(null) }}>delete This</a>`)
     //put this order in a list of orders which are fetched on Orders.js
-    var getThisOrder = `<div class="boxedOrder">` + "Time: " + dateTime  +  'New order: ' + ', ID: ' + randIntGo + ', Cart ' +JSON.stringify(cart) + ', delivery: ' + JSON.stringify(this.state.delivery) + ', payment: ' + this.state.paymentMethod + `<a href="${window.location.host}/chat/${pub}" target="blank">go to link</a>` + dynamicDelete + `</div>`;
+    const product = {
+      time: dateTime,
+      itemNames: JSON.stringify(cart),
+      productName: randIntGo,
+      delivery: JSON.stringify(this.state.delivery),
+    };
+    
     Session.channels[pub].send({
-      text: getThisOrder,
+      text: product,
       order: true
     });
-    console.log(getThisOrder)
-    State.public.user().get('liveOrders').get(randIntGo).put(getThisOrder)
+
+
+
+    State.public.user(pub).get('store').get('liveOrders').get(product.productName).put(product)
 
     State.local.get('cart').get(pub).map().once((v, k) => {
       !!v && State.local.get('cart').get(pub).get(k).put(null);

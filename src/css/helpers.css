@@ -389,3 +389,8 @@ padding: 1em;
   padding: 1em;
   border-radius: 7px;
 }
+
+
+.glow:hover{
+  background-color: rgb(68, 68, 255)
+}
