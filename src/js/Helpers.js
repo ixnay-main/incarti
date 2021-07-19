@@ -1999,7 +1999,7 @@ export default {
   },
 
   getProfileLink(pub) {
-    return 'https://iris.to/#/profile/' + encodeURIComponent(pub);
+    return 'https://ixnayrepos.com/#/profile/' + encodeURIComponent(pub);
   },
 
   followChatLink(str) {
