@@ -95,6 +95,7 @@ class Menu extends Component {
     const pub = Session.getPubKey();
     return html`
       <div class="application-list ">
+
         <div class="visible-xs-block">
           <${Link} onClick=${() => this.menuLinkClicked()} activeClassName="active" href="/profile/${pub}">
             <span class="icon"><${Identicon} str=${pub} width=40/></span>
@@ -115,6 +116,9 @@ class Menu extends Component {
           }
         })}
         <div class="flex-auto"></div>
+        <h1 style="font-family: arialBlack; font-size: 2em; margin-top: 2px; z-index: 100">IXNAY</h1>
+        <div class="flex-auto"></div>
+
         ${APPLICATIONSSECOND.map(b => {
           if (b.url) {
             return html`

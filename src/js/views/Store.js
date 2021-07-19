@@ -74,10 +74,14 @@ class Store extends View {
     }
 
     setTimeout(function(){
+      var getTimeBar = document.getElementById("range").innerHTML
+      console.log(getTimeBar)
+      if(getTimeBar == "[PK]"){
+        $("#timeBar").css("background-color", "red")
+        console.log("less ggoo")
+      } else{
 
-      var container_div = document.getElementById('hideBlues');
-      var count = container_div.getElementsByTagName('h3').length;
-      document.getElementById("countNum").innerHTML = count
+      }
     } , 1000)
 
 
@@ -161,34 +165,36 @@ button#countNum {
         </div>
 
 
-        <div class="container blurThis" style=" position: fixed !important; background-color: white; z-index: 1002; margin-top: 0px" >
+        <div class="container blurThis" style=" position: fixed !important; background-color: ; z-index: 1002; margin-top: 0px" >
           <div class="columns twelve" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
-              <button class="" style="padding: 3px 10px; margin-left: 0em;    background-color: #2c974b; line-height: 20px;}">
-                <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: white"></i><iris-text style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></a>
+            <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">
+
+              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid ">
+                <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
               </button>
 
               ${this.isMyProfile ? html`
-              <button class="" style="padding: 3px 10px; margin-left: 0em;    background-color: #2c974b; line-height: 20px;}" onClick=${() => route(`/product/new`)}>
-                <a href="/product/new" class="" style="color: white;"><i class="fas fa-share" style="color: white;"></i> New Blueprint</a>
+              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00  " onClick=${() => route(`/product/new`)}>
+                <a href="/product/new" class="" style="color: #c5c5c5;"><i class="fas fa-share" style="color: #c5c5c5;"></i> New Blueprint</a>
               </button>
               ` : ''}
-
+            </div>
               <div class="flex-auto"></div>
 
-              <div class="" style="padding: 3px 10px; margin-left: 0em;    background-color: #2c974b; line-height: 20px;border-radius: 6px">
-                ${this.isMyProfile ? html`
-                  <button class="" style="padding: 3px 10px; margin-left: 0em; background-color: #ffffff00" onClick=${e => this.onClickDelete(e)}><i class="far fa-trash-alt" style="font-size: 1.5em; color: white"></i></button>
-                ` : ''}
-                ${cartTotalItems ? html`
-                <button class="" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00" onClick=${() => route('/checkout/' + this.props.store)}> <i class="far fa-trash-alt" style="color: white"></i> Orders (${cartTotalItems})</button>
-                ` : ''}
-                <button class="" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00"  onClick=${() => {
+              <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
+
+      
+
+
+
+                <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${() => {
                   showHideDiv('divMsg');
                   } 
                   
-                  }><i class="fas fa-qrcode" style="font-size: 1.5em; color: white"></i>
+                  }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5 "></i>
                 </button>
-                <button class=" linkBtn" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00; font-size: 1.5em" onClick=${() => { 
+              
+                <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => { 
                   var inputc = document.body.appendChild(document.createElement("input"));
                   inputc.value = window.location.href;
                   inputc.focus();
@@ -197,11 +203,10 @@ button#countNum {
                   inputc.parentNode.removeChild(inputc);
                   document.getElementById("likeBtn").style.color = "#3f80e6";
 
-                  } }><i class="fas fa-link" id="likeBtn" style="color: white" ></i>
+                  } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.5em; color: #c5c5c5"></i>
                 </button>
-
-                <button class="" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00" id='countNum'></button>
-              </div>
+              ` : ''}
+            </div>
           </div>
         </div>
 
@@ -211,25 +216,30 @@ button#countNum {
         <div class="columns twelve" style=" height:fit-content; ">
           <div class=""  style="margin-top: 10em">
             <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; margin-bottom: 3em " id="hideBlues"> 
-              <div style="width:100%; position: fixed; top: 3.1em; border-bottom: 2px solid grey; background-color: white; padding: 5px;">
+              <div style="width:100%; position: fixed; top: 3.1em; border-bottom: 2px solid grey; background-color: ; padding: 5px;">
                 <h2 class="" style="">CATALOG</h2>
                 <div style="display: flex; ">
-                  <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Collection</p>
-                  <p style="width: 40%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Name</p>
+            
                 </div>
 
               </div>
 
-              <div style="margin-top: 5em">
+              <div style="margin-top: 8em">
                 ${Object.keys(this.state.items).map(k => {
                   const i = this.state.items[k];
                   return html`
                   <div class="" style="width:100%;">
                     <div class="" style="width:100%">
-                      <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)} style="display: flex; padding-top: 5px; padding-bottom: 5px; width:100%">
+       
+                      <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)} style="display: flex; padding-top: 5px; padding-bottom: 5px; ">
         
                         <div style="display: flex;width:100%">
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.description}]</p>
+                          <div style="display :flex; margin-right: 1.3em ">
+                            <div class="smolbar2" id="timeBar" style=""></div>
+                            <div class="smolbar2" style=""></div>
+                            <div class="smolbar2" style=""></div>
+                          </div>
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="range">[${i.description}]</p>
                           <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a href="/product/${k}/${this.props.store}" style="color: #000 !important" class="">[${i.name}]</a></h3>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="">${i.price}</p>
 

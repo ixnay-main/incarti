@@ -1,9 +1,9 @@
 /* light.css: 👉 dark-on-light */
 :root {
-    --body-bg:white ;
+    --body-bg:rgba(255, 255, 255, 0) ;
     --text-color: black;
     --text-time: rgba(0, 0, 0, 0.45);
-    --main-color:  white;
+    --main-color:  rgba(255, 255, 255, 0.034);
     --gallery-background: rgba(255, 255, 255, 0.90);
     --header-color: rgb(255, 255, 255);
 

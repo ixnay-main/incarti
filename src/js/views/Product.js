@@ -248,6 +248,7 @@ class Product extends StoreView {
           }
           
         </style>
+    <div class="main-view">
       <div class="container " style=" position: fixed !important; background-color: white; z-index: 1002; margin-top: 2em" >
         <div class="columns twelve" style="padding-bottom: 3px; margin-left: -1em;  background-color: white;">
             ${this.isMyProfile ? html`
@@ -277,7 +278,7 @@ class Product extends StoreView {
             <button id='countNum'></button>
         </div>
       </div>
-    <div class="container">
+      <div class="container">
         ${this.state.product ? html`
           <div class="columns five" style="position: sticky; top: 3em;">
               <div class="absoluteName"  style=" padding: 0m;  margin-top: 1em; margin-bottom: 1em">
@@ -313,6 +314,7 @@ class Product extends StoreView {
           </div>
         ` : ''}
       </div>
+    </div>
 `;
   
   }

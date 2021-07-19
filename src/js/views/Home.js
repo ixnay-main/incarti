@@ -210,6 +210,11 @@ class Home extends View{
     .displayNone{
       display: none
     }
+
+
+    .fuckDameDash{
+      display: none !important;
+    }
     </style>
 
     <div  class="" style="margin: auto; text-align: center; margin-right: 1em; position: sticky; z-index: 10;top: 2em; filter: invert(1);mix-blend-mode: difference;"> 

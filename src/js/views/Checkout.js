@@ -35,7 +35,7 @@ class Checkout extends Store {
     //time
     let current = new Date();
     let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
-    let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+    let cTime = current.getHours() + ":" + current.getMinutes();
     let dateTime = cDate + ' ' + cTime;
     //delete
     //put this order in a list of orders which are fetched on Orders.js

@@ -563,6 +563,7 @@ header.footer .header-content {
   background-color: var(--main-color);
   min-width: 0;
   padding: 1.3em;
+  margin-top: 1em;
 }
 
 .msg {
@@ -703,7 +704,7 @@ span.icon{
   display: flex;
   width: 100%;
   padding-left: 1em;
-  padding-right: 1em
+  padding-right: 1em;
 }
 
 .application-list .electron-padding {

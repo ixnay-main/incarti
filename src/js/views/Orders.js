@@ -89,10 +89,12 @@ class Orders extends View {
     }
 
     setTimeout(function(){
+      if(document.getElementById("range").innerHTML == "PK"){
+        $("#timeBar").css("background-color", "red")
+      } else{
 
-      var container_div = document.getElementById('hideBlues');
-      var count = container_div.getElementsByTagName('h3').length;
-      document.getElementById("countNum").innerHTML = count
+      }
+
     } , 1000)
 
 
@@ -172,32 +174,34 @@ p.profile-about-content{
 
         <div class="container blurThis" style=" position: fixed !important; background-color: white; z-index: 1002; margin-top: 0px" >
         <div class="columns twelve" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
-            <button class="" style="padding: 3px 10px; margin-left: 0em;    background-color: black; line-height: 20px;}">
-              <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: white"></i><iris-text style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></a>
+          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">
+
+            <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid ">
+              <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
             </button>
 
             ${this.isMyProfile ? html`
-            <button class="" style="padding: 3px 10px; margin-left: 0em;    background-color: black; line-height: 20px;}" onClick=${() => route(`/product/new`)}>
-              <a href="/product/new" class="" style="color: white;"><i class="fas fa-share" style="color: white;"></i> New Blueprint</a>
+            <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00  " onClick=${() => route(`/product/new`)}>
+              <a href="/product/new" class="" style="color: #c5c5c5;"><i class="fas fa-share" style="color: #c5c5c5;"></i> New Blueprint</a>
             </button>
             ` : ''}
-
+          </div>
             <div class="flex-auto"></div>
 
-            <div class="" style="padding: 3px 10px; margin-left: 0em;    background-color: black; line-height: 20px;border-radius: 6px">
-              ${this.isMyProfile ? html`
-                <button class="" style="padding: 3px 10px; margin-left: 0em; background-color: #ffffff00" onClick=${e => this.onClickDelete(e)}><i class="far fa-trash-alt" style="font-size: 1.5em; color: white"></i></button>
-              ` : ''}
-              ${cartTotalItems ? html`
-              <button class="" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00" onClick=${() => route('/checkout/' + this.props.store)}> <i class="far fa-trash-alt" style="color: white"></i> Orders (${cartTotalItems})</button>
-              ` : ''}
-              <button class="" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00"  onClick=${() => {
+            <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
+  
+    
+
+
+
+              <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${() => {
                 showHideDiv('divMsg');
                 } 
                 
-                }><i class="fas fa-qrcode" style="font-size: 1.5em; color: white"></i>
+                }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5 "></i>
               </button>
-              <button class=" linkBtn" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00; font-size: 1.5em" onClick=${() => { 
+            
+              <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => { 
                 var inputc = document.body.appendChild(document.createElement("input"));
                 inputc.value = window.location.href;
                 inputc.focus();
@@ -206,11 +210,9 @@ p.profile-about-content{
                 inputc.parentNode.removeChild(inputc);
                 document.getElementById("likeBtn").style.color = "#3f80e6";
 
-                } }><i class="fas fa-link" id="likeBtn" style="color: white" ></i>
+                } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.5em; color: #c5c5c5"></i>
               </button>
-
-              <button class="" style="padding: 3px 10px; margin-left: 0em;  background-color: #ffffff00" id='countNum'></button>
-            </div>
+            ` : ''}</div>
         </div>
       </div>
 
@@ -242,16 +244,20 @@ p.profile-about-content{
                       <div class=""  style="display: flex; padding-top: 5px; padding-bottom: 5px; width:100%">
         
                         <div style="display: flex;width:100%">
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.time}]</p>
+                          <div style="display :flex; margin-right: 1.3em ">
+                            <div class="smolbar2" id="timeBar" style=""></div>
+                            <div class="smolbar2" style=""></div>
+                            <div class="smolbar2" style=""></div>
+                          </div>
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="orderTime">[${i.time}]</p>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.time}]</p>
                           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
-                            <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${e => this.onClickDelete(e)}><i class="far fa-trash-alt" style="font-size: 1.5em; color: #c5c5c5 "></i></button>
                           
                             <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
                               showHideOrder('divOrder');
                               } 
                               
-                              }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5"></i>
+                              }><i class="fas fa-expand" style="font-size: 1.5em; color: #c5c5c5"></i>
                             </button>
                           ` : ''}</div>
 
@@ -264,8 +270,7 @@ p.profile-about-content{
                   </div>
                   <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; " onClick=${() => {
                     showHideDiv('divOrder');}}>
-                    <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;
-                    width: 80% !important; margin-top: -10em">
+                    <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;width: 80% !important; margin-top: -10em">
                       <h1 style="font-family: arialBlack">IXNAY</h1>
                       <a spellcheck="false" href="/orders/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: white" path="store/liveOrders/${i.name}" user=${Session.getPubKey()} /></button></a>
                       <div style="width: 100%; display: flex">

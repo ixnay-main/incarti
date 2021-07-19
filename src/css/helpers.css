@@ -343,6 +343,15 @@ footer.visible-xs-flex.nav.footer {
   border-radius:2px;
 }
 
+.smolbar2{
+  height: 1.2em;
+  width: 0.3em;
+  background-color:rgb(255, 255, 255);
+  border: 1px solid #c2c2c2;
+  margin-right:2px;
+  border-radius:2px;
+}
+
 .lowerThis{
   margin-top: 2em;
 }
@@ -393,4 +402,8 @@ padding: 1em;
 
 .glow:hover{
   background-color: rgb(68, 68, 255)
+}
+
+.null{
+  z-index: 100;
 }
