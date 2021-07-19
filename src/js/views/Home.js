@@ -13,146 +13,11 @@ class Home extends View{
   }
 
 
-
-  addItemClicked() {
-
-    const product = {
-      name: this.newProductName,
-
-    };
-
-    
-    console.log(product);
-    State.public.user().get('store').get('products').get( this.newProductName).put(product);
-    route(`/store/${Session.getPubKey()}`)
-
-  }
-
-  cloneItemClicked1() {
-    const product = {
-      name: document.getElementById("prodName1").textContent,
-      modelRaw: document.getElementById("prodModel1").textContent
-    };
-    console.log(product);
-    State.public.user().get('store').get('products').get(product.name).put(product);
-    route(`/store/${Session.getPubKey()}`)
-  }
-  cloneItemClicked2() {
-    const product = {
-      name: document.getElementById("prodName2").textContent,
-      modelRaw: document.getElementById("prodModel2").textContent
-    };
-    console.log(product);
-    State.public.user().get('store').get('products').get(product.name).put(product);
-    route(`/store/${Session.getPubKey()}`)
-  }
-  cloneItemClicked3() {
-    const product = {
-      name: document.getElementById("prodName3").textContent,
-      modelRaw: document.getElementById("prodModel3").textContent
-    };
-    console.log(product);
-    State.public.user().get('store').get('products').get(product.name).put(product);
-    route(`/store/${Session.getPubKey()}`)
-  }
-  cloneItemClicked4() {
-    const product = {
-      name: document.getElementById("prodName4").textContent,
-      modelRaw: document.getElementById("prodModel4").textContent
-    };
-    console.log(product);
-    State.public.user().get('store').get('products').get(product.name).put(product);
-    route(`/store/${Session.getPubKey()}`)
-  }
-
   
 
   renderView() {
 
 
-
-    $("#showBanner").show()
-
-    setTimeout(function(){
-  
-      item1.once(v => {
-        
-        console.log(v.val)
-        var anchor1 = ('<a id="uploadBtn" style="color: #fff;" download href="' + v.val + '" ><i class="fas fa-download" style="   padding: 6px; border-radius: 50px; font-size: 1.7em; color: #fff;"></i></a>');
-        $("#containerIcon1").append(anchor1)
-        $("#prodModel1").html(v.val)
-      });
-
-
-
-      var stl_viewer=new StlViewer
-      (
-      
-        document.getElementById("stl_cont1"),
-        {
-          auto_rotate:true, 
-          mouse_zoom: false,
- 
-        models:
-          [
-              {filename: "Circle_Plate_1_v1.stl", y:42, color:"#ffffff", opacity: 0.6, rotationz: 1.570796, rotationx: -0.370796, display: "wireframe"}
-          ]
-        }
-
-      )
-
-
-
-      item2.once(j => {
-        
-        console.log(j.val)
-        var anchor2 = ('<a id="uploadBtn" style="color: #fff;" download href="' + j.val + '" ><i class="fas fa-download" style="   padding: 6px; border-radius: 50px; font-size: 1.7em; color: #fff;"></i></a>');
-        $("#containerIcon2").append(anchor2)
-        $("#prodModel2").html(j.val)
-      });
-
-      var stl_viewer2=new StlViewer
-      (
-
-      
-        document.getElementById("stl_cont2"),
-        {
-          auto_rotate:true,  
-          mouse_zoom: false,
-        models:
-          [
-              {filename: "Module.stl", y:5, opacity: 0.6,color:"#ffffff", rotationz: 1.570796, display: "wireframe"}
-          ]
-        }
-
-      )
-
-      item3.once(j => {
-        
-        console.log(j.val)
-        var anchor3 = ('<a id="uploadBtn" style="color: #fff;" download href="' + j.val + '" ><i class="fas fa-download" style="   padding: 6px; border-radius: 50px; font-size: 1.7em; color: #fff;"></i></a>');
-        $("#containerIcon3").append(anchor3)
-        $("#prodModel2").html(j.val)
-      });
-
-      var stl_viewer3=new StlViewer
-      (
-
-      
-        document.getElementById("stl_cont3"),
-        {
-          auto_rotate:true,  
-          mouse_zoom: false,
-        models:
-          [
-              {filename: "download.stl", y:5, opacity: 0.6,color:"#ffffff", rotationz: 1.570796, display: "wireframe"}
-          ]
-        }
-
-      )
-
-
-    } , 1000)
 
 
     
@@ -222,6 +87,8 @@ class Home extends View{
     </div>
 
 
+
+
     <div style="display :flex ;transform: rotate(20deg); position: absolute; top: -3em;">
       <div class="bar expand" style=""></div>
       <div class="bar expand" style=""></div>
@@ -233,7 +100,7 @@ class Home extends View{
 
   <div class="container">
 
-    <div class="twelve columns" style="text-align: center; padding: 1em;font-weight: 600; margin-top: 10em;  background: #ffffff00;border-radius: 15px;  z-index:4; ">
+    <div class="twelve columns" style="text-align: center; padding: 1em;font-weight: 600; margin-top: 10em;  background: #ffffff00;border-radius: 15px;  z-index:1020; ">
 
       <div style=" color: black">
         <h1 style="font-size: 3em; font-weight: 800; ">Manufacture for Autonomy</h1>
