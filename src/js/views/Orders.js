@@ -225,16 +225,13 @@ p.profile-about-content{
               <div style="width:100%; position: fixed; top: 3.1em; border-bottom: 2px solid grey; background-color: white; padding: 5px;">
                 <h2 class="" style="">ORDERS</h2>
                 <div style="display: flex; ">
-                  <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Time</p>
-                  <p style="width: 40%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class="">Id</p>
-
+              
                   <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class=""></p>
                   <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class=""></p>
                 </div>
 
               </div>
-              <div style="margin-top: 5em">
-                <h2 class="" style="">ORders</h2>
+              <div style="margin-top: 10em">
 
                 ${Object.keys(this.state.orderpiece).map(k => {
                   const i = this.state.orderpiece[k];
@@ -250,7 +247,7 @@ p.profile-about-content{
                             <div class="smolbar2" style=""></div>
                           </div>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="orderTime">[${i.time}]</p>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.time}]</p>
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.productName}]</p>
                           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
                           
                             <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
