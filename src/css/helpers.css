@@ -407,3 +407,21 @@ padding: 1em;
 .null{
   z-index: 100;
 }
+
+.subItem{
+  min-width: 13em;
+  background-color: whitesmoke;
+  height: 6em;
+  padding: 1em;
+  border-radius: 5px;
+  margin-right: 1em;
+}
+
+#subList{
+  display: flex;
+  overflow-x: scroll;
+}
+
+.subItemText{
+  color: black;
+}

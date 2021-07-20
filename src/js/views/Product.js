@@ -88,7 +88,7 @@ class Product extends StoreView {
     </style>
     
   <div class="main-view" id="profile" style="">
-    <div class="container " style=" position: sticky !important; top: 1em;" >
+    <div class="container " style=" position: sticky !important; top: 0em; padding-top: 1em;background-color: white; z-index: 10;" >
         <div class="columns twelve subMenu" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 0px" class="">
 
@@ -102,9 +102,9 @@ class Product extends StoreView {
 
         </div>
     </div>
-    <div class="container" >
-      <div class="columns six" style="margin-top: 1em;  padding-bottom: 10px; display: block">
-        <input style="margin: 0em;  background-color: #ffffff00" contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
+    <div class="container" style="z-index: 0">
+      <div class="columns six" style="padding-top: 1em;  padding-bottom: 10px; display: block">
+        <input style="width: 100%; background-color: #ffffff00" placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
         <input style="width: 100%; background-color: #ffffff00" placeholder="Item description" onInput=${e => this.newProductDescription = e.target.value} />
         <input type="number" style="width: 100%;background-color: #ffffff00" placeholder="Price" onInput=${e => this.newProductPrice = parseInt(e.target.value)}/>
         <input style="background-color: #ffffff00; width: 100%;" placeholder="Item ID" onInput=${e => this.newProductId = e.target.value} />
@@ -257,8 +257,23 @@ class Product extends StoreView {
           }
           
         </style>
+
+        <div id="divMsg" style="display:none; position: absolute; margin-top: 7em; width: 100%; z-index: 2004;     background-color: #ffffffe0;
+        height: 100%; text-align: center;
+        margin-top: -8em;
+        padding-top: 10em; " onClick=${() => {
+          showHideDiv('divMsg');}}>
+          <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;
+          width: 20em !important;">
+            <h1 style="font-family: arialBlack">IXNAY</h1>
+            <a spellcheck="false" href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></button></a>
+
+            <canvas id="qr-code" style="align-content: center  ;"></canvas>
+          </div>    
+        </div>
+
     <div class="main-view">
-      <div class="container " style=" position: fixed !important; background-color: white; z-index: 1002; margin-top: 2em" >
+      <div class="container " style=" position: fixed !important; background-color: white; z-index: 1002; padding-top: 2em" >
         <div class="columns twelve subMenu" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 0px" class="">
 
@@ -309,7 +324,7 @@ class Product extends StoreView {
           </div>
         </div>
       </div>
-      <div class="container" >
+      <div class="container" style="z-index: 0">
         ${this.state.product ? html`
           <div class="columns five" style="position: sticky; margin-top: 6em;">
               <div class="absoluteName"  style=" padding: 0m;  margin-top: 1em; margin-bottom: 1em">
@@ -326,11 +341,7 @@ class Product extends StoreView {
               </div>
   
               <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
-              <div id="divMsg" style="display:none">
-                <div style="border-radius: 10px;padding: 0.2em;">
-                  <canvas id="qr-code" style="align-content: center  ;"></canvas>
-                </div>    
-              </div>
+
           </div>
           <div class="columns seven" style=" overflow: hidden !important; height: 100%; margin-top: 1em">
           <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 0em"></div>
@@ -380,7 +391,7 @@ class Product extends StoreView {
     document.getElementById("clearThis2").value = " "
 
 
-    var subDiv = `<div class="subItem"><a target="blank" href="//${subAddyValue}">${subNameValue}</a></div>`
+    var subDiv = `<div class="subItem"><a class="subItemText" target="blank" href="//${subAddyValue}">${subNameValue}</a></div>`
     $("#subList").append(subDiv)
 
   }
@@ -397,9 +408,8 @@ class Product extends StoreView {
 
     const product = {
       name: this.newProductName,
-      id: this.newProductId,
       description: this.newProductDescription,
-      weight: this.newProductWeight,
+      price: this.newProductPrice,
 
       subs: getSubs,
 
@@ -410,7 +420,7 @@ class Product extends StoreView {
     };
 
     console.log(product);
-    State.public.user().get('store').get('products').get(this.name).put(product);
+    State.public.user().get('store').get('products').get(this.newProductName).put(product);
     route(`/store/${Session.getPubKey()}`)
 
 
