@@ -18,6 +18,7 @@ class Product extends StoreView {
 
   }
 
+
   addToCart() {
     const count = (this.cart[this.props.product] || 0) + 1;
     State.local.get('cart').get(this.props.store).get(this.props.product).put(count);
@@ -163,7 +164,6 @@ class Product extends StoreView {
   }
 
   showProduct() {
-    const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
 
     setTimeout(function(){
 
@@ -212,7 +212,8 @@ class Product extends StoreView {
     }
 
 
-
+    const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
+  
     var parentStore = html`<i class="fas fa-chevron-left"></i>`
     const i = this.state.product;
     if (!i) return html``;
@@ -250,37 +251,61 @@ class Product extends StoreView {
         </style>
     <div class="main-view">
       <div class="container " style=" position: fixed !important; background-color: white; z-index: 1002; margin-top: 2em" >
-        <div class="columns twelve" style="padding-bottom: 3px; margin-left: -1em;  background-color: white;">
+        <div class="columns twelve subMenu" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
+          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 0px" class="">
+
+            <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid ">
+              <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
+            </button>
+
             ${this.isMyProfile ? html`
-            <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route(`/product/new`)}>
+            <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #22de22  " onClick=${() => route(`/product/new`)}>
               <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
             </button>
             ` : ''}
-            <button class="expand" style="padding: 3px 10px; margin-left: 1em;"><i class="far fa-trash-alt"></i> Delete</button>
-            ${cartTotalItems ? html`
-            <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route('/checkout/' + this.props.store)}>Shopping cart (${cartTotalItems})</button>
-        ` : ''}
-            <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => {showHideDiv('divMsg')} }><i class="fas fa-qrcode"></i></button>
-            <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => { 
-              var inputc = document.body.appendChild(document.createElement("input"));
-              inputc.value = window.location.href;
-              inputc.focus();
-              inputc.select();
-              document.execCommand('copy');
-              inputc.parentNode.removeChild(inputc);
-              document.getElementById("likeBtn").style.color = "#3f80e6";
-              } }><i class="fas fa-link" id="likeBtn" ></i>
-            </button>
-            <button class="expand" style="padding: 3px 10px; margin-left: 1em;"  class="add" onClick=${() => this.addToCart()}>
-              Add to cart
-              ${this.cart[this.props.product] ? ` (${this.cart[this.props.product]})` : ''}
-            </button>
-            <button id='countNum'></button>
+          </div>
+            <div class="flex-auto"></div>
+
+            <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
+
+
+              ${cartTotalItems ? html`
+            
+                  <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " onClick=${() => route('/checkout/' + this.props.store)}>Shopping cart (${cartTotalItems})</button>
+           
+              ` : ''}
+
+              <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " class="add" onClick=${() => this.addToCart()}>
+                Add to cart
+                ${this.cart[this.props.product] ? ` (${this.cart[this.props.product]})` : ''}
+              </button>
+
+
+              <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${() => {
+                showHideDiv('divMsg');
+                } 
+                
+                }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5 "></i>
+              </button>
+            
+              <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => { 
+                var inputc = document.body.appendChild(document.createElement("input"));
+                inputc.value = window.location.href;
+                inputc.focus();
+                inputc.select();
+                document.execCommand('copy');
+                inputc.parentNode.removeChild(inputc);
+                document.getElementById("likeBtn").style.color = "#3f80e6";
+
+                } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.5em; color: #c5c5c5"></i>
+              </button>
+            ` : ''}
+          </div>
         </div>
       </div>
-      <div class="container">
+      <div class="container" >
         ${this.state.product ? html`
-          <div class="columns five" style="position: sticky; top: 3em;">
+          <div class="columns five" style="position: sticky; margin-top: 6em;">
               <div class="absoluteName"  style=" padding: 0m;  margin-top: 1em; margin-bottom: 1em">
                 <iris-text style="font-size: 3em" tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/>
                 <p class="description">
@@ -388,6 +413,7 @@ class Product extends StoreView {
   componentDidMount() {
 
 
+    StoreView.prototype.componentDidMount.call(this);
     const pub = this.props.store;
     this.eventListeners.forEach(e => e.off());
     this.setState({followedUserCount: 0, followerCount: 0, name: '', photo: '', about: ''});
