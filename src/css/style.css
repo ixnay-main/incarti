@@ -810,6 +810,10 @@ span.icon{
     bottom: 0;
   }
 
+  .subMenu{
+    width: max-content !important;
+  }
+
   .logoHere{
     margin-left: 0em !important
   }

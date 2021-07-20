@@ -30,9 +30,6 @@ class Checkout extends Store {
     var randIntGo = (Math.floor(Math.random() * (9999999 - 111111 + 1) + 111111))
     console.log(randIntGo)
     //time
-    var randIntGo = (Math.floor(Math.random() * (9999999 - 111111 + 1) + 111111))
-    console.log(randIntGo)
-    //time
     let current = new Date();
     let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
     let cTime = current.getHours() + ":" + current.getMinutes();
