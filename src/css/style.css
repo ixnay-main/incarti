@@ -109,7 +109,6 @@ button, .button {
 }
 
 button:hover, button:active, button:focus, .button:hover, .button:active, .button:focus {
-  background: var(--button-hover-bg);
 }
 
 img, video {
@@ -730,6 +729,9 @@ span.icon{
   flex-direction: row;
   color: #000000 ;
   font-weight: 600;
+  font-size: 1.3em;
+  height: fit-content;
+    margin-top: 1em;
 }
 
 .application-list a .icon{
@@ -872,7 +874,6 @@ span.icon{
 
 .application-list .text {
   flex: 1;
-  padding: 15px;
   padding-left: 0;
 }
 
@@ -1294,7 +1295,6 @@ hr {
 .message-form button, .message-form button:hover, .message-form button:active, .message-form button:focus {
   flex: none;
   color: var(--msg-form-button-color);
-  background-color: transparent;
   font-size: 30px;
   padding: 5px;
   border: 0;

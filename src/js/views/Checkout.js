@@ -27,6 +27,8 @@ class Checkout extends Store {
       const v = this.cart[k];
       v && (cart[k] = v);
     });
+
+
     var randIntGo = (Math.floor(Math.random() * (9999999 - 111111 + 1) + 111111))
     console.log(randIntGo)
     //time
@@ -42,20 +44,21 @@ class Checkout extends Store {
       productName: randIntGo,
       delivery: JSON.stringify(this.state.delivery),
     };
-    
+
     Session.channels[pub].send({
-      text: product,
+      text: 'New order: ' + JSON.stringify(cart) + ', delivery: ' + JSON.stringify(this.state.delivery) + ', payment: ' + this.state.paymentMethod,
       order: true
     });
-
-
 
     State.public.user(pub).get('store').get('liveOrders').get(product.productName).put(product)
 
     State.local.get('cart').get(pub).map().once((v, k) => {
       !!v && State.local.get('cart').get(pub).get(k).put(null);
     });
-    route('/orders/' + pub);
+
+    route('/chat/' + pub);
+
+
   }
 
   renderCart() {
@@ -244,6 +247,12 @@ class Checkout extends Store {
     Object.values(this.eventListeners).forEach(e => e.off());
     this.eventListeners = [];
     const pub = this.props.store;
+    console.log(pub)
+    Object.keys(this.cart).filter(k => !!this.cart[k] && !!this.state.items[k]).map(k => {
+      console.log(k)      
+      console.log("gopls")
+      console.log(this.props.store)
+    })
     this.carts = {};
     if (pub) {
       this.setState({page:'cart'})

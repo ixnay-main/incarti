@@ -55,6 +55,12 @@ if (!isElectron && ('serviceWorker' in navigator)) {
   });
 }
 
+var orderSvg = html`<i class="fas fa-level-up-alt" ></i>`
+var folderSvg = html`<i class="far fa-folder"></i>`
+var chatSvg = html`<i class="far fa-comment-alt"></i>`
+var profileSvg = html`<i class="far fa-user"></i>`
+var ixnayText = html`<h1 style="font-family: arialBlack; font-size: 2em;margin-top: -0.5em; margin-bottom: 0px; z-index: 100">IXNAY</h1>`
+
 State.init();
 Session.init({autologin: window.location.hash.length > 2});
 PeerManager.init();
@@ -62,9 +68,12 @@ PeerManager.init();
 Helpers.checkColorScheme();
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: t('HOME'), icon: Icons.home , classCss: "null"},
-  {url: '/store', text: t('STORE'), icon: Icons.store , classCss: "null"},
-  {url: '/orders', text: t( 'ORDERS'), icon: Icons.store , classCss: "null"},
+  {url: '/', text: ixnayText, icon: Icons.home , classCss: "null"},
+
+  {url: '/store', text: folderSvg, icon: Icons.store , classCss: "null"},
+  {url: '/orders', text: orderSvg, icon: Icons.store , classCss: "null"},
+  {url: '/chat', text: chatSvg, icon: Icons.store , classCss: "null"},
+
 
 
 ];
@@ -72,7 +81,7 @@ const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
 const APPLICATIONSSECOND = [ // TODO: move editable shortcuts to localState gun
 
   {url: '/settings', text: settingsIcon, icon: Icons.settings , classCss: "profile"},
-  {url: '/profile', text: t('PROFILE'), icon: Icons.settings, classCss: "profile"},
+  {url: '/profile', text: profileSvg, icon: Icons.settings, classCss: "profile"},
 
 
 ];
@@ -115,8 +124,7 @@ class Menu extends Component {
             return html`<br/><br/>`;
           }
         })}
-        <div class="flex-auto"></div>
-        <h1 style="font-family: arialBlack; font-size: 2em; margin-top: 2px; z-index: 100">IXNAY</h1>
+
         <div class="flex-auto"></div>
 
         ${APPLICATIONSSECOND.map(b => {

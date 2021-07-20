@@ -199,12 +199,7 @@ class Profile extends View {
 
   renderTabs() {
     return html`
-    <div class="tabs">
-      <${Link} activeClassName="active" href="/profile/${this.props.id}">Posts<//>
-      <${Link} activeClassName="active" href="/replies/${this.props.id}">Replies<//>
-      <${Link} activeClassName="active" href="/likes/${this.props.id}">Likes<//>
-      <${Link} activeClassName="active" href="/media/${this.props.id}">Media<//>
-    </div>
+ 
     `;
   }
 

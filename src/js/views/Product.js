@@ -20,6 +20,7 @@ class Product extends StoreView {
 
 
   addToCart() {
+    var cartItem = this.props.product + Session.getPubKey()
     const count = (this.cart[this.props.product] || 0) + 1;
     State.local.get('cart').get(this.props.store).get(this.props.product).put(count);
   }
@@ -86,43 +87,50 @@ class Product extends StoreView {
   }
     </style>
     
-<div class="main-view" id="profile" style="">
+  <div class="main-view" id="profile" style="">
     <div class="container " style=" position: sticky !important; top: 1em;" >
-        <div class="columns twelve" style="margin-top: 1em; border-bottom: 2px solid rgb(236, 236, 236); padding-bottom: 10px">
-                <button class="expand" style="padding: 3px 10px; margin-left: 1em;">
+        <div class="columns twelve subMenu" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
+          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 0px" class="">
+
+                <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ;  ">
+                  <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
                 </button>
+
+          </div>
+        </div>
+        <div class="columns twelve" style="margin-top: 1em; border-bottom: 2px solid black; padding-bottom: 10px">
+
         </div>
     </div>
     <div class="container" >
-        <div class="columns five" style="margin-top: 1em;  padding-bottom: 10px; display: block">
-            <h2 style="margin: 0em" contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
-            <input style="width: 100%; background-color: #ffffff00" placeholder="Item description" onInput=${e => this.newProductDescription = e.target.value} />
-            <input type="number" style="width: 100%;background-color: #ffffff00" placeholder="Price" onInput=${e => this.newProductPrice = parseInt(e.target.value)}/>
+      <div class="columns six" style="margin-top: 1em;  padding-bottom: 10px; display: block">
+        <input style="margin: 0em;  background-color: #ffffff00" contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
+        <input style="width: 100%; background-color: #ffffff00" placeholder="Item description" onInput=${e => this.newProductDescription = e.target.value} />
+        <input type="number" style="width: 100%;background-color: #ffffff00" placeholder="Price" onInput=${e => this.newProductPrice = parseInt(e.target.value)}/>
+        <input style="background-color: #ffffff00; width: 100%;" placeholder="Item ID" onInput=${e => this.newProductId = e.target.value} />
         
-                <input style="background-color: #ffffff00; width: 100%;" placeholder="Item ID" onInput=${e => this.newProductId = e.target.value} />
-        
-            <div class="" style="height: fit-content; ">
-                <div class="" style="display: flex; border-radius: 0px">
-                <input id="file" type="file" style="border-radius: 0px; background-color: transparent; padding-left: 0em"/>
-                <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.downloadThis(e)}><i style="color: #000; font-size: 1.5em !important;margin-top: -0.6em;" class="fas fa-upload"></i></p>
-                <div id="containerIcon"></div> 
-                </div>
-                <p>Items must have a file. Stl files will be rendered.<p/>
-            </div>
-            <button onClick=${e => this.addItemClicked(e)}>Add item</button>
-            
-            <input style="width: 100%; background-color: #ffffff00" id="clearThis1" placeholder="sub name" onInput=${e => this.newSubName = e.target.value} />
-            <input style="width: 100%;background-color: #ffffff00" id="clearThis2" placeholder="sub addy" onInput=${e => this.newSubAddy = e.target.value}/>
-            <button onClick=${e => this.addSubClicked(e)}>Add Sub</button>
-            
-            </div>
-            <div class="columns seven" style="  ">
-            <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 0em"></div>
-            <div id="subList"></div>
-            </div>
+        <div class="" style="height: fit-content; ">
+          <div class="" style="display: flex; border-radius: 0px">
+            <input id="file" type="file" style="border-radius: 0px; background-color: transparent; padding-left: 0em"/>
+            <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.downloadThis(e)}><i style="color: #000; font-size: 1.5em !important;margin-top: -0.6em;" class="fas fa-upload"></i></p>
+            <div id="containerIcon"></div> 
+          </div>
+          <p>Items must have a file. Stl files will be rendered.</p>
         </div>
+        <button onClick=${e => this.addItemClicked(e)} style="width: 100%">Add Blueprint</button>
+        <br/><br/>
+        <p>Sub Blueprints can be added here.</p>
+        <input style="width: 100%; background-color: #ffffff00" id="clearThis1" placeholder="Sub Blueprint Name" onInput=${e => this.newSubName = e.target.value} />
+        <input style="width: 100%;background-color: #ffffff00" id="clearThis2" placeholder="Sub Blueprint URL" onInput=${e => this.newSubAddy = e.target.value}/>
+        <button onClick=${e => this.addSubClicked(e)} style="width: 100%">Add Sub Blueprint</button>      
+      </div>
+
+      <div class="columns six" style="  ">
+        <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 0em"></div>
+        <div id="subList"></div>
+      </div>
     </div>
-</div>
+  </div>
   `;
 }
 
@@ -213,7 +221,7 @@ class Product extends StoreView {
 
 
     const cartTotalItems = Object.values(this.cart).reduce((sum, current) => sum + current, 0);
-  
+    var cartItemHolder = this.props.product + Session.getPubKey()
     var parentStore = html`<i class="fas fa-chevron-left"></i>`
     const i = this.state.product;
     if (!i) return html``;
@@ -261,10 +269,11 @@ class Product extends StoreView {
             <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #22de22  " onClick=${() => route(`/product/new`)}>
               <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
             </button>
+     
           </div>
           <div class="flex-auto"></div>
 
-          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class=""> 
+          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">  
 
 
               ${cartTotalItems ? html`
@@ -275,7 +284,7 @@ class Product extends StoreView {
 
               <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " class="add" onClick=${() => this.addToCart()}>
                 Add to cart
-                ${this.cart[this.props.product] ? ` (${this.cart[this.props.product]})` : ''}
+                ${this.cart[cartItemHolder] ? ` (${this.cart[this.props.product]})` : ''}
               </button>
 
 
@@ -401,7 +410,7 @@ class Product extends StoreView {
     };
 
     console.log(product);
-    State.public.user().get('store').get('products').get(this.newProductName).put(product);
+    State.public.user().get('store').get('products').get(this.name).put(product);
     route(`/store/${Session.getPubKey()}`)
 
 

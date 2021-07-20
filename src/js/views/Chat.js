@@ -243,40 +243,41 @@ class Chat extends View {
 
     <style>
       div#chat-view {
-          margin-top: 5em;
+          margin-top: 11em;
       }
 
       .chat-list {
         margin-top: 2em;
     }
+
+    div#chat-view {
+        margin-left: 3em
+    }
     </style>
 
-        <div class="container lowerThis" style="position: fixed; top: 12px;  ">
-          <div class="columns twelve" style="margin-top: 1em; border-bottom: 2px solid rgb(236, 236, 236); padding-bottom: 10px">
-              <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white" onClick=${() => {showHideDiv('divMsg')} }><i class="far fa-user" style=" color: white"></i><iris-text style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></button></a>
+        <div class="container lowerThis" style="position: fixed; top: 1.3em; margin-left: -1.7em  ">
+          <div class="columns twelve subMenu" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
+            <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 0px" class="">
 
-              ${this.isMyProfile ? html`
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${() => route(`/product/new`)}>
-                <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
+              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ;  ">
+                <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
               </button>
-              ` : ''}
-
-              ${this.isMyProfile ? html`
-              <button class="expand" style="padding: 3px 10px; margin-left: 1em;" onClick=${e => this.onClickDelete(e)}><i class="far fa-trash-alt"></i> Delete</button>
-              ` : ''} 
-
-              
+            </div>
           </div>
           <div class="columns twelve">
-            <h2>hello</h2>
-          </div>
+            <div style="width:100%; margin-top: -1em; border-bottom: 2px solid grey; background-color: ; padding: 5px;">
+              <h2 class="" style="font-size: 2.6em">ORDERS</h2>
+    
+
+            </div><br/>
+            </div>
         </div>
 
 
     <${ChatList}  class=${this.props.id ? 'hidden-xs' : ''}/>
-    <div id="chat-main" class="${this.props.id ? '' : 'hidden-xs'}">
+    <div  id="chat-main" class="${this.props.id ? '' : 'hidden-xs'}">
     ${this.props.id && this.props.id.length > 20 ? html`
-      <div class="main-view" id="message-view" onScroll=${e => this.onMessageViewScroll(e)}>
+      <div class="main-view" id="message-view"  onScroll=${e => this.onMessageViewScroll(e)}>
         <div id="message-list">
           <div id="topsentinel"></div>
           ${msgListContent}

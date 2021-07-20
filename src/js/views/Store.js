@@ -150,9 +150,9 @@ button#countNum {
 }
     </style>
 
-        <div id="divMsg" style="display:none; position: absolute; margin-top: 10em; width: 100%; z-index: 2004;     background-color: #ffffffe0;
+        <div id="divMsg" style="display:none; position: absolute; margin-top: 7em; width: 100%; z-index: 2004;     background-color: #ffffffe0;
         height: 100%; text-align: center;
-        margin-top: -2em;
+        margin-top: -8em;
         padding-top: 10em; " onClick=${() => {
           showHideDiv('divMsg');}}>
           <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;
@@ -185,7 +185,7 @@ button#countNum {
 
       
                 ${cartTotalItems ? html`
-                <button class="expand" style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " onClick=${() => route('/checkout')}><i class="fas fa-chevron-down" style="font-size: 1.5em; color: #c5c5c5 "></i>(${cartTotalItems})</button>
+                <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " onClick=${() => route('/checkout/' + this.props.store)}>Shopping cart (${cartTotalItems})</button>
                 ` : ''}
 
 
@@ -224,9 +224,11 @@ button#countNum {
             
                 </div>
 
-              </div>
+              </div><br/>
+      
 
-              <div style="margin-top: 8em">
+
+              <div style="margin-top: 0em">
                 ${Object.keys(this.state.items).map(k => {
                   const i = this.state.items[k];
                   return html`
@@ -246,7 +248,7 @@ button#countNum {
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="">${i.price}</p>
 
                           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">            
-                            <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5  " onClick=${e => this.addToCart(k, e)}><i class="far fa-plus" style="font-size: 1.5em; color: #c5c5c5 !important "></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
+                            <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5  " onClick=${e => this.addToCart(k, e)}><i class="fas fa-plus" style="font-size: 1.5em; color: #c5c5c5"></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
                           
                             <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
                               showHideOrder('divOrder');
