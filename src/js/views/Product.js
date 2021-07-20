@@ -258,15 +258,13 @@ class Product extends StoreView {
               <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
             </button>
 
-            ${this.isMyProfile ? html`
             <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #22de22  " onClick=${() => route(`/product/new`)}>
               <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
             </button>
-            ` : ''}
           </div>
-            <div class="flex-auto"></div>
+          <div class="flex-auto"></div>
 
-            <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
+          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class=""> 
 
 
               ${cartTotalItems ? html`
@@ -299,7 +297,6 @@ class Product extends StoreView {
 
                 } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.5em; color: #c5c5c5"></i>
               </button>
-            ` : ''}
           </div>
         </div>
       </div>
