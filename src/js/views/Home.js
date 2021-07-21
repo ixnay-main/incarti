@@ -86,7 +86,7 @@ class Home extends View{
     </style>
 
     <div  class="" style="margin: auto; text-align: center; margin-right: 1em; position: sticky; z-index: 10;top: 2em; filter: invert(1);mix-blend-mode: difference;"> 
-      <h1 style="font-family: arialBlack;  font-size: 2.8em; margin-left:5px;    margin-top: -14px; ">IXNAY</h1>
+      <h1 style="font-family: arialBlack;  font-size: 2.8em; margin-left:5px;    margin-top: -14px; color: #a0e1fb ">IXNAY</h1>
     </div>
 
 
