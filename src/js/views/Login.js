@@ -101,7 +101,7 @@ class Login extends Component {
               <input style="background-color: #ffffff00" onInput=${e => this.onNameChange(e)} autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="off" id="login-form-name" type="text" name="name" placeholder="${t('whats_your_name')}"/>
               <p><button  id="sign-up" type="submit" style="background-color: #ffffff00"><i class="fas fa-chevron-right" style="color: black"></i></button></p>
               <br/>
-              <p style="letter-spacing: 7px">BITCHES DONT MAKE LIKE I DO</p>
+              <p style="letter-spacing: 7px; color: black">BITCHES DONT MAKE LIKE I DO</p>
 
               <p><a href="#" id="show-existing-account-login" onClick=${() => this.setState({showSwitchAccount: true})}>${t('already_have_an_account')}</a></p>
               <p>
