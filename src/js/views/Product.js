@@ -318,6 +318,10 @@ class Product extends StoreView {
                 
                 }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5 "></i>
               </button>
+
+              ${this.isMyProfile ? html`
+              <button style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${e => this.onClickDelete(e)}><i class="fas fa-trash" style="font-size: 1.5em; color: #c5c5c5 "></i></button>
+            ` : ''}
             
               <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => { 
                 var inputc = document.body.appendChild(document.createElement("input"));
