@@ -25,6 +25,7 @@ class Product extends StoreView {
     State.local.get('cart').get(this.props.store).get(this.props.product).put(count);
   }
 
+
   downloadThis(){
     
     var files = document.getElementById('file').files;
@@ -158,7 +159,7 @@ class Product extends StoreView {
 
 
     const product = {
-      name: this.props.product + '.' + randNum,
+      productName: this.props.product + '.' + randNum,
       description: this.newProductDescription,
       id: this.newProductId,
 
@@ -298,6 +299,16 @@ class Product extends StoreView {
            
               ` : ''}
 
+
+ 
+              <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${e => this.cloneItemClicked(e)}>
+                <i class="fas fa-clone" style="font-size: 1.5em; color: #c5c5c5 "></i>
+              </button>
+
+              <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${() => addItemCloned()}>
+                <i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5 "></i>
+              </button>
+
               <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " class="add" onClick=${() => this.addToCart()}>
                 Add to cart
                 ${this.cart[cartItemHolder] ? ` (${this.cart[this.props.product]})` : ''}
@@ -329,7 +340,7 @@ class Product extends StoreView {
         ${this.state.product ? html`
           <div class="columns five" style="position: sticky; margin-top: 6em;">
               <div class="absoluteName"  style=" padding: 0m;  margin-top: 1em; margin-bottom: 1em">
-                <iris-text style="font-size: 3em" tag="h3" user=${this.props.store} path="store/products/${this.props.product}/productName"/>
+                <iris-text id="getProductName" style="font-size: 3em" tag="h3" user=${this.props.store} path="store/products/${this.props.product}/productName"/>
                 <p class="description">
                   <iris-text user=${this.props.store} path="store/products/${this.props.product}/description" placeholder="Description"/>
                 </p>
@@ -396,6 +407,8 @@ class Product extends StoreView {
     $("#subList").append(subDiv)
 
   }
+
+
 
   addItemClicked() {
 

@@ -218,7 +218,7 @@ button#countNum {
         <div class="columns twelve" style=" height:fit-content; ">
           <div class=""  style="margin-top: 10em">
             <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; margin-bottom: 3em " id="hideBlues"> 
-              <div style="width:100%; position: fixed; top: 3.1em; border-bottom: 2px solid grey; background-color: ; padding: 5px;">
+              <div style="width:100%; position: fixed; top: 3.1em; border-bottom: 2px solid grey; background-color: ; padding: 5px; background-color: white; margin-left: -1px;">
                 <h2 class="" style="">CATALOG</h2>
                 <div style="display: flex; ">
             
