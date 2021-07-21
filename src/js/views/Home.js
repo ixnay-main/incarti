@@ -33,6 +33,9 @@ class Home extends View{
       color: white
     }
 
+    .hideWhite{
+      
+    }
 
 
 

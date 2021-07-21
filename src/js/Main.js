@@ -68,7 +68,7 @@ PeerManager.init();
 Helpers.checkColorScheme();
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: ixnayText, icon: Icons.home , classCss: "null"},
+  {url: '/', text: ixnayText, icon: Icons.home , classCss: "null hideWhite"},
 
   {url: '/store', text: folderSvg, icon: Icons.store , classCss: "null"},
   {url: '/orders', text: orderSvg, icon: Icons.store , classCss: "null"},
