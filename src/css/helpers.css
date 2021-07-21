@@ -352,6 +352,15 @@ footer.visible-xs-flex.nav.footer {
   border-radius:2px;
 }
 
+.smolbar3{
+  height: 1.4em;
+  width: 0.4em;
+  background-color:rgb(255, 255, 255);
+  border: 1px solid #c2c2c2;
+  margin-left:3px;
+  border-radius:2px;
+}
+
 .lowerThis{
   margin-top: 2em;
 }

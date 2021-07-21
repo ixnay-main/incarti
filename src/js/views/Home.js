@@ -112,10 +112,8 @@ class Home extends View{
 
       <div style="display: flex; margin: auto; width: min-content; color: black;">
         <div class="expand" style="display: flex; margin: auto; background-color: #ffffff40; padding: 3px;border-radius: 15px; height: fit-content; padding-left:20px; padding-top: 5px; margin-right: 1em !important ">
-          <div style="display :flex; margin-right: 1.3em ">
-            <div class="smolbar" style=""></div>
-            <div class="smolbar" style=""></div>
-            <div class="smolbar" style=""></div>
+          <div class="" >
+            <a  href=""  download="" style=""><i style=" color: black;   font-size: 2.2em; margin-right: 0.3em; " class="fas fa-chevron-circle-down"></i></a>
           </div>
           <div class="" >
             <a  href="https://github.com/ixnay-main/ixnay"  target="blank" style=""><i style=" color: black;   font-size: 2.2em; margin-right: 0.3em; " class="fab fa-github"></i></a>
