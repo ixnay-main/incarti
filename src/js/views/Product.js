@@ -104,7 +104,7 @@ class Product extends StoreView {
     </div>
     <div class="container" style="z-index: 0">
       <div class="columns six" style="padding-top: 1em;  padding-bottom: 10px; display: block">
-        <input style="width: 100%; background-color: #ffffff00" placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
+        <h2 contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
         <input style="width: 100%; background-color: #ffffff00" placeholder="Item description" onInput=${e => this.newProductDescription = e.target.value} />
         <input type="number" style="width: 100%;background-color: #ffffff00" placeholder="Price" onInput=${e => this.newProductPrice = parseInt(e.target.value)}/>
         <input style="background-color: #ffffff00; width: 100%;" placeholder="Item ID" onInput=${e => this.newProductId = e.target.value} />
@@ -329,7 +329,7 @@ class Product extends StoreView {
         ${this.state.product ? html`
           <div class="columns five" style="position: sticky; margin-top: 6em;">
               <div class="absoluteName"  style=" padding: 0m;  margin-top: 1em; margin-bottom: 1em">
-                <iris-text style="font-size: 3em" tag="h3" user=${this.props.store} path="store/products/${this.props.product}/name"/>
+                <iris-text style="font-size: 3em" tag="h3" user=${this.props.store} path="store/products/${this.props.product}/productName"/>
                 <p class="description">
                   <iris-text user=${this.props.store} path="store/products/${this.props.product}/description" placeholder="Description"/>
                 </p>
@@ -408,7 +408,7 @@ class Product extends StoreView {
 
 
     const product = {
-      name: this.newProductName,
+      productName: this.newProductName,
       description: this.newProductDescription,
       price: this.newProductPrice,
 
