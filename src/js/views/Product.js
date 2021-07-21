@@ -305,9 +305,6 @@ class Product extends StoreView {
                 <i class="fas fa-clone" style="font-size: 1.5em; color: #c5c5c5 "></i>
               </button>
 
-              <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${() => addItemCloned()}>
-                <i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5 "></i>
-              </button>
 
               <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " class="add" onClick=${() => this.addToCart()}>
                 Add to cart
