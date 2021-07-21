@@ -295,7 +295,7 @@ class Product extends StoreView {
 
               ${cartTotalItems ? html`
             
-                  <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " onClick=${() => route('/checkout/' + this.props.store)}>Cart (${cartTotalItems})</button>
+                  <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 1px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " onClick=${() => route('/checkout/' + this.props.store)}>Cart (${cartTotalItems})</button>
            
               ` : ''}
 
