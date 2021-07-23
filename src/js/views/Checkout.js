@@ -29,7 +29,7 @@ class Checkout extends Store {
     });
 
 
-    var randIntGo = (Math.floor(Math.random() * (9999999 - 111111 + 1) + 111111))
+    var randIntGo = '0' + "." + (Math.floor(Math.random() * (999 - 111 + 1) + 111)) + "." + (Math.floor(Math.random() * (999 - 111 + 1) + 111)) + "." + (Math.floor(Math.random() * (999 - 111 + 1) + 111)) + "." + (Math.floor(Math.random() * (999 - 111 + 1) + 111))
     console.log(randIntGo)
     //time
     let current = new Date();
@@ -42,9 +42,12 @@ class Checkout extends Store {
       getPub: pub,
       time: dateTime,
       itemNames: JSON.stringify(cart),
+
       productName: randIntGo,
-      delivery: JSON.stringify(this.state.delivery),
+      delivery: this.state.delivery.address,
     };
+
+    console.log(product)
 
     Session.channels[pub].send({
       text: 'New order: ' + JSON.stringify(cart) + ', delivery: ' + JSON.stringify(this.state.delivery) + ', payment: ' + this.state.paymentMethod,

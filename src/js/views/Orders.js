@@ -224,6 +224,8 @@ p.profile-about-content{
                           </div>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="orderTime">[${i.time}]</p>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.productName}]</p>
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.delivery}]</p>
+
                           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
                           
                             <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
@@ -247,11 +249,14 @@ p.profile-about-content{
                       <h1 style="font-family: arialBlack">IXNAY</h1>
                       <a spellcheck="false" href="/orders/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: white" path="store/liveOrders/${i.name}" user=${Session.getPubKey()} /></button></a>
                       <div style="width: 100%; display: flex">
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.time}]</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">${JSON.parse(i.itemNames)}</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.productName}]</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.delivery}]</a></h3>
-                      </div>    
+                      <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.time}]</a></h3>
+                      <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.productName}]</a></h3>
+
+                      
+                      <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">${i.itemNames}</a></h3>
+                      <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.delivery}]</a></h3>
+                        </div>                           
+
 
 
                     </div>    
@@ -430,6 +435,11 @@ p.profile-about-content{
                           </div>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="orderTime">[${i.time}]</p>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.productName}]</p>
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">${i.delivery}</p>
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">${i.itemNames}</p>
+
+                          
+
                           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
                           
                             <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
@@ -454,8 +464,10 @@ p.profile-about-content{
                       <a spellcheck="false" href="/orders/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: white" path="store/liveOrders/${i.name}" user=${Session.getPubKey()} /></button></a>
                       <div style="width: 100%; display: flex">
                         <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.time}]</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">${JSON.parse(i.itemNames)}</a></h3>
                         <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.productName}]</a></h3>
+
+                        
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">${i.itemNames}</a></h3>
                         <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.delivery}]</a></h3>
                       </div>    
 
@@ -473,18 +485,20 @@ p.profile-about-content{
   }
 
   render() {
-    if (!this.props.store) {
-      }
-      let page;
+    let page;
       const p = this.state.page;
       if (p === 'out') {
         page = this.renderOut();
       }  else if(p === 'in') {
         page = this.renderIn();
-    }
+      } else {
+        page = this.renderOut();
+
+      }
     return html`
     <div class="main-view" id="profile">
       <div class="">
+      
         <p>
           <a href="/store/${this.props.store}"><iris-text path="profile/name" user=${this.props.store}/></a>
         </p>

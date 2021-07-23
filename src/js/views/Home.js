@@ -106,8 +106,8 @@ class Home extends View{
     <div class="twelve columns" style="text-align: center; padding: 1em;font-weight: 600; margin-top: 10em;  background: #ffffff00;border-radius: 15px;  z-index:1020; ">
 
       <div style=" color: black">
-        <h1 style="font-size: 3em; font-weight: 800; ">Manufacture for Autonomy</h1>
-        <p style="    font-size: 1.2em;">The Blueprints to build your world.</p>
+        <h1 style="font-size: 5em; font-weight: 800; ">Manufacture for Autonomy</h1>
+        <p style="    font-size: 2em;">The Blueprints to build your world.</p>
       </div>
 
       <div style="display: flex; margin: auto; width: min-content; color: black;">
