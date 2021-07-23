@@ -11,6 +11,11 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
+  "alias": {
+    "react": "preact/compat",
+    "react-dom/test-utils": "preact/test-utils",
+    "react-dom": "preact/compat"
+  },
   "keywords": [],
   "author": {
     "name": "Antony",
@@ -45,7 +50,12 @@
     }
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "leaflet": "^1.7.1",
+    "parcel": "^2.0.0-beta.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-leaflet": "^3.2.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.57",

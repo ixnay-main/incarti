@@ -306,7 +306,7 @@ button{
 
   }
   100% {
-    transform: skewX(0deg);
+    transform: skewX(20deg);
     box-shadow: -30px 0 40px -10px #eb1c1c;
 
   }
@@ -433,4 +433,16 @@ padding: 1em;
 
 .subItemText{
   color: black;
+}
+
+.checkoutInput{
+  background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 1px #e0e0e0, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+hr{
+  border: 1px solid rgb(221, 221, 221);
 }

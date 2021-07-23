@@ -22,6 +22,7 @@ import Checkout from './views/Checkout.js';
 import Product from './views/Product.js';
 import Login from './views/Login.js';
 
+
 import Home from './views/Home.js';
 
 import Profile from './views/Profile.js';
@@ -55,11 +56,19 @@ if (!isElectron && ('serviceWorker' in navigator)) {
   });
 }
 
-var orderSvg = html`<i class="fas fa-level-up-alt" ></i>`
+var orderSvg = html`<div style="display: flex; margin-top: 2px"> <i class="fas fa-level-up-alt" ></i><i style="margin-left: -2px" class="fas fa-level-down-alt" ></i></div>`
 var folderSvg = html`<i class="far fa-folder"></i>`
 var chatSvg = html`<i class="far fa-comment-alt"></i>`
 var profileSvg = html`<i class="far fa-user"></i>`
 var ixnayText = html`<h1 style="font-family: arialBlack; font-size: 2em;margin-top: -0.5em; margin-bottom: 0px; z-index: 100">IXNAY</h1>`
+
+var home =  html`<div style="display: flex;margin-left: 0px; ">
+<div class="smolbar3"></div>
+<div class="smolbar3"></div>
+
+<div class="smolbar3"></div>
+
+</div>`;
 
 State.init();
 Session.init({autologin: window.location.hash.length > 2});
@@ -68,14 +77,11 @@ PeerManager.init();
 Helpers.checkColorScheme();
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: ixnayText, icon: Icons.home , classCss: "null hideWhite"},
+  {url: '/', text: home, icon: Icons.home , classCss: "null hideWhite"},
 
   {url: '/store', text: folderSvg, icon: Icons.store , classCss: "null"},
   {url: '/orders', text: orderSvg, icon: Icons.store , classCss: "null"},
   {url: '/chat', text: chatSvg, icon: Icons.store , classCss: "null"},
-
-
-
 ];
 
 const APPLICATIONSSECOND = [ // TODO: move editable shortcuts to localState gun
@@ -116,7 +122,7 @@ class Menu extends Component {
         ${APPLICATIONS.map(a => {
           if (a.url) {
             return html`
-              <${a.native ? 'a' : Link} class="flex " onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
+              <${a.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
 
                 <span class="text right ${a.classCss}">${a.text}</span>
               <//>`;
@@ -130,7 +136,7 @@ class Menu extends Component {
         ${APPLICATIONSSECOND.map(b => {
           if (b.url) {
             return html`
-              <${b.native ? 'a' : Link} class="flex " onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${b.url}>
+              <${b.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${b.url}>
 
                 <span class="text right ${b.classCss}">${b.text}</span>
               <//>`;
@@ -211,9 +217,13 @@ class Main extends Component {
 
               <${Settings} path="/settings"/>
               <${LogoutConfirmation} path="/logout"/>
+
+
               <${Profile} path="/profile/:id?" tab="profile"/>
               <${Profile} path="/replies/:id?" tab="replies"/>
               <${Profile} path="/likes/:id?" tab="likes"/>
+
+
               <${Group} path="/group/:id?"/>
 
               <${Store} path="/store/:store?"/>

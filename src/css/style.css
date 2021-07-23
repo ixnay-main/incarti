@@ -714,6 +714,9 @@ span.icon{
   width: 100%;
   padding-left: 1em;
   padding-right: 1em;
+  padding-top: 8px;
+  background: #000000 !important;
+    padding-bottom: 5px;
 }
 
 .application-list .electron-padding {
@@ -737,7 +740,7 @@ span.icon{
   display: flex;
   align-items: center;
   flex-direction: row;
-  color: #000000 ;
+  color: #fff ;
   font-weight: 600;
   font-size: 1.3em;
   height: fit-content;
@@ -746,7 +749,7 @@ span.icon{
 
 .application-list a .icon{
 
-  color: #000000  !important;
+  color: #ffffff  !important;
 }
 
 
@@ -1832,11 +1835,11 @@ form.public {
 
 #store-steps {
   display: flex;
-  flex-direction: row;
+  margin-right: 3em;
 }
 
 #store-steps div {
-  flex-basis: 25%;
+ 
 
   text-align: center;
   cursor: pointer;

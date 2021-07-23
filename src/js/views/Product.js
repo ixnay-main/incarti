@@ -6,6 +6,7 @@ import StoreView from './Store.js';
 import Helpers from '../Helpers.js';
 
 
+
 class Product extends StoreView {
   constructor() {
     super();
@@ -44,7 +45,7 @@ class Product extends StoreView {
         var loc = reader.result;
         console.log(loc)
         var container = $('linkContainer');
-        var anchor = ('<a id="uploadBtn" style="color: #000; font-size: 1.5em !important; margin-top: -0em" download href="' + loc + '" ><i class="far fa-save" style="margin-top: 0.6em;" ></i></a>');
+        var anchor = ('<a id="uploadBtn" style="color: #000; font-size: 1.5em !important; margin-top: -0em" download href="' + loc + '" ><i class="far fa-save" style=" color: #c5c5c5"></i></a>');
         $("#containerIcon").append(anchor)
           var stl_viewer=new StlViewer
           (
@@ -57,7 +58,7 @@ class Product extends StoreView {
               
           models:
           [
-          {filename: loc , opacity: 0.6}
+          {filename: loc , opacity:0.6}
           ]
           }
           )
@@ -97,33 +98,38 @@ class Product extends StoreView {
                   <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
                 </button>
 
+
+          </div>
+          <div class="flex-auto"></div>
+          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 0px" class="">
+            <button id="containerIcon" class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ;  ">
+            </button>
           </div>
         </div>
-        <div class="columns twelve" style="margin-top: 1em; border-bottom: 2px solid black; padding-bottom: 10px">
+        <div class="columns twelve" style="margin-top: 1em; border-bottom: 5px solid black; padding-bottom: 10px">
 
         </div>
     </div>
     <div class="container" style="z-index: 0">
       <div class="columns six" style="padding-top: 1em;  padding-bottom: 10px; display: block">
-        <h2 contenteditable placeholder="Item name" onInput=${e => this.newProductName = e.target.innerText} />
-        <input style="width: 100%; background-color: #ffffff00" placeholder="Item description" onInput=${e => this.newProductDescription = e.target.value} />
-        <input type="number" style="width: 100%;background-color: #ffffff00" placeholder="Price" onInput=${e => this.newProductPrice = parseInt(e.target.value)}/>
-        <input style="background-color: #ffffff00; width: 100%;" placeholder="Item ID" onInput=${e => this.newProductId = e.target.value} />
+        <h2 contenteditable placeholder="Blueprint Name" onInput=${e => this.newProductName = e.target.innerText} />
+        <input style="width: 100%; background-color: #ffffff00" placeholder="Blueprint Description" onInput=${e => this.newProductDescription = e.target.value} />
+        <input type="number" style="width: 100%;background-color: #ffffff00" placeholder="Blueprint Price" onInput=${e => this.newProductPrice = parseInt(e.target.value)}/>
+        <input style="background-color: #ffffff00; width: 100%;" placeholder="Blueprint ID" onInput=${e => this.newProductId = e.target.value} />
         
         <div class="" style="height: fit-content; ">
           <div class="" style="display: flex; border-radius: 0px">
-            <input id="file" type="file" style="border-radius: 0px; background-color: transparent; padding-left: 0em"/>
-            <p style="    width: fit-content; margin-right: 1em; border-radius: 3px; padding-top: 14px;margin-left: 3em "  onClick=${e => this.downloadThis(e)}><i style="color: #000; font-size: 1.5em !important;margin-top: -0.6em;" class="fas fa-upload"></i></p>
-            <div id="containerIcon"></div> 
+            <input id="file" type="file"  onChange=${e => this.downloadThis(e)}  style="border-radius: 0px; background-color: transparent; padding-left: 0em"/>
           </div>
           <p>Items must have a file. Stl files will be rendered.</p>
         </div>
-        <button onClick=${e => this.addItemClicked(e)} style="width: 100%">Add Blueprint</button>
         <br/><br/>
         <p>Sub Blueprints can be added here.</p>
         <input style="width: 100%; background-color: #ffffff00" id="clearThis1" placeholder="Sub Blueprint Name" onInput=${e => this.newSubName = e.target.value} />
         <input style="width: 100%;background-color: #ffffff00" id="clearThis2" placeholder="Sub Blueprint URL" onInput=${e => this.newSubAddy = e.target.value}/>
-        <button onClick=${e => this.addSubClicked(e)} style="width: 100%">Add Sub Blueprint</button>      
+        <button onClick=${e => this.addSubClicked(e)} style="width: 100%; margin-bottom: 1em">Add Sub Blueprint</button> 
+        <button onClick=${e => this.addItemClicked(e)} style="width: 100%">Add Blueprint</button>
+     
       </div>
 
       <div class="columns six" style="  ">
@@ -430,8 +436,6 @@ class Product extends StoreView {
 
       model: getModel,
       modelRaw: modelRaw,
-
-  
     };
 
     console.log(product);

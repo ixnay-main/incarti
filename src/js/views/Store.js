@@ -169,27 +169,27 @@ button#countNum {
           <div class="columns twelve subMenu" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
             <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; padding: 0px" class="">
 
-              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 5px  0px 0px 5px; background-color: #ffffff00 ; border: 1px #c5c5c5 solid ">
-                <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
+              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 5px  0px 0px 5px; background-color: #ffffff00 ; border: 1px #000 solid ">
+                <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: black"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
               </button>
 
               ${this.isMyProfile ? html`
-              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px 5px 5px 0px; background-color: #22de22  " onClick=${() => route(`/product/new`)}>
-                <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
+              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px 5px 5px 0px; background-color: black  " onClick=${() => route(`/product/new`)}>
+                <a href="/product/new" class="" style="color: white;"><i class="fas fa-share" style="color: white;"></i> New Blueprint</a>
               </button>
               ` : ''}
             </div>
               <div class="flex-auto"></div>
 
-              <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
+              <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #000; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
 
       
                 ${cartTotalItems ? html`
-                <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " onClick=${() => route('/checkout/' + this.props.store)}>Cart (${cartTotalItems})</button>
+                <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #000 solid; color: #c5c5c5 " onClick=${() => route('/checkout/' + this.props.store)}>Cart (${cartTotalItems})</button>
                 ` : ''}
 
 
-                <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${() => {
+                <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #000 solid " onClick=${() => {
                   showHideDiv('divMsg');
                   } 
                   
@@ -218,7 +218,7 @@ button#countNum {
         <div class="columns twelve" style=" height:fit-content; ">
           <div class=""  style="margin-top: 10em">
             <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; margin-bottom: 3em " id="hideBlues"> 
-              <div style="width:100%; position: fixed; top: 3.1em; border-bottom: 2px solid grey; background-color: ; padding: 5px; background-color: white; margin-left: -1px;">
+              <div style="width:100%; position: fixed; top: 3.1em; border-bottom: 5px solid black; background-color: ; padding: 5px; background-color: white; margin-left: -1px;">
                 <h2 class="" style="">CATALOG</h2>
                 <div style="display: flex; ">
             
@@ -247,8 +247,8 @@ button#countNum {
                           <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a href="/product/${k}/${this.props.store}" style="color: #000 !important" class="">[${i.productName}]</a></h3>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="">${i.price}</p>
 
-                          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">            
-                            <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5  " onClick=${e => this.addToCart(k, e)}><i class="fas fa-plus" style="font-size: 1.5em; color: #c5c5c5"></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
+                          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #000; border-radius: 3px; padding: 2px" class="">            
+                            <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #000 solid; color: #c5c5c5  " onClick=${e => this.addToCart(k, e)}><i class="fas fa-plus" style="font-size: 1.5em; color: #c5c5c5"></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
                           
                             <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
                               showHideOrder('divOrder');

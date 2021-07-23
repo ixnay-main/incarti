@@ -243,7 +243,7 @@ class Chat extends View {
 
     <style>
       div#chat-view {
-          margin-top: 11em;
+          margin-top: 13em !important;
       }
 
       .chat-list {

@@ -39,6 +39,7 @@ class Checkout extends Store {
     //delete
     //put this order in a list of orders which are fetched on Orders.js
     const product = {
+      getPub: pub,
       time: dateTime,
       itemNames: JSON.stringify(cart),
       productName: randIntGo,
@@ -52,19 +53,25 @@ class Checkout extends Store {
 
     State.public.user(pub).get('store').get('liveOrders').get(product.productName).put(product)
 
+    State.public.get('globalOrderList').get(product.productName).put(product)
+
+
+ 
+
     State.local.get('cart').get(pub).map().once((v, k) => {
       !!v && State.local.get('cart').get(pub).get(k).put(null);
     });
 
-    route('/chat/' + pub);
+    route('/orders/');
 
 
   }
 
-  renderCart() {
+  renderView() {
     return html`
-      <h3 class="side-padding-xs">Shopping cart</h3>
-      <div class="flex-table">
+  <div class="container">
+    <div class="columns six">
+      <div class="flex-table" style="margin-top: 4em">
         ${Object.keys(this.cart).filter(k => !!this.cart[k] && !!this.state.items[k]).map(k => {
           const i = this.state.items[k];
 
@@ -92,144 +99,106 @@ class Checkout extends Store {
           <div class="flex-cell"></div>
           <div class="flex-cell no-flex"><b>Total ${this.state.totalPrice} €</b></div>
         </div>
-      </div>
-      <p class="side-padding-xs">
-        <button onClick=${() => this.setState({page:'delivery'})}>Next</button>
-      </p>
-    `;
-  }
 
-  renderDelivery() {
-    return html`
-      <div class="side-padding-xs">
-        <h3>Delivery</h3>
-        <p>
-          <input type="text" placeholder="Name" value=${this.state.delivery.name} onInput=${e => State.local.get('delivery').get('name').put(e.target.value)}/>
-        </p>
-        <p>
-          <input type="text" placeholder="Address" value=${this.state.delivery.address} onInput=${e => State.local.get('delivery').get('address').put(e.target.value)}/>
-        </p>
-        <p>
-          <input type="text" placeholder="Email (optional)" value=${this.state.delivery.email} onInput=${e => State.local.get('delivery').get('email').put(e.target.value)}/>
-        </p>
-        <button onClick=${() => this.setState({page:'payment'})}>Next</button>
+
+          <h3 class="side-padding-xs">Confirmation</h3>
+            <div class="flex-table">
+              ${Object.keys(this.cart).filter(k => !!this.cart[k] && !!this.state.items[k]).map(k => {
+                const i = this.state.items[k];
+                return html`
+                  <div class="flex-row">
+                    <div class="flex-cell">
+                      <${SafeImg} src=${i.thumbnail}/>
+                      ${i.name || 'item'}
+                    </div>
+                    <div class="flex-cell no-flex price-cell">
+                      <p>
+                        ${this.cart[k]} x ${parseInt(i.price)} €
+                      </p>
+                      <span class="price">${parseInt(i.price) * this.cart[k]} €</span>
+                    </div>
+                  </div>
+                `;
+              })}
+              <div class="flex-row">
+                <div class="flex-cell"></div>
+                <div class="flex-cell no-flex"><b>Total ${this.state.totalPrice} €</b></div>
+              </div>
+            </div>
+            <p>
+              Detail:<br/><br/>
+              ${this.state.delivery.name}<hr/>
+              ${this.state.delivery.address}<hr/>
+              ${this.state.delivery.email}<hr/>
+              ${this.state.paymentMethod}<hr/>
+
+            </p>
+           <button class="checkoutInput" style="background-color: #ffffff00; margin: auto" onClick=${() => this.confirm()}>Confirm</button>
+
+            <div class="main-view" id="profile">
+              <div class="content">
+                ${this.state.carts && Object.keys(this.state.carts).map(user => {
+                  const cartTotalItems = Object.keys(this.state.carts[user]).reduce((sum, k) => sum + this.state.carts[user][k], 0);
+                  if (!cartTotalItems) { return; }
+                  return html`
+                    <p>
+                      <a href="/checkout/${user}">
+                        <iris-text path="profile/name" user=${user} editable="false"/> (${cartTotalItems})
+                      </a>
+                    </p>
+                  `;
+                })}
+              </div>
+            </div>
       </div>
-    `;
+    </div>
+    <div class="columns six" >
+      <div style="position: sticky; margin-top: 3em; ">
+
+        <div class="side-padding-xs" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; border-radius:10px">
+          <h3>Delivery</h3>
+        
+          <p>   Name     </p>
+            <input class="checkoutInput" style="background-color: #ffffff00" type="text" placeholder="Name" value=${this.state.delivery.name} onInput=${e => State.local.get('delivery').get('name').put(e.target.value)}/>
+        
+            <p>   Delivery Address     </p>
+            <input class="checkoutInput" style="background-color: #ffffff00" type="text" placeholder="Address" value=${this.state.delivery.address} onInput=${e => State.local.get('delivery').get('address').put(e.target.value)}/>
+    
+            <p>   Email (optional)    </p>
+            <input class="checkoutInput" type="email" style="background-color: #ffffff00" placeholder="Email" value=${this.state.delivery.email} onInput=${e => State.local.get('delivery').get('email').put(e.target.value)}/>
+            <br/>
+
+
+          <div class="side-padding-xs">
+            <h3>Payment</h3>
+            <p>
+              <label for="bitcoin" onClick=${e => this.paymentMethodChanged(e)}>
+                <input class="funkyradio" type="radio" name="payment" id="bitcoin" value="bitcoin" checked=${this.state.paymentMethod === 'bitcoin'}/>
+                Bitcoin
+              </label>
+            </p>
+            <p>
+              <label for="dogecoin" onClick=${e => this.paymentMethodChanged(e)}>
+                <input class="funkyradio" type="radio" name="payment" id="dogecoin" value="dogecoin" checked=${this.state.paymentMethod === 'dogecoin'}/>
+                Dogecoin
+              </label>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  `;
+
+
   }
 
   paymentMethodChanged(e) {
     const val = e.target.firstChild && e.target.firstChild.value;
     val && State.local.get('paymentMethod').put(val);
-  }
-
-  renderPayment() {
-    return html`
-      <div class="side-padding-xs">
-        <h3>Select a payment method</h3>
-        <p>
-          <label for="bitcoin" onClick=${e => this.paymentMethodChanged(e)}>
-            <input type="radio" name="payment" id="bitcoin" value="bitcoin" checked=${this.state.paymentMethod === 'bitcoin'}/>
-            Bitcoin
-          </label>
-        </p>
-        <p>
-          <label for="dogecoin" onClick=${e => this.paymentMethodChanged(e)}>
-            <input type="radio" name="payment" id="dogecoin" value="dogecoin" checked=${this.state.paymentMethod === 'dogecoin'}/>
-            Dogecoin
-          </label>
-        </p>
-        <button onClick=${() => this.setState({page:'confirmation'})}>Next</button>
-      </div>
-    `;
-  }
-
-  renderConfirmation() {
-    return html`
-      <h3 class="side-padding-xs">Confirmation</h3>
-      <div class="flex-table">
-        ${Object.keys(this.cart).filter(k => !!this.cart[k] && !!this.state.items[k]).map(k => {
-          const i = this.state.items[k];
-          return html`
-            <div class="flex-row">
-              <div class="flex-cell">
-                <${SafeImg} src=${i.thumbnail}/>
-                ${i.name || 'item'}
-              </div>
-              <div class="flex-cell no-flex price-cell">
-                <p>
-                  ${this.cart[k]} x ${parseInt(i.price)} €
-                </p>
-                <span class="price">${parseInt(i.price) * this.cart[k]} €</span>
-              </div>
-            </div>
-          `;
-        })}
-        <div class="flex-row">
-          <div class="flex-cell"></div>
-          <div class="flex-cell no-flex"><b>Total ${this.state.totalPrice} €</b></div>
-        </div>
-      </div>
-      <p>
-        Delivery:<br/>
-        ${this.state.delivery.name}<br/>
-        ${this.state.delivery.address}<br/>
-        ${this.state.delivery.email}
-      </p>
-      <p>Payment method: <b>${this.state.paymentMethod}</b></p>
-      <p class="side-padding-xs"><button onClick=${() => this.confirm()}>Confirm</button></p>
-    `;
-  }
-
-  renderCartList() {
-    return html`
-    <div class="main-view" id="profile">
-      <div class="content">
-        <h2>Shopping carts</h2>
-        ${this.state.carts && Object.keys(this.state.carts).map(user => {
-          const cartTotalItems = Object.keys(this.state.carts[user]).reduce((sum, k) => sum + this.state.carts[user][k], 0);
-          if (!cartTotalItems) { return; }
-          return html`
-            <p>
-              <a href="/checkout/${user}">
-                <iris-text path="profile/name" user=${user} editable="false"/> (${cartTotalItems})
-              </a>
-            </p>
-          `;
-        })}
-      </div>
-    </div>`;
-  }
-
-  render() {
-    if (!this.props.store) {
-      return this.renderCartList();
-    }
-    let page;
-    const p = this.state.page;
-    if (p === 'delivery') {
-      page = this.renderDelivery();
-    } else if (p === 'confirmation') {
-      page = this.renderConfirmation();
-    } else if (p === 'payment') {
-      page = this.renderPayment();
-    } else {
-      page = this.renderCart();
-    }
-    return html`
-    <div class="main-view" id="profile">
-      <div class="content">
-        <p>
-          <a href="/store/${this.props.store}"><iris-text path="profile/name" user=${this.props.store}/></a>
-        </p>
-        <div id="store-steps" style="background-color: #efefef !important; padding: 1em; border-radius: 10px; margin-top: 1em; margin-bottom: 1em">
-          <div  class=${p === 'cart' ? 'active' : ''} onClick=${() => this.setState({page:'cart'})}>Cart</div>
-          <div class=${p === 'delivery' ? 'active' : ''} onClick=${() => this.setState({page:'delivery'})}>Delivery</div>
-          <div class=${p === 'payment' ? 'active' : ''} onClick=${() => this.setState({page:'payment'})}>Payment</div>
-          <div  class=${p === 'confirmation' ? 'active' : ''} onClick=${() => this.setState({page:'confirmation'})}>Confirm</div>
-        </div>
-        ${page}
-      </div>
-    </div>`;
   }
 
   componentWillUnmount() {
