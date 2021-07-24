@@ -562,7 +562,7 @@ header.footer .header-content {
   background-color: var(--main-color);
   min-width: 0;
   padding: 1.3em;
-  margin-top: 2em !important;
+  margin-top: 3em !important;
 }
 
 .msg {
