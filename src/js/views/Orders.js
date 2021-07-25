@@ -45,20 +45,10 @@ class Orders extends View {
     if (this.shouldRedirect()) {
       return '';
     }
-    const cartTotalItems = Object.keys(this.cart).filter(k => !!this.cart[k] && !!this.items[k]).reduce((sum, k) => sum + this.cart[k], 0);
     this.isMyProfile = Session.getPubKey() === this.props.orders;
     const chat = Session.channels[this.props.orders];
-    const uuid = chat && chat.uuid;
-    let profilePhoto;
-    if (this.isMyProfile) {
-      profilePhoto = html`<${ProfilePhotoPicker} currentPhoto=${this.state.photo} placeholder=${this.props.orders} callback=${src => this.onProfilePhotoSet(src)}/>`;
-    } else {
-      if (this.state.photo) {
-        profilePhoto = html`<${SafeImg} class="profile-photo" src=${this.state.photo}/>`
-      } else {
-        profilePhoto = html`<${Identicon} str=${this.props.orders} width=250/>`
-      }
-    }
+
+
 
     function showHideDiv(ele) {
       var srcElement = document.getElementById(ele);
@@ -89,15 +79,6 @@ class Orders extends View {
         return false;
       }
     }
-
-    setTimeout(function(){
-      if(document.getElementById("range").innerHTML == "PK"){
-        $("#timeBar").css("background-color", "red")
-      } else{
-
-      }
-
-    } , 1000)
 
 
 
@@ -199,7 +180,7 @@ p.profile-about-content{
           <div class=""  style="margin-top: 56px">
             <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; margin-bottom: 3em " id="hideBlues"> 
               <div style="width:100%;  border-bottom: 2px solid grey; background-color: white; padding: 5px;">
-                <h2 class="" style=""> OUTGOING ORDERS</h2>
+                <h2 class="" style=""> INCOMING ORDERS</h2>
                 <div style="display: flex; ">
               
                   <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class=""></p>
@@ -224,7 +205,10 @@ p.profile-about-content{
                           </div>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="orderTime">[${i.time}]</p>
                           <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.productName}]</p>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.delivery}]</p>
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">${i.delivery}</p>
+                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">${i.itemNames}</p>
+
+                          
 
                           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
                           
@@ -243,20 +227,22 @@ p.profile-about-content{
                     </div>
                     
                   </div>
-                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; " onClick=${() => {
+                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; z-index: 0 !important;
+                  margin-top: -15em;
+                  padding-top: 16em;
+                  padding-bottom: 10em;" onClick=${() => {
                     showHideDiv('divOrder');}}>
                     <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;width: 80% !important; margin-top: -10em">
                       <h1 style="font-family: arialBlack">IXNAY</h1>
-                      <a spellcheck="false" href="/orders/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: white" path="store/liveOrders/${i.name}" user=${Session.getPubKey()} /></button></a>
+                      <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: black !Important;margin-top: 1em"><i class="far fa-user" style=" color: #000000"></i><iris-text style="margin-left: 1em; color: #000000" path="profile/name" user=${Session.getPubKey()} /></button></a>
                       <div style="width: 100%; display: flex">
-                      <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.time}]</a></h3>
-                      <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.productName}]</a></h3>
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.time}]</a></h3>
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.productName}]</a></h3>
 
-                      
-                      <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">${i.itemNames}</a></h3>
-                      <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.delivery}]</a></h3>
-                        </div>                           
-
+                        
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">${i.itemNames}</a></h3>
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.delivery}]</a></h3>
+                      </div>    
 
 
                     </div>    
@@ -457,11 +443,14 @@ p.profile-about-content{
                     </div>
                     
                   </div>
-                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; " onClick=${() => {
+                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; z-index: 0 !important;
+                  margin-top: -15em;
+                  padding-top: 16em;
+                  padding-bottom: 10em;" onClick=${() => {
                     showHideDiv('divOrder');}}>
                     <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;width: 80% !important; margin-top: -10em">
                       <h1 style="font-family: arialBlack">IXNAY</h1>
-                      <a spellcheck="false" href="/orders/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: white" path="store/liveOrders/${i.name}" user=${Session.getPubKey()} /></button></a>
+                      <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></button></a>
                       <div style="width: 100%; display: flex">
                         <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.time}]</a></h3>
                         <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.productName}]</a></h3>
