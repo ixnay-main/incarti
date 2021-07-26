@@ -204,7 +204,7 @@ p.profile-about-content{
                             <div class="smolbar2" style=""></div>
                           </div>
                           <div class="container">
-                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" id="orderTime">a[${i.time}]</p>
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" id="orderTime">[${i.time}]</p>
                             <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" >[${i.productName}]</p>
                             <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" >${i.delivery}</p>
                             <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" >${i.itemNames}</p>
@@ -455,7 +455,7 @@ p.profile-about-content{
                       <h1 style="font-family: arialBlack">IXNAY</h1>
                       <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></button></a>
                       <div class="container">
-                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" id="orderTime">a[${i.time}]</p>
+                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" id="orderTime">[${i.time}]</p>
                         <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >[${i.productName}]</p>
                         <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.delivery}</p>
                         <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.itemNames}</p>
