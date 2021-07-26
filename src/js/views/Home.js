@@ -24,6 +24,10 @@ class Home extends View{
     return html`
     <style>
 
+    .main-view {
+    overflow: auto !Important; 
+  }
+
     .application-list{
       margin-top: -4px
     }
@@ -71,6 +75,26 @@ class Home extends View{
 
     }
 
+
+.view-area {
+    padding: 0em !important;
+}
+
+    @media (max-width: 625px){
+
+.smolTxt1{
+  font-size: 3em !important;
+}
+
+.smolTxt2{
+  font-size: 2em !important;
+}
+
+  }
+    .main-view {
+      margin-top: -1em !important;
+  }
+
     *{
       filter: invert(0) !important;
     }
@@ -85,8 +109,8 @@ class Home extends View{
     }
     </style>
 
-    <div  class="" style="margin: auto; text-align: center; margin-right: 1em; position: sticky; z-index: 10;top: 2em; filter: invert(1);mix-blend-mode: difference;"> 
-      <h1 style="font-family: arialBlack;  font-size: 2.8em; margin-left:5px;    margin-top: -14px; color: rgb(251 160 160) ">IXNAY</h1>
+    <div  class="" style="margin: auto; text-align: center; margin-right: 1em; position: sticky; z-index: 10;top: 3em; filter: invert(1);mix-blend-mode: difference;"> 
+      <h1 class="" style="font-family: arialBlack;  font-size: 2.8em; margin-left:5px;    margin-top: -14px; color: rgb(251 160 160) ">IXNAY</h1>
     </div>
 
 
@@ -103,11 +127,11 @@ class Home extends View{
 
   <div class="container">
 
-    <div class="twelve columns" style="text-align: center; padding: 1em;font-weight: 600; margin-top: 10em;  background: #ffffff00;border-radius: 15px;  z-index:1020; ">
+    <div class="twelve columns" style="text-align: center; padding: 1em;font-weight: 600; margin-top: 18em;  background: #ffffff00;border-radius: 15px;  z-index:1020; ">
 
       <div style=" color: black">
-        <h1 style="font-size: 5em; font-weight: 800; ">Manufacture for Autonomy</h1>
-        <p style="    font-size: 2em;">The Blueprints to build your world.</p>
+        <h1 class="smolTxt1" style="font-size: 5em; font-weight: 800; ">Manufacture for Autonomy</h1>
+        <p class="smolTxt2" style="    font-size: 2em;">The Blueprints to build your world.</p>
       </div>
 
       <div style="display: flex; margin: auto; width: min-content; color: black;">
@@ -127,16 +151,43 @@ class Home extends View{
     </div>
   </div>
 
-  <div class="container " style=" margin-top: 2em !important;    position: relative;"> 
-    <div class="four columns" style="z-index: 1001;  margin-top: 1em !important;">
-
+  <div class="container " style=" ">
+    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
+      
+    </div> 
+    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; height: auto; border-radius: 10px; ">
+      <h1 style="font-size: 44px; font-weight: 500">A global ordering system <br/> to depart the centralised  </h1><br/>
+      <div style="background-color: #f5bfc6; color: black; padding: 5px 40px; border-radius: 50px; width: fit-content"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
     </div>
-    <div class="four columns" style="z-index: 1001;  margin-top: 1em !important;">
+    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
+      
+    </div> 
+  </div>
 
+  <div class="container " style=" ">
+    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
+      
+    </div> 
+    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; height: 30em; border-radius: 10px; text-align: end">
+      <h1 style="font-size: 44px; font-weight: 500">Distributed, Libre and untamed  </h1><br/>
+      <div style="background-color: black; color: white; padding: 5px 40px; border-radius: 50px; width: fit-content; float: right"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
     </div>
-    <div class="four columns" style="z-index: 1001;  margin-top: 1em !important;">
+    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
+      
+    </div> 
+  </div>
 
+  <div class="container " style=" ">
+    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
+      
+    </div> 
+    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; height: auto; border-radius: 10px; ">
+      <h1 style="font-size: 44px; font-weight: 500">A global ordering system <br/> to depart the centralised  </h1><br/>
+      <div style="background-color: #f5bfc6; color: black; padding: 5px 40px; border-radius: 50px; width: fit-content"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
     </div>
+    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
+      
+    </div> 
   </div>
 
   `;

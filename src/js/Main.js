@@ -57,7 +57,7 @@ if (!isElectron && ('serviceWorker' in navigator)) {
 }
 
 var orderSvg = html`<div style="display: flex; margin-top: 2px"> <i class="fas fa-level-up-alt" ></i><i style="margin-left: -2px" class="fas fa-level-down-alt" ></i></div>`
-var folderSvg = html`<i class="far fa-folder"></i>`
+var folderSvg = html`<i class="fas fa-grip-lines"></i>`
 var chatSvg = html`<i class="far fa-comment-alt"></i>`
 var profileSvg = html`<i class="far fa-user"></i>`
 var ixnayText = html`<h1 style="font-family: arialBlack; font-size: 2em;margin-top: -0.5em; margin-bottom: 0px; z-index: 100">IXNAY</h1>`
@@ -77,17 +77,17 @@ PeerManager.init();
 Helpers.checkColorScheme();
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: home, icon: Icons.home , classCss: "null hideWhite"},
+  {url: '/', text: home, icon: Icons.home , classCss: " hideWhite"},
 
-  {url: '/store', text: folderSvg, icon: Icons.store , classCss: "null"},
-  {url: '/orders', text: orderSvg, icon: Icons.store , classCss: "null"},
-  {url: '/chat', text: chatSvg, icon: Icons.store , classCss: "null"},
+  {url: '/store', text: "Catalog", icon: Icons.store , classCss: "null"},
+  {url: '/orders', text: "Orders", icon: Icons.store , classCss: "null"},
+  {url: '/chat', text: "Messages", icon: Icons.store , classCss: "null"},
 ];
 
 const APPLICATIONSSECOND = [ // TODO: move editable shortcuts to localState gun
 
-  {url: '/settings', text: settingsIcon, icon: Icons.settings , classCss: "profile"},
-  {url: '/profile', text: profileSvg, icon: Icons.settings, classCss: "profile"},
+  {url: '/settings', text: "Profile", icon: Icons.settings , classCss: "null"},
+  {url: '/profile', text: "Settings", icon: Icons.settings, classCss: "null"},
 
 
 ];

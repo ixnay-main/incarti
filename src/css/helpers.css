@@ -254,7 +254,7 @@ button{
 
 
 
-.bar:before, .box:after {
+/* .bar:before, .box:after {
   content: "";
   height: 100%;
   width: 200px;
@@ -272,7 +272,7 @@ button{
   transform: skewX(40deg);
   animation: rotateThis  infinite 30s;
 
-}
+} */
 
 @keyframes rotateThis {
   0% {
@@ -332,7 +332,6 @@ button{
 
 
 footer.visible-xs-flex.nav.footer {
-  border-radius: 40px !important;
 }
 
 .smolbar{
@@ -415,6 +414,10 @@ padding: 1em;
 
 .null{
   z-index: 100;
+  FONT-WEIGHT: 400;
+  margin-top: 6px;
+  font-size: 15px;
+
 }
 
 .subItem{

@@ -203,10 +203,12 @@ p.profile-about-content{
                             <div class="smolbar2" style=""></div>
                             <div class="smolbar2" style=""></div>
                           </div>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="orderTime">[${i.time}]</p>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.productName}]</p>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">${i.delivery}</p>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">${i.itemNames}</p>
+                          <div class="container">
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" id="orderTime">a[${i.time}]</p>
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" >[${i.productName}]</p>
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" >${i.delivery}</p>
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" >${i.itemNames}</p>
+                          </div>
 
                           
 
@@ -229,19 +231,19 @@ p.profile-about-content{
                   </div>
                   <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; z-index: 0 !important;
                   margin-top: -15em;
-                  padding-top: 16em;
+                  padding-top: 16em; padding: 1em;
                   padding-bottom: 10em;" onClick=${() => {
                     showHideDiv('divOrder');}}>
-                    <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;width: 80% !important; margin-top: -10em">
+                    <div style="height: 14em; border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 ;     background-color: white; width: 100% !important;">
                       <h1 style="font-family: arialBlack">IXNAY</h1>
                       <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: black !Important;margin-top: 1em"><i class="far fa-user" style=" color: #000000"></i><iris-text style="margin-left: 1em; color: #000000" path="profile/name" user=${Session.getPubKey()} /></button></a>
-                      <div style="width: 100%; display: flex">
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.time}]</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.productName}]</a></h3>
+                      <div class="container">
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="columns three" contenteditable="true">[${i.time}]</a></h3>
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="columns three" contenteditable="true">[${i.productName}]</a></h3>
 
                         
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">${i.itemNames}</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.delivery}]</a></h3>
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="columns three" contenteditable="true">${i.itemNames}</a></h3>
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="columns three" contenteditable="true">[${i.delivery}]</a></h3>
                       </div>    
 
 
@@ -419,11 +421,12 @@ p.profile-about-content{
                             <div class="smolbar2" style=""></div>
                             <div class="smolbar2" style=""></div>
                           </div>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="orderTime">[${i.time}]</p>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">[${i.productName}]</p>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">${i.delivery}</p>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description">${i.itemNames}</p>
-
+                          <div class="container">
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" id="orderTime">[${i.time}]</p>
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >[${i.productName}]</p>
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.delivery}</p>
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.itemNames}</p>
+                          </div>
                           
 
                           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
@@ -443,22 +446,20 @@ p.profile-about-content{
                     </div>
                     
                   </div>
-                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; z-index: 0 !important;
+                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; z-index: 0 !important;
                   margin-top: -15em;
                   padding-top: 16em;
                   padding-bottom: 10em;" onClick=${() => {
                     showHideDiv('divOrder');}}>
-                    <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;width: 80% !important; margin-top: -10em">
+                    <div style="border-radius: 10px; padding: 0.2em; margin: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 ; height: auto;     background-color: white;width: 90% !important; ">
                       <h1 style="font-family: arialBlack">IXNAY</h1>
                       <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></button></a>
-                      <div style="width: 100%; display: flex">
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.time}]</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.productName}]</a></h3>
-
-                        
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">${i.itemNames}</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="" contenteditable="true">[${i.delivery}]</a></h3>
-                      </div>    
+                      <div class="container">
+                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" id="orderTime">a[${i.time}]</p>
+                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >[${i.productName}]</p>
+                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.delivery}</p>
+                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.itemNames}</p>
+                      </div>  
 
 
                     </div>    
