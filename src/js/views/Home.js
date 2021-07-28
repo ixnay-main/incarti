@@ -185,7 +185,6 @@ class Home extends View{
       <h1 style="font-size: 44px; font-weight: 500">Easy come <br/> Easy go.  </h1><br/>
       <h3 style="font-size: 24px; font-weight: 500">Ixnay beleives that credibility comes from your ability to build stuff properly - not domain names or a verified tick.  <br/> Transfer your contacts and ratings to a new set of keys at any time if you fell the need. </h3><br/>
 
-      // <div style="background-color: #f5bfc6; color: black; padding: 5px 40px; border-radius: 50px; width: fit-content"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
     </div>
     <div class="one column expand" style="z-index: 1001;   ">
       
