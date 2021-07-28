@@ -42,7 +42,6 @@ class Checkout extends Store {
       getPub: pub,
       time: dateTime,
       itemNames: JSON.stringify(cart),
-
       productName: randIntGo,
       delivery: this.state.delivery.address,
     };

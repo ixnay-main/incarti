@@ -125,27 +125,29 @@ class Home extends View{
 
 
 
+
+
   <div class="container">
 
     <div class="twelve columns" style="text-align: center; padding: 1em;font-weight: 600; margin-top: 18em;  background: #ffffff00;border-radius: 15px;  z-index:1020; ">
 
       <div style=" color: black">
         <h1 class="smolTxt1" style="font-size: 5em; font-weight: 800; ">Manufacture for Autonomy</h1>
-        <p class="smolTxt2" style="    font-size: 2em;">The Blueprints to build your world.</p>
+        <p class="smolTxt2" style="    font-size: 2em;">The Blueprints to build your world</p>
       </div>
 
       <div style="display: flex; margin: auto; width: min-content; color: black;">
         <div class="expand" style="display: flex; margin: auto; background-color: #ffffff40; padding: 3px;border-radius: 15px; height: fit-content; padding-left:20px; padding-top: 5px; margin-right: 1em !important ">
           <div class="" >
-            <a  href=""  download="" style=""><i style=" color: black;   font-size: 2.2em; margin-right: 0.3em; " class="fas fa-chevron-circle-down"></i></a>
+            <a  href=""  download="" style=""><i style=" color: #464646;   font-size: 2.2em; margin-right: 0.3em; " class="fas fa-chevron-circle-down"></i></a>
           </div>
           <div class="" >
-            <a  href="https://github.com/ixnay-main/ixnay"  target="blank" style=""><i style=" color: black;   font-size: 2.2em; margin-right: 0.3em; " class="fab fa-github"></i></a>
+            <a  href="https://github.com/ixnay-main/ixnay"  target="blank" style=""><i style=" color: #464646;   font-size: 2.2em; margin-right: 0.3em; " class="fab fa-github"></i></a>
           </div>
         </div>
 
         <div class="expand" style=" height: fit-content;   padding: 5px 10px;border-radius: 15px ;margin-left: 3px; width: 5em">
-          <a  onClick=${() => route(`/store`)}  target="blank" style=" color: #ffffff20 "> <h2 class="para" style=" font-weight: 800 ;color: black "><i  class="fas fa-chevron-right" style=" color: color: #ffffff20;font-size: 1.5em; margin-left: 0.2em;"></i></h2></a>
+          <a  onClick=${() => route(`/store`)}  target="blank" style=" color: #ffffff20 "> <h2 class="para" style=" font-weight: 800 ;color: #464646 "><i  class="fas fa-chevron-right" style=" color: #464646;font-size: 1.5em; margin-left: 0.2em;"></i></h2></a>
         </div>
       </div>
     </div>
@@ -156,7 +158,7 @@ class Home extends View{
       
     </div> 
     <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; height: auto; border-radius: 10px; ">
-      <h1 style="font-size: 44px; font-weight: 500">A global ordering system <br/> to depart the centralised  </h1><br/>
+      <h1 style="font-size: 44px; font-weight: 500">A global ordering system <br/> to depart the centralised.  </h1><br/>
       <div style="background-color: #f5bfc6; color: black; padding: 5px 40px; border-radius: 50px; width: fit-content"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
     </div>
     <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
@@ -168,11 +170,26 @@ class Home extends View{
     <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
       
     </div> 
-    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; height: 30em; border-radius: 10px; text-align: end">
-      <h1 style="font-size: 44px; font-weight: 500">Distributed, Libre and untamed  </h1><br/>
-      <div style="background-color: black; color: white; padding: 5px 40px; border-radius: 50px; width: fit-content; float: right"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
+    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; margin-bottom: 2em ; border-radius: 10px; text-align: end">
+      <h1 style="font-size: 44px; font-weight: 500">Distributed, Libre and Untamed.  </h1><br/>
+      <div style="background-color: #464646; color: white; padding: 5px 40px; border-radius: 50px; width: fit-content; float: right"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
     </div>
     <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
+      
+    </div> 
+  </div>
+
+  <div class="container " style=" ">
+    <div class="one column expand" style="z-index: 1001;  ; ">
+      
+    </div> 
+    <div class="ten columns expand" style="  ;  padding: 1em; color: black; height: auto; border-radius: 10px; ">
+      <h1 style="font-size: 44px; font-weight: 500">Easy come <br/> Easy go.  </h1><br/>
+      <h3 style="font-size: 24px; font-weight: 500">Ixnay beleives that credibility comes from your ability to build stuff properly - not domain names or a verified tick.  <br/> Transfer your contacts and ratings to a new set of keys at any time if you fell the need. </h3><br/>
+
+      <div style="background-color: #f5bfc6; color: black; padding: 5px 40px; border-radius: 50px; width: fit-content"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
+    </div>
+    <div class="one column expand" style="z-index: 1001;   ">
       
     </div> 
   </div>
@@ -181,9 +198,11 @@ class Home extends View{
     <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
       
     </div> 
-    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; height: auto; border-radius: 10px; ">
-      <h1 style="font-size: 44px; font-weight: 500">A global ordering system <br/> to depart the centralised  </h1><br/>
-      <div style="background-color: #f5bfc6; color: black; padding: 5px 40px; border-radius: 50px; width: fit-content"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
+    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; margin-bottom: 2em ; border-radius: 10px; text-align: end">
+      <h1 style="font-size: 44px; font-weight: 500">Exploit the Open</h1><br/>
+      <h3 style="font-size: 24px; font-weight: 500">Clone blueprints, catalogs and orders for yourself.</h3><br/>
+
+      <div style="background-color: #464646; color: white; padding: 5px 40px; border-radius: 50px; width: fit-content; float: right"> <p style="font-size: 22px; margin: 0px">Orders</p> </div>
     </div>
     <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
       

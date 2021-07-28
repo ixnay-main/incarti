@@ -21,6 +21,7 @@ class Orders extends View {
     this.items = {};
     this.orderglobal = {};
     this.orderpiece = {};
+    this.state.bidBool = false;
 
     this.id = 'profile';
     
@@ -136,6 +137,11 @@ pre, blockquote, dl, figure, table, p, ul, ol, form {
   flex-wrap: wrap;
 }
 
+.orderIncoming{
+  background-color: pink;
+  border-radius: 50px; 
+}
+
 p.profile-about-content{
   display:none
 }
@@ -180,7 +186,7 @@ p.profile-about-content{
           <div class=""  style="margin-top: 56px">
             <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; margin-bottom: 3em " id="hideBlues"> 
               <div style="width:100%;  border-bottom: 2px solid grey; background-color: white; padding: 5px;">
-                <h2 class="" style=""> INCOMING ORDERS</h2>
+                <h2 class="" style=""> ON ORDER</h2>
                 <div style="display: flex; ">
               
                   <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 600" class=""></p>
@@ -192,6 +198,10 @@ p.profile-about-content{
 
                 ${Object.keys(this.state.orderpiece).map(k => {
                   const i = this.state.orderpiece[k];
+                  var itemNames = i.itemNames
+                  var itemNamesString = itemNames.split("{").join(' ').split(`"`).join(' ').split(':').join(" : ").split(',').join(" | ").split('}');
+
+
                   return html`
                   <div class="" style="width:100%;">
                     <div class="" style="width:100%">
@@ -204,10 +214,10 @@ p.profile-about-content{
                             <div class="smolbar2" style=""></div>
                           </div>
                           <div class="container">
-                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" id="orderTime">[${i.time}]</p>
-                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" >[${i.productName}]</p>
-                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" >${i.delivery}</p>
-                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; padding-right: 1em" >${i.itemNames}</p>
+                            <p class="columns three description" style="color: #000 !important; font-size: 20px; font-weight: 400;" id="orderTime">[${i.time}]</p>
+                            <p class="columns three description" style="color: #000 !important;  font-size: 20px; font-weight: 400;" >[${i.productName}]</p>
+                            <p class="columns three description" style="color: #000 !important;  font-size: 20px; font-weight: 400; " >[${i.delivery}]</p>
+                            <p class="columns three description" style="color: #000 !important; font-size: 20px; font-weight: 400;" >[${itemNamesString}]</p>
                           </div>
 
                           
@@ -229,21 +239,17 @@ p.profile-about-content{
                     </div>
                     
                   </div>
-                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; z-index: 0 !important;
-                  margin-top: -15em;
-                  padding-top: 16em; padding: 1em;
-                  padding-bottom: 10em;" onClick=${() => {
-                    showHideDiv('divOrder');}}>
+                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; z-index: 3000 !important;margin-top: -15em;padding-top: 16em; padding: 1em;padding-bottom: 10em;" onClick=${() => {showHideDiv('divOrder');}}>
                     <div style="height: 14em; border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 ;     background-color: white; width: 100% !important;">
                       <h1 style="font-family: arialBlack">IXNAY</h1>
                       <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: black !Important;margin-top: 1em"><i class="far fa-user" style=" color: #000000"></i><iris-text style="margin-left: 1em; color: #000000" path="profile/name" user=${Session.getPubKey()} /></button></a>
                       <div class="container">
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="columns three" contenteditable="true">[${i.time}]</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="columns three" contenteditable="true">[${i.productName}]</a></h3>
+                        <h3 class="columns three" style="margin: 0px;  font-size: 20px; font-weight: 600"><a style="color: #000 !important" contenteditable="false">[${i.time}]</a></h3>
+                        <h3 class="columns three" style="margin: 0px; font-size: 20px; font-weight: 600"><a style="color: #000 !important"  contenteditable="false">[${i.productName}]</a></h3>
 
                         
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="columns three" contenteditable="true">${i.itemNames}</a></h3>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a style="color: #000 !important" class="columns three" contenteditable="true">[${i.delivery}]</a></h3>
+                        <h3 class="columns three" style="margin: 0px; font-size: 20px; font-weight: 600"><a style="color: #000 !important" contenteditable="false">${itemNamesString}</a></h3>
+                        <h3 class="columns three" style="margin: 0px;  font-size: 20px; font-weight: 600"><a style="color: #000 !important" contenteditable="false">[${i.delivery}]</a></h3>
                       </div>    
 
 
@@ -356,7 +362,18 @@ pre, blockquote, dl, figure, table, p, ul, ol, form {
 
 p.profile-about-content{
   display:none
+
+
 }
+
+.orderGlobal{
+  background-color: pink;
+  border-radius: 50px; 
+
+
+}
+
+
     </style>
 
         <div id="divMsg" style="display:none; position: absolute; margin-top: 10em; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center;margin-top: -2em;padding-top: 10em; " onClick=${() => {
@@ -408,8 +425,15 @@ p.profile-about-content{
               </div>
               <div style="margin-top: 2em">
 
-                ${Object.keys(this.state.orderglobal).map(k => {
+                ${
+                  Object.keys(this.state.orderglobal).map(k => {
                   const i = this.state.orderglobal[k];
+                  var pub = Session.getPubKey();
+
+                  var itemNames = i.itemNames + ''
+                  var itemNamesString = itemNames.split("{").join(' ').split(`"`).join(' ').split(':').join(" : ").split(',').join(" | ").split('}');
+
+
                   return html`
                   <div class="" style="width:100%;">
                     <div class="" style="width:100%">
@@ -424,8 +448,8 @@ p.profile-about-content{
                           <div class="container">
                             <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" id="orderTime">[${i.time}]</p>
                             <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >[${i.productName}]</p>
-                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.delivery}</p>
-                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.itemNames}</p>
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >[${i.delivery}]</p>
+                            <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >[${itemNamesString}]</p>
                           </div>
                           
 
@@ -446,20 +470,42 @@ p.profile-about-content{
                     </div>
                     
                   </div>
-                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; z-index: 0 !important;
-                  margin-top: -15em;
-                  padding-top: 16em;
-                  padding-bottom: 10em;" onClick=${() => {
-                    showHideDiv('divOrder');}}>
-                    <div style="border-radius: 10px; padding: 0.2em; margin: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 ; height: auto;     background-color: white;width: 90% !important; ">
+                  <div id="divOrder" style="display:none; position: absolute;  !Important; width: 100%; z-index: 2004;     background-color: #ffffffe0;height: 100%; text-align: center; margin-top: -2em;padding-top: 10em; z-index: 3000 !important;margin-top: -15em;padding-top: 16em; padding: 1em;padding-bottom: 10em;" onClick=${() => {showHideDiv('divOrder');}}>
+                    <div style="height: 14em; border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 ;     background-color: white; width: 100% !important;">
                       <h1 style="font-family: arialBlack">IXNAY</h1>
-                      <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></button></a>
+                      <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: black !Important;margin-top: 1em"><i class="far fa-user" style=" color: #000000"></i><iris-text style="margin-left: 1em; color: #000000" path="profile/name" user=${Session.getPubKey()} /></button></a>
                       <div class="container">
-                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" id="orderTime">[${i.time}]</p>
-                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >[${i.productName}]</p>
-                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.delivery}</p>
-                        <p class="columns three description" style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" >${i.itemNames}</p>
+                        <h3 class="columns three" style="margin: 0px;  font-size: 20px; font-weight: 600"><a style="color: #000 !important" contenteditable="false">[${i.time}]</a></h3>
+                        <h3 class="columns three" style="margin: 0px; font-size: 20px; font-weight: 600"><a style="color: #000 !important"  contenteditable="false">[${i.productName}]</a></h3>
+
+                        
+                        <h3 class="columns three" style="margin: 0px; font-size: 20px; font-weight: 600"><a style="color: #000 !important" contenteditable="false">${itemNamesString}</a></h3>
+                        <h3 class="columns three" style="margin: 0px;  font-size: 20px; font-weight: 600"><a style="color: #000 !important" contenteditable="false">[${i.delivery}]</a></h3>
+
+
                       </div>  
+                      
+                      <div class="side-padding-xs">
+                        <h3>register  fabrication</h3>
+                        <p>
+                          <label for="YES" onClick=${e => {
+                            const val = e.target.firstChild && e.target.firstChild.value;
+                            State.public.get('bidBool').get(i.productName).get(pub).put(val)
+                          }}>
+                            <input class="funkyradio" type="radio" name="payment" id="bitcoin" value="YES" checked=${this.state.bidBool === false}/>
+                            B
+                          </label>
+                        </p>
+                        <p>
+                          <label for="NO" onClick=${e => {
+                            const val = e.target.firstChild && e.target.firstChild.value;
+                            State.public.get('bidBool').get(i.productName).get(pub).put(val)
+                          }}>
+                            <input class="funkyradio" type="radio" name="payment" id="dogecoin" value="NO" checked=${this.state.bidBool === true}/>
+                            Dogecoin
+                          </label>
+                        </p>
+                      </div>
 
 
                     </div>    
@@ -488,16 +534,13 @@ p.profile-about-content{
     return html`
     <div class="main-view" id="profile">
       <div class="">
-      
-        <p>
-          <a href="/store/${this.props.store}"><iris-text path="profile/name" user=${this.props.store}/></a>
-        </p>
-        <div style="display: flex">
-          <div id="store-steps" style="border-radius: 10px; margin-top: 1em; margin-bottom: 1em">
-            <div  class=${p === 'out' ? 'active' : ''} onClick=${() => this.setState({page:'out'})}>ORDER INCOMING</div>
+    
+        <div style="display: flex;   width: fit-content;     background-color: #6effbc; border-radius: 20px;">
+          <div id="store-steps" style="margin: 0em;">
+            <div  class=${p === 'out' ? 'active' : ''} onClick=${() => this.setState({page:'out'})}><div class="orderIncoming paddingSteps">ON ORDER</div></div>
           </div>
-          <div id="store-steps" style="margin-top: 1em; margin-bottom: 1em">
-            <div  class=${p === 'in' ? 'active' : ''} onClick=${() => this.setState({page:'in'})}>GLOBAL ORDERS</div>
+          <div id="store-steps" style="margin: 0em;">
+            <div  class=${p === 'in' ? 'active' : ''} onClick=${() => this.setState({page:'in'})}><div class="orderGlobal paddingSteps">GLOBAL ORDERS</div></div>
           </div>
         </div>
         ${page}
@@ -557,6 +600,7 @@ p.profile-about-content{
           n[jd] = x;
           Object.assign(this.orderglobal, n);
           this.updateTotalPrice();
+          State.local.get('paymentMethod').on(bidBool => this.setState({bidBool}));
         } else {
           delete this.orderglobal[jd];
         }

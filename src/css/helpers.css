@@ -420,6 +420,10 @@ padding: 1em;
 
 }
 
+.paddingSteps{
+  padding: 5px 40px;
+}
+
 .subItem{
   min-width: 13em;
   background-color: whitesmoke;

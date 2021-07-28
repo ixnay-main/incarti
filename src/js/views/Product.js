@@ -347,14 +347,16 @@ class Product extends StoreView {
         ${this.state.product ? html`
           <div class="columns five" style="position: sticky; margin-top: 6em;">
               <div class="absoluteName"  style=" padding: 0m;  margin-top: 1em; margin-bottom: 1em">
-                <iris-text id="getProductName" style="font-size: 3em" tag="h3" user=${this.props.store} path="store/products/${this.props.product}/productName"/>
-                <p class="description">
-                  <iris-text user=${this.props.store} path="store/products/${this.props.product}/description" placeholder="Description"/>
+                <p class="" style="height: 5em; margin-top: 2em">
+                  <iris-text placeholder="Name" id="getProductName" style="font-size: 3em" tag="" user=${this.props.store} path="store/products/${this.props.product}/productName"/>
                 </p>
-                <p class="price">
-                  <iris-text  type="number"  placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
+                <p class="description" style="height: 2em">
+                  <iris-text style="font-weight: 600; font-size: 20px" user=${this.props.store} path="store/products/${this.props.product}/description" placeholder="Description"/>
                 </p>
-                <p class="subs">
+                <p class="price" style="height: 2em">
+                  <iris-text style="font-weight: 600; font-size: 20px"  type="number"  placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
+                </p>
+                <p class="subs" style="height: 2em">
                   <iris-text style="display: none" id="getSubValues" placeholder="subs" user=${this.props.store} path="store/products/${this.props.product}/subs"/>
                 </p>  
               </div>
