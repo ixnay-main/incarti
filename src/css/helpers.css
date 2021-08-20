@@ -205,7 +205,7 @@ header.nav.header {
 
 
 .right{
-  margin-left: 2em;
+  margin-left: 5px;
 }
 
 .right p{
@@ -444,7 +444,6 @@ padding: 1em;
 
 .checkoutInput{
   background-color: rgba(255, 255, 255, 0);
-    box-shadow: 0 0 0 1px #e0e0e0, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
     width: 100%;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -453,3 +452,33 @@ padding: 1em;
 hr{
   border: 1px solid rgb(221, 221, 221);
 }
+
+/** This class will hide all the body by default **/
+#accordion .acc-body{
+  display : none;
+}
+/** This class will show the body if it has "active" parent class. "active" class will be added to panel div **/
+#accordion .active .acc-body {
+  display : block;
+}
+
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+.info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#mapid { height: 400px; border-radius: 10px; }
+

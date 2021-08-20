@@ -699,10 +699,8 @@ span.icon{
   z-index: 2;
   width: fit-content;
   transition: all 0.25s ease;
-  background: #ffffff;
   border-right: var(--sidebar-border-right);
   color: var(--sidebar-color);
-  height: 3em;
   flex-direction: inherit !important;
   position: absolute;
   top: 0em;
@@ -712,7 +710,7 @@ span.icon{
   padding-left: 1em;
   padding-right: 1em;
   padding-top: 8px;
-  background: #464646 !important;
+  background-color: #ffffff !important ;
     padding-bottom: 5px;
 }
 
@@ -737,7 +735,7 @@ span.icon{
   display: flex;
   align-items: center;
   flex-direction: row;
-  color: #fff ;
+  color: rgb(0, 0, 0) ;
   font-weight: 600;
   font-size: 1.3em;
   height: fit-content;
@@ -746,7 +744,7 @@ span.icon{
 
 .application-list a .icon{
 
-  color: #ffffff  !important;
+  color: #000000  !important;
 }
 
 
@@ -892,7 +890,7 @@ span.icon{
 
 .application-list .text {
   flex: 1;
-  padding-left: 0;
+
 }
 
 a.msg {
@@ -2018,3 +2016,27 @@ form.public {
 }
 
 
+
+.btn{
+	background-color: rgb(0, 0, 0);
+	color: white;
+	padding:4px 30px;
+    border-radius: 5px;
+    border: none;
+
+    font-size: 1.2em;
+}
+
+.grow{
+    transition: all 1s;
+}
+
+.grow:hover{
+    filter: invert(1);
+
+}
+
+.hideWhite{
+  font-family: arialBlack;
+  font-size: 2em
+}

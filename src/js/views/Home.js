@@ -17,6 +17,7 @@ class Home extends View{
 
   renderView() {
 
+   
 
 
 
@@ -107,22 +108,21 @@ class Home extends View{
     .fuckDameDash{
       display: none !important;
     }
+
+
+.hideAppl{
+  display: none !important 
+}
+
+
+
+
+
+
     </style>
 
     <div  class="" style="margin: auto; text-align: center; margin-right: 1em; position: sticky; z-index: 10;top: 3em; filter: invert(1);mix-blend-mode: difference;"> 
-      <h1 class="" style="font-family: arialBlack;  font-size: 2.8em; margin-left:5px;    margin-top: -14px; color: rgb(251 160 160) ">IXNAY</h1>
     </div>
-
-
-
-
-    <div style="display :flex ;transform: rotate(20deg); position: absolute; top: -3em;">
-      <div class="bar expand" style=""></div>
-      <div class="bar expand" style=""></div>
-      <div class="bar expand" style=""></div>
-
-    </div>
-
 
 
 
@@ -132,7 +132,7 @@ class Home extends View{
     <div class="twelve columns" style="text-align: center; padding: 1em;font-weight: 600; margin-top: 18em;  background: #ffffff00;border-radius: 15px;  z-index:1020; ">
 
       <div style=" color: black">
-        <h1 class="smolTxt1" style="font-size: 5em; font-weight: 800; ">Manufacture for Autonomy</h1>
+        <h1 class="smolTxt1" style="font-size: 5em; font-weight: 800; ">Infrastructure for Autonomy</h1>
         <p class="smolTxt2" style="    font-size: 2em;">The Blueprints to build your world</p>
       </div>
 
@@ -153,58 +153,7 @@ class Home extends View{
     </div>
   </div>
 
-  <div class="container " style=" ">
-    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
-      
-    </div> 
-    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; height: auto; border-radius: 10px; ">
-      <h1 style="font-size: 44px; font-weight: 500">A global ordering system <br/> to depart the centralised.  </h1><br/>
-    </div>
-    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
-      
-    </div> 
-  </div>
-
-  <div class="container " style=" ">
-    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
-      
-    </div> 
-    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; margin-bottom: 2em ; border-radius: 10px; text-align: end">
-      <h1 style="font-size: 44px; font-weight: 500">Distributed, Libre and Untamed.  </h1><br/>
-    </div>
-    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
-      
-    </div> 
-  </div>
-
-  <div class="container " style=" ">
-    <div class="one column expand" style="z-index: 1001;  ; ">
-      
-    </div> 
-    <div class="ten columns expand" style="  ;  padding: 1em; color: black; height: auto; border-radius: 10px; ">
-      <h1 style="font-size: 44px; font-weight: 500">Easy come <br/> Easy go.  </h1><br/>
-      <h3 style="font-size: 24px; font-weight: 500">Ixnay beleives that credibility comes from your ability to build stuff properly - not domain names or a verified tick.  <br/> Transfer your contacts and ratings to a new set of keys at any time if you fell the need. </h3><br/>
-
-    </div>
-    <div class="one column expand" style="z-index: 1001;   ">
-      
-    </div> 
-  </div>
-
-  <div class="container " style=" ">
-    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
-      
-    </div> 
-    <div class="ten columns expand" style="  margin-top: 10em!important;  padding: 1em; color: black; margin-bottom: 2em ; border-radius: 10px; text-align: end">
-      <h1 style="font-size: 44px; font-weight: 500">Exploit the Open</h1><br/>
-      <h3 style="font-size: 24px; font-weight: 500">Clone blueprints, catalogs and orders for yourself.</h3><br/>
-
-    </div>
-    <div class="one column expand" style="z-index: 1001;  margin-top: 10em!important; ">
-      
-    </div> 
-  </div>
-
+  
   `;
   }
 };

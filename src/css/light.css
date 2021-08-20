@@ -1,9 +1,10 @@
 /* light.css: 👉 dark-on-light */
 :root {
-    --body-bg:rgba(255, 255, 255, 0) ;
-    --text-color: black;
+    --body-bg: #ffffff ;
+
+    --text-color: rgb(0, 0, 0);
     --text-time: rgba(0, 0, 0, 0.45);
-    --main-color:  rgba(255, 255, 255, 0.034);
+    --main-color:  rgb(255, 255, 255);
     --gallery-background: rgba(255, 255, 255, 0.90);
     --header-color: rgb(255, 255, 255);
 
@@ -15,6 +16,8 @@
     --notify: #ffffff;
     --warning-background: #ffa09e;
     --heart-color: #ed4e49;
+    --bar:rgb(39, 38, 53, 0.96) ;
+
     --login-background: white;
     --seen-indicator: rgba(0, 0, 0, 0.45);
     --input-bg: #f3f3f3;

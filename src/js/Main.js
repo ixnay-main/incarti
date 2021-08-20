@@ -76,18 +76,24 @@ PeerManager.init();
 
 Helpers.checkColorScheme();
 
-const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: home, icon: Icons.home , classCss: " hideWhite"},
-
-  {url: '/store', text: "Catalog", icon: Icons.store , classCss: "null"},
-  {url: '/orders', text: "Orders", icon: Icons.store , classCss: "null"},
-  {url: '/chat', text: "Messages", icon: Icons.store , classCss: "null"},
+const APPLICATIONBRAND = [ // TODO: move editable shortcuts to localState gun
+  {url: '/', text: "IXNAY", icon: Icons.home , classCss: " hideWhite"},
 ];
+
+
+const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
+
+  {url: '/store', text: "Catalog", icon: Icons.store , classCss: "null btn grow"},
+  {url: '/orders', text: "Orders", icon: Icons.store , classCss: "null btn grow"},
+  {url: '/chat', text: "Messages", icon: Icons.store , classCss: "null btn grow"},
+];
+
+
 
 const APPLICATIONSSECOND = [ // TODO: move editable shortcuts to localState gun
 
-  {url: '/settings', text: "Profile", icon: Icons.settings , classCss: "null"},
-  {url: '/profile', text: "Settings", icon: Icons.settings, classCss: "null"},
+  {url: '/settings', text: "Profile", icon: Icons.settings , classCss: "null btn grow"},
+  {url: '/profile', text: "Settings", icon: Icons.settings, classCss: "null btn grow"},
 
 
 ];
@@ -109,41 +115,59 @@ class Menu extends Component {
   render() {
     const pub = Session.getPubKey();
     return html`
+ 
       <div class="application-list ">
+        <div class="container">
+          <div class="columns twelve">
+            ${APPLICATIONBRAND.map(a => {
+              if (a.url) {
+                return html`
+                  <${a.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
 
-        <div class="visible-xs-block">
-          <${Link} onClick=${() => this.menuLinkClicked()} activeClassName="active" href="/profile/${pub}">
-            <span class="icon"><${Identicon} str=${pub} width=40/></span>
-            <span class="text" style="font-size: 1.2em;border:0;margin-left: 7px;"><iris-text user="${pub}" path="profile/name" editable="false"/></span>
-          <//>
-          <br/><br/>
+                    <span class="text right ${a.classCss}">${a.text}</span>
+                  <//>`;
+              } else {
+                return html`<br/><br/>`;
+              }
+            })}
+          </div>
+          <div class="columns twelve hideAppl" style="display: flex;padding-bottom: 10px">
+            <div class="visible-xs-block">
+              <${Link} onClick=${() => this.menuLinkClicked()} activeClassName="active" href="/profile/${pub}">
+                <span class="icon"><${Identicon} str=${pub} width=40/></span>
+                <span class="text" style="font-size: 1.2em;border:0;margin-left: 7px;"><iris-text user="${pub}" path="profile/name" editable="false"/></span>
+              <//>
+              <br/><br/>
+            </div>
+
+            ${APPLICATIONS.map(a => {
+              if (a.url) {
+                return html`
+                  <${a.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
+
+                    <span class="text right ${a.classCss}">${a.text}</span>
+                  <//>`;
+              } else {
+                return html`<br/><br/>`;
+              }
+            })}
+
+            <div class="flex-auto"></div>
+
+            ${APPLICATIONSSECOND.map(b => {
+              if (b.url) {
+                return html`
+                  <${b.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${b.url}>
+
+                    <span class="text right ${b.classCss}">${b.text}</span>
+                  <//>`;
+              } else {
+                return html`<br/><br/>`;
+              }
+            })}
+          </div>
         </div>
-
-        ${APPLICATIONS.map(a => {
-          if (a.url) {
-            return html`
-              <${a.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
-
-                <span class="text right ${a.classCss}">${a.text}</span>
-              <//>`;
-          } else {
-            return html`<br/><br/>`;
-          }
-        })}
-
-        <div class="flex-auto"></div>
-
-        ${APPLICATIONSSECOND.map(b => {
-          if (b.url) {
-            return html`
-              <${b.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${b.url}>
-
-                <span class="text right ${b.classCss}">${b.text}</span>
-              <//>`;
-          } else {
-            return html`<br/><br/>`;
-          }
-        })}
+        
       </div>
     `;
   }

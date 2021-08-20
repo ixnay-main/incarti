@@ -165,38 +165,45 @@ button#countNum {
         </div>
 
 
-        <div class="container blurThis" style=" position: fixed !important; background-color: ; z-index: 1002; margin-top: 0px" >
-          <div class="columns twelve subMenu" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
+        <div class="container blurThis" style=" position: fixed !important; background-color: ; z-index: 1002; margin-top: 0px; margin-top: 2em" >
+          <div class="columns twelve subMenu" style="    padding-bottom: 3px;
+          padding-top: 10px;
+          margin-left: 0px;
+          background-color: white;
+          display: flex;
+          padding-right: 2em;
+          padding-left: 7px;
+          margin-right: 1em;">
             <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; padding: 0px" class="">
 
-              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 5px  0px 0px 5px; background-color: #ffffff00 ; border: 1px #000 solid ">
+              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 5px  0px 0px 5px; background-color: #ffffff00 ; border: 1px #464646 solid ">
                 <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: black"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
               </button>
 
               ${this.isMyProfile ? html`
-              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px 5px 5px 0px; background-color: black  " onClick=${() => route(`/product/new`)}>
+              <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px 5px 5px 0px; background-color: #464646  " onClick=${() => route(`/product/new`)}>
                 <a href="/product/new" class="" style="color: white;"><i class="fas fa-share" style="color: white;"></i> New Blueprint</a>
               </button>
               ` : ''}
             </div>
               <div class="flex-auto"></div>
 
-              <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #000; border-radius: 3px; padding: 2px" class="">              ${this.isMyProfile ? html`
+              <div class="glow" style=" color: white !important;  font-size: 20px; font-weight: 400;  border-radius: 3px; background-color: #464646; padding: 2px" class="">              ${this.isMyProfile ? html`
 
       
                 ${cartTotalItems ? html`
-                <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #000 solid; color: #c5c5c5 " onClick=${() => route('/checkout/' + this.props.store)}>Cart (${cartTotalItems})</button>
+                <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #464646 ;  color: #fff " onClick=${() => route('/checkout/' + this.props.store)}>Cart (${cartTotalItems})</button>
                 ` : ''}
 
 
-                <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #000 solid " onClick=${() => {
+                <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #464646 ; " onClick=${() => {
                   showHideDiv('divMsg');
                   } 
                   
-                  }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5 "></i>
+                  }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #fff "></i>
                 </button>
               
-                <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => { 
+                <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #464646"  onClick=${() => { 
                   var inputc = document.body.appendChild(document.createElement("input"));
                   inputc.value = window.location.href;
                   inputc.focus();
@@ -205,7 +212,7 @@ button#countNum {
                   inputc.parentNode.removeChild(inputc);
                   document.getElementById("likeBtn").style.color = "#3f80e6";
 
-                  } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.5em; color: #c5c5c5"></i>
+                  } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.5em; color: #fff"></i>
                 </button>
               ` : ''}
             </div>
@@ -213,60 +220,50 @@ button#countNum {
         </div>
 
 
-      <div class="container">
+      <div class="container" style="margin-top: 8em">
+        <div class="columns four expand" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; margin-left: 0%; height: 20em; border-radius: 10px ">
+                  <p>ello</p>
+        </div>
+        <div class="columns eight expand" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; margin-left: 4%; height: 20em; border-radius: 10px  ">
+        <p>ello</p>
 
-        <div class="columns twelve" style=" height:fit-content; ">
-          <div class=""  style="margin-top: 10em">
-            <div style=" height: fit-content; font-weight: 600; font-size: 1.7em; margin-bottom: 3em " id="hideBlues"> 
-              <div style="width:100%; position: fixed; top: 3.1em; border-bottom: 5px solid black; background-color: ; padding: 5px; background-color: white; margin-left: -1px;">
-                <h2 class="" style="">CATALOG</h2>
-                <div style="display: flex; ">
-            
-                </div>
+        </div>
 
-              </div><br/>
+        <div class="columns twelve" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; border-radius: 10px; margin-top: 3em ">
+          <div class=""  style="">
+            <div style="margin-top: 0em">
+              ${Object.keys(this.state.items).map(k => {
+                const i = this.state.items[k];
+                return html`
+                <div class="" style="width:100%;">
+                  <div class="" style="width:100%">
+    
+                    <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)} style="display: flex; padding-top: 5px; padding-bottom: 5px; ">
       
+                      <div style="display: flex;width:100%">
+   
+                        <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="range">[${i.description}]</p>
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a href="/product/${k}/${this.props.store}" style="color: #000 !important" class="">[${i.productName}]</a></h3>
+                        <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="">${i.price}</p>
 
-
-              <div style="margin-top: 0em">
-                ${Object.keys(this.state.items).map(k => {
-                  const i = this.state.items[k];
-                  return html`
-                  <div class="" style="width:100%;">
-                    <div class="" style="width:100%">
-       
-                      <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)} style="display: flex; padding-top: 5px; padding-bottom: 5px; ">
-        
-                        <div style="display: flex;width:100%">
-                          <div style="display :flex; margin-right: 1.3em ">
-                            <div class="smolbar2" id="timeBar" style=""></div>
-                            <div class="smolbar2" style=""></div>
-                            <div class="smolbar2" style=""></div>
-                          </div>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="range">[${i.description}]</p>
-                          <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a href="/product/${k}/${this.props.store}" style="color: #000 !important" class="">[${i.productName}]</a></h3>
-                          <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="">${i.price}</p>
-
-                          <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #000; border-radius: 3px; padding: 2px" class="">            
-                            <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #000 solid; color: #c5c5c5  " onClick=${e => this.addToCart(k, e)}><i class="fas fa-plus" style="font-size: 1.5em; color: #c5c5c5"></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
-                          
-                            <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
-                              showHideOrder('divOrder');
-                              } 
-                              
-                              }><i class="fas fa-expand" style="font-size: 1.5em; color: #c5c5c5"></i>
-                            </button>
-                          </div>
-
+                        <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; background-color: #464646; border-radius: 3px; padding: 2px; float: right" class="">            
+                          <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; color: #fff  " onClick=${e => this.addToCart(k, e)}><i class="fas fa-plus" style="font-size: 1.5em; color: #ffffff"></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
+                        
+                          <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
+                            showHideOrder('divOrder');
+                            } 
+                            
+                            }><i class="fas fa-expand" style="font-size: 1.5em; color: #fff"></i>
+                          </button>
                         </div>
 
                       </div>
+
                     </div>
                   </div>
-                  `
-                })}
-              </div>
-   
+                </div>
+                `
+              })}
             </div>
           </div>
         </div>

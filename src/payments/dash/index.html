@@ -1,0 +1,599 @@
+<!DOCTYPE html> 
+<html lang="en">
+	<head>
+
+		<title>IXNAY</title>
+
+        	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<meta name="keywords" content="bitcoin, wallet, multisig, multisignature, address, browser, javascript, js, broadcast, transaction, verify, decode" />
+		<meta name="description" content="A Bitcoin Wallet written in Javascript. Supports Multisig, Custom Transactions, nLockTime and more!" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" type="image/jpg" href="./img/favi/favicon.ico"/>
+
+		<link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+
+
+		<link rel="stylesheet" href="./dash/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./dash/css/style.css">
+		<link rel="stylesheet" href="./dash/css/skele.css">
+		<link rel="stylesheet" href="./dash/css/snippet.css">
+
+
+
+		
+		<script type="text/javascript" src="./dash/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="./dash/js/bootstrap.min.js"></script>
+
+		<script type="text/javascript" src="./dash/js/crypto-min.js"></script>
+		<script type="text/javascript" src="./dash/js/crypto-sha256.js"></script>
+		<script type="text/javascript" src="./dash/js/crypto-sha256-hmac.js"></script>
+		<script type="text/javascript" src="./dash/js/sha512.js"></script>
+		<script type="text/javascript" src="./dash/js/ripemd160.js"></script>
+		<script type="text/javascript" src="./dash/js/aes.js"></script>
+
+
+		<script src="./dash/js/userGun.js"></script>
+
+		<script type="text/javascript" src="./dash/js/qrcode.js"></script>
+		<script type="text/javascript" src="./dash/js/qcode-decoder.min.js"></script>
+		<script type="text/javascript" src="./dash/js/jsbn.js"></script>
+		<script type="text/javascript" src="./dash/js/ellipticcurve.js"></script>
+
+		<script type="text/javascript" src="./dash/js/coin.js"></script>
+		<script type="text/javascript" src="./dash/js/coinbin.js"></script>
+
+
+
+		<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4H0P1KW79"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z4H0P1KW79');
+</script>
+
+	</head>
+
+	<body>
+
+		<script>
+			var gun = Gun('https://mvp-gun.herokuapp.com/gun');
+			var user = gun.user();
+		</script>
+
+		<style>
+			.navbar-default {
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background-color: rgb(238, 238, 238);
+}
+
+
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: rgb(255, 255, 255);
+	
+    border-radius: 0px;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+		</style>
+		<div id="wrap">
+			<!-- Fixed navbar -->
+			<div id="header" class="" role="navigation" style="    position: fixed; z-index: 100; background-color: rgb(255, 255, 255); width: 100%;margin: 0px;padding: 0px ;padding-bottom: 1em; margin-top: -4px">
+				<div class="container" style="width: 100%; padding-bottom: 7px;" >
+					<div class="columns twelve" style="display:flex">
+				
+						<a href="../../../src/#" class="navbar-brand noHov " id=""><h1 style="margin: 0px; font-weight: 800; font-family: arialBlack; letter-spacing: 4px;">IXNAY</h1></a>
+
+
+						<ul class=" " style="display:flex; margin-top: 1em; margin-left: -15px;">
+							<!-- <li><a href="#wallet" data-toggle="tab" style="font-weight: 400; font-size: 1.3em; 	padding: 5px 10px;"> Payments</a></li> -->
+			
+						</ul>
+					</div>
+					<div class="columns twelve" style="display:flex; padding: 1em;">
+				
+						<button class="btn grow"><a href="../../../src/#">Dispro</a></button>
+						<button class="btn grow" style="margin-left: 1em;">Payments</button>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div id="content" class="container" style="padding: 0em">
+
+				<noscript class="alert alert-danger center-block"><span class="glyphicon glyphicon-exclamation-sign"></span> This page uses javascript, please enable it to continue!</noscript>
+
+				<div class="tab-content" style="margin-top: 8em;">
+					<div class="tab-pane tab-content active" id="wallet">
+						
+						<div class="container">
+							<div class="columns twelve">
+								<div style=" margin: auto; margin-top: 6em; ">
+									<form id="sign">
+										
+										<div class="" style="display:flex">
+											<div class="button-container" style="margin: auto;">
+												<div class='button -regular center' style="width: fit-content;"><input style="width: 48%" class="borderLess" id="alias" placeholder="alias"><input style="margin-left: 4%; width:48%" class="borderLess" id="pass" type="password" placeholder="password"></div>
+											</div>
+										</div>
+										<div class="" style="display:flex">
+											<div class="button-container" style="margin: auto;">
+												<div class='button -regular center cena' style="width: fit-content;">
+													<button class="" id="in" style="      border: none;  background-color: #ffffff00;"><i class="fas fa-chevron-right"></i></button>
+													
+													<input style="margin-left: 2em;     background-color: #ffffff00;" class="borderless" id="up" type="button" value="sign up"></div>
+											</div>
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>		
+						<div id="openWallet" class="hidden" >
+							<div class="" id="rest">
+								<div class="container">
+									<div class="columns twelve" style="padding: 1em; border-radius: 10px">
+										<div class="">
+											<p><span style="float:right;"><a href="javascript:;" id="walletLogout">Logout</a></span></p>
+										</div>
+										<div class="" align="center" style="   padding: 1em;margin-top: 1em;border-radius: 10px; overflow: hidden">
+											<div style="display: none" id="walletQrCode"></div> <br>
+										
+												<span id="walletLoader" class="hidden"></span>
+												<div id="walletAddress" style="font-size: 1.4em;     width: 100%;
+												overflow-x: scroll;"></div>
+												<br><br>
+												<div style="text-align:center;">
+													<ul class="nav nav-pills" role="tablist">
+														<li role="presentation" class=""><a class="btnMe grow" href="javascript:;" id="walletBalance">0.00 BTC</a></li>
+														<li role="presentation"><a class="btnMe grow" href="javascript:;" id="walletShowSpend">Spend</a></li>
+														<li role="presentation"><a class="btnMe grow" id="walletHistory" href="javascript:;" target="_blank">History</a></li>
+														<li role="presentation"><a class="btnMe grow" href="javascript:;" id="walletShowKeys">Keys</a></li>
+													</ul>
+
+
+											
+
+												<div>
+											
+											</div>
+
+												<div id="walletKeys" class="hidden">
+													<label>Public Key</label>
+													<input class="form-control pubkey" type="text" readonly>
+													<label>Private key</label>
+													<div class="input-group">
+														<input class="form-control privkey" type="password" readonly>
+
+														<span class="input-group-btn">
+															<button class="showKey btn btn-default" type="button">Show</button>
+														</span>
+													</div>
+													<label>Private Key (AES256 encrypted key)</label>
+													<input class="form-control privkeyaes" type="text" readonly>
+												</div>
+
+												<div id="walletSpend" class="hidden">
+													<div class="row slim">
+														<div class="form-inline output">
+															<div class="col-xs-8">
+																<label>Address</label>
+															</div>
+
+															<div class="col-xs-3">
+																<label>Amount</label>
+															</div>
+														</div>
+													</div>
+
+													<div class="row slim" id="walletSpendTo">
+														<div class="form-horizontal output">
+															<div class="col-xs-8">
+																<input type="text" class="form-control addressTo" data-original-title="" title="">
+															</div>
+															<div class="col-xs-3">
+																<input type="text" class="form-control amount" data-original-title="" title="" placeholder="0.00">
+
+															</div>
+
+															<a href="javascript:;" class="addressAdd"><span class="glyphicon glyphicon-plus"></span></a>
+															<br><br>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-xs-6">
+															<label><abbr title="the amount to pay in network miner fees - 0.0001 or more recommended">Transaction Fee</abbr></label>
+															<input type="text" class="form-control" value="0.00001" id="txFee">
+														</div>
+														<div class="col-xs-5">
+															<input style="display: none;" type="text" class="form-control" value="0.000" id="developerDonation">
+														</div>
+													
+													</div>
+													<br>
+
+													<div id="walletSendStatus" class="alert alert-danger hidden"></div>
+
+													<button class="btnMe grow" type="button" id="walletSendBtn">Send</button>
+													<button class="btnMe grow" type="button">Reset</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="container">
+									<div class="columns twelve" style="padding: 1em; border-radius: 10px">
+										<h1>Recent</h1>
+										<div class="tableHolder"><table class="" style="font-size: 1em" id=""><tr><td>Product Name</td><td style="margin: auto">Product Type</td><td style="float:right;"> Order Time</td></tr></table></div><br>
+
+										<div class="tableHolder"><table class="" style="font-size: 1em" id="failedOrdersList"></table></div>
+									</div>
+								</div>
+
+								<div class="container" style="padding: 1em;">
+									<div class="columns twelve">									<h1>At a Glance</h1>
+									</div>
+								</div>
+
+								<div class="container" style="padding: 1em;">
+										<div  class="columns four tableHolder" >
+											<h1 style=" font-size: 4em"id=""></h1>
+											<h1 style="font-size: 2em"id="">$ </h1>
+
+										</div>
+
+					
+										<div  class="columns four tableHolder"  >
+												<h1 style=" font-size: 4em"id="paymentsForwardId"></h1>
+												<h1 style="font-size: 2em"id="paymentsForwardId">Orders </h1>
+
+									
+										</div>
+
+										<div  class="columns four tableHolder" >
+											<h1 style=" font-size: 4em"id="failedOrders"></h1>
+											<h1 style="font-size: 2em" >Failed </h1>
+
+									
+										</div>
+								</div>
+								<div class="container" style="padding: 1em;">
+									<div class="columns twelve">									<h1>Products</h1>
+									</div>
+								</div>
+
+
+								<div class="container" style="padding: 1em;">
+
+									<div class="columns four tableHolder" style=" padding: 1em; margin-top: 1em;border-radius: 10px; ">
+										<div  class="" style=" ">
+											
+											<input style="color: black;" placeholder="Product Name" class="productInput" type="text" id="newProductName"><br>
+											<input style="color: black;" placeholder="Product Price" class="productInput" type="text" id="newProductPrice"><br>
+											<input style="color: black;" placeholder="Product Type"  class="productInput" type="text" id="newProductType"><br><br>
+											<button style="color: black;"   class="productInput" type="text" id="sendNewProduct">Add New Product</button><br>
+
+
+										</div>
+
+									</div>
+									<div class="columns eight tableHolder" style=" padding: 1em; margin-top: 1em;border-radius: 10px; height: fit-content;" id="fillProducts">
+									</div>
+
+									
+								</div>
+									
+							</div>
+						</div>
+					</div>
+
+					<div class="tab-pane tab-content" id="home">
+						<div class="container">
+							<div class="columns twelve" style="text-align: center;">
+								<h1 style=" font-weight: 800">Decyphering Crypto</h1><br><br>
+								<h4 style=" font-weight: 400">Dashboards and checkouts in less than 5 lines of code.</h4>
+
+							</div>	
+						</div>	
+					</div>
+
+
+
+					<div class="tab-pane tab-content" id="about">
+						<h2>Powered by Gun and Coinb.in</small></h2>
+						<a href="https://twitter.com/libensveto">Me</a><br>
+<a href="https://discord.gg/9S3Ytugk2k">Gun</a>				
+<a href="https://coinb.in/">Coinb.in</a>
+					</div>
+
+					<div class="tab-pane tab-content" id="user">
+						<h2>About <small>HELLLO</small></h2>
+						
+					</div>
+
+			
+
+					<div class="tab-pane tab-content" id="settings">
+						<h2>Settings <small> making coinb.in even better!</small></h2>
+						<p>These simple settings below make coinb.in one of the most decentralized wallets in the world.</p>
+
+						<div class="row">
+							<div class="col-md-12">
+								<b>Network</b>: <br>
+								<p class="text-muted">Select which network you'd like to use for key pair generation.</p>
+								<select class="form-control" id="coinjs_coin">
+									<option value="bitcoin_mainnet" rel="0x00;0x80;0x05;0x488b21e;0x488ade4;coinb.in;coinb.in">Bitcoin (mainnet)</option>
+									<option value="litecoin_mainnet" rel="0x30;0xb0;0x05;0x019da462;0x019d9cfe;blockr.io_litecoin;chain.so_litecoin">Litecoin (mainnet)</option>
+									<option value="shadowcash_mainnet" rel="0x3f;0xbf;0x7d;0xee80286a;0xee8031e8;false;false">ShadowCash (mainnet)</option>
+								<!--	<option value="bitcoin_testnet" rel="0x6f;0xef;0xc4;0x043587cf;0x04358394;blockr.io_bitcointestnet;false">Bitcoin (testnet)</option> -->
+
+									<option value="custom" rel="0x00;0x80;0x05;0x488b21e;0x488ade4;false;false">Custom</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="settingsCustom" class="hidden">
+
+							<hr>
+
+							<div class="row">
+								<div class="col-md-4">
+									<b>Pub</b>: <br>
+									<input type="text" class="form-control coinjssetting" id="coinjs_pub">
+								</div>
+
+								<div class="col-md-4">
+									<b>Priv</b>: <br>
+									<input type="text" class="form-control coinjssetting" id="coinjs_priv">
+								</div>
+
+								<div class="col-md-4">
+									<b>Script Hash (multisig)</b>: <br>
+									<input type="text" class="form-control coinjssetting" id="coinjs_multisig">
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-md-6">
+									<b>HD Pub</b>: <br>
+									<input type="text" class="form-control coinjssetting" id="coinjs_hdpub">
+								</div>
+
+								<div class="col-md-6">
+									<b>HD Priv</b>: <br>
+									<input type="text" class="form-control coinjssetting" id="coinjs_hdprv">
+								</div>
+							</div>
+
+							<br>
+
+							<div class="alert alert-info"> <span class="glyphicon glyphicon-info-sign"></span> You will not be able to automatically broadcast or retreive your unspent outputs from coinb.in when using this setting and will need to use your desktop client instead, however everything else such as creating key pairs, addresses, transaction generation and signing will continue to function normally.</div>
+						</div>
+
+						<hr>
+
+						<div class="row">
+							<div class="col-md-12">
+								<b>Broadcast</b>: <br>
+								<p class="text-muted">Select the network you wish to broadcast the transaction via</p>
+								<select class="form-control" id="coinjs_broadcast">
+									<option value="coinb.in">coinb.in (Bitcoin mainnet)</option>
+									<option value="blockr.io_bitcoinmainnet"> Blockr.io (Bitcoin mainnet)</option>
+									<option value="blockr.io_litecoin"> Blockr.io (Litecoin)</option>
+								<!--	<option value="blockr.io_bitcointestnet"> Blockr.io (Bitcoin testnet)</option> -->
+								</select>
+							</div>
+						</div>
+							
+						<hr>
+
+						<div class="row">
+							<div class="col-md-12">
+								<b>Unspent outputs</b>: <br>
+								<p class="text-muted">Select the network you wish to retreive your unspent inputs from</p>
+								<select class="form-control" id="coinjs_utxo">
+									<option value="coinb.in">coinb.in (Bitcoin mainnet)</option>
+									<option value="blockr.io_bitcoinmainnet"> Blockr.io (Bitcoin mainnet)</option>
+									<option value="chain.so_litecoin"> Chain.so (Litecoin)</option>
+								</select>
+							</div>
+						</div>
+
+						<br>
+
+						<div id="statusSettings" class="hidden alert">
+						</div>
+
+						<input type="submit" class="btn btn-primary" id="settingsBtn">
+
+					</div>
+
+					<br>
+			
+
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+	
+		</div>
+
+
+	<!-- wallet confirm send modal -->
+	<div class="modal fade" id="modalWalletConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Please confirm</h4>
+				</div>
+
+				<div class="modal-body">
+					<p>You are about to send a transaction to the value of <span id="spendAmount">0.00</span> BTC</p>
+
+					<br>
+					<div id="walletSendConfirmStatus" class="alert alert-danger hidden"></div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="walletConfirmSend">Send</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" id="confirmClose">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- wallet confirm send modal -->
+
+	<!-- qrcode modal -->
+	<div class="modal fade" id="modalQrcode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">qrcode</h4>
+				</div>
+
+				<div class="modal-body" align="center">
+					<div id="qrcode"></div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" id="qrCodeClose">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- qrcode modal -->
+
+	<!-- qrcode scanner modal -->
+	<div class="modal fade" id="modalQrcodeScanner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">qrcode scanner</h4>
+				</div>
+
+				<div class="modal-body" align="center">
+					<select id="videoSource" class="form-control"></select>
+					<div id="videoReaderError" class="hidden">Your browser does not offer camera support</div>
+					<video id="videoReader" muted autoplay style="width:100%;height:100%"></video>
+					<div id="qrcode-scanner-callback-to" class="hidden"></div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" id="qrScanClose">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- qrcode scanner modal -->
+
+	<!-- mediator modal -->
+	<div class="modal fade" id="modalMediator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Transaction Mediation</h4>
+				</div>
+
+				<div class="modal-body">
+					<p>You can add a public key when creating a <i>2-of-3 multi signature address</i> and for a low fee your mediator will help with the recovery of the funds should any disputes arise.</p>
+
+					<p>Should a dispute arise please contact the below address for further information</p>
+					<div class="row">
+						<div class="col-md-5">
+							<label>Mediator:</label>
+
+							<!-- 
+								You need to contact us before adding your pubkey 
+								and submitting a pull request on github. 
+
+								format is: pubkey;email;fee
+							-->
+
+							<select id="mediatorList" class="form-control">
+								<option value="02b6231cc602740c29436eafbb6448880f4058cc3d2745c709deee313104678277;support@coinb.in;1">Coinb.in</option>
+							</select>
+						</div>
+
+						<div class="col-md-5">
+							<label>Address:</label> <span class="text-muted">(for disputes)</span>
+							<input id="mediatorEmail" type="text" class="form-control address" value="" readonly>	
+						</div>
+
+						<div class="col-md-2">
+							<label>Fee (%):</label> 
+							<input id="mediatorFee" type="text" class="form-control address" value="" readonly>	
+						</div>
+
+					</div>
+					<br>
+
+					<label>Public Key:</label>
+					<input id="mediatorPubkey" type="text" class="form-control address" value="" readonly>
+					<br>
+				</div>
+
+				<div class="modal-footer">
+					<button class="btn btn-primary" type="button" id="mediatorAddKey">Add Public Key</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" id="mediatorClose">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- mediator modal -->
+
+
+	<!-- warning (fee) modal -->
+	<div class="modal fade" id="modalWarningFee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title"><b>Warning High Fee!</b></h4>
+				</div>
+
+				<div class="modal-body">
+					Please be aware that you have created a transaction with what seems to be a very high fee of <span id="modalWarningFeeAmount"></span> BTC!
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="warningFeeClose">OK, I've got it!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- warning (fee) modal -->
+
+	<div class="hidden" id="entropybucket"></div>
+	</body>
+</html>
