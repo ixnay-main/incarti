@@ -1,0 +1,7 @@
+# ixnay
+
+use
+
+```
+npx serve
+```
