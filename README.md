@@ -24,9 +24,15 @@ How much can we automate? If the robots are outmanning(pardon the pun) fields th
 
 <h2>Theory Architecture</h2>
 
-Catalog - think ikea catalog, a collection of blueprints belonging to a user or cell
-\rightarrow blueprint - the basic building block: a 3d model, a chemical formula or a program. Their editable, cloneable, scarce or non-scarce, and can be ordered. 
+> Blueprint - the basic building block: a 3d model, a chemical formula or a program. Their editable, cloneable, scarce or non-scarce, and can be ordered. <br>
+>> Order - How you're going to get a blueprint made into something physical. Additional requests are added here for spec. Orders are taken on by producers if they are capable.<br><br>
+>> Catalog - think ikea catalog, a collection of blueprints belonging to a user or cell.<br>
 
+> MOPE - Measure of production expertise - do you have machinery to make orders. This can be individually owned or it can belong to a cell. This will be the measure of Autonomy
+
+<br>
+
+> Cell - a collection of individuals in close physical proximity a.k.a a country
 
 use
 
