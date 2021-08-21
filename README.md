@@ -22,6 +22,12 @@ How much can we automate? If the robots are outmanning(pardon the pun) fields th
 ![Screen Shot 2021-08-21 at 8 57 09 PM](https://user-images.githubusercontent.com/81891724/130316621-deda16f8-259b-4949-9cad-ee0bc61a2ee0.png)
 
 
+<h2>Theory Architecture</h2>
+
+Catalog - think ikea catalog, a collection of blueprints belonging to a user or cell
+\rightarrow blueprint - the basic building block: a 3d model, a chemical formula or a program. Their editable, cloneable, scarce or non-scarce, and can be ordered. 
+
+
 use
 
 ```
