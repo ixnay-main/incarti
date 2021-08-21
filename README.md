@@ -39,3 +39,13 @@ use
 ```
 npx serve
 ```
+
+<h2>So whats built?</h2>
+
+<ul>
+    <li>STL upload</li>
+        <li>Cloning</li>
+    <li>Global Ordering</li>
+
+</ul>
+
