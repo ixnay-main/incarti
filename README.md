@@ -10,9 +10,8 @@ Luke Skywalker has no convenience store. If he needs something it turns up on so
 
 Maybe were talking the need for speeder parts. What spec are the parts? Where are the blueprints from, where will they be made? Mos Eisley? Or somewhere with more specialized machinery - how will the parts be transported back? What time frame are we on?
 
-<br>
- What if we automate, and for everything - Crops, houses, clothing. Our only constraint is keeping resourses sustainably produced so we have materials to work.
-<br>
+
+ What if we automate, and for everything - Crops, houses, clothing. 
 
 
 
