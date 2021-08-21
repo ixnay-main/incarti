@@ -222,11 +222,25 @@ button#countNum {
 
       <div class="container" style="margin-top: 8em">
         <div class="columns four expand" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; margin-left: 0%; height: 20em; border-radius: 10px ">
-                  <p>ello</p>
+
         </div>
         <div class="columns eight expand" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; margin-left: 4%; height: 20em; border-radius: 10px  ">
-        <p>ello</p>
+          <h1 style="font-size: 1.7em">Starting out with Blueprints</h1>
+                
+          <div style="display: block!important; width: 100%">
+            <div style="display: block !important; width: 100%">
 
+              <button class="null btn grow"  style="width: fit-content">Catalog</button>
+            </div>
+
+            <div style="display: flex!important">
+              <button class="null btn grow" style="margin-left: 2em">Blueprint</button>
+              <i class="far fa-arrow-alt-circle-right" style="margin: auto ;font-size: 2em; margin-top: 0.1em"></i>
+              <button class="null btn grow" style="margin: auto">Orders</button>
+ 
+
+            </div>      
+          </div>
         </div>
 
         <div class="columns twelve" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; border-radius: 10px; margin-top: 3em ">
