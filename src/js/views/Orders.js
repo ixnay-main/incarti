@@ -230,7 +230,7 @@ p.profile-about-content{
                               showHideOrder('divOrder');
                               } 
                               
-                              }><i class="fas fa-expand" style="font-size: 1.5em; color: #c5c5c5"></i>meee
+                              }><i class="fas fa-expand" style="font-size: 1.5em; color: #c5c5c5"></i>
                             </button>
                           ` : ''}</div>
 
