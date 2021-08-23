@@ -223,31 +223,31 @@ button{
 
 
 .bganimate{
-  animation: gradient  infinite 30s;
+  animation: gradient  infinite 10s;
 
 }
 
 @keyframes gradient {
   0% {
-    background:#fa3e3e ;
+    background:#3efaa2 ;
   }
   20% {
-    background:#f1f1f1 ;
+    background:#3efad1 ;
   }
   30% {
-    background:#fa3e3e ;
+    background:#3efadb ;
   }
   45% {
-    background:#f3f3f3 ;
+    background:#e4e7e7 ;
   }
   60% {
-    background:#fa3e3e ;
+    background:#d5dbda ;
   }
   80% {
-    background:#f3f3f3 ;
+    background:#3efacb ;
   }
   100% {
-    background:#fa3e3e ;
+    background:#3efaa2 ;
   }
 } 
 

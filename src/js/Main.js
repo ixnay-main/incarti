@@ -61,6 +61,10 @@ var folderSvg = html`<i class="fas fa-grip-lines"></i>`
 var chatSvg = html`<i class="far fa-comment-alt"></i>`
 var profileSvg = html`<i class="far fa-user"></i>`
 var ixnayText = html`<h1 style="font-family: arialBlack; font-size: 2em;margin-top: -0.5em; margin-bottom: 0px; z-index: 100">IXNAY</h1>`
+var cog = html`<i  class="fas fa-cog"></i>`
+var data = html`<i class="fas fa-database"></i>`
+var person = html`<i class="fas fa-user-circle"></i>`
+var info = html`<i class="fas fa-info-circle"></i>`
 
 var home =  html`<div style="display: flex;margin-left: 0px; ">
 <div class="smolbar3"></div>
@@ -83,17 +87,19 @@ const APPLICATIONBRAND = [ // TODO: move editable shortcuts to localState gun
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
 
-  {url: '/store', text: "Catalog", icon: Icons.store , classCss: "null btn grow"},
-  {url: '/orders', text: "Orders", icon: Icons.store , classCss: "null btn grow"},
-  {url: '/chat', text: "Messages", icon: Icons.store , classCss: "null btn grow"},
+  {url: '/store', text: "Catalog", icon: Icons.store , classCss: "firstCon"},
+  {url: '/orders', text: "Orders", icon: Icons.store , classCss: "midCon"},
+  {url: '/chat', text: "Messages", icon: Icons.store , classCss: "lastCon"},
 ];
 
 
 
 const APPLICATIONSSECOND = [ // TODO: move editable shortcuts to localState gun
 
-  {url: '/settings', text: "Profile", icon: Icons.settings , classCss: "null btn grow"},
-  {url: '/profile', text: "Settings", icon: Icons.settings, classCss: "null btn grow"},
+  {url: '/settings', text: cog, icon: Icons.settings , classCss: "firstCon"},
+  {url: '/explorer', text: data, icon: Icons.settings , classCss: "midCon"},
+  {url: '/profile', text: person, icon: Icons.settings, classCss: "midCon"},
+  {url: '/about', text: info, icon: Icons.settings , classCss: "lastCon"},
 
 
 ];
@@ -122,7 +128,7 @@ class Menu extends Component {
             ${APPLICATIONBRAND.map(a => {
               if (a.url) {
                 return html`
-                  <${a.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
+                  <${a.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="" href=${a.url}>
 
                     <span class="text right ${a.classCss}">${a.text}</span>
                   <//>`;
@@ -143,7 +149,7 @@ class Menu extends Component {
             ${APPLICATIONS.map(a => {
               if (a.url) {
                 return html`
-                  <${a.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
+                  <${a.native ? 'a' : Link} class="flex  menuItem" style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
 
                     <span class="text right ${a.classCss}">${a.text}</span>
                   <//>`;
@@ -157,7 +163,7 @@ class Menu extends Component {
             ${APPLICATIONSSECOND.map(b => {
               if (b.url) {
                 return html`
-                  <${b.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${b.url}>
+                  <${b.native ? 'a' : Link} class="flex menuItem" style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${b.url}>
 
                     <span class="text right ${b.classCss}">${b.text}</span>
                   <//>`;

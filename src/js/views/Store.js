@@ -166,7 +166,7 @@ button#countNum {
 
 
         <div class="container blurThis" style=" position: fixed !important; background-color: ; z-index: 1002; margin-top: 0px; margin-top: 2em" >
-          <div class="columns twelve subMenu" style="    padding-bottom: 3px;
+          <div class="columns twelve subMenu" style="    padding-bottom: 3px; margin-top: 1em;
           padding-top: 10px;
           margin-left: 0px;
           background-color: white;
@@ -188,22 +188,22 @@ button#countNum {
             </div>
               <div class="flex-auto"></div>
 
-              <div class="glow" style=" color: white !important;  font-size: 20px; font-weight: 400;  border-radius: 3px; background-color: #464646; padding: 2px" class="">              ${this.isMyProfile ? html`
+              <div class="glow" style=" " class="">              ${this.isMyProfile ? html`
 
       
                 ${cartTotalItems ? html`
-                <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #464646 ;  color: #fff " onClick=${() => route('/checkout/' + this.props.store)}>Cart (${cartTotalItems})</button>
+                <button class="firstCon menuItem" style="height: 2.7em" onClick=${() => route('/checkout/' + this.props.store)}>Pending Orders (${cartTotalItems})</button>
                 ` : ''}
 
 
-                <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #464646 ; " onClick=${() => {
+                <button  style="    margin-left: -9px;" class="midCon menuItem" onClick=${() => {
                   showHideDiv('divMsg');
                   } 
                   
-                  }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #fff "></i>
+                  }><i class="fas fa-qrcode" style="font-size: 1.5em; "></i>
                 </button>
               
-                <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #464646"  onClick=${() => { 
+                <button class="lastCon menuItem" style=" margin-left: -9px;"  onClick=${() => { 
                   var inputc = document.body.appendChild(document.createElement("input"));
                   inputc.value = window.location.href;
                   inputc.focus();
@@ -212,7 +212,7 @@ button#countNum {
                   inputc.parentNode.removeChild(inputc);
                   document.getElementById("likeBtn").style.color = "#3f80e6";
 
-                  } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.5em; color: #fff"></i>
+                  } }><i class="fas fa-link " id="likeBtn" style="font-size: 1.5em; color: inherit "></i>
                 </button>
               ` : ''}
             </div>
@@ -221,53 +221,31 @@ button#countNum {
 
 
       <div class="container" style="margin-top: 8em">
-        <div class="columns four expand" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; margin-left: 0%; height: 20em; border-radius: 10px ">
-
-        </div>
-        <div class="columns eight expand" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; margin-left: 4%; height: 20em; border-radius: 10px  ">
-          <h1 style="font-size: 1.7em">Starting out with Blueprints</h1>
-                
-          <div style="display: block!important; width: 100%">
-            <div style="display: block !important; width: 100%">
-
-              <button class="null btn grow"  style="width: fit-content">Catalog</button>
-            </div>
-
-            <div style="display: flex!important">
-              <button class="null btn grow" style="margin-left: 2em">Blueprint</button>
-              <i class="far fa-arrow-alt-circle-right" style="margin: auto ;font-size: 2em; margin-top: 0.1em"></i>
-              <button class="null btn grow" style="margin: auto">Orders</button>
- 
-
-            </div>      
-          </div>
-        </div>
-
-        <div class="columns twelve" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; border-radius: 10px; margin-top: 3em ">
+        <div class="columns eight expand" style=" height: auto; padding: 1em; margin-left: 0%;  border-radius: 10px ">
           <div class=""  style="">
             <div style="margin-top: 0em">
               ${Object.keys(this.state.items).map(k => {
                 const i = this.state.items[k];
                 return html`
-                <div class="" style="width:100%;">
+                <div class="menuItem slim" style="width:100%;  border-radius: 5px ">
                   <div class="" style="width:100%">
-    
+
                     <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)} style="display: flex; padding-top: 5px; padding-bottom: 5px; ">
       
                       <div style="display: flex;width:100%">
-   
+
                         <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="range">[${i.description}]</p>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600"><a href="/product/${k}/${this.props.store}" style="color: #000 !important" class="">[${i.productName}]</a></h3>
+                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600" class=""><a href="/product/${k}/${this.props.store}" style="" class="">${i.productName}</a></h3>
                         <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="">${i.price}</p>
 
-                        <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; background-color: #464646; border-radius: 3px; padding: 2px; float: right" class="">            
-                          <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; color: #fff  " onClick=${e => this.addToCart(k, e)}><i class="fas fa-plus" style="font-size: 1.5em; color: #ffffff"></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
+                        <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400;  border-radius: 3px; padding: 2px; float: right" class="">            
+                          <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ;  " onClick=${e => this.addToCart(k, e)}><i class="fas fa-plus" style="font-size: 1.5em"></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
                         
                           <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
                             showHideOrder('divOrder');
                             } 
                             
-                            }><i class="fas fa-expand" style="font-size: 1.5em; color: #fff"></i>
+                            }><i class="fas fa-expand" style="font-size: 1.5em; "></i>
                           </button>
                         </div>
 
@@ -280,6 +258,109 @@ button#countNum {
               })}
             </div>
           </div>
+        </div>
+        <div class="columns four expand" style=" height: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: 4%; border-radius: 10px  ">
+          
+          <div class="box  padding" style="background-color: rgb(250, 250, 250); height: auto; padding: 1em; ">
+            <div class="branchHolder">
+                <p class="branch dent">                <a href="/store/${Session.getPubKey()}"><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a></p> 
+                <p class="branch oneD dent">AQ_20</p> 
+                <p class="branch twoD dent branchActive">AQ_20_01</p>
+            </div>
+                <br/>
+            <div class="breadcrumb" style="padding: 1em; ">
+                <div class="breadItem">
+                    Home
+                </div>
+                <div class="breadcrumb">/</div>
+                <div class="breadItem">
+                    Vetp
+                </div>
+                <div class="breadcrumb">/</div>
+                <div class="breadItem selected">
+                    Vetp
+                </div>
+            </div>
+            <br/>
+            <div class="" style="padding: 1em; ">
+                <button class="blue slim ">Order</button>
+                <button class="blue slim ">Order</button>
+                <button class="blue slim ">Order</button><br/>
+                <details style="margin-top: 1em"><summary>Libenss</summary>Cell information</details>
+
+            </div><br/>
+            <button class="blue slim" style="margin: 1em; ">Order</button>
+            <div style="padding: 1em">                <h1>Blueprint Info</h1> <hr/>
+                </div>
+                <div class="" style="padding: 1em; display: flex; overflow-x: scroll">
+                    
+                    <div class="  col">
+                        <h3>Volume</h3>
+                        <i class="fas fa-box-open"  style="font-size: 3em"></i><h2>1m^3</h2>
+                    </div>
+                    <div class=" col ">
+                        <h3>Max Qty. Available</h3>
+                        <i class="fas fa-box-open"  style="font-size: 3em; color: #ffffff00"></i><h2>4</h2>
+                    </div>
+                    <div class=" col">
+                        <h3>Lead time Avg.</h3>
+                        <i class="fas fa-box-open"  style="font-size: 3em; color: #ffffff00"></i><h2>2 Days</h2>
+                        <br/><button class="blue slim">See past details</button>
+
+                    </div>
+                    <div class=" col">
+                        <h3>Reviews</h3>
+                        <i class="far fa-star"  style="font-size: 1em; color: #000000; margin: 0px;"></i>
+                        <i class="far fa-star"  style="font-size: 1em; color: #000000; margin: 0px;"></i>
+                        <i class="far fa-star"  style="font-size: 1em; color: #000000; margin: 0px;"></i>
+                        <i class="far fa-star"  style="font-size: 1em; color: #000000; margin: 0px;"></i>
+                        <i class="far fa-star"  style="font-size: 1em; color: #000000; margin: 0px;"></i>
+
+                        <br/><br/>
+                        <br/><button class="blue slim">More</button>
+                    </div>
+              </div>
+              <style>#mapid{height: 500px, z-index: 0}</style>
+              <div id='mapid' ></div>
+              <script>
+
+                  var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+                  
+                  
+                  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                  maxZoom: 18,
+                  id: 'suckma/ckpnlfjf80lb117mji70ezybv',
+                  tileSize: 512,
+                  zoomOffset: -1,
+                  accessToken: 'pk.eyJ1Ijoic3Vja21hIiwiYSI6ImNrb2o4OTI2aTEzMTcydnBudGhoZzA0Mm8ifQ.gwJKwHzGdFtYQDnq4iqsoQ'
+                  }).addTo(mymap);
+                  
+            
+                  
+                  
+                  var popup = L.popup()
+                  .setLatLng([51.5, -0.09])
+                  .setContent("Manufacture Location")
+                  .openOn(mymap);
+                  
+                  
+                  
+                  var popup2 = L.popup();
+                  
+                  //polygon
+                  
+              
+                  
+                 
+                  
+                  
+              </script>
+          </div>
+        </div>
+
+        <div class="columns twelve" style=" height:fit-content; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; padding: 1em; border-radius: 10px; margin-top: 3em ">
+          
         </div>
       </div>
     `;

@@ -50,8 +50,8 @@ class About extends View {
         <p>${t('application_security_warning')}</p>
 
         <h4>Donate</h4>
-        <p dangerouslySetInnerHTML=${{ __html:t('donate_info') + ': 3GopC1ijpZktaGLXHb7atugPj9zPGyQeST' }}></p>
-        <p>Dogecoin: DEsgP4H1Sjp4461PugHDNnoGd6S8pTvrm1</p>
+        <p>LibensVeto - monero: 47ELAfDaJa2g2Deh53Erv2QpB3oVb35egKwzS3tehpwANPXf9jYGQBkBos2BwpqY4uZwK4EGredXfXc37T3ipbTJH7GUZBX</p>
+        <p> Martti's - bitcoin: 3GopC1ijpZktaGLXHb7atugPj9zPGyQeST</p>
       </div>
     `;
   }

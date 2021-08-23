@@ -345,27 +345,28 @@ class Product extends StoreView {
       </div>
       <div class="container" style="z-index: 0">
         ${this.state.product ? html`
-          <div class="columns five" style="position: sticky; margin-top: 6em;">
-              <div class="absoluteName"  style=" padding: 0m;  margin-top: 1em; margin-bottom: 1em">
-                <p class="" style="height: 5em; margin-top: 2em">
-                  <iris-text placeholder="Name" id="getProductName" style="font-size: 3em" tag="" user=${this.props.store} path="store/products/${this.props.product}/productName"/>
-                </p>
-                <p class="description" style="height: 2em">
-                  <iris-text style="font-weight: 600; font-size: 20px" user=${this.props.store} path="store/products/${this.props.product}/description" placeholder="Description"/>
-                </p>
-                <p class="price" style="height: 2em">
-                  <iris-text style="font-weight: 600; font-size: 20px"  type="number"  placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
-                </p>
-                <p class="subs" style="height: 2em">
-                  <iris-text style="display: none" id="getSubValues" placeholder="subs" user=${this.props.store} path="store/products/${this.props.product}/subs"/>
-                </p>  
-              </div>
-  
-              <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
+          <div class="columns eight" style="position: sticky; margin-top: 6em;">
+   
+              <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 5em"></div>
 
           </div>
-          <div class="columns seven" style=" overflow: hidden !important; height: 100%; margin-top: 1em">
-          <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 0em"></div>
+          <div class="columns four" style=" overflow: hidden !important; height: 100%; margin-top: 10em; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 6px">
+            <div class="absoluteName box  padding"  style=" padding: 0m;">
+              <p class="blue slim" style=" border: none; height: 5em; padding-top: 2em">
+                <iris-text placeholder="Name" id="getProductName" style="font-size: 3em;" tag="" user=${this.props.store} path="store/products/${this.props.product}/productName"/>
+              </p>
+              <p class="blue slim" style="height: 2em;  border: none">
+                <iris-text style="font-weight: 600; font-size: 20px" user=${this.props.store} path="store/products/${this.props.product}/description" placeholder="Description"/>
+              </p>
+              <p class="blue slim" style="height: 2em;  border: none">
+                <iris-text style="font-weight: 600; font-size: 20px"  type="number"  placeholder="Price" user=${this.props.store} path="store/products/${this.props.product}/price"/>
+              </p>
+              <p>
+                <iris-text style="display: none" id="getSubValues" placeholder="subs" user=${this.props.store} path="store/products/${this.props.product}/subs"/>
+              </p>  
+              <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
+
+            </div>
           </div>
           <div class="columns twelve" style="  height: 100%; margin-top: 1em">
                 <hr/>

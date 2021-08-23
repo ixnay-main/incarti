@@ -205,7 +205,7 @@ p.profile-about-content{
 
 
                   return html`
-                  <div class="" style="width:100%;">
+                  <div class="menuItem slim" style="width:100%;">
                     <div >
                       <div class=""  style="display: flex; padding-top: 5px; padding-bottom: 5px; width:100%">
         
@@ -650,22 +650,22 @@ p.profile-about-content{
 
 
     return html`
-      <div class="" style=";">
-        <div class=" " style="margin-top: 1em">     
+      <div class="" style="">
+        <div class=" " style="margin-top: 1em: height: auto !Important">     
           <div class=""  style="padding-top: 5px; padding-bottom: 5px; width:100%;">         
               <div class="container" id="">
                 <div class="columns twelve">
-                  <div style=" background-color: var(--bar); padding: 1em; margin-top: 1em; border-radius: 5px 5px 0px 0px">
-                    <div class="accordion" style="width: 100%; background-color: var(--bar); border-radius: 0px 0px 5px 5px">
-                        <p class=" description" style="color: #fff !important; margin: 4px; font-size: 20px; font-weight: 400" id="getproductName">[${i.productName}]</p>
-                        <h2 class="acc_trigger"><i style="color: white" class="fas fa-expand"></i></h2>
+                  <div class="menuItem" style="  padding: 1em; margin-top: 1em; border-radius: 5px 5px 0px 0px">
+                    <div class="accordion" style="width: 100%;  border-radius: 0px 0px 5px 5px">
+                        <p class=" description" style=" margin: 4px; font-size: 20px; font-weight: 400" id="getproductName">[${i.productName}]</p>
+                        <h2 class="acc_trigger"><i style="" class="fas fa-expand"></i></h2>
 
                       <div class="acc_container">
                         <div class="block">
                           <a href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: black !Important;margin-top: 1em"><i class="far fa-user" style=" color: #fff"></i><iris-text style="margin-left: 1em; color: #fff" path="profile/name" user=${Session.getPubKey()} /></button></a><br/>
-                          <h3 class="" style="margin: 0px;  font-size: 20px; font-weight: 600"><a id="showtime" style="color: #fff !important" contenteditable="false">${i.time}</a></h3><br/>
-                          <h3 class="" style="margin: 0px; font-size: 20px; font-weight: 600"><a id="showproductName" style="color: #fff !important"  contenteditable="false">${i.getPub}</a></h3><br/>
-                          <h3 class="" style="margin: 0px; font-size: 20px; font-weight: 600"><a id="showproductName" style="color: #fff !important"  contenteditable="false">${i.delivery}</a></h3><br/>
+                          <h3 class="" style="margin: 0px;  font-size: 20px; font-weight: 600"><a id="showtime" style="" contenteditable="false">${i.time}</a></h3><br/>
+                          <h3 class="" style="margin: 0px; font-size: 20px; font-weight: 600"><a id="showproductName" style=""  contenteditable="false">${i.getPub}</a></h3><br/>
+                          <h3 class="" style="margin: 0px; font-size: 20px; font-weight: 600"><a id="showproductName" style=""  contenteditable="false">${i.delivery}</a></h3><br/>
                         </div>
                       </div>
                     </div>

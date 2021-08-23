@@ -35,7 +35,7 @@
     --emoji-picker-bg: #FFFFFF;
     --emoji-picker-color: #777;
     --emoji-picker-border-color: #CCCCCC;
-    --link-color: #cc2f2a;
+    --link-color:     color: rgb(3, 102, 214) !important;;
     --day-separator-bg: rgba(227, 249, 255, 0.91);
     --day-separator-color: rgba(74, 74, 74, 0.88);
     --non-string-value-color: blue;

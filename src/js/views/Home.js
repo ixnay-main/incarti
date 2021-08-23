@@ -26,7 +26,7 @@ class Home extends View{
     <style>
 
     .main-view {
-    overflow: auto !Important; 
+    overflow: hidden !Important; 
   }
 
     .application-list{
@@ -120,6 +120,13 @@ class Home extends View{
 
 
     </style>
+
+
+    <div style="display :flex ;transform: rotate(20deg); position: absolute; top: -3em;">
+      <div class="bar expand" style=""></div>
+      <div class="bar expand" style=""></div>
+      <div class="bar expand" style=""></div>
+    </div>
 
     <div  class="" style="margin: auto; text-align: center; margin-right: 1em; position: sticky; z-index: 10;top: 3em; filter: invert(1);mix-blend-mode: difference;"> 
     </div>

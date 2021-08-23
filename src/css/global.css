@@ -1,0 +1,292 @@
+body{
+    font-family: arial;
+}
+
+
+@font-face{
+    font-family: arialBlack;
+    src: url(arial-black.ttf) ;
+  }
+
+  .menuItem{
+
+    color: rgb(3, 102, 214) !important;
+    background-color: rgb(250, 251, 252);
+    box-shadow: rgb(27 31 35 / 4%) 0px 1px 0px;
+  }
+  
+
+
+button{
+
+    padding: 6px 16px;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border-radius: 6px;
+    appearance: none;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+
+
+}
+
+.box{
+  
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 20px;
+    white-space: nowrap;
+    user-select: none;
+    border-radius: 6px;
+    appearance: none;
+    text-decoration: none;
+    font-size: 14px;
+    background-color: rgb(247, 247, 247);
+}
+
+.slim{
+    padding: 2px 16px;
+    cursor: pointer;
+
+}
+
+
+.connect{
+
+    border: 1px solid rgba(27, 31, 35, 0.15);
+
+    margin: 0px;
+    border-radius: 0px !Important;
+    margin-left: -12px;
+    cursor: pointer;
+
+    padding: 6px 16px;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border-radius: 6px;
+    appearance: none;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+
+}
+
+
+.firstCon{
+    border-right: 1px solid rgba(27, 31, 35, 0);
+
+    border-left: 1px solid rgba(27, 31, 35, 0.15)  !important;
+    border-top: 1px solid rgba(27, 31, 35, 0.15);
+    border-bottom: 1px solid rgba(27, 31, 35, 0.15);
+
+
+    margin-left:0px !important;
+    border-radius: 6px 0px 0px 6px !important;
+
+    padding: 6px 16px;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    appearance: none;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+
+}
+
+.midCon{
+    border-left: 1px solid rgba(27, 31, 35, 0);
+    border-radius: 0px 0px 0px 0px !important;
+
+    border-right: 1px solid rgba(27, 31, 35, 0);
+    border-top: 1px solid rgba(27, 31, 35, 0.15);
+    border-bottom: 1px solid rgba(27, 31, 35, 0.15);
+    padding: 6px 16px;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    appearance: none;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+
+    margin-left: -2px;
+
+}
+
+.lastCon{
+    border-left: 1px solid rgba(27, 31, 35, 0);
+    border-right: 1px solid rgba(27, 31, 35, 0.15);
+    border-top: 1px solid rgba(27, 31, 35, 0.15);
+    border-bottom: 1px solid rgba(27, 31, 35, 0.15);
+
+    border-radius: 0px 6px 6px 0px !important;
+    padding: 6px 16px;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    appearance: none;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    margin-left: -2px;
+
+}
+
+
+
+.padding{
+    padding: 6px 16px;
+
+}
+
+.green{
+    color: rgb(255, 255, 255);
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    background-color: rgb(46, 164, 79);
+    box-shadow: rgb(27 31 35 / 10%) 0px 1px 0px;
+}
+
+.blue{
+
+    color: rgb(3, 102, 214);
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    background-color: rgb(250, 251, 252);
+    box-shadow: rgb(27 31 35 / 4%) 0px 1px 0px;
+}
+
+.red{
+
+    color: rgb(214, 3, 3);
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    background-color: rgb(250, 251, 252);
+    box-shadow: rgb(27 31 35 / 4%) 0px 1px 0px;
+}
+
+
+
+.black{
+    background-color: black;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: rgb(27, 31, 35, 0.4) 0px 1px 0px;
+}
+
+
+
+.hover{
+    transition: 1.3s all;
+}
+
+.hover:hover{
+    transform: scale(1.005);
+}
+
+.branch{
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    color: rgb(88, 96, 105);
+    background-color: rgb(235, 245, 255);
+    border-radius: 6px;
+    cursor: pointer;
+
+}
+
+.branchActive{
+    background-color: rgb(211, 255, 218);
+
+}
+
+.breadcrumb{
+    display: flex
+}
+
+.breadItem{
+    color: rgb(3, 102, 214);
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500; 
+    margin-right: 6px;
+    margin-left: 6px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.selected{
+    color: black
+}
+
+.oneD{
+    
+    margin-left: 1em
+}
+
+.twoD{
+    margin-left: 2em
+}
+
+.threeD{
+    margin-left: 3em
+}
+
+
+
+.dent{
+    margin-top: 2px;
+}
+
+.branchHolder{
+    display: grid
+}
+
+.col{
+    width: fit-content;
+    border-right: 3px solid rgba(27, 31, 35, 0.15);
+    padding: 1em;
+}
+
+.col:last-child{
+    width: fit-content;
+    border-right: 1px solid rgba(27, 31, 35, 0);
+    padding: 1em;
+}
+
+hr{
+
+    border: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+
+}
+
+.connectActive{
+    background-color: rgb(3, 102, 214);
+    color: rgb(250, 251, 252) !important;
+}
+
+a{
+    text-decoration: none;
+}
+
+a.connect:first-child, a.connect:last-child{
+    border: #ffffff00 !important;
+}
