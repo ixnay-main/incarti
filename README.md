@@ -48,3 +48,9 @@ npx serve
 
 </ul>
 
+
+![Screen Shot 2021-08-23 at 12 30 11 PM](https://user-images.githubusercontent.com/81891724/130375460-e42bddcf-db9e-444c-9d7b-f3813a28f859.png)
+![Screen Shot 2021-08-23 at 12 29 46 PM](https://user-images.githubusercontent.com/81891724/130375375-1aca2959-e678-4d0d-8352-0a12dd7e1862.png)
+![Screen Shot 2021-08-23 at 12 29 31 PM](https://user-images.githubusercontent.com/81891724/130375383-065fc7b3-6db4-42e0-9bdc-a32686756a85.png)
+![Screen Shot 2021-08-23 at 12 26 25 PM](https://user-images.githubusercontent.com/81891724/130375388-1d5109e1-d3e0-46a2-9e34-cdd74f11dd33.png)
+![Screen Shot 2021-08-23 at 12 26 10 PM](https://user-images.githubusercontent.com/81891724/130375392-a51d04af-b70d-4045-b438-43d1f8b0178d.png)
