@@ -21,7 +21,6 @@ class Store extends View {
     this.items = {};
     this.orderpiece = {};
     this.id = 'profile';
-    
   }
 
   addToCart(k, e) {
@@ -72,17 +71,7 @@ class Store extends View {
         return false;
       }
     }
-
-    setTimeout(function(){
-      var getTimeBar = document.getElementById("range").innerHTML
-      console.log(getTimeBar)
-      if(getTimeBar == "[PK]"){
-        $("#timeBar").css("background-color", "red")
-        console.log("less ggoo")
-      } else{
-
-      }
-    } , 1000)
+  
 
 
 
@@ -99,7 +88,8 @@ class Store extends View {
         });
       })();
 
-    
+
+
 
       return html`
 
@@ -158,7 +148,7 @@ button#countNum {
           <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;
           width: 20em !important;">
             <h1 style="font-family: arialBlack">IXNAY</h1>
-            <a spellcheck="false" href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></button></a>
+            <a spellcheck="false" href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: black" path="profile/name" user=${Session.getPubKey()} /></button></a>
 
             <canvas id="qr-code" style="align-content: center  ;"></canvas>
           </div>    
@@ -177,8 +167,11 @@ button#countNum {
             <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; padding: 0px" class="">
 
               <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 5px  0px 0px 5px; background-color: #ffffff00 ; border: 1px #464646 solid ">
-                <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: black"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
+                <a href="/store/${this.props.store}"><i class="far fa-user" style=" color: black"></i><iris-text style="margin-left: 1em; color: #c5c5c5" editable="false" path="profile/name" user=${this.props.store}/></a>
+
               </button>
+
+
 
               ${this.isMyProfile ? html`
               <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px 5px 5px 0px; background-color: #464646  " onClick=${() => route(`/product/new`)}>
@@ -188,8 +181,7 @@ button#countNum {
             </div>
               <div class="flex-auto"></div>
 
-              <div class="glow" style=" " class="">              ${this.isMyProfile ? html`
-
+              <div class="glow" style=" " class="">              
       
                 ${cartTotalItems ? html`
                 <button class="firstCon menuItem" style="height: 2.7em" onClick=${() => route('/checkout/' + this.props.store)}>Pending Orders (${cartTotalItems})</button>
@@ -214,7 +206,7 @@ button#countNum {
 
                   } }><i class="fas fa-link " id="likeBtn" style="font-size: 1.5em; color: inherit "></i>
                 </button>
-              ` : ''}
+             
             </div>
           </div>
         </div>
@@ -263,7 +255,7 @@ button#countNum {
           
           <div class="box  padding" style="background-color: rgb(250, 250, 250); height: auto; padding: 1em; ">
             <div class="branchHolder">
-                <p class="branch dent">                <a href="/store/${Session.getPubKey()}"><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a></p> 
+                <p class="branch dent"><a href="/store/${this.props.store}"><i class="far fa-user" style=" color: black"></i><iris-text style="margin-left: 1em; color: #c5c5c5" editable="false" path="profile/name" user=${this.props.store}/></a></p>
                 <p class="branch oneD dent">AQ_20</p> 
                 <p class="branch twoD dent branchActive">AQ_20_01</p>
             </div>
@@ -286,7 +278,14 @@ button#countNum {
                 <button class="blue slim ">Order</button>
                 <button class="blue slim ">Order</button>
                 <button class="blue slim ">Order</button><br/>
-                <details style="margin-top: 1em"><summary>Libenss</summary>Cell information</details>
+                <details style="margin-top: 1em"><summary>Cell</summary>
+                  <p class="blue slim" style="border: none; height:1.5em; margin-left: 2em; width: fit-content " ><iris-text id=""  path="profile/clique" placeholder="Cell" user=${Session.getPubKey()}/></p>
+                  <a class="blue slim" style="border: none; height:1.5em; margin-left: 2em; width: fit-content " ><iris-text id=""  path="profile/cliqueURL" placeholder="Cell URL" user=${Session.getPubKey()}/></p>
+
+                </details>
+                <details style="margin-top: 1em"><summary>Location</summary>
+                  <p style="border: none; height:1.5em; margin-left: 2em; width: fit-content " ><iris-text  class="blue slim" style="margin-left: 1em; color: #c5c5c5" placeholder="Palo Alto, Newell Rd" editable="true" path="profile/location" user=${this.props.store}/></p>
+                </details>
 
             </div><br/>
             <button class="blue slim" style="margin: 1em; ">Order</button>
@@ -318,13 +317,19 @@ button#countNum {
 
                         <br/><br/>
                         <br/><button class="blue slim">More</button>
+
+
                     </div>
-              </div>
+
+              </div><br/>
+              <h3  style="margin-left: 1em ">Location Co-ord.</h3>
+
+              <p class="blue slim" style=" height:1.5em; margin-left: 2em; width: fit-content " ><iris-text id="getCoOrds"  path="profile/location" placeholder="51.5, -0.09" user=${Session.getPubKey()}/></p>
+              <br/><br/>
               <style>#mapid{height: 500px, z-index: 0}</style>
               <div id='mapid' ></div>
               <script>
-
-                  var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+                  var mymap = L.map('mapid').setView([ 51.5, -0.09], 13);
                   
                   
                   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -338,9 +343,9 @@ button#countNum {
                   
             
                   
-                  
+
                   var popup = L.popup()
-                  .setLatLng([51.5, -0.09])
+                  .setLatLng([ 51.5, -0.09 ])
                   .setContent("Manufacture Location")
                   .openOn(mymap);
                   
@@ -366,8 +371,11 @@ button#countNum {
     `;
   }
 
+
+
   componentWillUnmount() {
     this.eventListeners.forEach(e => e.off());
+
   }
 
   componentDidUpdate(prevProps) {
@@ -414,6 +422,7 @@ button#countNum {
         this.setState({items: this.items});
       });
     }
+
     if (pub) {
       State.public.user(pub).get('store').get('liveOrders').map().on((x, jd) => {
         if (x) {
