@@ -75,6 +75,7 @@ class Store extends View {
 
 
 
+
     var qr;
     (function() {
             qr = new QRious({
@@ -140,12 +141,12 @@ button#countNum {
 }
     </style>
 
-        <div id="divMsg" style="display:none; position: absolute; margin-top: 7em; width: 100%; z-index: 2004;     background-color: #ffffffe0;
+        <div id="divMsg" style="display:none; position: absolute; margin-top: 7em; width: 100%; z-index: 2004; 
         height: 100%; text-align: center;
         margin-top: -8em;
         padding-top: 10em; " onClick=${() => {
           showHideDiv('divMsg');}}>
-          <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;     background-color: white;
+          <div style="border-radius: 10px;padding: 0.2em; margin: auto;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; z-index: 1004 height: 20em;   
           width: 20em !important;">
             <h1 style="font-family: arialBlack">IXNAY</h1>
             <a spellcheck="false" href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: black" path="profile/name" user=${Session.getPubKey()} /></button></a>
@@ -159,7 +160,7 @@ button#countNum {
           <div class="columns twelve subMenu" style="    padding-bottom: 3px; margin-top: 1em;
           padding-top: 10px;
           margin-left: 0px;
-          background-color: white;
+         
           display: flex;
           padding-right: 2em;
           padding-left: 7px;
@@ -254,6 +255,8 @@ button#countNum {
         <div class="columns four expand" style=" height: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: 4%; border-radius: 10px  ">
           
           <div class="box  padding" style="background-color: rgb(250, 250, 250); height: auto; padding: 1em; ">
+            <h1 style="font-size: 2.7em; color: rgb(10, 193, 142)">Producer Card</h1>
+
             <div class="branchHolder">
                 <p class="branch dent"><a href="/store/${this.props.store}"><i class="far fa-user" style=" color: black"></i><iris-text style="margin-left: 1em; color: #c5c5c5" editable="false" path="profile/name" user=${this.props.store}/></a></p>
                 <p class="branch oneD dent">AQ_20</p> 
@@ -262,15 +265,13 @@ button#countNum {
                 <br/>
             <div class="breadcrumb" style="padding: 1em; ">
                 <div class="breadItem">
-                    Home
+                  <p class="blue slim" style="border: none; height:1.5em; margin-left: 2em; width: fit-content " ><iris-text id="" editable="false"  path="profile/clique" placeholder="Cell" user=${Session.getPubKey()}/></p>
+
                 </div>
-                <div class="breadcrumb">/</div>
-                <div class="breadItem">
-                    Vetp
-                </div>
+            
                 <div class="breadcrumb">/</div>
                 <div class="breadItem selected">
-                    Vetp
+                  <p class="blue slim" style="border: none; height:1.5em; margin-left: 3px; width: fit-content " ><iris-text id="" editable="false"  path="profile/name" placeholder="Cell" user=${Session.getPubKey()}/></p>
                 </div>
             </div>
             <br/>
@@ -284,12 +285,12 @@ button#countNum {
 
                 </details>
                 <details style="margin-top: 1em"><summary>Location</summary>
-                  <p style="border: none; height:1.5em; margin-left: 2em; width: fit-content " ><iris-text  class="blue slim" style="margin-left: 1em; color: #c5c5c5" placeholder="Palo Alto, Newell Rd" editable="true" path="profile/location" user=${this.props.store}/></p>
+                  <p style="border: none; height:1.5em; margin-left: 2em; width: fit-content " ><iris-text  class="blue slim" style="margin-left: 1em; color: #c5c5c5; border: none" placeholder="Palo Alto, Newell Rd" id="addressRequest" editable="true" path="profile/location" user=${this.props.store}/></p>
                 </details>
 
             </div><br/>
             <button class="blue slim" style="margin: 1em; ">Order</button>
-            <div style="padding: 1em">                <h1>Blueprint Info</h1> <hr/>
+            <div style="padding: 1em">                <h1>Output Info</h1> <hr/>
                 </div>
                 <div class="" style="padding: 1em; display: flex; overflow-x: scroll">
                     
@@ -329,19 +330,20 @@ button#countNum {
               <style>#mapid{height: 500px, z-index: 0}</style>
               <div id='mapid' ></div>
               <script>
+
                   var mymap = L.map('mapid').setView([ 51.5, -0.09], 13);
                   
                   
                   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                  maxZoom: 18,
-                  id: 'suckma/ckpnlfjf80lb117mji70ezybv',
-                  tileSize: 512,
-                  zoomOffset: -1,
-                  accessToken: 'pk.eyJ1Ijoic3Vja21hIiwiYSI6ImNrb2o4OTI2aTEzMTcydnBudGhoZzA0Mm8ifQ.gwJKwHzGdFtYQDnq4iqsoQ'
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    maxZoom: 18,
+                    id: 'suckma/ckpnlfjf80lb117mji70ezybv',
+                    tileSize: 512,
+                    zoomOffset: -1,
+                    accessToken: 'pk.eyJ1Ijoic3Vja21hIiwiYSI6ImNrb2o4OTI2aTEzMTcydnBudGhoZzA0Mm8ifQ.gwJKwHzGdFtYQDnq4iqsoQ'
                   }).addTo(mymap);
-                  
-            
+
+   
                   
 
                   var popup = L.popup()
