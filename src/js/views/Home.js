@@ -138,7 +138,7 @@ class Home extends View{
 
     <div class="twelve columns" style=" text-align: center; padding: 1em;font-weight: 600; margin-top: 18em;  background: #ffffff00;border-radius: 15px;  z-index:1; ">
 
-      <div style="z-index: 0; filter: invert(1);mix-blend-mode: difference;">
+      <div style="z-index: 0; color: black">
         <h1 class="smolTxt1" style="font-size: 5em; font-weight: 800; ">Infrastructure for Autonomy</h1>
         <p class="smolTxt2" style="    font-size: 2em;">The Blueprints to build your world</p>
       </div>
