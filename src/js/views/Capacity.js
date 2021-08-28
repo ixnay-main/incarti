@@ -10,17 +10,17 @@ import FollowButton from '../components/FollowButton.js';
 import Identicon from '../components/Identicon.js';
 import View from './View.js';
 
-class Store extends View {
+class Capacity extends View {
   constructor() {
     super();
     this.eventListeners = [];
     this.followedUsers = new Set();
     this.followers = new Set();
     this.cart = {};
-    this.state = {items:{} , orderpiece:{}};
-    this.items = {};
-    this.orderpiece = {};
-    this.id = 'profile';
+    this.state = {capacity:{}};
+    this.capacity = {};
+
+    this.id = 'capacity';
   }
 
   addToCart(k, e) {
@@ -30,9 +30,11 @@ class Store extends View {
   }
 
 
+
+
   shouldRedirect() {
-    if (!this.props.store) {
-      route('/store/' + Session.getPubKey());
+    if (!this.props.capacity) {
+      route('/capacity/' + Session.getPubKey());
       return true;
     }
   }
@@ -42,10 +44,7 @@ class Store extends View {
       return '';
     }
     const cartTotalItems = Object.keys(this.cart).filter(k => !!this.cart[k] && !!this.items[k]).reduce((sum, k) => sum + this.cart[k], 0);
-    this.isMyProfile = Session.getPubKey() === this.props.store;
-    const chat = Session.channels[this.props.store];
-    const uuid = chat && chat.uuid;
-    const followable = !(this.isMyProfile || this.props.store.length < 40);
+    this.isMyProfile = Session.getPubKey() === this.props.capacity;
     let profilePhoto;
     if (this.isMyProfile) {
       profilePhoto = html`<${ProfilePhotoPicker} currentPhoto=${this.state.photo} placeholder=${this.props.store} callback=${src => this.onProfilePhotoSet(src)}/>`;
@@ -156,12 +155,8 @@ button#countNum {
         </div>
 
 
-        <div class="container blurThis" style=" position: fixed !important; background-color: ; z-index: 1002; margin-top: 0px; margin-top: 3em" >
-          <div class="columns twelve subMenu" style="     padding: 0% 2.6%;   padding-bottom: 3px; margin-top: -5px;background-color: #ffffff; opacity: 0.94;
-  
-          display: flex;
-         
-         ">
+        <div class="container blurThis" style=" position: fixed !important; background-color: ; z-index: 1002; margin-top: 0px; margin-top: 2em" >
+          <div class="columns twelve subMenu" style="     padding: 0% 2.6%;   padding-bottom: 3px; margin-top: 1em;background-color: #fff;display: flex;">
             <div class="glow" style="" class="">
 
               <button class="firstCon menuItem" style="height: 2.7em">
@@ -172,8 +167,8 @@ button#countNum {
 
 
               ${this.isMyProfile ? html`
-              <button class="lastCon menuItem" style="margin-left: -9px; height: 2.7em" onClick=${() => route(`/product/new`)}>
-                <a href="/product/new" class="" style=""><i class="fas fa-share" style=""></i> New Blueprint</a>
+              <button class="lastCon menuItem" style="margin-left: -9px; height: 2.7em" onClick=${() => route(`/capnew/new`)}>
+                <a href="/capnew/new" class="" style=""><i class="fas fa-share" style=""></i> New Capacity</a>
               </button>
               ` : ''}
             </div>
@@ -214,31 +209,59 @@ button#countNum {
         <div class="columns eight expand" style=" height: auto; padding: 1em; margin-left: 0%;  border-radius: 10px ">
           <div class=""  style="">
             <div style="margin-top: 0em">
-              ${Object.keys(this.state.items).map(k => {
-                const i = this.state.items[k];
+              ${Object.keys(this.state.capacity).map(k => {
+                const i = this.state.capacity[k];
+                const rndInt = Math.floor(Math.random() * 99999) + 1
+                console.log(i.area)
                 return html`
-                <div class="menuItem slim" style="width:100%;  border-radius: 5px ">
-                  <div class="" style="width:100%">
+                <div class="" style="border-radius: 5px ">
+                  <div class="" style="height: 25em; background-color: rgb(250, 251, 252); border-radius: 15px;    margin: 1em; padding: 1em">
 
-                    <div class="" onClick=${() => route(`/product/${k}/${this.props.store}`)} style="display: flex; padding-top: 5px; padding-bottom: 5px; ">
+                    <div class="" style=" padding-top: 5px; padding-bottom: 5px; ">
       
-                      <div style="display: flex;width:100%">
+                      <div style="width:100%">
 
-                        <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="range">[${i.description}]</p>
-                        <h3 style="margin: 4px; width: 40%; font-size: 20px; font-weight: 600" class=""><a href="/product/${k}/${this.props.store}" style="" class="">${i.productName}</a></h3>
-                        <p style="width: 20%; color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="">${i.price}</p>
+                        <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="areaName">[${i.area}]</p>
 
-                        <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400;  border-radius: 3px; padding: 2px; float: right" class="">            
-                          <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ;  " onClick=${e => this.addToCart(k, e)}><i class="fas fa-plus" style="font-size: 1.5em"></i>${this.cart[k] ? ` (${this.cart[k]})` : ''}</button>
+                        <h3 style="margin: 4px; font-size: 20px; font-weight: 600" class=""><a style="" class="">${i.type}</a></h3>
+                        <button onClick=${() => { 
+                          var placeArea = i.area;
+                          console.log(placeArea)
+                            State.public.user().get('store').get('capacity').get(placeArea).put(null);
+                            route('/store/');
+                        }}> Delete</button>
+                        <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="range">${i.map}</p>
+                  
+                        <style>#map{height: 500px;z-index: 0}</style>
                         
-                          <button class="" style="padding: 3px 10px; margin-left: 0em; height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px ; background-color: #ffffff00"  onClick=${() => {
-                            showHideOrder('divOrder');
-                            } 
+                        <div id='map'></div>
+                        <script>
+                        
+                            var center = [51.509, -0.08];
+                
+                            var map = L.map("map").setView(center, 13);
                             
-                            }><i class="fas fa-expand" style="font-size: 1.5em; "></i>
-                          </button>
-                        </div>
+                            
+                            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                              attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                              maxZoom: 18,
+                              id: 'suckma/ckpnlfjf80lb117mji70ezybv',
+                              tileSize: 512,
+                              zoomOffset: -1,
+                              accessToken: 'pk.eyJ1Ijoic3Vja21hIiwiYSI6ImNrb2o4OTI2aTEzMTcydnBudGhoZzA0Mm8ifQ.gwJKwHzGdFtYQDnq4iqsoQ'
+                            }).addTo(map);
+                            
+                
+                            var polygon = L.polygon([
+                              [51.509, -0.08],
+                              [51.503, -0.06],
+                              [51.51, -0.047]
+                          ]).addTo(map);
 
+                          console.log(${i.map})
+
+                
+                        </script>
                       </div>
 
                     </div>
@@ -252,7 +275,7 @@ button#countNum {
         <div class="columns four expand" style="height: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: 4%; border-radius: 10px  ">
           
           <div class="box  padding" style="background-color: rgb(250, 250, 250); height: auto; padding: 1em; ">
-            <h1 style="font-size: 2.7em; color: rgb(10, 193, 142)">Producer Card</h1>
+            <h1 style="font-size: 2.7em; color: rgb(10, 193, 142)">Capacity Card</h1>
 
             <div class="branchHolder">
                 <p class="branch dent"><a href="/store/${this.props.store}"><i class="far fa-user" style=" color: black"></i><iris-text style="margin-left: 1em; color: #c5c5c5" editable="false" path="profile/name" user=${this.props.store}/></a></p>
@@ -328,9 +351,7 @@ button#countNum {
               <div id='mapid' ></div>
               <script>
 
-                var center = [-33.8650, 151.2094];
-
-                  var map = L.map('mapid').setView(center, 13);
+                  var mymap = L.map('mapid').setView([ 51.5, -0.09], 13);
                   
                   
                   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -340,60 +361,27 @@ button#countNum {
                     tileSize: 512,
                     zoomOffset: -1,
                     accessToken: 'pk.eyJ1Ijoic3Vja21hIiwiYSI6ImNrb2o4OTI2aTEzMTcydnBudGhoZzA0Mm8ifQ.gwJKwHzGdFtYQDnq4iqsoQ'
-                  }).addTo(map);
+                  }).addTo(mymap);
+
+   
                   
 
-
-                // Initialise the FeatureGroup to store editable layers
-                var editableLayers = new L.FeatureGroup();
-                map.addLayer(editableLayers);
+                  var popup = L.popup()
+                  .setLatLng([ 51.5, -0.09 ])
+                  .setContent("Manufacture Location")
+                  .openOn(mymap);
                   
-            
-                var  drawPluginOptions = {
-                  position: 'topright',
-                  draw: {
-                    polygon: {
-                      allowIntersection: false, // Restricts shapes to simple polygons
-                      drawError: {
-                        color: '#e1e100', // Color the shape will turn when intersects
-                        message: console.log("naw")
-                      },
-                      shapeOptions: {
-                        color: '#97009c'
-                      }
-                    },
-                    // disable toolbar item by setting it to false
-                    polyline: false,
-                    circle: false, // Turns off this drawing tool
-                    rectangle: false,
-                    marker: false,
-                    },
-                  edit: {
-                    featureGroup: editableLayers, //REQUIRED!!
-                    remove: false
-                  }
-                };
-
-
-                // Initialise the draw control and pass it the FeatureGroup of editable layers
-                var drawControl = new L.Control.Draw(drawPluginOptions);
-                map.addControl(drawControl);
-
-                var editableLayers = new L.FeatureGroup();
-                map.addLayer(editableLayers);
-
-                map.on('draw:created', function(e) {
-                  var type = e.layerType,
-                    layer = e.layer;
-
-                  if (type === 'marker') {
-                    layer.bindPopup('A popup!');
-                  }
-
-                  editableLayers.addLayer(layer);
-                });
-
-
+                  
+                  
+                  var popup2 = L.popup();
+                  
+                  //polygon
+                  
+              
+                  
+                 
+                  
+                  
               </script>
           </div>
         </div>
@@ -413,7 +401,7 @@ button#countNum {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.store !== this.props.store) {
+    if (prevProps.capacity !== this.props.capacity) {
       this.componentDidMount();
     }
   }
@@ -431,46 +419,29 @@ button#countNum {
     if (this.shouldRedirect()) {
       return;
     }
-    const pub = this.props.store;
+    const pub = this.props.capacity;
     this.eventListeners.forEach(e => e.off());
     this.setState({followedUserCount: 0, followerCount: 0, name: '', photo: '', about: '', totalPrice: 0});
     this.isMyProfile = Session.getPubKey() === pub;
     this.cart = {};
 
-    State.local.get('cart').get(this.props.store).map().on((v, k) => {
-      this.cart[k] = v;
-      this.setState({cart: this.cart})
-      this.updateTotalPrice();
-    });
+
+
 
     if (pub) {
-      State.public.user(pub).get('store').get('products').map().on((p, id) => {
-        if (p) {
-          const o = {};
-          o[id] = p;
-          Object.assign(this.items, o);
+      State.public.user(pub).get('store').get('capacity').map().on((g, up) => {
+        if (g) {
+          const a = {};
+          a[up] = g;
+          Object.assign(this.capacity, a);
           this.updateTotalPrice();
         } else {
-          delete this.items[id];
+          delete this.capacity[up];
         }
-        this.setState({items: this.items});
-      });
-    }
-
-    if (pub) {
-      State.public.user(pub).get('store').get('liveOrders').map().on((x, jd) => {
-        if (x) {
-          const n = {};
-          n[jd] = x;
-          Object.assign(this.orderpiece, n);
-          this.updateTotalPrice();
-        } else {
-          delete this.orderpiece[jd];
-        }
-        this.setState({orderpiece: this.orderpiece});
+        this.setState({capacity: this.capacity});
       });
     }
   }
 }
 
-export default Store;
+export default Capacity;

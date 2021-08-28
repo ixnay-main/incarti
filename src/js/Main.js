@@ -20,6 +20,7 @@ import Pricing from './views/Pricing.js';
 import Store from './views/Store.js';
 import Checkout from './views/Checkout.js';
 import Product from './views/Product.js';
+
 import Login from './views/Login.js';
 
 
@@ -31,6 +32,9 @@ import Message from './views/Message.js';
 import Follows from './views/Follows.js';
 import About from './views/About.js';
 import Orders from './views/Orders.js';
+
+import Capacity from './views/Capacity.js';
+import CapNew from './views/Capnew.js';
 
 import Explorer from './views/Explorer.js';
 import Contacts from './views/Contacts.js';
@@ -67,10 +71,13 @@ var person = html`<i class="fas fa-user-circle"></i>`
 var info = html`<i class="fas fa-info-circle"></i>`
 
 var home =  html`<div style="display: flex;margin-left: 0px; ">
-<div class="smolbar3"></div>
-<div class="smolbar3"></div>
 
 <div class="smolbar3"></div>
+<div class="smolbar3"></div>
+<div class="smolbar3 "></div>
+
+<h2 style="font-family: arialBlack; font-size: 35px; margin: 0px; margin-left: 1em">IXNAY</h2>
+
 
 </div>`;
 
@@ -81,7 +88,7 @@ PeerManager.init();
 Helpers.checkColorScheme();
 
 const APPLICATIONBRAND = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: "IXNAY", icon: Icons.home , classCss: " hideWhite"},
+  {url: '/', text: home, icon: Icons.home , classCss: " hideWhite"},
 ];
 
 
@@ -89,7 +96,10 @@ const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
 
   {url: '/store', text: "Catalog", icon: Icons.store , classCss: "firstCon"},
   {url: '/orders', text: "Orders", icon: Icons.store , classCss: "midCon"},
-  {url: '/chat', text: "Messages", icon: Icons.store , classCss: "lastCon"},
+  {url: '/chat', text: "Messages", icon: Icons.store , classCss: "midCon"},
+  {url: '/capacity', text: "Capacity", icon: Icons.store , classCss: "lastCon"},
+
+  
 ];
 
 
@@ -123,7 +133,7 @@ class Menu extends Component {
     return html`
  
       <div class="application-list ">
-        <div class="container">
+        <div class="container" style="padding: 0% 0.8%;">
           <div class="columns twelve">
             ${APPLICATIONBRAND.map(a => {
               if (a.url) {
@@ -260,9 +270,15 @@ class Main extends Component {
 
               <${Orders} path="/orders/:orders?"/>
 
+              <${Capacity} path="/capacity/:capacity?"/>
+
               <${Checkout} path="/checkout/:store?"/>
+
               <${Product} path="/product/:product/:store"/>
               <${Product} path="/product/new" store=Session.getPubKey()/>
+
+              <${CapNew} path="/capnew/new" store=Session.getPubKey()/>
+
               <${Explorer} path="/explorer/:node"/>
               <${Explorer} path="/explorer"/>
               <${Follows} path="/follows/:id"/>

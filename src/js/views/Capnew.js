@@ -5,7 +5,7 @@ import { route } from '../lib/preact-router.es.js';
 import StoreView from './Store.js';
 import Helpers from '../Helpers.js';
 
-class Product extends StoreView {
+class CapNew extends StoreView {
   constructor() {
     super();
     this.eventListeners = [];
@@ -17,59 +17,6 @@ class Product extends StoreView {
 
   }
 
-  addToCart() {
-    var cartItem = this.props.product + Session.getPubKey()
-    const count = (this.cart[this.props.product] || 0) + 1;
-    State.local.get('cart').get(this.props.store).get(this.props.product).put(count);
-  }
-
-  downloadThis(){
-    
-    var files = document.getElementById('file').files;
-    if (files.length > 0) {
-      getBase64(files[0]);
-    }
-
-    function getBase64(file) {
-      var reader = new FileReader();
-      $(".hideThis").show()
-
-      reader.readAsDataURL(file);
-      reader.onload = function () {
-        console.log(reader.result);
-
-        var loc = reader.result;
-        console.log(loc)
-        var container = $('linkContainer');
-        var anchor = ('<a id="uploadBtn" style="color: #000; font-size: 1.5em !important; margin-top: -0em" download href="' + loc + '" ><i class="far fa-save" style=" color: #c5c5c5"></i></a>');
-        $("#containerIcon").append(anchor)
-          var stl_viewer=new StlViewer
-          (
-          document.getElementById("stl_cont2"),
-          {
-      
-              auto_rotate:true,
-         
-
-              
-          models:
-          [
-          {filename: loc , opacity:0.6}
-          ]
-          }
-          )
-
-
-
-
-      };   reader.onerror = function (error) {
-     console.log('Error: ', error);
-   };
-    }
-
-
- 
-  }
 
   newProduct() {
     console.log('new');
@@ -107,29 +54,111 @@ class Product extends StoreView {
     </div>
     <div class="container" style="z-index: 0">
       <div class="columns six" style="padding-top: 1em;  padding-bottom: 10px; display: block">
-        <h2 contenteditable placeholder="Blueprint Name" onInput=${e => this.newProductName = e.target.innerText} />
-        <input style="width: 100%; background-color: #ffffff00" placeholder="Blueprint Description" onInput=${e => this.newProductDescription = e.target.value} />
-        <input type="number" style="width: 100%;background-color: #ffffff00" placeholder="Blueprint Price" onInput=${e => this.newProductPrice = parseInt(e.target.value)}/>
-        <input style="background-color: #ffffff00; width: 100%;" placeholder="Blueprint ID" onInput=${e => this.newProductId = e.target.value} />
-        
-        <div class="" style="height: fit-content; ">
-          <div class="" style="display: flex; border-radius: 0px">
-            <input id="file" type="file"  onChange=${e => this.downloadThis(e)}  style="border-radius: 0px; background-color: transparent; padding-left: 0em"/>
-          </div>
-          <p>Items must have a file. Stl files will be rendered.</p>
-        </div>
+        <h2 contenteditable placeholder="Blueprint Name" onInput=${e => this.newCapacityName = e.target.innerText} />
+        <input style="width: 100%; background-color: #ffffff00" placeholder="Blueprint Description" onInput=${e => this.newCapacityType = e.target.value} />
+        <div id="writeArray"></div>
+
         <br/><br/>
-        <p>Sub Blueprints can be added here.</p>
-        <input style="width: 100%; background-color: #ffffff00" id="clearThis1" placeholder="Sub Blueprint Name" onInput=${e => this.newSubName = e.target.value} />
-        <input style="width: 100%;background-color: #ffffff00" id="clearThis2" placeholder="Sub Blueprint URL" onInput=${e => this.newSubAddy = e.target.value}/>
-        <button onClick=${e => this.addSubClicked(e)} style="width: 100%; margin-bottom: 1em">Add Sub Blueprint</button> 
-        <button onClick=${e => this.addItemClicked(e)} style="width: 100%">Add Blueprint</button>
+
+        <button onClick=${e => this.addCapacityClicked(e)} style="width: 100%">Add Capacity</button>
      
       </div>
 
       <div class="columns six" style="  ">
-        <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 0em"></div>
-        <div id="subList"></div>
+        <style>#mapid{height: 500px, z-index: 0}</style>
+        <div id='mapid' ></div>
+   
+
+        <script>
+
+          var center = [-33.8650, 151.2094];
+
+            var map = L.map('mapid').setView(center, 13);
+            
+            
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+              attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+              maxZoom: 18,
+              id: 'suckma/ckpnlfjf80lb117mji70ezybv',
+              tileSize: 512,
+              zoomOffset: -1,
+              accessToken: 'pk.eyJ1Ijoic3Vja21hIiwiYSI6ImNrb2o4OTI2aTEzMTcydnBudGhoZzA0Mm8ifQ.gwJKwHzGdFtYQDnq4iqsoQ'
+            }).addTo(map);
+            
+
+
+          // Initialise the FeatureGroup to store editable layers
+          var editableLayers = new L.FeatureGroup();
+          map.addLayer(editableLayers);
+            
+      
+          var  drawPluginOptions = {
+            position: 'topright',
+            draw: {
+              polygon: {
+                allowIntersection: false, // Restricts shapes to simple polygons
+                drawError: {
+                  color: '#e1e100', // Color the shape will turn when intersects
+                  message: console.log("naw")
+                },
+                shapeOptions: {
+                  color: '#97009c'
+                }
+              },
+              // disable toolbar item by setting it to false
+              polyline: false,
+              circle: false, // Turns off this drawing tool
+              rectangle: false,
+              marker: false,
+              },
+            edit: {
+              featureGroup: editableLayers, //REQUIRED!!
+              remove: false
+            }
+          };
+
+
+          // Initialise the draw control and pass it the FeatureGroup of editable layers
+          var drawControl = new L.Control.Draw(drawPluginOptions);
+          map.addControl(drawControl);
+
+          var editableLayers = new L.FeatureGroup();
+          map.addLayer(editableLayers);
+          var polyArray = []
+
+
+          map.on('draw:created', function(e) {
+            var type = e.layerType,
+            layer = e.layer;
+
+
+            var a = layer._latlngs[0]
+              , chunk
+
+            while (a.length > 0) {
+
+              chunk = a.splice(0,1)
+
+              var numItem = (chunk[0].lat) + "," + (chunk[0].lng)
+              var formatItem = "[" + numItem + "]"
+              console.log(formatItem)
+              parsedArr = JSON.parse(formatItem);
+              polyArray.push(parsedArr)
+            }
+
+            console.log(polyArray)
+
+            document.getElementById("writeArray").innerText = polyArray
+
+            if (type === 'marker') {
+              layer.bindPopup('A popup!');
+            }
+
+            editableLayers.addLayer(layer);
+          });
+
+
+        </script>
       </div>
     </div>
   </div>
@@ -143,28 +172,6 @@ class Product extends StoreView {
     }
   }
 
-  cloneItemClicked() {
-
-    console.log(this.props.product)
-
-
-    var randNum = Math.floor(Math.random() * 9999) + 1;
-    var getModel = document.getElementById("modelDataRaw").textContent
-
-
-    const product = {
-      productName: this.props.product + '.' + randNum,
-      description: this.newProductDescription,
-      id: this.newProductId,
-
-      weight: this.newProductWeight,
-      modelRaw: getModel,
-
-    };
-    console.log(product);
-    State.public.user().get('store').get('products').get(product.name).put(product);
-    route(`/store/${Session.getPubKey()}`)
-  }
 
   showProduct() {
 
@@ -386,50 +393,20 @@ class Product extends StoreView {
     }
   }
 
-  addSubClicked() {
-    const sub = {
-      subName: this.newSubName,
-      subAddy: this.newSubAddy,
-    };
-    var subNameValue = sub.subName
-    var subAddyValue = sub.subAddy
-    console.log(subNameValue)
-    console.log(subAddyValue)
 
 
-    document.getElementById("clearThis1").value = " "
-    document.getElementById("clearThis2").value = " "
+  addCapacityClicked() {
 
-
-    var subDiv = `<div class="subItem"><a class="subItemText" target="blank" href="//${subAddyValue}">${subNameValue}</a></div>`
-    $("#subList").append(subDiv)
-
-  }
-
-  addItemClicked() {
-
-    var getSubs = document.getElementById("subList").outerHTML;
-    console.log(getSubs)
-
-    var getModel = document.getElementById("uploadBtn").outerHTML 
-    var modelRaw = document.getElementById("uploadBtn").href 
-
-
-
-    const product = {
-      productName: this.newProductName,
-      description: this.newProductDescription,
-      price: this.newProductPrice,
-
-      subs: getSubs,
-
-      model: getModel,
-      modelRaw: modelRaw,
+    getAreaList = $("#writeArray").val()
+    const capacity = {
+      area: this.newCapacityName,
+      type: this.newCapacityType,
+      map: getAreaList
     };
 
-    console.log(product);
-    State.public.user().get('store').get('products').get(this.newProductName).put(product);
-    route(`/store/${Session.getPubKey()}`)
+    console.log(capacity);
+    State.public.user().get('store').get('capacity').get(this.newCapacityName).put(capacity);
+    route(`/capacity/${Session.getPubKey()}`)
 
 
   }
@@ -442,12 +419,12 @@ class Product extends StoreView {
     this.eventListeners.forEach(e => e.off());
     this.setState({followedUserCount: 0, followerCount: 0, name: '', photo: '', about: ''});
     this.isMyProfile = Session.getPubKey() === pub;
-    if (this.props.product && pub) {
-      State.public.user(pub).get('store').get('products').get(this.props.product).on(product => this.setState({product}));
+    if (this.props.capa && pub) {
+      State.public.user(pub).get('store').get('capacity').get(this.props.capa).on(capa => this.setState({capa}));
     }
 
     
   }
 }
 
-export default Product;
+export default CapNew;

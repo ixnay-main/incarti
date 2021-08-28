@@ -224,33 +224,97 @@ button{
 
 .bganimate{
   animation: gradient  infinite 10s;
-
 }
 
 @keyframes gradient {
   0% {
-    background:#3efaa2 ;
+    background:whitesmoke ;
+    transform: rotate3d(2, -1, -1, -0.7turn);
   }
   20% {
-    background:#3efad1 ;
+    background:rgb(78, 78, 78) ;
+    transform: rotate3d(2, -1, -1, -0.2turn);
   }
   30% {
-    background:#3efadb ;
+    background:whitesmoke ;
+    transform: rotate3d(0, 0, 0, 0turn);
+
   }
   45% {
-    background:#e4e7e7 ;
+    background:whitesmoke ;
+    transform: rotate3d(2, -1, -1, -0.7turn);
   }
   60% {
-    background:#d5dbda ;
+    background:rgb(160, 160, 160) ;
+    transform: rotate3d(2, 1, -1, -0.2turn);
+
   }
   80% {
-    background:#3efacb ;
+    background:whitesmoke ;
+    transform: rotate3d(1, 1, -1, -0.2turn);
+
   }
   100% {
-    background:#3efaa2 ;
+    background:whitesmoke ;
+    transform: rotate3d(2, -1, -1, -0.7turn);
+
+  }
+} 
+@keyframes twist {
+  0% {
+    background:whitesmoke;
+    transform: rotate3d(2, -1, -1, -0.7turn);
+  }
+  20% {
+    background:rgb(0, 0, 0);
+    transform: rotate3d(2, -1, -1, -0.2turn);
+    z-index: 10;
+
+  }
+  30% {
+    background:rgb(119, 119, 119);
+    transform: rotate3d(0, 0, 0, 0turn);
+
+  }
+  45% {
+    background:whitesmoke ;
+    transform: rotate3d(2, -1, -1, -0.2turn);
+    z-index: 10;
+  }
+  60% {
+    background:whitesmoke;
+    transform: rotate3d(2, 1, 1, -0.7turn);
+
+  }
+  80% {
+    background:whitesmoke;
+    transform: rotate3d(1, -1, -1, -0.1turn);
+
+  }
+  100% {
+    background:whitesmoke;
+    transform: rotate3d(2, -1, -1, -0.7turn);
+
   }
 } 
 
+.twister:after {
+  left: 200px;
+  top: -300px;
+  transform: skewX(40deg);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.twister{
+  animation: twist  infinite 30s;
+  height: 70em;
+  width: 20em;
+  z-index: 10;
+  margin-right: 10px;
+  padding: 1em;
+  border-radius: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 
 
 
@@ -316,8 +380,7 @@ button{
   left: 200px;
   top: -300px;
   transform: skewX(40deg);
-  box-shadow: inset -40px 0 70px -30px #cc0a0a;
-}
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
 
 .bar{
   height: 70em;
@@ -327,8 +390,7 @@ button{
   padding: 1em;
   border-radius: 15px;
   animation: gradient  infinite 30s;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-}
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
 
 
 footer.visible-xs-flex.nav.footer {
@@ -352,12 +414,16 @@ footer.visible-xs-flex.nav.footer {
 }
 
 .smolbar3{
-  height: 1.4em;
-  width: 0.4em;
-  background-color:rgb(255, 255, 255);
-  border: 1px solid #c2c2c2;
+  height: 26px;
+  width: 9px;
+  margin-top: 13px;
+  background-color:rgb(34, 34, 34);
   margin-left:3px;
   border-radius:2px;
+}
+
+.last{
+  border-radius: 2px 0px 0px 2px
 }
 
 .lowerThis{
