@@ -143,7 +143,7 @@ class CapNew extends StoreView {
               var formatItem = "[" + numItem + "]"
               console.log(formatItem)
               parsedArr = JSON.parse(formatItem);
-              polyArray.push(parsedArr)
+              polyArray.push("[" + parsedArr + "]")
             }
 
             console.log(polyArray)
@@ -396,16 +396,18 @@ class CapNew extends StoreView {
 
 
   addCapacityClicked() {
+    var getAreaList = document.getElementById("writeArray").innerHTML
+    const rndInt = Math.floor(Math.random() * 999999) + 1
 
-    getAreaList = $("#writeArray").val()
     const capacity = {
       area: this.newCapacityName,
       type: this.newCapacityType,
-      map: getAreaList
+      mapCont: getAreaList,
+      areaID: rndInt
     };
 
     console.log(capacity);
-    State.public.user().get('store').get('capacity').get(this.newCapacityName).put(capacity);
+    State.public.user().get('store').get('capacityAreas').get(rndInt).put(capacity);
     route(`/capacity/${Session.getPubKey()}`)
 
 

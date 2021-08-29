@@ -211,8 +211,23 @@ button#countNum {
             <div style="margin-top: 0em">
               ${Object.keys(this.state.capacity).map(k => {
                 const i = this.state.capacity[k];
-                const rndInt = Math.floor(Math.random() * 99999) + 1
-                console.log(i.area)
+ 
+                var formatCont = ("[" + i.mapCont + "]")
+                // var a = JSON.parse(formatCont)
+                // console.log(a)
+                // , chunk
+    
+                // while (a.length > 0) {
+    
+                //   chunk = a.splice(0,2)
+    
+                //   var formatItem = "[" + chunk + "]"
+                //   console.log(formatItem)
+                //   parsedArr = JSON.parse(formatItem);
+                //   polyArray.push(parsedArr)
+                // }
+
+                // console.log(polyArray)
                 return html`
                 <div class="" style="border-radius: 5px ">
                   <div class="" style="height: 25em; background-color: rgb(250, 251, 252); border-radius: 15px;    margin: 1em; padding: 1em">
@@ -222,29 +237,33 @@ button#countNum {
                       <div style="width:100%">
 
                         <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="areaName">[${i.area}]</p>
+                        <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; display: none" class="description" id="">${i.areaID}s</p>
 
+                        
                         <h3 style="margin: 4px; font-size: 20px; font-weight: 600" class=""><a style="" class="">${i.type}</a></h3>
+                        <h3 style="margin: 4px; font-size: 20px; font-weight: 600; display: none" class=""><a style="" class="" >${i.mapCont}</a></h3>
+
                         <button onClick=${() => { 
-                          var placeArea = i.area;
-                          console.log(placeArea)
-                            State.public.user().get('store').get('capacity').get(placeArea).put(null);
+                          var getID = i.areaID;
+                          console.log(getID)
+                            State.public.user().get('store').get('capacity').get(rndInt).put(null);
                             route('/store/');
                         }}> Delete</button>
-                        <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="range">${i.map}</p>
+                        <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="range"></p>
                   
                         <style>#map{height: 500px;z-index: 0}</style>
                         
                         <div id='map'></div>
                         <script>
                         
-                            var center = [51.509, -0.08];
+                            var center = [-33.8598342349068,151.1983512575446];
                 
                             var map = L.map("map").setView(center, 13);
                             
                             
                             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                               attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                              maxZoom: 18,
+                              maxZoom: 26,
                               id: 'suckma/ckpnlfjf80lb117mji70ezybv',
                               tileSize: 512,
                               zoomOffset: -1,
@@ -252,11 +271,7 @@ button#countNum {
                             }).addTo(map);
                             
                 
-                            var polygon = L.polygon([
-                              [51.509, -0.08],
-                              [51.503, -0.06],
-                              [51.51, -0.047]
-                          ]).addTo(map);
+                            var polygon = L.polygon(${formatCont}).addTo(map);
 
                           console.log(${i.map})
 
@@ -429,7 +444,7 @@ button#countNum {
 
 
     if (pub) {
-      State.public.user(pub).get('store').get('capacity').map().on((g, up) => {
+      State.public.user(pub).get('store').get('capacityAreas').map().on((g, up) => {
         if (g) {
           const a = {};
           a[up] = g;
