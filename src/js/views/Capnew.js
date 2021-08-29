@@ -35,12 +35,9 @@ class CapNew extends StoreView {
     <div class="container " style=" position: sticky !important; top: 0em; padding-top: 1em;background-color: white; z-index: 10;" >
         <div class="columns twelve subMenu" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 0px" class="">
-
                 <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ;  ">
                   <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
                 </button>
-
-
           </div>
           <div class="flex-auto"></div>
           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 0px" class="">
@@ -49,7 +46,6 @@ class CapNew extends StoreView {
           </div>
         </div>
         <div class="columns twelve" style="margin-top: 1em; border-bottom: 5px solid black; padding-bottom: 10px">
-
         </div>
     </div>
     <div class="container" style="z-index: 0">
@@ -57,22 +53,16 @@ class CapNew extends StoreView {
         <h2 contenteditable placeholder="Blueprint Name" onInput=${e => this.newCapacityName = e.target.innerText} />
         <input style="width: 100%; background-color: #ffffff00" placeholder="Blueprint Description" onInput=${e => this.newCapacityType = e.target.value} />
         <div id="writeArray"></div>
-
         <br/><br/>
-
         <button onClick=${e => this.addCapacityClicked(e)} style="width: 100%">Add Capacity</button>
      
       </div>
-
       <div class="columns six" style="  ">
         <style>#mapid{height: 500px, z-index: 0}</style>
         <div id='mapid' ></div>
    
-
         <script>
-
           var center = [-33.8650, 151.2094];
-
             var map = L.map('mapid').setView(center, 13);
             
             
@@ -85,8 +75,6 @@ class CapNew extends StoreView {
               accessToken: 'pk.eyJ1Ijoic3Vja21hIiwiYSI6ImNrb2o4OTI2aTEzMTcydnBudGhoZzA0Mm8ifQ.gwJKwHzGdFtYQDnq4iqsoQ'
             }).addTo(map);
             
-
-
           // Initialise the FeatureGroup to store editable layers
           var editableLayers = new L.FeatureGroup();
           map.addLayer(editableLayers);
@@ -116,48 +104,32 @@ class CapNew extends StoreView {
               remove: false
             }
           };
-
-
           // Initialise the draw control and pass it the FeatureGroup of editable layers
           var drawControl = new L.Control.Draw(drawPluginOptions);
           map.addControl(drawControl);
-
           var editableLayers = new L.FeatureGroup();
           map.addLayer(editableLayers);
           var polyArray = []
-
-
           map.on('draw:created', function(e) {
             var type = e.layerType,
             layer = e.layer;
-
-
             var a = layer._latlngs[0]
               , chunk
-
             while (a.length > 0) {
-
               chunk = a.splice(0,1)
-
               var numItem = (chunk[0].lat) + "," + (chunk[0].lng)
               var formatItem = "[" + numItem + "]"
               console.log(formatItem)
               parsedArr = JSON.parse(formatItem);
               polyArray.push("[" + parsedArr + "]")
             }
-
             console.log(polyArray)
-
             document.getElementById("writeArray").innerText = polyArray
-
             if (type === 'marker') {
               layer.bindPopup('A popup!');
             }
-
             editableLayers.addLayer(layer);
           });
-
-
         </script>
       </div>
     </div>
@@ -259,7 +231,6 @@ class CapNew extends StoreView {
           }
           
         </style>
-
         <div id="divMsg" style="display:none; position: absolute; margin-top: 7em; width: 100%; z-index: 2004;     background-color: #ffffffe0;
         height: 100%; text-align: center;
         margin-top: -8em;
@@ -269,20 +240,16 @@ class CapNew extends StoreView {
           width: 20em !important;">
             <h1 style="font-family: arialBlack">IXNAY</h1>
             <a spellcheck="false" href="/store/${Session.getPubKey()}"><button class="expand" style="padding: 3px 10px; margin-left: 1em; background-color: #61c3f3; min-width: 6em; color: white;margin-top: 1em"><i class="far fa-user" style=" color: white"></i><iris-text spellcheck="false" style="margin-left: 1em; color: white" path="profile/name" user=${Session.getPubKey()} /></button></a>
-
             <canvas id="qr-code" style="align-content: center  ;"></canvas>
           </div>    
         </div>
-
     <div class="main-view">
       <div class="container " style=" position: fixed !important; background-color: white; z-index: 1002; padding-top: 0em" >
         <div class="columns twelve subMenu" style="padding-bottom: 3px; padding-top: 10px; margin-left: 0px;  background-color: white; display: flex; padding-right: 2em; margin-right: 1em">
           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; padding: 0px" class="">
-
             <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 5px  0px 0px 5px; background-color: #ffffff00 ; border: 1px #c5c5c5 solid ">
               <a href="/store/${Session.getPubKey()}"><i class="far fa-user" style=" color: #c5c5c5"></i><iris-text style="margin-left: 1em; color: #c5c5c5" path="profile/name" user=${Session.getPubKey()} /></a>
             </button>
-
             ${this.isMyProfile ? html`
             <button class="" style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px 5px 5px 0px; background-color: #22de22  " onClick=${() => route(`/product/new`)}>
               <a href="/product/new" class="" style="color: black;"><i class="fas fa-share" style="color: black;"></i> New Blueprint</a>
@@ -290,36 +257,26 @@ class CapNew extends StoreView {
             ` : ''}
           </div>
           <div class="flex-auto"></div>
-
           <div class="glow" style=" color: #000 !important;  font-size: 20px; font-weight: 400; border: 1px solid #c5c5c5; border-radius: 3px; padding: 2px" class="">  
-
-
               ${cartTotalItems ? html`
             
                   <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 1px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " onClick=${() => route('/checkout/' + this.props.store)}>Cart (${cartTotalItems})</button>
            
               ` : ''}
-
-
  
               <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${e => this.cloneItemClicked(e)}>
                 <i class="fas fa-clone" style="font-size: 1.5em; color: #c5c5c5 "></i>
               </button>
-
-
               <button style=" margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid; color: #c5c5c5 " class="add" onClick=${() => this.addToCart()}>
                 Add to cart
                 ${this.cart[cartItemHolder] ? ` (${this.cart[this.props.product]})` : ''}
               </button>
-
-
               <button  style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${() => {
                 showHideDiv('divMsg');
                 } 
                 
                 }><i class="fas fa-qrcode" style="font-size: 1.5em; color: #c5c5c5 "></i>
               </button>
-
               ${this.isMyProfile ? html`
               <button style="margin-right: 0px; padding: 3px 10px; margin-left: 0em;   height: 100%; margin-right: 0px; margin-bottom: 0px; border-radius: 0px; background-color: #ffffff00 ; border-right: 1px #c5c5c5 solid " onClick=${e => this.onClickDelete(e)}><i class="fas fa-trash" style="font-size: 1.5em; color: #c5c5c5 "></i></button>
             ` : ''}
@@ -332,7 +289,6 @@ class CapNew extends StoreView {
                 document.execCommand('copy');
                 inputc.parentNode.removeChild(inputc);
                 document.getElementById("likeBtn").style.color = "#3f80e6";
-
                 } }><i class="fas fa-link" id="likeBtn" style="font-size: 1.5em; color: #c5c5c5"></i>
               </button>
           </div>
@@ -343,7 +299,6 @@ class CapNew extends StoreView {
           <div class="columns eight" style="position: sticky; margin-top: 6em;">
    
               <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 5em"></div>
-
           </div>
           <div class="columns four" style=" overflow: hidden !important; height: 100%; margin-top: 10em; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius: 6px">
             <div class="absoluteName box  padding"  style=" padding: 0m;">
@@ -360,7 +315,6 @@ class CapNew extends StoreView {
                 <iris-text style="display: none" id="getSubValues" placeholder="subs" user=${this.props.store} path="store/products/${this.props.product}/subs"/>
               </p>  
               <iris-text style="display: none" id="modelDataRaw" user=${this.props.store} path="store/products/${this.props.product}/modelRaw"/><br/>
-
             </div>
           </div>
           <div class="columns twelve" style="  height: 100%; margin-top: 1em">
