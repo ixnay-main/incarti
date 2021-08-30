@@ -193,7 +193,7 @@ button#countNum {
                   } }><i class="fas fa-link " id="likeBtn" style="font-size: 1.5em; color: inherit "></i>
                 </button>
 
-                <button class="lastCon menuItem" style=" margin-left: -9px;"  onClick=${() => { 
+                <button class="lastCon menuItem noshow" style=" margin-left: -9px;" class="noshow"  onClick=${() => { 
                   showHideDiv('menuMore');
                   } 
                   
@@ -215,11 +215,11 @@ button#countNum {
             height: 70%;
             width: 80%;
             top: 70px;
-            " id="menuMore" onClick=${() => {
+            " id="menuMore"  onClick=${() => {
               showHideDiv('divMsg');}}>
               <h2 onclick=${() => {route('/profile/');}}>Profile</h2>
               <h2 onclick=${() => {route('/explorer/');}}>Data</h2>
-              <h2 onclick=${() => {route('/settings/');}}>Settings</h2>
+              <h2 onclick=${() => {route('/settings/');}} c>Settings</h2>
 
             </div>
   
@@ -290,7 +290,7 @@ button#countNum {
                         
                             var center = [-33.8598342349068,151.1983512575446];
                 
-                            var map = L.map("map").setView(center, 13);
+                            var map = L.map("map").setView(center, 1);
                             
                             
                             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -369,8 +369,8 @@ button#countNum {
                         <i class="fas fa-box-open"  style="font-size: 3em"></i><h2>1m^3</h2>
                     </div>
                     <div class=" col ">
-                        <h3>Max Qty. Available</h3>
-                        <i class="fas fa-box-open"  style="font-size: 3em; color: #ffffff00"></i><h2>4</h2>
+                        <h3>Lease Available</h3>
+                        <i class="fas fa-box-open"  style="font-size: 3em; color: #ffffff00"></i><h2></h2>
                     </div>
                     <div class=" col">
                         <h3>Lead time Avg.</h3>

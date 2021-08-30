@@ -77,6 +77,12 @@ class CapNew extends StoreView {
                 Transport
               </label>
             </p>
+            <p>
+              <label for="Temple" onClick=${e => this.manuTypeMethodChanged(e)}>
+                <input class="funkyradio" type="radio" name="type" id="Temple" value="Temple" checked=${this.state.manuType === 'Temple'}/>
+                Temple
+              </label>
+            </p>
         <br/><br/>
         <button onClick=${e => this.addCapacityClicked(e)} style="width: 100%">Add Capacity</button>
      
@@ -137,6 +143,7 @@ class CapNew extends StoreView {
           map.on('draw:created', function(e) {
             var type = e.layerType,
             layer = e.layer;
+            console.log(layer)
             var a = layer._latlngs[0]
               , chunk
             while (a.length > 0) {

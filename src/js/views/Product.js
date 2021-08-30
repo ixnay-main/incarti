@@ -1,6 +1,7 @@
 import { html } from '../Helpers.js';
 import State from '../State.js';
 import Session from '../Session.js';
+
 import { route } from '../lib/preact-router.es.js';
 import StoreView from './Store.js';
 import Helpers from '../Helpers.js';
@@ -14,6 +15,8 @@ class Product extends StoreView {
 
     this.state = {items:{}};
     this.items = {};
+    this.id = 'store';
+
 
   }
 
@@ -72,6 +75,8 @@ class Product extends StoreView {
   }
 
   newProduct() {
+
+
     console.log('new');
     $(".hideThis").hide()
     var parentStore = html`<i class="fas fa-chevron-left"></i>`
@@ -130,6 +135,8 @@ class Product extends StoreView {
       <div class="columns six" style="  ">
         <div id="stl_cont2" style="width:auto; height: 30em ;margin:0 auto; overflow: hidden; z-index: 9; margin-top: 0em"></div>
         <div id="subList"></div>
+        <div id="pushPub" style="display: none"></div>
+
       </div>
     </div>
   </div>
@@ -413,14 +420,14 @@ class Product extends StoreView {
 
     var getModel = document.getElementById("uploadBtn").outerHTML 
     var modelRaw = document.getElementById("uploadBtn").href 
-
+    var getPub = Session.getPubKey()
 
 
     const product = {
       productName: this.newProductName,
       description: this.newProductDescription,
       price: this.newProductPrice,
-
+      producer: getPub,
       subs: getSubs,
 
       model: getModel,

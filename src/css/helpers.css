@@ -577,24 +577,31 @@ html, body {
 
 }
 
+.noshow{
+  display: none 
+}
+
 
 
 @media (max-width: 625px){
-.view-area {
+  .view-area {
+      padding: 0em;
+  }
+  .main-view {
+    margin-top: 0em !important;
     padding: 0em;
-}
-.main-view {
-  margin-top: 0em !important;
-  padding: 0em;
-  
-}
+    
+  }
 
-.header-content .btn {
-  background-color: rgba(0, 0, 0, 0);
-  padding: 4px 30px;
-  border-radius: 5px;
-  color: rgb(199, 199, 199) !important;
-  border: none;
-  font-size: 1.2em;
-}
+  .header-content .btn {
+    background-color: rgba(0, 0, 0, 0);
+    padding: 4px 30px;
+    border-radius: 5px;
+    color: rgb(199, 199, 199) !important;
+    border: none;
+    font-size: 1.2em;
+  }
+  .noshow{
+    display: initial
+  }
 }
