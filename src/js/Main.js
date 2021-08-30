@@ -32,7 +32,6 @@ import Message from './views/Message.js';
 import Follows from './views/Follows.js';
 
 import About from './views/About.js';
-import Pop from './views/Pop.js';
 
 import Orders from './views/Orders.js';
 
@@ -257,7 +256,6 @@ class Main extends Component {
               <${Message} path="/post/:hash"/>
               <${Torrent} path="/torrent/:id"/>
               <${About} path="/about"/>
-              <${Pop} path="/browse"/>
 
               <${Pricing} path="/pricing"/>
 
