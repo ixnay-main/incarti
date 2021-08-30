@@ -17,6 +17,11 @@ class CapNew extends StoreView {
 
   }
 
+  manuTypeMethodChanged(e) {
+    const val = e.target.firstChild && e.target.firstChild.value;
+    val && State.local.get('manuType').put(val);
+  }
+
 
   newProduct() {
     console.log('new');
@@ -53,6 +58,25 @@ class CapNew extends StoreView {
         <h2 contenteditable placeholder="Blueprint Name" onInput=${e => this.newCapacityName = e.target.innerText} />
         <input style="width: 100%; background-color: #ffffff00" placeholder="Blueprint Description" onInput=${e => this.newCapacityType = e.target.value} />
         <div id="writeArray"></div>
+        <h3>manuType</h3>
+            <p>
+              <label for="Manufacture" onClick=${e => this.manuTypeMethodChanged(e)}>
+                <input class="funkyradio" type="radio" name="type" id="Manufacture" value="Manufacture" checked=${this.state.manuType === 'Manufacture'}/>
+                Manufacture
+              </label>
+            </p>
+            <p>
+              <label for="Agriculture" onClick=${e => this.manuTypeMethodChanged(e)}>
+                <input class="funkyradio" type="radio" name="type" id="Agriculture" value="Agriculture" checked=${this.state.manuType === 'Agriculture'}/>
+                Agriculture
+              </label>
+            </p>
+            <p>
+              <label for="Transport" onClick=${e => this.manuTypeMethodChanged(e)}>
+                <input class="funkyradio" type="radio" name="type" id="Transport" value="Transport" checked=${this.state.manuType === 'Transport'}/>
+                Transport
+              </label>
+            </p>
         <br/><br/>
         <button onClick=${e => this.addCapacityClicked(e)} style="width: 100%">Add Capacity</button>
      
@@ -68,7 +92,7 @@ class CapNew extends StoreView {
             
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
               attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-              maxZoom: 18,
+              maxZoom: 30,
               id: 'suckma/ckpnlfjf80lb117mji70ezybv',
               tileSize: 512,
               zoomOffset: -1,
@@ -351,17 +375,15 @@ class CapNew extends StoreView {
 
   addCapacityClicked() {
     var getAreaList = document.getElementById("writeArray").innerHTML
-    const rndInt = Math.floor(Math.random() * 999999) + 1
 
     const capacity = {
       area: this.newCapacityName,
-      type: this.newCapacityType,
+      type: this.state.manuType ,
       mapCont: getAreaList,
-      areaID: rndInt
     };
 
     console.log(capacity);
-    State.public.user().get('store').get('capacityAreas').get(rndInt).put(capacity);
+    State.public.user().get('store').get('capacityAreas').get(this.newCapacityName).put(capacity);
     route(`/capacity/${Session.getPubKey()}`)
 
 
@@ -369,14 +391,14 @@ class CapNew extends StoreView {
 
   componentDidMount() {
 
-
+    State.local.get('manuType').on(manuType => this.setState({manuType}));
     StoreView.prototype.componentDidMount.call(this);
     const pub = this.props.store;
     this.eventListeners.forEach(e => e.off());
     this.setState({followedUserCount: 0, followerCount: 0, name: '', photo: '', about: ''});
     this.isMyProfile = Session.getPubKey() === pub;
     if (this.props.capa && pub) {
-      State.public.user(pub).get('store').get('capacity').get(this.props.capa).on(capa => this.setState({capa}));
+      State.public.user(pub).get('store').get('capacityAreas').get(this.props.capa).on(capa => this.setState({capa}));
     }
 
     

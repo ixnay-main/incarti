@@ -30,7 +30,10 @@ import Profile from './views/Profile.js';
 import Group from './views/Group.js';
 import Message from './views/Message.js';
 import Follows from './views/Follows.js';
+
 import About from './views/About.js';
+import Pop from './views/Pop.js';
+
 import Orders from './views/Orders.js';
 
 import Capacity from './views/Capacity.js';
@@ -94,7 +97,8 @@ const APPLICATIONBRAND = [ // TODO: move editable shortcuts to localState gun
 
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
 
-  {url: '/store', text: "Catalog", icon: Icons.store , classCss: "firstCon"},
+  {url: '/browse', text: "Home", icon: Icons.settings , classCss: "firstCon"},
+  {url: '/store', text: "Catalog", icon: Icons.store , classCss: "midCon"},
   {url: '/orders', text: "Orders", icon: Icons.store , classCss: "midCon"},
   {url: '/chat', text: "Messages", icon: Icons.store , classCss: "midCon"},
   {url: '/capacity', text: "Capacity", icon: Icons.store , classCss: "lastCon"},
@@ -110,7 +114,7 @@ const APPLICATIONSSECOND = [ // TODO: move editable shortcuts to localState gun
   {url: '/explorer', text: data, icon: Icons.settings , classCss: "midCon"},
   {url: '/profile', text: person, icon: Icons.settings, classCss: "midCon"},
   {url: '/about', text: info, icon: Icons.settings , classCss: "lastCon"},
-
+  
 
 ];
 
@@ -253,6 +257,8 @@ class Main extends Component {
               <${Message} path="/post/:hash"/>
               <${Torrent} path="/torrent/:id"/>
               <${About} path="/about"/>
+              <${Pop} path="/browse"/>
+
               <${Pricing} path="/pricing"/>
 
               <${Settings} path="/settings"/>

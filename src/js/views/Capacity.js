@@ -39,6 +39,22 @@ class Capacity extends View {
     }
   }
 
+  showHideDiv(ele) {
+    var srcElement = document.getElementById(ele);
+    if (srcElement != null) {
+      if (srcElement.style.display == "block") {
+        srcElement.style.display = 'none';
+
+      }
+      else {
+        srcElement.style.display = 'block';
+
+      }
+      return false;
+    }
+  }
+  
+
   renderView() {
     if (this.shouldRedirect()) {
       return '';
@@ -141,7 +157,7 @@ button#countNum {
             <canvas id="qr-code" style="align-content: center  ;"></canvas>
           </div>    
         </div>
-        <div class="container blurThis" style=" position: fixed !important; background-color: ; z-index: 1002; margin-top: 0px; margin-top: 2em" >
+        <div class="container blurThis" style=" position: fixed !important; background-color: ; z-index: 1002; margin-top: 0px; margin-top: 1.3em" >
           <div class="columns twelve subMenu" style="     padding: 0% 2.6%;   padding-bottom: 3px; margin-top: 1em;background-color: #fff;display: flex;">
             <div class="glow" style="" class="">
               <button class="firstCon menuItem" style="height: 2.7em">
@@ -176,10 +192,38 @@ button#countNum {
                   document.getElementById("likeBtn").style.color = "#3f80e6";
                   } }><i class="fas fa-link " id="likeBtn" style="font-size: 1.5em; color: inherit "></i>
                 </button>
+
+                <button class="lastCon menuItem" style=" margin-left: -9px;"  onClick=${() => { 
+                  showHideDiv('menuMore');
+                  } 
+                  
+                  }><i class="fas fa-expand" style="font-size: 1.5em; "></i>
+                </button>
              
             </div>
           </div>
         </div>
+
+            <div style="position: fixed;  display: none;     height: auto;
+            box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+            border-radius: 10px;
+            position: fixed;
+            margin: 2em;
+            z-index: 9001 !important;
+            background-color: white;
+            padding: 1em;
+            height: 70%;
+            width: 80%;
+            top: 70px;
+            " id="menuMore" onClick=${() => {
+              showHideDiv('divMsg');}}>
+              <h2 onclick=${() => {route('/profile/');}}>Profile</h2>
+              <h2 onclick=${() => {route('/explorer/');}}>Data</h2>
+              <h2 onclick=${() => {route('/settings/');}}>Settings</h2>
+
+            </div>
+  
+        
       <div class="container" style="margin-top: 8em">
         <div class="columns eight expand" style=" height: auto; padding: 1em; margin-left: 0%;  border-radius: 10px ">
           <div class=""  style="">
@@ -218,16 +262,15 @@ button#countNum {
       
                       <div style="width:100%">
                         <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="areaName">[${i.area}]</p>
-                        <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; display: none" class="description" id="">${i.areaID}s</p>
+                        <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400; display: none" id="">${i.areaID}s</p>
                         
-                        <h3 style="margin: 4px; font-size: 20px; font-weight: 600" class=""><a style="" class="">${i.type}</a></h3>
+                        <h3 style="margin: 4px; font-size: 20px; font-weight: 600; font-family: arial"  class="branch twoD dent branchActive"><a style="" class="">${i.type}</a></h3>
                         <h3 style="margin: 4px; font-size: 20px; font-weight: 600; display: none" class=""><a style="" class="" >${i.mapCont}</a></h3>
                         <button onClick=${() => { 
-                          var getID = i.areaID;
-                          console.log(getID)
-                            State.public.user().get('store').get('capacity').get(i.areaID).put(null);
-
-                            route('/store/');
+                          var placeArea = i.area;
+                          console.log(placeArea)
+                          State.public.user().get('store').get('capacityAreas').get(placeArea).put(null);
+                          route('/store/');
                         }}> Delete</button>
                         <p style="color: #000 !important; margin: 4px; font-size: 20px; font-weight: 400" class="description" id="range"></p>
                   
@@ -252,7 +295,7 @@ button#countNum {
                             
                             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                               attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                              maxZoom: 26,
+                              maxZoom: 30,
                               id: 'suckma/ckpnlfjf80lb117mji70ezybv',
                               tileSize: 512,
                               zoomOffset: -1,
@@ -392,7 +435,10 @@ button#countNum {
     this.cart = {};
 
 
-
+    var getCapas = State.public.user(pub).get('capacityAreas')
+    getCapas.map((v) => {
+      console.log(v)
+    })
 
     if (pub) {
       State.public.user(pub).get('store').get('capacityAreas').map().on((g, up) => {

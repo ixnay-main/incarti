@@ -228,56 +228,60 @@ button{
 
 @keyframes gradient {
   0% {
-    background:whitesmoke ;
+    background: rgb(247, 215, 215) ;
     transform: rotate3d(2, -1, -1, -0.7turn);
   }
   20% {
-    background:rgb(78, 78, 78) ;
+    background:rgb(194, 78, 78) ;
     transform: rotate3d(2, -1, -1, -0.2turn);
   }
   30% {
-    background:whitesmoke ;
+    background:rgb(216, 159, 159) ;
     transform: rotate3d(0, 0, 0, 0turn);
 
   }
   45% {
-    background:whitesmoke ;
+    background:rgb(218, 92, 92) ;
     transform: rotate3d(2, -1, -1, -0.7turn);
   }
   60% {
-    background:rgb(160, 160, 160) ;
+    background:rgb(236, 125, 125) ;
     transform: rotate3d(2, 1, -1, -0.2turn);
 
   }
   80% {
-    background:whitesmoke ;
+    background:rgb(255, 164, 164) ;
     transform: rotate3d(1, 1, -1, -0.2turn);
 
   }
-  100% {
-    background:whitesmoke ;
+  90% {
+    background:rgb(231, 90, 90) ;
     transform: rotate3d(2, -1, -1, -0.7turn);
 
+  }
+  100% {
+    background: rgb(247, 215, 215) ;
+    transform: rotate3d(2, -1, -1, -0.7turn);
   }
 } 
 @keyframes twist {
   0% {
-    background:whitesmoke;
+    background: rgb(247, 215, 215) ;
     transform: rotate3d(2, -1, -1, -0.7turn);
   }
   20% {
-    background:rgb(0, 0, 0);
+    background:rgb(216, 76, 76);
     transform: rotate3d(2, -1, -1, -0.2turn);
     z-index: 10;
 
   }
   30% {
-    background:rgb(119, 119, 119);
+    background:rgb(228, 119, 119);
     transform: rotate3d(0, 0, 0, 0turn);
 
   }
   45% {
-    background:whitesmoke ;
+    background:rgb(235, 111, 111) ;
     transform: rotate3d(2, -1, -1, -0.2turn);
     z-index: 10;
   }
@@ -287,14 +291,18 @@ button{
 
   }
   80% {
-    background:whitesmoke;
+    background:rgb(253, 90, 90);
     transform: rotate3d(1, -1, -1, -0.1turn);
 
   }
-  100% {
-    background:whitesmoke;
+  90% {
+    background:rgb(219, 136, 136);
     transform: rotate3d(2, -1, -1, -0.7turn);
 
+  }
+  100% {
+    background: rgb(247, 215, 215) ;
+    transform: rotate3d(2, -1, -1, -0.7turn);
   }
 } 
 
@@ -548,3 +556,45 @@ html, body {
 
 #mapid { height: 400px; border-radius: 10px; }
 
+
+
+.showOff{
+  width: 30em;
+  height: 20em;
+  border-radius: 10px;
+  margin-right: 2em;
+  background-color:whitesmoke;
+  padding: 1em
+}
+
+.infoBox{ 
+  border-radius: 5px;
+  height: fit-content;
+  margin-bottom: 1em;
+  background-color: rgb(211, 255, 218) !important;
+  color: rgb(88, 96, 105) !important;
+  font-size: 16px !Important
+
+}
+
+
+
+@media (max-width: 625px){
+.view-area {
+    padding: 0em;
+}
+.main-view {
+  margin-top: 0em !important;
+  padding: 0em;
+  
+}
+
+.header-content .btn {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 4px 30px;
+  border-radius: 5px;
+  color: rgb(199, 199, 199) !important;
+  border: none;
+  font-size: 1.2em;
+}
+}

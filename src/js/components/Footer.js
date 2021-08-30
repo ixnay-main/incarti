@@ -40,23 +40,19 @@ class Footer extends Component {
   var folderSvg = html`<i class="far fa-folder"></i>`
   var chatSvg = html`<i class="far fa-comment-alt"></i>`
   var profileSvg = html`<i class="far fa-user"></i>`
+  var capacity = html`<i class="fas fa-seedling"></i>`
+
 
     return html`
     <footer class="visible-xs-flex nav footer">
       <div class="header-content" onClick=${() => State.local.get('scrollUp').put(true)}>
-        <a href="/chat" class="btn ${activeRoute && activeRoute.indexOf('/chat') === 0 ? 'active' : ''}">
-          ${this.state.unseenTotal ? html`<span class="unseen unseen-total">${this.state.unseenTotal}</span>`: ''}
-          ${Icons.chat}
-        </a>
+  
+        <a href="/capacity" class="btn ${activeRoute && activeRoute === '/capacity' ? 'active' : ''}">${capacity}</a>
+
         <a href="/orders" class="btn ${activeRoute && activeRoute === '/orders' ? 'active' : ''}">${Icons.order}</a>
-
-        <a href="/" class="btn ${activeRoute && activeRoute === '/' ? 'active' : ''}">${Icons.home}</a>
-
         
         <a href="/store/${key}" class="btn ${activeRoute && activeRoute === '/store/' + key ? 'active' : ''}">${Icons.catalog}</a>
-        <a href="/profile/${key}" class="${activeRoute && activeRoute === '/profile/' + key ? 'active' : ''} my-profile">
-          <${Identicon} str=${key} width=34 />
-        </a>
+
       </div>
     </footer>`;
   }
