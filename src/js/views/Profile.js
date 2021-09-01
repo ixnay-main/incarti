@@ -35,6 +35,11 @@ class Profile extends View {
     this.id = "profile";
   }
 
+  personTypeMethodChanged(e) {
+    const val = e.target.firstChild && e.target.firstChild.value;
+    val && State.local.get('personType').put(val);
+  }
+
   onProfilePhotoSet(src) {
     State.public.user().get('profile').get('photo').put(src);
   }
@@ -132,6 +137,18 @@ class Profile extends View {
               <p style=" height:1.5em "><iris-text path="profile/location" placeholder="Location" user=${Session.getPubKey()}/></p>
               <p style=" height:1.5em "><iris-text path="profile/clique" placeholder="Clique" user=${Session.getPubKey()}/></p>
 
+              <p>
+                <label for="Individual" onClick=${e => this.personTypeMethodChanged(e)}>
+                  <input class="funkyradio" type="radio" name="type" id="Individual" value="Individual" checked=${this.state.manuType === 'Individual'}/>
+                  Individual
+                </label>
+              </p>
+              <p>
+                <label for="DAO" onClick=${e => this.personTypeMethodChanged(e)}>
+                  <input class="funkyradio" type="radio" name="type" id="DAO" value="DAO" checked=${this.state.manuType === 'DAO'}/>
+                  DAO
+                </label>
+              </p>
             <p style="height: 2em; margin: 0em; font-weight: 400 "  class="">
               <iris-text style="min-height: 3em; color: black !important"  path="store/about" placeholder="Store description" attr="" user=${Session.getPubKey()}/>
             </p>
@@ -319,6 +336,10 @@ class Profile extends View {
         }, 1000);
       }
     }
+
+    State.local.get('personType').on(personType => this.setState({personType}));
+
+
     var qrCodeEl = $('#profile-page-qr');
     qrCodeEl.empty();
     State.local.get('noFollowers').on(noFollowers => this.setState({noFollowers}));
