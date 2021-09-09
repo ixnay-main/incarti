@@ -15,10 +15,7 @@ import Identicon from '../components/Identicon.js';
 import View from './View.js';
 import { Link } from '../lib/preact.match.js';
 
-
-
 const SMS_VERIFIER_PUB = 'ysavwX9TVnlDw93w9IxezCJqSDMyzIU-qpD8VTN5yko.3ll1dFdxLkgyVpejFkEMOFkQzp_tRrkT3fImZEx94Co';
-
 
 function deleteChat(pub) {
   iris.Channel.deleteChannel(State.public, Session.getKey(), pub);
@@ -29,15 +26,10 @@ function deleteChat(pub) {
 class Profile extends View {
   constructor() {
     super();
-    this.eventListeners = [];
+    this.eventListeners = {};
     this.followedUsers = new Set();
     this.followers = new Set();
     this.id = "profile";
-  }
-
-  personTypeMethodChanged(e) {
-    const val = e.target.firstChild && e.target.firstChild.value;
-    val && State.local.get('personType').put(val);
   }
 
   onProfilePhotoSet(src) {
@@ -67,7 +59,7 @@ class Profile extends View {
           <div class="msg-content">
             <p>Share your profile link so ${this.state.name || 'this user'} can follow you:</p>
             <p><${CopyButton} text=${t('copy_link')} title=${Session.getMyName()} copyStr=${Helpers.getProfileLink(Session.getPubKey())}/></p>
-            <small>Your posts, replies and likes are only shown to your followers and their network.</small>
+            <small>${t('visibility')}</small>
           </div>
         </div>
       `;
@@ -118,61 +110,14 @@ class Profile extends View {
     if (this.isMyProfile) {
       profilePhoto = html`<${ProfilePhotoPicker} currentPhoto=${this.state.photo} placeholder=${this.props.id} callback=${src => this.onProfilePhotoSet(src)}/>`;
     } else {
-      if (this.state.photo) {
+      if (this.state.photo && !this.state.blocked) {
         profilePhoto = html`<${SafeImg} class="profile-photo" src=${this.state.photo}/>`
       } else {
-        profilePhoto = html`<${Identicon} str=${this.props.id} width=250/>`
+        profilePhoto = html`<${Identicon} str=${this.props.id} hidePhoto=${this.state.blocked} width=250/>`
       }
     }
     return html`
     <div class="profile-top">
-      <div class="columns four" id="profile" style="display:block; background-color: ; border-radius: 15px  ;  position: sticky !important; top: 4em; ">
-        <div class="" style="position: sticky !important; top: 2em; background-color:;  z-index: 4; padding:1em; border-radius:  15px  ;">
-
-
-            <div class="" style="background-color:; padding: 2px;   margin-bottom: 2em;    position: sticky; top: 1em;  z-index: 4 ; border-bottom: 2px solid rgb(236, 236, 236);
-            ">
-              <h2 style="color: black; margin: 2px; height:1.5em"><iris-text path="profile/name" placeholder="Name" user=${Session.getPubKey()}/></h2>
-            </div>
-              <p style=" height:1.5em "><iris-text path="profile/location" placeholder="Location" user=${Session.getPubKey()}/></p>
-              <p style=" height:1.5em "><iris-text path="profile/clique" placeholder="Clique" user=${Session.getPubKey()}/></p>
-
-              <p>
-                <label for="Individual" onClick=${e => this.personTypeMethodChanged(e)}>
-                  <input class="funkyradio" type="radio" name="type" id="Individual" value="Individual" checked=${this.state.manuType === 'Individual'}/>
-                  Individual
-                </label>
-              </p>
-              <p>
-                <label for="DAO" onClick=${e => this.personTypeMethodChanged(e)}>
-                  <input class="funkyradio" type="radio" name="type" id="DAO" value="DAO" checked=${this.state.manuType === 'DAO'}/>
-                  DAO
-                </label>
-              </p>
-            <p style="height: 2em; margin: 0em; font-weight: 400 "  class="">
-              <iris-text style="min-height: 3em; color: black !important"  path="store/about" placeholder="Store description" attr="" user=${Session.getPubKey()}/>
-            </p>
-
-            <div style="display: flex; width: 100%" class="">
-
-
-              <div style="display: flex; width: fit-content; float: right" class="">
-                
-              </div>
-            </div>
-          </div> 
-
-          <div class="profile-about visible-xs-flex">
-            <p  class="profile-about-content" placeholder=${this.isMyProfile ? t('about') : ''} contenteditable=${this.isMyProfile} onInput=${e => this.onAboutInput(e)}>${this.state.about}</p>
-          </div>
-
-          <br/>
-          <div id="divMsg" style="display:none">
-            <div style="border-radius: 10px;padding: 0.2em;">
-              <canvas id="qr-code" style="align-content: center  ;"></canvas>
-            </div>    
-        </div>
-      </div>
       <div class="profile-header">
         <div class="profile-photo-container">
           ${profilePhoto}
@@ -198,7 +143,7 @@ class Profile extends View {
             ` : ''}
             ${this.isMyProfile ? '' : html`<${FollowButton} id=${this.props.id}/>`}
             <button onClick=${() => route('/chat/' + this.props.id)}>${t('send_message')}</button>
-            <${CopyButton} text=${t('copy_link')} title=${this.state.name} copyStr=${'https://iris.to/' + window.location.hash}/>
+            <${CopyButton} text=${t('copy_link')} title=${this.state.name} copyStr=${'https://iris.to' + window.location.pathname}/>
             <button onClick=${() => $('#profile-page-qr').toggle()}>${t('show_qr_code')}</button>
             ${this.isMyProfile ? '' : html`
               <button class="show-settings" onClick=${() => this.onClickSettings()}>${t('settings')}</button>
@@ -219,7 +164,12 @@ class Profile extends View {
 
   renderTabs() {
     return html`
- 
+    <div class="tabs">
+      <${Link} activeClassName="active" href="/profile/${this.props.id}">${t('posts')}<//>
+      <${Link} activeClassName="active" href="/replies/${this.props.id}">${t('replies')}<//>
+      <${Link} activeClassName="active" href="/likes/${this.props.id}">${t('likes')}<//>
+      <${Link} activeClassName="active" href="/media/${this.props.id}">${t('media')}<//>
+    </div>
     `;
   }
 
@@ -261,19 +211,18 @@ class Profile extends View {
     return html`
       <div class="content">
         ${this.renderDetails()}
-        ${this.renderTabs()}
-        ${this.renderTab()}
+        ${this.state.blocked ? '' : this.renderTabs()}
+        ${this.state.blocked ? '' : this.renderTab()}
       </div>
     `;
   }
 
   componentWillUnmount() {
-    this.eventListeners.forEach(e => e.off());
+    Object.values(this.eventListeners).forEach(e => e.off());
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.id !== this.props.id) {
-      this.setState({memberCandidate:null});
       this.componentDidMount();
     }
   }
@@ -281,7 +230,7 @@ class Profile extends View {
   getProfileDetails() {
     const pub = this.props.id;
     State.public.user(pub).get('follow').map().on((following,key,c,e) => {
-      this.eventListeners.push(e);
+      this.eventListeners['follow'] = e;
       if (following) {
         this.followedUsers.add(key);
       } else {
@@ -289,7 +238,7 @@ class Profile extends View {
       }
       this.setState({followedUserCount: this.followedUsers.size});
     });
-    State.local.get('follows').map().once((following,key) => {
+    State.local.get('groups').get('follows').map().once((following,key) => {
       if (following) {
         State.public.user(key).get('follow').get(pub).once(following => {
           if (following) {
@@ -301,17 +250,17 @@ class Profile extends View {
     });
     State.public.user(pub).get('profile').get('name').on((name,a,b,e) => {
       document.title = name || document.title;
-      this.eventListeners.push(e);
+      this.eventListeners['name'] = e;
       if (!$('#profile .profile-name:focus').length) {
         this.setState({name});
       }
     });
     State.public.user(pub).get('profile').get('photo').on((photo,a,b,e) => {
-      this.eventListeners.push(e);
+      this.eventListeners['photo'] = e;
       this.setState({photo});
     });
     State.public.user(pub).get('profile').get('about').on((about,a,b,e) => {
-      this.eventListeners.push(e);
+      this.eventListeners['about'] = e;
       if (!$('#profile .profile-about-content:focus').length) {
         this.setState({about});
       } else {
@@ -322,8 +271,8 @@ class Profile extends View {
 
   componentDidMount() {
     const pub = this.props.id;
-    this.eventListeners.forEach(e => e.off());
-    this.setState({followedUserCount: 0, followerCount: 0, name: '', photo: '', about: ''});
+    Object.values(this.eventListeners).forEach(e => e.off());
+    this.setState({followedUserCount: 0, followerCount: 0, name: '', photo: '', about: '', blocked: false});
     this.isMyProfile = Session.getPubKey() === pub;
     const chat = Session.channels[pub];
     if (pub.length < 40) {
@@ -336,10 +285,6 @@ class Profile extends View {
         }, 1000);
       }
     }
-
-    State.local.get('personType').on(personType => this.setState({personType}));
-
-
     var qrCodeEl = $('#profile-page-qr');
     qrCodeEl.empty();
     State.local.get('noFollowers').on(noFollowers => this.setState({noFollowers}));
@@ -352,13 +297,17 @@ class Profile extends View {
     }
     qrCodeEl.empty();
     new QRCode(qrCodeEl[0], {
-      text: 'https://iris.to/' + window.location.hash,
+      text: 'https://iris.to/' + window.location.pathname,
       width: 300,
       height: 300,
       colorDark : "#000000",
       colorLight : "#ffffff",
       correctLevel : QRCode.CorrectLevel.H
     });
+    State.public.user().get('block').get(this.props.id).on((blocked,k,x,e) => {
+      this.eventListeners['block'] = e;
+      this.setState({blocked});
+    })
   }
 }
 

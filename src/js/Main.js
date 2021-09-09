@@ -1,6 +1,5 @@
 import { render } from './lib/preact.js';
-import { Router, route } from './lib/preact-router.es.js';
-import { createHashHistory } from './lib/history.production.min.js';
+import { Router } from './lib/preact-router.es.js';
 import { Component } from './lib/preact.js';
 import { Link } from './lib/preact.match.js';
 
@@ -13,48 +12,37 @@ import { translate as t } from './Translation.js';
 
 import Settings from './views/Settings.js';
 import LogoutConfirmation from './views/LogoutConfirmation.js';
-
 import Chat from './views/Chat.js';
-import Pricing from './views/Pricing.js';
-
-import Store from './views/Store.js';
+import Mesh from './views/Mesh.js';
 import Checkout from './views/Checkout.js';
-import Product from './views/Product.js';
-
+import Point from './views/Point.js';
 import Login from './views/Login.js';
-
-
-import Home from './views/Home.js';
-
 import Profile from './views/Profile.js';
 import Group from './views/Group.js';
 import Message from './views/Message.js';
 import Follows from './views/Follows.js';
-
+import Feed from './views/Feed.js';
 import About from './views/About.js';
-
-import Orders from './views/Orders.js';
-
-import Capacity from './views/Capacity.js';
-import CapNew from './views/Capnew.js';
-
 import Explorer from './views/Explorer.js';
 import Contacts from './views/Contacts.js';
 import Torrent from './views/Torrent.js';
 
 import VideoCall from './components/VideoCall.js';
 import Identicon from './components/Identicon.js';
+import MediaPlayer from './components/MediaPlayer.js';
 import Footer from './components/Footer.js';
 import State from './State.js';
 import Icons from './Icons.js';
 
-var settingsIcon = html`<i class="fas fa-cog"></i>`
+if (window.location.hash && window.location.hash.indexOf('#/') === 0) { // redirect old urls
+  window.location.href = window.location.href.replace('#/', '');
+}
 
 const userAgent = navigator.userAgent.toLowerCase();
 const isElectron = (userAgent.indexOf(' electron/') > -1);
 if (!isElectron && ('serviceWorker' in navigator)) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('serviceworker.js')
+    navigator.serviceWorker.register('/serviceworker.js')
     .catch(function(err) {
       // registration failed :(
       console.log('ServiceWorker registration failed: ', err);
@@ -62,62 +50,22 @@ if (!isElectron && ('serviceWorker' in navigator)) {
   });
 }
 
-var orderSvg = html`<div style="display: flex; margin-top: 2px"> <i class="fas fa-level-up-alt" ></i><i style="margin-left: -2px" class="fas fa-level-down-alt" ></i></div>`
-var folderSvg = html`<i class="fas fa-grip-lines"></i>`
-var chatSvg = html`<i class="far fa-comment-alt"></i>`
-var profileSvg = html`<i class="far fa-user"></i>`
-var ixnayText = html`<h1 style="font-family: arialBlack; font-size: 2em;margin-top: -0.5em; margin-bottom: 0px; z-index: 100">IXNAY</h1>`
-var cog = html`<i  class="fas fa-cog"></i>`
-var data = html`<i class="fas fa-database"></i>`
-var person = html`<i class="fas fa-user-circle"></i>`
-var info = html`<i class="fas fa-info-circle"></i>`
-
-var home =  html`<div style="display: flex;margin-left: 0px; ">
-
-<div class="smolbar3"></div>
-<div class="smolbar3"></div>
-<div class="smolbar3 "></div>
-
-<h2 style="font-family: arialBlack; font-size: 35px; margin: 0px; margin-left: 1em">IXNAY</h2>
-
-
-</div>`;
-
 State.init();
-Session.init({autologin: window.location.hash.length > 2});
+Session.init({autologin: window.location.pathname.length > 2});
 PeerManager.init();
 
 Helpers.checkColorScheme();
 
-const APPLICATIONBRAND = [ // TODO: move editable shortcuts to localState gun
-  {url: '/', text: home, icon: Icons.home , classCss: " hideWhite"},
-];
-
-
 const APPLICATIONS = [ // TODO: move editable shortcuts to localState gun
-
-  {url: '/browse', text: "Home", icon: Icons.settings , classCss: "firstCon"},
-  {url: '/store', text: "Catalog", icon: Icons.store , classCss: "midCon"},
-  {url: '/orders', text: "Orders", icon: Icons.store , classCss: "midCon"},
-  {url: '/chat', text: "Messages", icon: Icons.store , classCss: "midCon"},
-  {url: '/capacity', text: "Capacity", icon: Icons.store , classCss: "lastCon"},
-
-  
+  {url: '/', text: t('home'), icon: Icons.home},
+  {url: '/media', text: t('media'), icon: Icons.play},
+  {url: '/chat', text: t('messages'), icon: Icons.chat},
+  {url: '/mesh', text: t('market'), icon: Icons.store},
+  {url: '/contacts', text: t('contacts'), icon: Icons.user},
+  {url: '/settings', text: t('settings'), icon: Icons.settings},
+  {url: '/explorer', text: t('explorer'), icon: Icons.folder},
+  {url: '/about', text: t('about')},
 ];
-
-
-
-const APPLICATIONSSECOND = [ // TODO: move editable shortcuts to localState gun
-
-  {url: '/settings', text: cog, icon: Icons.settings , classCss: "firstCon"},
-  {url: '/explorer', text: data, icon: Icons.settings , classCss: "midCon"},
-  {url: '/profile', text: person, icon: Icons.settings, classCss: "midCon"},
-  {url: '/about', text: info, icon: Icons.settings , classCss: "lastCon"},
-  
-
-];
-
-
 
 class Menu extends Component {
   componentDidMount() {
@@ -134,60 +82,30 @@ class Menu extends Component {
   render() {
     const pub = Session.getPubKey();
     return html`
- 
-      <div class="application-list ">
-        <div class="container" style="padding: 0% 0.8%;">
-          <div class="columns twelve">
-            ${APPLICATIONBRAND.map(a => {
-              if (a.url) {
-                return html`
-                  <${a.native ? 'a' : Link} class="flex " style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="" href=${a.url}>
-
-                    <span class="text right ${a.classCss}">${a.text}</span>
-                  <//>`;
-              } else {
-                return html`<br/><br/>`;
-              }
-            })}
+    <div style="position: fixed">
+      <div class="container" style="">
+        <div class="columns twelve banner" style="display: flex;padding: 3px; overflow-x: hidden; background-color: #ffffff00">
+          <div class="visible-xs-block">
+            <${Link} onClick=${() => this.menuLinkClicked()} activeClassName="active" href="/profile/${pub}">
+              <span class="icon"><${Identicon} str=${pub} width=40/></span>
+              <span class="text" style="font-size: 1.2em;border:0;margin-left: 7px;"><iris-text user="${pub}" path="profile/name" editable="false"/></span>
+            <//>
+            <br/><br/>
           </div>
-          <div class="columns twelve hideAppl" style="display: flex;padding-bottom: 10px">
-            <div class="visible-xs-block">
-              <${Link} onClick=${() => this.menuLinkClicked()} activeClassName="active" href="/profile/${pub}">
-                <span class="icon"><${Identicon} str=${pub} width=40/></span>
-                <span class="text" style="font-size: 1.2em;border:0;margin-left: 7px;"><iris-text user="${pub}" path="profile/name" editable="false"/></span>
-              <//>
-              <br/><br/>
-            </div>
-
-            ${APPLICATIONS.map(a => {
-              if (a.url) {
-                return html`
-                  <${a.native ? 'a' : Link} class="flex  menuItem" style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
-
-                    <span class="text right ${a.classCss}">${a.text}</span>
-                  <//>`;
-              } else {
-                return html`<br/><br/>`;
-              }
-            })}
-
-            <div class="flex-auto"></div>
-
-            ${APPLICATIONSSECOND.map(b => {
-              if (b.url) {
-                return html`
-                  <${b.native ? 'a' : Link} class="flex menuItem" style="margin-top: 0px" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${b.url}>
-
-                    <span class="text right ${b.classCss}">${b.text}</span>
-                  <//>`;
-              } else {
-                return html`<br/><br/>`;
-              }
-            })}
-          </div>
+          ${APPLICATIONS.map(a => {
+            if (a.url) {
+              return html`
+                <${a.native ? 'a' : Link} class="flex  menuItem" onClick=${() => this.menuLinkClicked()} activeClassName="active" href=${a.url}>
+                  <span class="text right">${a.text}</span>
+                <//>`;
+            } else {
+              return html`<br/><br/>`;
+            }
+          })}
         </div>
-        
       </div>
+    </div>
+
     `;
   }
 }
@@ -202,9 +120,6 @@ class Main extends Component {
 
   handleRoute(e) {
     let activeRoute = e.url;
-    if (!activeRoute && window.location.hash) {
-      return route(window.location.hash.replace('#', '')); // bubblegum fix back navigation
-    }
     document.title = 'IXNAY';
     if (activeRoute && activeRoute.length > 1) { document.title += ' - ' + Helpers.capitalize(activeRoute.replace('/', '')); }
     State.local.get('activeRoute').put(activeRoute);
@@ -228,11 +143,11 @@ class Main extends Component {
   render() {
     let content = '';
     const isDesktopNonMac = this.state.platform && this.state.platform !== 'darwin';
-    if (this.state.loggedIn || window.location.hash.length <= 2) {
+    if (this.state.loggedIn || window.location.pathname.length <= 2) {
       content = this.state.loggedIn ? html`
         ${isDesktopNonMac ? html`
           <div class="windows-titlebar">
-               <img src="img/iris_logotype.png" height=16 width=28 />
+               <img src="/img/iris_logotype.png" height=16 width=28 />
                <div class="title-bar-btns">
                     <button class="min-btn" onClick=${() => this.electronCmd('minimize')}>-</button>
                     <button class="max-btn" onClick=${() => this.electronCmd('maximize')}>+</button>
@@ -244,44 +159,28 @@ class Main extends Component {
           <${Menu}/>
           <div class="overlay" onClick=${e => this.onClickOverlay(e)}></div>
           <div class="view-area">
-            <${Router} history=${createHashHistory()} onChange=${e => this.handleRoute(e)}>
-              <${Home} path="/"/>
-              <${Home} path="/home"/>
-
+            <${Router} onChange=${e => this.handleRoute(e)}>
+              <${Feed} path="/"/>
+              <${Feed} path="/feed"/>
+              <${Feed} path="/search/:term?/:type?"/>
+              <${Feed} path="/media" index="media" thumbnails=${true}/>
               <${Login} path="/login"/>
               <${Chat} path="/chat/:id?"/>
-
-       
-
               <${Message} path="/post/:hash"/>
               <${Torrent} path="/torrent/:id"/>
               <${About} path="/about"/>
-
-              <${Pricing} path="/pricing"/>
-
               <${Settings} path="/settings"/>
               <${LogoutConfirmation} path="/logout"/>
-
-
               <${Profile} path="/profile/:id?" tab="profile"/>
               <${Profile} path="/replies/:id?" tab="replies"/>
               <${Profile} path="/likes/:id?" tab="likes"/>
-
-
+              <${Profile} path="/media/:id" tab="media"/>
               <${Group} path="/group/:id?"/>
 
-              <${Store} path="/store/:store?"/>
-
-              <${Orders} path="/orders/:orders?"/>
-
-              <${Capacity} path="/capacity/:capacity?"/>
-
-              <${Checkout} path="/checkout/:store?"/>
-
-              <${Product} path="/product/:product/:store"/>
-              <${Product} path="/product/new" store=Session.getPubKey()/>
-
-              <${CapNew} path="/capnew/new" store=Session.getPubKey()/>
+              <${Mesh} path="/mesh/:mesh?"/>
+              <${Checkout} path="/checkout/:mesh?"/>
+              <${Point} path="/point/:point/:mesh"/>
+              <${Point} path="/point/new" mesh=Session.getPubKey()/>
 
               <${Explorer} path="/explorer/:node"/>
               <${Explorer} path="/explorer"/>
@@ -291,6 +190,7 @@ class Main extends Component {
             </${Router}>
           </div>
         </section>
+        <${MediaPlayer}/>
         <${Footer}/>
         <${VideoCall}/>
       ` : html`<${Login}/>`;

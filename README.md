@@ -1,56 +1,55 @@
-# IXNAY
+# Iris
+Iris is like the social networking apps we're used to, but better.
+* No phone number or signup required. Just type in your name or alias and go!
+* Secure: It's open source. Users can validate that big brother doesn't read your private messages.
+* Available: It works offline-first and is not dependent on any single centrally managed server. Users can even connect directly to each other.
 
-The IRL colony management game.
+![Screenshot](src/img/screenshot.png)
 
-<hr>
+## Use
+Browser application: [iris.to](https://iris.to)
+* No installation required
+* Progressive web app
+  * Use offline
+  * Save as an app to home screen or desktop
 
-<h2>Premise</h2>
+Desktop application: ([download](https://github.com/irislib/iris-electron/releases), [source code](https://github.com/irislib/iris-electron)):
+* Communicate and synchronize with local network peers without Internet access
+  * When local peers eventually connect to the Internet, your messages are relayed globally
+  * Bluetooth support upcoming
+* Opens to background on login: stay online and get message notifications!
+* More secure and available: no need to open the browser application from a server.
 
-Luke Skywalker has no convenience store. If he needs something it turns up on some cargo drone which then zips off again. How do we get that on earth. <br>
-
-Maybe were talking the need for speeder parts. What spec are the parts? Where are the blueprints from, where will they be made? Mos Eisley? Or somewhere with more specialized machinery - how will the parts be transported back? What time frame are we on?
-
-
- What if we automate, and for everything - Crops, houses, clothing. 
-
-
-
-If a region can produce 100% of its demand can we say it's fully autonomous? What's the implication for this - could it become sovereign? Could we bootstrap countries with turnkey means of production? <br>
-How much can we automate? If the robots are outmanning(pardon the pun) fields then can humans just kick back for the next eternity? Sounds like a future worth exploring.
-
-![Screen Shot 2021-08-21 at 8 57 09 PM](https://user-images.githubusercontent.com/81891724/130316621-deda16f8-259b-4949-9cad-ee0bc61a2ee0.png)
-
-
-<h2>Theory Architecture</h2>
-
-> Blueprint - the basic building block: a 3d model, a chemical formula or a program. Their editable, cloneable, scarce or non-scarce, and can be ordered. <br>
->> Order - How you're going to get a blueprint made into something physical. Additional requests are added here for spec. Orders are taken on by producers if they are capable.<br><br>
->> Catalog - think ikea catalog, a collection of blueprints belonging to a user or cell.<br>
-
-> MOPE - Measure of production expertise - do you have machinery to make orders. This can be individually owned or it can belong to a cell. This will be the measure of Autonomy
-
-<br>
-
-> Cell - a collection of individuals in close physical proximity a.k.a a country
-
-use
-
+## Develop
 ```
-npx serve
+git clone https://github.com/irislib/iris-messenger.git
+cd iris-messenger
+yarn
+yarn start
 ```
 
-<h2>So whats built?</h2>
+No build tools! It just serves the `src` directory at http://localhost:8080
 
-<ul>
-    <li>STL upload</li>
-        <li>Cloning</li>
-    <li>Global Ordering</li>
+Eslint: `yarn eslint src/js/*.js --fix;yarn eslint src/js/components/*.js --fix`
 
-</ul>
+The application was originally built in plain jQuery without a framework. While we now use [preact](https://preactjs.com/), there's still some jquery logic that should be ported.
 
+## Privacy
+Private messages are end-to-end encrypted, but message timestamps and the number of chats aren't. In a decentralized network this information is potentially available to anyone.
 
-![Screen Shot 2021-08-23 at 12 30 11 PM](https://user-images.githubusercontent.com/81891724/130375460-e42bddcf-db9e-444c-9d7b-f3813a28f859.png)
-![Screen Shot 2021-08-23 at 12 29 46 PM](https://user-images.githubusercontent.com/81891724/130375375-1aca2959-e678-4d0d-8352-0a12dd7e1862.png)
-![Screen Shot 2021-08-23 at 12 29 31 PM](https://user-images.githubusercontent.com/81891724/130375383-065fc7b3-6db4-42e0-9bdc-a32686756a85.png)
-![Screen Shot 2021-08-23 at 12 26 25 PM](https://user-images.githubusercontent.com/81891724/130375388-1d5109e1-d3e0-46a2-9e34-cdd74f11dd33.png)
-![Screen Shot 2021-08-23 at 12 26 10 PM](https://user-images.githubusercontent.com/81891724/130375392-a51d04af-b70d-4045-b438-43d1f8b0178d.png)
+By looking at timestamps in chats, it is possible to guess who are chatting with each other. It is also possible, if not trivial, to find out who are communicating with each other by monitoring data subscriptions on the decentralized database.
+
+In that regard, Iris prioritizes decentralization and availability over perfect privacy.
+
+Profile names, photos and online status are currently public. That can be changed when advanced group permissions are developed.
+
+The application is an unaudited proof-of-concept implementation, so don't use it for security critical purposes.
+
+## Contact
+Join our [Discord](https://discord.gg/4Dgf54k) or send me a message on [Iris](https://iris.to/?chatWith=hyECQHwSo7fgr2MVfPyakvayPeixxsaAWVtZ-vbaiSc.TXIp8MnCtrnW6n2MrYquWPcc-DTmZzMBmc2yaGv9gIU&s=HlzYzNrhUsrn2PLi4yuRt6DiFUNM3hOmN8nFpgw6T-g&k=zvDfsInsMOI1).
+
+---
+
+<a href="https://opencollective.com/iris-social/donate" target="_blank"><img src="https://opencollective.com/iris-social/donate/button@2x.png?color=blue" width=200 /></a>
+
+<p><sub>BTC donations: 3GopC1ijpZktaGLXHb7atugPj9zPGyQeST</sub></p>

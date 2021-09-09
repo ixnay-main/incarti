@@ -603,7 +603,6 @@ header.footer .header-content {
 }
 
 #profile .content {
-  width: 800px;
   max-width: 100%;
 }
 
@@ -640,6 +639,7 @@ span.icon{
 .main-view {
 
   margin-top: 0em;
+  overflow-x: hidden;
 }
 
 .participant-list.open {
@@ -735,9 +735,12 @@ span.icon{
   display: flex;
   align-items: center;
   flex-direction: row;
-  color: rgb(0, 0, 0) ;
-  font-weight: 600;
-  font-size: 1.3em;
+  color: white;
+  background-color: black;
+  margin-right: 5px;
+  padding: 2px 20px !important;
+  font-weight: 300;
+  font-size: 1.2em;
   height: fit-content;
     margin-top: 1em;
 }
@@ -758,6 +761,7 @@ span.icon{
   .main-view {
 
     margin-top: 0em;
+
   }
 
 
